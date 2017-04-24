@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InventariosViewDlg" widgetVar="InventariosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInventariosTitle}">
+            <h:form id="InventariosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inventariosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewInventariosLabel_inventarioID}"/>
+                        <h:outputText value="#{inventariosController.selected.inventarioID}" title="#{bundle.ViewInventariosTitle_inventarioID}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_cu}"/>
+                        <h:outputText value="#{inventariosController.selected.cu}" title="#{bundle.ViewInventariosTitle_cu}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_cc}"/>
+                        <h:outputText value="#{inventariosController.selected.cc}" title="#{bundle.ViewInventariosTitle_cc}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_n}"/>
+                        <h:outputText value="#{inventariosController.selected.n}" title="#{bundle.ViewInventariosTitle_n}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_q}"/>
+                        <h:outputText value="#{inventariosController.selected.q}" title="#{bundle.ViewInventariosTitle_q}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_DMin}"/>
+                        <h:outputText value="#{inventariosController.selected.DMin}" title="#{bundle.ViewInventariosTitle_DMin}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_DMax}"/>
+                        <h:outputText value="#{inventariosController.selected.DMax}" title="#{bundle.ViewInventariosTitle_DMax}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_periodoTiempo}"/>
+                        <h:outputText value="#{inventariosController.selected.periodoTiempo}" title="#{bundle.ViewInventariosTitle_periodoTiempo}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_t}"/>
+                        <h:outputText value="#{inventariosController.selected.t}" title="#{bundle.ViewInventariosTitle_t}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_m}"/>
+                        <h:outputText value="#{inventariosController.selected.m}" title="#{bundle.ViewInventariosTitle_m}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_s}"/>
+                        <h:outputText value="#{inventariosController.selected.s}" title="#{bundle.ViewInventariosTitle_s}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_x}"/>
+                        <h:outputText value="#{inventariosController.selected.x}" title="#{bundle.ViewInventariosTitle_x}"/>
+                        <h:outputText value="#{bundle.ViewInventariosLabel_z}"/>
+                        <h:outputText value="#{inventariosController.selected.z}" title="#{bundle.ViewInventariosTitle_z}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InventariosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

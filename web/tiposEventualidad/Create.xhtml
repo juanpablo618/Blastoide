@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiposEventualidadCreateDlg" widgetVar="TiposEventualidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTiposEventualidadTitle}">
+            <h:form id="TiposEventualidadCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiposEventualidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_tipoEventualidadID}" for="tipoEventualidadID" />
+                        <p:inputText id="tipoEventualidadID" value="#{tiposEventualidadController.selected.tipoEventualidadID}" title="#{bundle.CreateTiposEventualidadTitle_tipoEventualidadID}" required="true" requiredMessage="#{bundle.CreateTiposEventualidadRequiredMessage_tipoEventualidadID}"/>
+                        <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{tiposEventualidadController.selected.nombre}" title="#{bundle.CreateTiposEventualidadTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTiposEventualidadRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tiposEventualidadController.selected.descripcion}" title="#{bundle.CreateTiposEventualidadTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateTiposEventualidadRequiredMessage_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiposEventualidadController.create}" value="#{bundle.Save}" update="display,:TiposEventualidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'TiposEventualidadCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiposEventualidadCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

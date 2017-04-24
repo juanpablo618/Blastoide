@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImagenesViewDlg" widgetVar="ImagenesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewImagenesTitle}">
+            <h:form id="ImagenesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{imagenesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewImagenesLabel_imagenID}"/>
+                        <h:outputText value="#{imagenesController.selected.imagenID}" title="#{bundle.ViewImagenesTitle_imagenID}"/>
+                        <h:outputText value="#{bundle.ViewImagenesLabel_fileName}"/>
+                        <h:outputText value="#{imagenesController.selected.fileName}" title="#{bundle.ViewImagenesTitle_fileName}"/>
+                        <h:outputText value="#{bundle.ViewImagenesLabel_contentType}"/>
+                        <h:outputText value="#{imagenesController.selected.contentType}" title="#{bundle.ViewImagenesTitle_contentType}"/>
+                        <h:outputText value="#{bundle.ViewImagenesLabel_fileType}"/>
+                        <h:outputText value="#{imagenesController.selected.fileType}" title="#{bundle.ViewImagenesTitle_fileType}"/>
+                        <h:outputText value="#{bundle.ViewImagenesLabel_fileImagen}"/>
+                        <h:outputText value="#{imagenesController.selected.fileImagen}" title="#{bundle.ViewImagenesTitle_fileImagen}"/>
+                        <h:outputText value="#{bundle.ViewImagenesLabel_productoID}"/>
+                        <h:outputText value="#{imagenesController.selected.productoID}" title="#{bundle.ViewImagenesTitle_productoID}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ImagenesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

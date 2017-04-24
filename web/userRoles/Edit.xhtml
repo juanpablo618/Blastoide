@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserRolesEditDlg" widgetVar="UserRolesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUserRolesTitle}">
+            <h:form id="UserRolesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userRolesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditUserRolesLabel_userId}" for="userId" />
+                        <p:inputText id="userId" value="#{userRolesController.selected.userId}" title="#{bundle.EditUserRolesTitle_userId}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_userId}"/>
+                        <p:outputLabel value="#{bundle.EditUserRolesLabel_users}" for="users" />
+                        <p:selectOneMenu id="users" value="#{userRolesController.selected.users}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_users}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                           var="usersItem"
+                                           itemValue="#{usersItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditUserRolesLabel_roleId}" for="roleId" />
+                        <p:selectOneMenu id="roleId" value="#{userRolesController.selected.roleId}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_roleId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{userRolesController.itemsAvailableSelectOne}"
+                                           var="roleIdItem"
+                                           itemValue="#{roleIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{userRolesController.update}" value="#{bundle.Save}" update="display,:UserRolesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UserRolesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UserRolesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

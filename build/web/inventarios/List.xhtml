@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListInventariosTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="InventariosListForm">
+                <p:panel header="#{bundle.ListInventariosTitle}">
+                    <p:dataTable id="datalist" value="#{inventariosController.items}" var="item"
+                                 selectionMode="single" selection="#{inventariosController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.inventarioID}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_inventarioID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inventarioID}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_cu}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cu}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_cc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cc}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_n}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.n}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_q}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.q}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_DMin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.DMin}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_DMax}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.DMax}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_periodoTiempo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.periodoTiempo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_t}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.t}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_m}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.m}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_s}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.s}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_x}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.x}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventariosTitle_z}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.z}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{inventariosController.prepareCreate}" update=":InventariosCreateForm" oncomplete="PF('InventariosCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":InventariosViewForm" oncomplete="PF('InventariosViewDialog').show()" disabled="#{empty inventariosController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":InventariosEditForm" oncomplete="PF('InventariosEditDialog').show()" disabled="#{empty inventariosController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{inventariosController.destroy}" update=":growl,datalist" disabled="#{empty inventariosController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

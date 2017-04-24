@@ -1,0 +1,165 @@
+package com.blastoide.jsfcontroller;
+
+import com.blastoide.jsf.UnidadesMedida;
+import com.blastoide.jsfcontroller.util.JsfUtil;
+import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
+import com.blastoide.jpa.UnidadesMedidaFacade;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+@Named("unidadesMedidaController")
+@SessionScoped
+public class UnidadesMedidaController implements Serializable {
+
+    @EJB
+    private com.blastoide.jpa.UnidadesMedidaFacade ejbFacade;
+    private List<UnidadesMedida> items = null;
+    private UnidadesMedida selected;
+
+    public UnidadesMedidaController() {
+    }
+
+    public UnidadesMedida getSelected() {
+        return selected;
+    }
+
+    public void setSelected(UnidadesMedida selected) {
+        this.selected = selected;
+    }
+
+    protected void setEmbeddableKeys() {
+    }
+
+    protected void initializeEmbeddableKey() {
+    }
+
+    private UnidadesMedidaFacade getFacade() {
+        return ejbFacade;
+    }
+
+    public UnidadesMedida prepareCreate() {
+        selected = new UnidadesMedida();
+        initializeEmbeddableKey();
+        return selected;
+    }
+
+    public void create() {
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UnidadesMedidaCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
+
+    public void update() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UnidadesMedidaUpdated"));
+    }
+
+    public void destroy() {
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UnidadesMedidaDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
+
+    public List<UnidadesMedida> getItems() {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
+        return items;
+    }
+
+    private void persist(PersistAction persistAction, String successMessage) {
+        if (selected != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETE) {
+                    getFacade().edit(selected);
+                } else {
+                    getFacade().remove(selected);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+    }
+
+    public UnidadesMedida getUnidadesMedida(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+
+    public List<UnidadesMedida> getItemsAvailableSelectMany() {
+        return getFacade().findAll();
+    }
+
+    public List<UnidadesMedida> getItemsAvailableSelectOne() {
+        return getFacade().findAll();
+    }
+
+    @FacesConverter(forClass = UnidadesMedida.class)
+    public static class UnidadesMedidaControllerConverter implements Converter {
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            UnidadesMedidaController controller = (UnidadesMedidaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "unidadesMedidaController");
+            return controller.getUnidadesMedida(getKey(value));
+        }
+
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
+            return key;
+        }
+
+        String getStringKey(java.lang.Integer value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value);
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof UnidadesMedida) {
+                UnidadesMedida o = (UnidadesMedida) object;
+                return getStringKey(o.getUnidadMedidaID());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), UnidadesMedida.class.getName()});
+                return null;
+            }
+        }
+
+    }
+
+}

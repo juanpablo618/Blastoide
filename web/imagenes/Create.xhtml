@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImagenesCreateDlg" widgetVar="ImagenesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateImagenesTitle}">
+            <h:form id="ImagenesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{imagenesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_imagenID}" for="imagenID" />
+                        <p:inputText id="imagenID" value="#{imagenesController.selected.imagenID}" title="#{bundle.CreateImagenesTitle_imagenID}" required="true" requiredMessage="#{bundle.CreateImagenesRequiredMessage_imagenID}"/>
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_fileName}" for="fileName" />
+                        <p:inputText id="fileName" value="#{imagenesController.selected.fileName}" title="#{bundle.CreateImagenesTitle_fileName}" required="true" requiredMessage="#{bundle.CreateImagenesRequiredMessage_fileName}"/>
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_contentType}" for="contentType" />
+                        <p:inputText id="contentType" value="#{imagenesController.selected.contentType}" title="#{bundle.CreateImagenesTitle_contentType}" required="true" requiredMessage="#{bundle.CreateImagenesRequiredMessage_contentType}"/>
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_fileType}" for="fileType" />
+                        <p:inputText id="fileType" value="#{imagenesController.selected.fileType}" title="#{bundle.CreateImagenesTitle_fileType}" required="true" requiredMessage="#{bundle.CreateImagenesRequiredMessage_fileType}"/>
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_fileImagen}" for="fileImagen" />
+                        <p:inputTextarea rows="4" cols="30" id="fileImagen" value="#{imagenesController.selected.fileImagen}" title="#{bundle.CreateImagenesTitle_fileImagen}" required="true" requiredMessage="#{bundle.CreateImagenesRequiredMessage_fileImagen}"/>
+                        <p:outputLabel value="#{bundle.CreateImagenesLabel_productoID}" for="productoID" />
+                        <p:selectOneMenu id="productoID" value="#{imagenesController.selected.productoID}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_productoID}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="productoIDItem"
+                                           itemValue="#{productoIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{imagenesController.create}" value="#{bundle.Save}" update="display,:ImagenesListForm:datalist,:growl" oncomplete="handleSubmit(args,'ImagenesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ImagenesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoXDepositoXEventualidadCreateDlg" widgetVar="ProductoXDepositoXEventualidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductoXDepositoXEventualidadTitle}">
+            <h:form id="ProductoXDepositoXEventualidadCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productoXDepositoXEventualidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_stockPrevio}" for="stockPrevio" />
+                        <p:inputText id="stockPrevio" value="#{productoXDepositoXEventualidadController.selected.stockPrevio}" title="#{bundle.CreateProductoXDepositoXEventualidadTitle_stockPrevio}" required="true" requiredMessage="#{bundle.CreateProductoXDepositoXEventualidadRequiredMessage_stockPrevio}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_stockPosterior}" for="stockPosterior" />
+                        <p:inputText id="stockPosterior" value="#{productoXDepositoXEventualidadController.selected.stockPosterior}" title="#{bundle.CreateProductoXDepositoXEventualidadTitle_stockPosterior}" required="true" requiredMessage="#{bundle.CreateProductoXDepositoXEventualidadRequiredMessage_stockPosterior}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_productos}" for="productos" />
+                        <p:selectOneMenu id="productos" value="#{productoXDepositoXEventualidadController.selected.productos}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_productos}">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="productosItem"
+                                           itemValue="#{productosItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_eventualidades}" for="eventualidades" />
+                        <p:selectOneMenu id="eventualidades" value="#{productoXDepositoXEventualidadController.selected.eventualidades}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_eventualidades}">
+                            <f:selectItems value="#{eventualidadesController.itemsAvailableSelectOne}"
+                                           var="eventualidadesItem"
+                                           itemValue="#{eventualidadesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_depositos}" for="depositos" />
+                        <p:selectOneMenu id="depositos" value="#{productoXDepositoXEventualidadController.selected.depositos}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_depositos}">
+                            <f:selectItems value="#{depositosController.itemsAvailableSelectOne}"
+                                           var="depositosItem"
+                                           itemValue="#{depositosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productoXDepositoXEventualidadController.create}" value="#{bundle.Save}" update="display,:ProductoXDepositoXEventualidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductoXDepositoXEventualidadCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductoXDepositoXEventualidadCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

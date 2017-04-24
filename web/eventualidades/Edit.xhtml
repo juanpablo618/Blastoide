@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EventualidadesEditDlg" widgetVar="EventualidadesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEventualidadesTitle}">
+            <h:form id="EventualidadesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{eventualidadesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_eventualidadID}" for="eventualidadID" />
+                        <p:inputText id="eventualidadID" value="#{eventualidadesController.selected.eventualidadID}" title="#{bundle.EditEventualidadesTitle_eventualidadID}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_eventualidadID}"/>
+                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{eventualidadesController.selected.fecha}" title="#{bundle.EditEventualidadesTitle_fecha}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{eventualidadesController.selected.observaciones}" title="#{bundle.EditEventualidadesTitle_observaciones}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_observaciones}"/>
+                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_totalPerdida}" for="totalPerdida" />
+                        <p:inputText id="totalPerdida" value="#{eventualidadesController.selected.totalPerdida}" title="#{bundle.EditEventualidadesTitle_totalPerdida}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_totalPerdida}"/>
+                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_tipoEventualidadID}" for="tipoEventualidadID" />
+                        <p:selectOneMenu id="tipoEventualidadID" value="#{eventualidadesController.selected.tipoEventualidadID}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_tipoEventualidadID}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tiposEventualidadController.itemsAvailableSelectOne}"
+                                           var="tipoEventualidadIDItem"
+                                           itemValue="#{tipoEventualidadIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{eventualidadesController.update}" value="#{bundle.Save}" update="display,:EventualidadesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EventualidadesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EventualidadesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImagenesEditDlg" widgetVar="ImagenesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditImagenesTitle}">
+            <h:form id="ImagenesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{imagenesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_imagenID}" for="imagenID" />
+                        <p:inputText id="imagenID" value="#{imagenesController.selected.imagenID}" title="#{bundle.EditImagenesTitle_imagenID}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_imagenID}"/>
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_fileName}" for="fileName" />
+                        <p:inputText id="fileName" value="#{imagenesController.selected.fileName}" title="#{bundle.EditImagenesTitle_fileName}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_fileName}"/>
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_contentType}" for="contentType" />
+                        <p:inputText id="contentType" value="#{imagenesController.selected.contentType}" title="#{bundle.EditImagenesTitle_contentType}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_contentType}"/>
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_fileType}" for="fileType" />
+                        <p:inputText id="fileType" value="#{imagenesController.selected.fileType}" title="#{bundle.EditImagenesTitle_fileType}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_fileType}"/>
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_fileImagen}" for="fileImagen" />
+                        <p:inputTextarea rows="4" cols="30" id="fileImagen" value="#{imagenesController.selected.fileImagen}" title="#{bundle.EditImagenesTitle_fileImagen}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_fileImagen}"/>
+                        <p:outputLabel value="#{bundle.EditImagenesLabel_productoID}" for="productoID" />
+                        <p:selectOneMenu id="productoID" value="#{imagenesController.selected.productoID}" required="true" requiredMessage="#{bundle.EditImagenesRequiredMessage_productoID}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="productoIDItem"
+                                           itemValue="#{productoIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{imagenesController.update}" value="#{bundle.Save}" update="display,:ImagenesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ImagenesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ImagenesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
