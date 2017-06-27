@@ -15,9 +15,9 @@
                         <h:outputText value="#{bundle.ViewProductoXDepositoLabel_stockParcial}"/>
                         <h:outputText value="#{productoXDepositoController.selected.stockParcial}" title="#{bundle.ViewProductoXDepositoTitle_stockParcial}"/>
                         <h:outputText value="#{bundle.ViewProductoXDepositoLabel_depositos}"/>
-                        <h:outputText value="#{productoXDepositoController.selected.depositos}" title="#{bundle.ViewProductoXDepositoTitle_depositos}"/>
+                        <h:outputText value="#{productoXDepositoController.selected.depositos.nombre}" title="#{bundle.ViewProductoXDepositoTitle_depositos}"/>
                         <h:outputText value="#{bundle.ViewProductoXDepositoLabel_productos}"/>
-                        <h:outputText value="#{productoXDepositoController.selected.productos}" title="#{bundle.ViewProductoXDepositoTitle_productos}"/>
+                        <h:outputText value="#{productoXDepositoController.selected.productos.nombre}" title="#{bundle.ViewProductoXDepositoTitle_productos}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductoXDepositoViewDialog.hide()"/>
                 </h:panelGroup>

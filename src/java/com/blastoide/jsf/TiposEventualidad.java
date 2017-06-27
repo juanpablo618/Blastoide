@@ -124,7 +124,7 @@ public class TiposEventualidad implements Serializable {
 
     @Override
     public String toString() {
-        return "tipoEventualidad=" + nombre + " ]";
+        return  nombre ;
     }
     
 }

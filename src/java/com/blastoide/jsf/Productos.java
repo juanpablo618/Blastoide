@@ -49,13 +49,12 @@ public class Productos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "productoID")
     private Integer productoID;
     @Basic(optional = false)
     @NotNull
     @Column(name = "codigo")
-    private int codigo;
+    private String codigo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -118,7 +117,7 @@ public class Productos implements Serializable {
         this.productoID = productoID;
     }
 
-    public Productos(Integer productoID, int codigo, String nombre, String marca, String fragancia, String caracteristica, String medida, double precioVenta, Date ultimaActualizacionStock) {
+    public Productos(Integer productoID, String codigo, String nombre, String marca, String fragancia, String caracteristica, String medida, double precioVenta, Date ultimaActualizacionStock) {
         this.productoID = productoID;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -138,11 +137,11 @@ public class Productos implements Serializable {
         this.productoID = productoID;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -292,7 +291,7 @@ public class Productos implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jsf.Productos[ productoID=" + productoID + " ]";
+        return "Producto= " + nombre ;
     }
     
 }

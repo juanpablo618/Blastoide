@@ -8,48 +8,70 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductosCreateDlg" widgetVar="ProductosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductosTitle}">
+        <p:dialog id="ProductosCreateDlg" widgetVar="ProductosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear producto nuevo">
             <h:form id="ProductosCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_productoID}" for="productoID" />
-                        <p:inputText id="productoID" value="#{productosController.selected.productoID}" title="#{bundle.CreateProductosTitle_productoID}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_productoID}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_codigo}" for="codigo" />
-                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_marca}" for="marca" />
-                        <p:inputText id="marca" value="#{productosController.selected.marca}" title="#{bundle.CreateProductosTitle_marca}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_marca}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_fragancia}" for="fragancia" />
+                                                
+                        <p:outputLabel value="Codigo" for="codigo" />
+                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="Codigo" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}"/>
+                        
+                        <p:outputLabel value="Nombre" for="nombre" />
+                        <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="Nombre" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}"/>
+                        
+                        <p:outputLabel value="Marca" for="marca" />
+                        <p:inputText id="marca" value="#{productosController.selected.marca}" title="Marca" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_marca}"/>
+                        
+                        <p:outputLabel value="Fragancia" for="fragancia" />
                         <p:inputText id="fragancia" value="#{productosController.selected.fragancia}" title="#{bundle.CreateProductosTitle_fragancia}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_fragancia}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_caracteristica}" for="caracteristica" />
+                        
+                        <p:outputLabel value="Caracteristica" for="caracteristica" />
                         <p:inputText id="caracteristica" value="#{productosController.selected.caracteristica}" title="#{bundle.CreateProductosTitle_caracteristica}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_caracteristica}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_medida}" for="medida" />
-                        <p:inputText id="medida" value="#{productosController.selected.medida}" title="#{bundle.CreateProductosTitle_medida}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_medida}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_precioVenta}" for="precioVenta" />
+                        
+                        <p:outputLabel value="Medida" for="medida" />
+                        <p:selectOneListbox id="medida" value="#{productosController.selected.medida}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_medida}"  >
+                            <f:selectItem itemLabel="ML" itemValue="ML" />
+                            <f:selectItem itemLabel="LT 2" itemValue="LT" />
+                            <f:selectItem itemLabel="M" itemValue="M" />
+                            <f:selectItem itemLabel="CM" itemValue="CM" />
+                            <f:selectItem itemLabel="GDE" itemValue="GDE" />
+                            <f:selectItem itemLabel="XXG" itemValue="XXG" />
+                            <f:selectItem itemLabel="G" itemValue="G" />
+                            <f:selectItem itemLabel="ETC" itemValue="ETC" />
+                        </p:selectOneListbox>
+                        
+                        
+                        
+                        
+                        <p:outputLabel value="Precio de Venta" for="precioVenta" />
                         <p:inputText id="precioVenta" value="#{productosController.selected.precioVenta}" title="#{bundle.CreateProductosTitle_precioVenta}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_precioVenta}"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_ultimaActualizacionStock}" for="ultimaActualizacionStock" />
+                        
+                        <p:outputLabel value="Ultima actualizacion de stock" for="ultimaActualizacionStock" />
                         <p:calendar id="ultimaActualizacionStock" pattern="MM/dd/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_ultimaActualizacionStock}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_tipoProductoID}" for="tipoProductoID" />
-                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoProductoID}">
+                        
+                        <p:outputLabel value="Tipo de producto" for="tipoProductoID" />
+                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoProductoID}">
                             <f:selectItems value="#{tiposProductosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"
                                            itemValue="#{tipoProductoIDItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_inventarioID}" for="inventarioID" />
-                        <p:selectOneMenu id="inventarioID" value="#{productosController.selected.inventarioID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_inventarioID}">
+                        
+                        <p:outputLabel value="Inventario" for="inventarioID" />
+                        <p:selectOneMenu id="inventarioID" value="#{productosController.selected.inventarioID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_inventarioID}">
                             <f:selectItems value="#{inventariosController.itemsAvailableSelectOne}"
                                            var="inventarioIDItem"
                                            itemValue="#{inventarioIDItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_unidadMedidaID}" for="unidadMedidaID" />
-                        <p:selectOneMenu id="unidadMedidaID" value="#{productosController.selected.unidadMedidaID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_unidadMedidaID}">
+                        
+                        <p:outputLabel value="Unidad de Medida" for="unidadMedidaID" />
+                        <p:selectOneMenu id="unidadMedidaID" value="#{productosController.selected.unidadMedidaID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_unidadMedidaID}">
                             <f:selectItems value="#{unidadesMedidaController.itemsAvailableSelectOne}"
                                            var="unidadMedidaIDItem"
                                            itemValue="#{unidadMedidaIDItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_tipoRubroID}" for="tipoRubroID" />
-                        <p:selectOneMenu id="tipoRubroID" value="#{productosController.selected.tipoRubroID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoRubroID}">
+                        
+                        <p:outputLabel value="Tipo de Rubro" for="tipoRubroID" />
+                        <p:selectOneMenu id="tipoRubroID" value="#{productosController.selected.tipoRubroID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoRubroID}">
                             <f:selectItems value="#{tiposRubrosController.itemsAvailableSelectOne}"
                                            var="tipoRubroIDItem"
                                            itemValue="#{tipoRubroIDItem}"/>

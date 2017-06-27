@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <style>
+        .ui-button{
+            margin-bottom: 8px;
+        }
+    </style>
+    
+    <h:form>
+
+        <center>
+            <h:outputLabel  style="color: white; text-align: center;font-size: 1.8em;font-family: bolt">MUNDO LIMPIEZA</h:outputLabel> <br/>
+            <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt;">Lucas Valinotti</h:outputLabel>
+        </center> <br/>
+
+
+        <p:toolbar id="toolbarMenu">
+            
+            
+            <f:facet name="right">  
+                    <p:toolbarGroup>
+                        <p:button  icon="ui-icon-home" title="Home"/>
+                        <p:separator/>
+                        <p:button  icon="ui-icon-alert" title="Alertas Vigentes"/>
+                        <p:separator/>
+                        <p:button  icon="ui-icon-document" title="Manual Usuario"/>
+                        <p:separator/>                
+                        <p:growl id="messages" showDetail="false"/>
+
+                        <p:menuButton value="Lucas V.">
+                            <p:menuitem value="Home"  icon="ui-icon-home"/>
+                            <p:menuitem value="Alertas"  icon="ui-icon-alert"/>
+                            <p:separator />
+                            
+                        </p:menuButton>
+                        <p:separator/>
+                    </p:toolbarGroup>
+            </f:facet>    
+        </p:toolbar>
+
+    </h:form>
+</ui:composition>

@@ -23,10 +23,10 @@
                                            itemValue="#{productosItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_eventualidades}" for="eventualidades" />
-                        <p:selectOneMenu id="eventualidades" value="#{productoXDepositoXEventualidadController.selected.eventualidades}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_eventualidades}">
+                        <p:selectOneMenu id="eventualidades" value="#{productoXDepositoXEventualidadController.selected.eventualidades.tipoEventualidadID.nombre}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_eventualidades}">
                             <f:selectItems value="#{eventualidadesController.itemsAvailableSelectOne}"
                                            var="eventualidadesItem"
-                                           itemValue="#{eventualidadesItem}"/>
+                                           itemValue="#{eventualidadesItem.tipoEventualidadID.descripcion}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateProductoXDepositoXEventualidadLabel_depositos}" for="depositos" />
                         <p:selectOneMenu id="depositos" value="#{productoXDepositoXEventualidadController.selected.depositos}" required="true" requiredMessage="#{bundle.EditProductoXDepositoXEventualidadRequiredMessage_depositos}">

@@ -12,8 +12,6 @@
             <h:form id="DepositosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{depositosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDepositosLabel_depositoID}" for="depositoID" />
-                        <p:inputText id="depositoID" value="#{depositosController.selected.depositoID}" title="#{bundle.EditDepositosTitle_depositoID}" required="true" requiredMessage="#{bundle.EditDepositosRequiredMessage_depositoID}"/>
                         <p:outputLabel value="#{bundle.EditDepositosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{depositosController.selected.nombre}" title="#{bundle.EditDepositosTitle_nombre}" required="true" requiredMessage="#{bundle.EditDepositosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditDepositosLabel_descripcion}" for="descripcion" />

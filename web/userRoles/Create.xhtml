@@ -12,8 +12,6 @@
             <h:form id="UserRolesCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{userRolesController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateUserRolesLabel_userId}" for="userId" />
-                        <p:inputText id="userId" value="#{userRolesController.selected.userId}" title="#{bundle.CreateUserRolesTitle_userId}" required="true" requiredMessage="#{bundle.CreateUserRolesRequiredMessage_userId}"/>
                         <p:outputLabel value="#{bundle.CreateUserRolesLabel_users}" for="users" />
                         <p:selectOneMenu id="users" value="#{userRolesController.selected.users}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_users}">
                             <f:selectItems value="#{usersController.itemsAvailableSelectOne}"

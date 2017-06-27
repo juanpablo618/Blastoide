@@ -12,8 +12,6 @@
             <h:form id="ProvinciasCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{provinciasController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateProvinciasLabel_provinciaID}" for="provinciaID" />
-                        <p:inputText id="provinciaID" value="#{provinciasController.selected.provinciaID}" title="#{bundle.CreateProvinciasTitle_provinciaID}" required="true" requiredMessage="#{bundle.CreateProvinciasRequiredMessage_provinciaID}"/>
                         <p:outputLabel value="#{bundle.CreateProvinciasLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{provinciasController.selected.nombre}" title="#{bundle.CreateProvinciasTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProvinciasRequiredMessage_nombre}"/>
                     </p:panelGrid>

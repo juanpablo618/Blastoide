@@ -12,8 +12,6 @@
             <h:form id="TipoDocumentoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoDocumentoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTipoDocumentoLabel_tipoDocumentoID}"/>
-                        <h:outputText value="#{tipoDocumentoController.selected.tipoDocumentoID}" title="#{bundle.ViewTipoDocumentoTitle_tipoDocumentoID}"/>
                         <h:outputText value="#{bundle.ViewTipoDocumentoLabel_nombre}"/>
                         <h:outputText value="#{tipoDocumentoController.selected.nombre}" title="#{bundle.ViewTipoDocumentoTitle_nombre}"/>
                     </p:panelGrid>

@@ -6,15 +6,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListProductosTitle}"></h:outputText>
+            <h:outputText value="Lista de Productos"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ProductosListForm">
+            <h:form id="ProductosListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListProductosTitle}">
                     <p:dataTable id="datalist" value="#{productosController.items}" var="item"
                                  selectionMode="single" selection="#{productosController.selected}"
@@ -29,84 +29,34 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_productoID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.productoID}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>
+                                <h:outputText value="Codigo"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
+                                <h:outputText value="Precio Venta"/>
                             </f:facet>
-                            <h:outputText value="#{item.marca}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_fragancia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fragancia}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_caracteristica}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.caracteristica}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_medida}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.medida}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_precioVenta}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.precioVenta}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_ultimaActualizacionStock}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ultimaActualizacionStock}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <h:outputText value="#{item.precioVenta}">
+                                <f:convertNumber pattern="#0.00" />
                             </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_tipoProductoID}"/>
+                                <h:outputText value="Ultima actualizacion de Stock"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
+                            <h:outputText value="#{item.ultimaActualizacionStock}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_inventarioID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_unidadMedidaID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_tipoRubroID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>

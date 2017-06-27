@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ProveedoresListForm">
+            <h:form id="ProveedoresListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListProveedoresTitle}">
                     <p:dataTable id="datalist" value="#{proveedoresController.items}" var="item"
                                  selectionMode="single" selection="#{proveedoresController.selected}"
@@ -29,21 +29,9 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_proveedorID}"/>
+                                <h:outputText value="#{bundle.ListProveedoresTitle_razonSocial}"/>
                             </f:facet>
-                            <h:outputText value="#{item.proveedorID}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_apellido}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.apellido}"/>
+                            <h:outputText value="#{item.razonSocial}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -59,26 +47,6 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_fechaNacimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaNacimiento}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_nroDocumento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nroDocumento}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_razonSocial}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.razonSocial}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProveedoresTitle_telefono}"/>
                             </f:facet>
                             <h:outputText value="#{item.telefono}"/>
@@ -88,42 +56,6 @@
                                 <h:outputText value="#{bundle.ListProveedoresTitle_celular}"/>
                             </f:facet>
                             <h:outputText value="#{item.celular}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_sexo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sexo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_web}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.web}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_tipoDocumentoID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoDocumentoID}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_realdomicilioID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.realdomicilioID}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_fiscaldomicilioID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fiscaldomicilioID}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProveedoresTitle_condicionIVAID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.condicionIVAID}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{proveedoresController.prepareCreate}" update=":ProveedoresCreateForm" oncomplete="PF('ProveedoresCreateDialog').show()"/>

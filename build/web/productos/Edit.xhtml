@@ -12,8 +12,6 @@
             <h:form id="ProductosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProductosLabel_productoID}" for="productoID" />
-                        <p:inputText id="productoID" value="#{productosController.selected.productoID}" title="#{bundle.EditProductosTitle_productoID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_productoID}"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_codigo}" for="codigo" />
                         <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.EditProductosTitle_codigo}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_codigo}"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_nombre}" for="nombre" />
@@ -31,28 +29,28 @@
                         <p:outputLabel value="#{bundle.EditProductosLabel_ultimaActualizacionStock}" for="ultimaActualizacionStock" />
                         <p:calendar id="ultimaActualizacionStock" pattern="MM/dd/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_ultimaActualizacionStock}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditProductosLabel_tipoProductoID}" for="tipoProductoID" />
-                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoProductoID}">
+                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoProductoID}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{tiposProductosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"
                                            itemValue="#{tipoProductoIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProductosLabel_inventarioID}" for="inventarioID" />
-                        <p:selectOneMenu id="inventarioID" value="#{productosController.selected.inventarioID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_inventarioID}">
+                        <p:selectOneMenu id="inventarioID" value="#{productosController.selected.inventarioID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_inventarioID}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{inventariosController.itemsAvailableSelectOne}"
                                            var="inventarioIDItem"
                                            itemValue="#{inventarioIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProductosLabel_unidadMedidaID}" for="unidadMedidaID" />
-                        <p:selectOneMenu id="unidadMedidaID" value="#{productosController.selected.unidadMedidaID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_unidadMedidaID}">
+                        <p:selectOneMenu id="unidadMedidaID" value="#{productosController.selected.unidadMedidaID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_unidadMedidaID}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{unidadesMedidaController.itemsAvailableSelectOne}"
                                            var="unidadMedidaIDItem"
                                            itemValue="#{unidadMedidaIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProductosLabel_tipoRubroID}" for="tipoRubroID" />
-                        <p:selectOneMenu id="tipoRubroID" value="#{productosController.selected.tipoRubroID}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoRubroID}">
+                        <p:selectOneMenu id="tipoRubroID" value="#{productosController.selected.tipoRubroID}" style="width: 85%;" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_tipoRubroID}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{tiposRubrosController.itemsAvailableSelectOne}"
                                            var="tipoRubroIDItem"

@@ -261,7 +261,7 @@ public class Inventarios implements Serializable {
 
     @Override
     public String toString() {
-        return "inventario" + inventarioID + " ]";
+        return "" + inventarioID ;
     }
     
 }

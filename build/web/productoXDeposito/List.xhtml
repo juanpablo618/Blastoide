@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ProductoXDepositoListForm">
+            <h:form id="ProductoXDepositoListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListProductoXDepositoTitle}">
                     <p:dataTable id="datalist" value="#{productoXDepositoController.items}" var="item"
                                  selectionMode="single" selection="#{productoXDepositoController.selected}"
@@ -37,13 +37,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoXDepositoTitle_depositos}"/>
                             </f:facet>
-                            <h:outputText value="#{item.depositos}"/>
+                            <h:outputText value="#{item.depositos.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoXDepositoTitle_productos}"/>
                             </f:facet>
-                            <h:outputText value="#{item.productos}"/>
+                            <h:outputText value="#{item.productos.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoXDepositoController.prepareCreate}" update=":ProductoXDepositoCreateForm" oncomplete="PF('ProductoXDepositoCreateDialog').show()"/>

@@ -109,7 +109,7 @@ public class UnidadesMedida implements Serializable {
 
     @Override
     public String toString() {
-        return "unidadMedida=" + nombre + " ]";
+        return  nombre;
     }
     
 }

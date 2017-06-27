@@ -12,8 +12,6 @@
             <h:form id="DomiciliosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{domiciliosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDomiciliosLabel_domiciliosID}" for="domiciliosID" />
-                        <p:inputText id="domiciliosID" value="#{domiciliosController.selected.domiciliosID}" title="#{bundle.EditDomiciliosTitle_domiciliosID}" required="true" requiredMessage="#{bundle.EditDomiciliosRequiredMessage_domiciliosID}"/>
                         <p:outputLabel value="#{bundle.EditDomiciliosLabel_calle}" for="calle" />
                         <p:inputText id="calle" value="#{domiciliosController.selected.calle}" title="#{bundle.EditDomiciliosTitle_calle}" required="true" requiredMessage="#{bundle.EditDomiciliosRequiredMessage_calle}"/>
                         <p:outputLabel value="#{bundle.EditDomiciliosLabel_numero}" for="numero" />

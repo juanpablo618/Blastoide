@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="LocalidadesListForm">
+            <h:form id="LocalidadesListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListLocalidadesTitle}">
                     <p:dataTable id="datalist" value="#{localidadesController.items}" var="item"
                                  selectionMode="single" selection="#{localidadesController.selected}"
@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLocalidadesTitle_localidadID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.localidadID}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocalidadesTitle_nombre}"/>
@@ -49,7 +44,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLocalidadesTitle_provinciaID}"/>
                             </f:facet>
-                            <h:outputText value="#{item.provinciaID}"/>
+                            <h:outputText value="#{item.provinciaID.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{localidadesController.prepareCreate}" update=":LocalidadesCreateForm" oncomplete="PF('LocalidadesCreateDialog').show()"/>

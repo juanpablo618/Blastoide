@@ -70,7 +70,7 @@ public class Proveedores implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "cuit")
-    private int cuit;
+    private String cuit;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -133,7 +133,7 @@ public class Proveedores implements Serializable {
         this.proveedorID = proveedorID;
     }
 
-    public Proveedores(Integer proveedorID, String nombre, String apellido, int cuit, String email, Date fechaNacimiento, long nroDocumento, String razonSocial, String telefono, String celular, String sexo, String web) {
+    public Proveedores(Integer proveedorID, String nombre, String apellido, String cuit, String email, Date fechaNacimiento, long nroDocumento, String razonSocial, String telefono, String celular, String sexo, String web) {
         this.proveedorID = proveedorID;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -172,11 +172,11 @@ public class Proveedores implements Serializable {
         this.apellido = apellido;
     }
 
-    public int getCuit() {
+    public String getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(String cuit) {
         this.cuit = cuit;
     }
 
@@ -307,7 +307,7 @@ public class Proveedores implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jsf.Proveedores[ proveedorID=" + proveedorID + " ]";
+        return nombre ;
     }
     
 }

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="CondicionIVAListForm">
+            <h:form id="CondicionIVAListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListCondicionIVATitle}">
                     <p:dataTable id="datalist" value="#{condicionIVAController.items}" var="item"
                                  selectionMode="single" selection="#{condicionIVAController.selected}"

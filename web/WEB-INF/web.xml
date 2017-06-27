@@ -13,6 +13,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <param-name>primefaces.jquery-iu.THEME</param-name>
+        <param-value>themeWC</param-value>
+    </context-param>
     <session-config>
         <session-timeout>
             30
@@ -21,4 +25,5 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    
 </web-app>

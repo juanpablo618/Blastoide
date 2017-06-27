@@ -12,8 +12,6 @@
             <h:form id="ProvinciasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{provinciasController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProvinciasLabel_provinciaID}" for="provinciaID" />
-                        <p:inputText id="provinciaID" value="#{provinciasController.selected.provinciaID}" title="#{bundle.EditProvinciasTitle_provinciaID}" required="true" requiredMessage="#{bundle.EditProvinciasRequiredMessage_provinciaID}"/>
                         <p:outputLabel value="#{bundle.EditProvinciasLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{provinciasController.selected.nombre}" title="#{bundle.EditProvinciasTitle_nombre}" required="true" requiredMessage="#{bundle.EditProvinciasRequiredMessage_nombre}"/>
                     </p:panelGrid>

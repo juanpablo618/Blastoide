@@ -1,62 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-        <h:outputScript library="js" name="jsfcrud.js"/>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
-
     <h:body>
-
-        <p:growl id="growl" life="3000" />
-
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
-                <h:form id="menuForm">
-                    <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="CondicionIVA" outcome="/condicionIVA/List.xhtml" />
-                            <p:menuitem value="Depositos" outcome="/depositos/List.xhtml" />
-                            <p:menuitem value="Domicilios" outcome="/domicilios/List.xhtml" />
-                            <p:menuitem value="Eventualidades" outcome="/eventualidades/List.xhtml" />
-                            <p:menuitem value="Imagenes" outcome="/imagenes/List.xhtml" />
-                            <p:menuitem value="Inventarios" outcome="/inventarios/List.xhtml" />
-                            <p:menuitem value="Localidades" outcome="/localidades/List.xhtml" />
-                            <p:menuitem value="ProductoXDeposito" outcome="/productoXDeposito/List.xhtml" />
-                            <p:menuitem value="ProductoXDepositoXEventualidad" outcome="/productoXDepositoXEventualidad/List.xhtml" />
-                            <p:menuitem value="ProductoXProveedor" outcome="/productoXProveedor/List.xhtml" />
-                            <p:menuitem value="Productos" outcome="/productos/List.xhtml" />
-                            <p:menuitem value="Proveedores" outcome="/proveedores/List.xhtml" />
-                            <p:menuitem value="Provincias" outcome="/provincias/List.xhtml" />
-                            <p:menuitem value="Roles" outcome="/roles/List.xhtml" />
-                            <p:menuitem value="TipoDocumento" outcome="/tipoDocumento/List.xhtml" />
-                            <p:menuitem value="TiposEventualidad" outcome="/tiposEventualidad/List.xhtml" />
-                            <p:menuitem value="TiposProductos" outcome="/tiposProductos/List.xhtml" />
-                            <p:menuitem value="TiposRubros" outcome="/tiposRubros/List.xhtml" />
-                            <p:menuitem value="UnidadesMedida" outcome="/unidadesMedida/List.xhtml" />
-                            <p:menuitem value="UserRoles" outcome="/userRoles/List.xhtml" />
-                            <p:menuitem value="Users" outcome="/users/List.xhtml" />
-                        </p:submenu>
-                    </p:menubar>
-                </h:form>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
-
-        </p:layout>
-
+        BLASTOIDE VERSION 2. 
+        <br />
+        
+        <br />
+        <h:link outcome="/condicionIVA/List" value="Show All CondicionIVA Items"/>
+        <br />
+        <h:link outcome="/depositos/List" value="Show All Depositos Items"/>
+        <br />
+        <h:link outcome="/domicilios/List" value="Show All Domicilios Items"/>
+        <br />
+        <h:link outcome="/eventualidades/List" value="Show All Eventualidades Items"/>
+        <br />
+        <h:link outcome="/imagenes/List" value="Show All Imagenes Items"/>
+        <br />
+        <h:link outcome="/inventarios/List" value="Show All Inventarios Items"/>
+        <br />
+        <h:link outcome="/localidades/List" value="Show All Localidades Items"/>
+        <br />
+        <h:link outcome="/productoXDeposito/List" value="Show All ProductoXDeposito Items"/>
+        <br />
+        <h:link outcome="/productoXDepositoXEventualidad/List" value="Show All ProductoXDepositoXEventualidad Items"/>
+        <br />
+        <h:link outcome="/productoXProveedor/List" value="Show All ProductoXProveedor Items"/>
+        <br />
+        <h:link outcome="/productos/List" value="Show All Productos Items"/>
+        <br />
+        <h:link outcome="/proveedores/List" value="Show All Proveedores Items"/>
+        <br />
+        <h:link outcome="/provincias/List" value="Show All Provincias Items"/>
+        <br />
+        <h:link outcome="/roles/List" value="Show All Roles Items"/>
+        <br />
+        <h:link outcome="/tipoDocumento/List" value="Show All TipoDocumento Items"/>
+        <br />
+        <h:link outcome="/tiposEventualidad/List" value="Show All TiposEventualidad Items"/>
+        <br />
+        <h:link outcome="/tiposProductos/List" value="Show All TiposProductos Items"/>
+        <br />
+        <h:link outcome="/tiposRubros/List" value="Show All TiposRubros Items"/>
+        <br />
+        <h:link outcome="/unidadesMedida/List" value="Show All UnidadesMedida Items"/>
+        <br />
+        <h:link outcome="/userRoles/List" value="Show All UserRoles Items"/>
+        <br />
+        <h:link outcome="/users/List" value="Show All Users Items"/>
     </h:body>
 
 </html>
+

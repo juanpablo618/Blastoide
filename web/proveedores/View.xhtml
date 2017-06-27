@@ -12,8 +12,6 @@
             <h:form id="ProveedoresViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedoresController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProveedoresLabel_proveedorID}"/>
-                        <h:outputText value="#{proveedoresController.selected.proveedorID}" title="#{bundle.ViewProveedoresTitle_proveedorID}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nombre}"/>
                         <h:outputText value="#{proveedoresController.selected.nombre}" title="#{bundle.ViewProveedoresTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_apellido}"/>
@@ -26,6 +24,9 @@
                         <h:outputText value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.ViewProveedoresTitle_fechaNacimiento}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewProveedoresLabel_tipoDocumentoID}"/>
+                        <h:outputText value="#{proveedoresController.selected.tipoDocumentoID}" title="#{bundle.ViewProveedoresTitle_tipoDocumentoID}"/>
+                        
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nroDocumento}"/>
                         <h:outputText value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.ViewProveedoresTitle_nroDocumento}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_razonSocial}"/>
@@ -38,8 +39,6 @@
                         <h:outputText value="#{proveedoresController.selected.sexo}" title="#{bundle.ViewProveedoresTitle_sexo}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_web}"/>
                         <h:outputText value="#{proveedoresController.selected.web}" title="#{bundle.ViewProveedoresTitle_web}"/>
-                        <h:outputText value="#{bundle.ViewProveedoresLabel_tipoDocumentoID}"/>
-                        <h:outputText value="#{proveedoresController.selected.tipoDocumentoID}" title="#{bundle.ViewProveedoresTitle_tipoDocumentoID}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_realdomicilioID}"/>
                         <h:outputText value="#{proveedoresController.selected.realdomicilioID}" title="#{bundle.ViewProveedoresTitle_realdomicilioID}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_fiscaldomicilioID}"/>

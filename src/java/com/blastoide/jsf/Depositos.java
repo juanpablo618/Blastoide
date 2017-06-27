@@ -135,7 +135,7 @@ public class Depositos implements Serializable {
 
     @Override
     public String toString() {
-        return "deposito=" + nombre + " ]";
+        return  nombre;
     }
     
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenDeCompraEditDlg" widgetVar="OrdenDeCompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrdenDeCompraTitle}">
+            <h:form id="OrdenDeCompraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenDeCompraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_numeroOC}" for="numeroOC" />
+                        <p:inputText id="numeroOC" value="#{ordenDeCompraController.selected.numeroOC}" title="#{bundle.EditOrdenDeCompraTitle_numeroOC}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_numeroOC}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:calendar id="fechaCreacion" pattern="MM/dd/yyyy" value="#{ordenDeCompraController.selected.fechaCreacion}" title="#{bundle.EditOrdenDeCompraTitle_fechaCreacion}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_fechaCreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_fechaEmision}" for="fechaEmision" />
+                        <p:calendar id="fechaEmision" pattern="MM/dd/yyyy" value="#{ordenDeCompraController.selected.fechaEmision}" title="#{bundle.EditOrdenDeCompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_fechaEmision}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_fechaCierre}" for="fechaCierre" />
+                        <p:calendar id="fechaCierre" pattern="MM/dd/yyyy" value="#{ordenDeCompraController.selected.fechaCierre}" title="#{bundle.EditOrdenDeCompraTitle_fechaCierre}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_fechaCierre}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{ordenDeCompraController.selected.total}" title="#{bundle.EditOrdenDeCompraTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_total}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_restoTotal}" for="restoTotal" />
+                        <p:inputText id="restoTotal" value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.EditOrdenDeCompraTitle_restoTotal}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_restoTotal}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_estadoID}" for="estadoID" />
+                        <p:selectOneMenu id="estadoID" value="#{ordenDeCompraController.selected.estadoID}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_estadoID}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
+                                           var="estadoIDItem"
+                                           itemValue="#{estadoIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenDeCompraController.update}" value="#{bundle.Save}" update="display,:OrdenDeCompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenDeCompraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenDeCompraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

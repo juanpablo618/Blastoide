@@ -3,12 +3,18 @@
     <type>org.netbeans.modules.web.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
-            <name>Blastoide</name>
+            <name>Blastoide_v2</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
                     <file>${libs.primefaces.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.themeML.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.themeWC.jar}</file>
                 </library>
             </web-module-libraries>
             <web-module-additional-libraries/>

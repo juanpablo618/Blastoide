@@ -12,8 +12,6 @@
             <h:form id="InventariosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventariosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewInventariosLabel_inventarioID}"/>
-                        <h:outputText value="#{inventariosController.selected.inventarioID}" title="#{bundle.ViewInventariosTitle_inventarioID}"/>
                         <h:outputText value="#{bundle.ViewInventariosLabel_cu}"/>
                         <h:outputText value="#{inventariosController.selected.cu}" title="#{bundle.ViewInventariosTitle_cu}"/>
                         <h:outputText value="#{bundle.ViewInventariosLabel_cc}"/>

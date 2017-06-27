@@ -77,7 +77,7 @@ public class ProductoXProveedorPK implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jsf.ProductoXProveedorPK[ proveedorID=" + proveedorID + ", productoID=" + productoID + " ]";
+        return "proveedor=" + proveedorID + ", producto=" + productoID + " ";
     }
     
 }

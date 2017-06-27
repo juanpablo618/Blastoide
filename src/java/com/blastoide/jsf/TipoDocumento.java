@@ -109,7 +109,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "tipoDocumento=" + nombre + " ]";
+        return  nombre;
     }
     
 }

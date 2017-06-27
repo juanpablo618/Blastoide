@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CondicionIVA.findByDescripcion", query = "SELECT c FROM CondicionIVA c WHERE c.descripcion = :descripcion")})
 public class CondicionIVA implements Serializable {
 
+    @OneToMany(mappedBy = "condicionIVAID")
+    private Collection<CuentaCorriente> cuentaCorrienteCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -124,7 +127,16 @@ public class CondicionIVA implements Serializable {
 
     @Override
     public String toString() {
-        return "condicionIVA=" + nombre + " ]";
+        return nombre;
+    }
+
+    @XmlTransient
+    public Collection<CuentaCorriente> getCuentaCorrienteCollection() {
+        return cuentaCorrienteCollection;
+    }
+
+    public void setCuentaCorrienteCollection(Collection<CuentaCorriente> cuentaCorrienteCollection) {
+        this.cuentaCorrienteCollection = cuentaCorrienteCollection;
     }
     
 }

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/index.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCuentaCorrienteTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CuentaCorrienteListForm">
+                <p:panel header="#{bundle.ListCuentaCorrienteTitle}">
+                    <p:dataTable id="datalist" value="#{cuentaCorrienteController.items}" var="item"
+                                 selectionMode="single" selection="#{cuentaCorrienteController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.cuentaCorrienteID}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="no existen cuentas corrientes creadas"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_concepto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.concepto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_nroDeComprobante}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nroDeComprobante}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_debe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.debe}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_haber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.haber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_nombreyApellido}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreyApellido}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_direccionReal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionReal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_direccionFacturacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionFacturacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_nombreDeFantasia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreDeFantasia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_nombreDeFacturacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreDeFacturacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_codigoPostal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoPostal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_credito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.credito}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_descuento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descuento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_fechaDePago}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaDePago}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_conducta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.conducta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_cuit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cuit}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_observaciones}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observaciones}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_localidadID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.localidadID}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_formaDePagoID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.formaDePagoID}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaCorrienteTitle_condicionIVAID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.condicionIVAID}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cuentaCorrienteController.prepareCreate}" update=":CuentaCorrienteCreateForm" oncomplete="PF('CuentaCorrienteCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CuentaCorrienteViewForm" oncomplete="PF('CuentaCorrienteViewDialog').show()" disabled="#{empty cuentaCorrienteController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CuentaCorrienteEditForm" oncomplete="PF('CuentaCorrienteEditDialog').show()" disabled="#{empty cuentaCorrienteController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cuentaCorrienteController.destroy}" update=":growl,datalist" disabled="#{empty cuentaCorrienteController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

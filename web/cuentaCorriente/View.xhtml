@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentaCorrienteViewDlg" widgetVar="CuentaCorrienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCuentaCorrienteTitle}">
+            <h:form id="CuentaCorrienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentaCorrienteController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_fecha}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.fecha}" title="#{bundle.ViewCuentaCorrienteTitle_fecha}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_concepto}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.concepto}" title="#{bundle.ViewCuentaCorrienteTitle_concepto}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_nroDeComprobante}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.nroDeComprobante}" title="#{bundle.ViewCuentaCorrienteTitle_nroDeComprobante}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_debe}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.debe}" title="#{bundle.ViewCuentaCorrienteTitle_debe}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_haber}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.haber}" title="#{bundle.ViewCuentaCorrienteTitle_haber}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_nombreyApellido}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.nombreyApellido}" title="#{bundle.ViewCuentaCorrienteTitle_nombreyApellido}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_direccionReal}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.direccionReal}" title="#{bundle.ViewCuentaCorrienteTitle_direccionReal}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_direccionFacturacion}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.direccionFacturacion}" title="#{bundle.ViewCuentaCorrienteTitle_direccionFacturacion}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_nombreDeFantasia}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.nombreDeFantasia}" title="#{bundle.ViewCuentaCorrienteTitle_nombreDeFantasia}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_nombreDeFacturacion}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.nombreDeFacturacion}" title="#{bundle.ViewCuentaCorrienteTitle_nombreDeFacturacion}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_codigoPostal}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.codigoPostal}" title="#{bundle.ViewCuentaCorrienteTitle_codigoPostal}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_telefono}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.telefono}" title="#{bundle.ViewCuentaCorrienteTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_credito}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.credito}" title="#{bundle.ViewCuentaCorrienteTitle_credito}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_descuento}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.descuento}" title="#{bundle.ViewCuentaCorrienteTitle_descuento}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_fechaDePago}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.fechaDePago}" title="#{bundle.ViewCuentaCorrienteTitle_fechaDePago}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_conducta}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.conducta}" title="#{bundle.ViewCuentaCorrienteTitle_conducta}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_cuit}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.cuit}" title="#{bundle.ViewCuentaCorrienteTitle_cuit}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_observaciones}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.observaciones}" title="#{bundle.ViewCuentaCorrienteTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_localidadID}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.localidadID}" title="#{bundle.ViewCuentaCorrienteTitle_localidadID}"/>
+                        
+                        
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_formaDePagoID}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.formaDePagoID}" title="#{bundle.ViewCuentaCorrienteTitle_formaDePagoID}"/>
+                        
+                        
+                        <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_condicionIVAID}"/>
+                        <h:outputText value="#{cuentaCorrienteController.selected.condicionIVAID}" title="#{bundle.ViewCuentaCorrienteTitle_condicionIVAID}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CuentaCorrienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

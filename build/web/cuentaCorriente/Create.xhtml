@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentaCorrienteCreateDlg" widgetVar="CuentaCorrienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCuentaCorrienteTitle}">
+            <h:form id="CuentaCorrienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentaCorrienteController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{cuentaCorrienteController.selected.fecha}" title="#{bundle.EditCuentaCorrienteTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_concepto}" for="concepto" />
+                        <p:inputText id="concepto" value="#{cuentaCorrienteController.selected.concepto}" title="#{bundle.CreateCuentaCorrienteTitle_concepto}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nroDeComprobante}" for="nroDeComprobante" />
+                        <p:inputText id="nroDeComprobante" value="#{cuentaCorrienteController.selected.nroDeComprobante}" title="#{bundle.CreateCuentaCorrienteTitle_nroDeComprobante}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_debe}" for="debe" />
+                        <p:inputText id="debe" value="#{cuentaCorrienteController.selected.debe}" title="#{bundle.CreateCuentaCorrienteTitle_debe}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_haber}" for="haber" />
+                        <p:inputText id="haber" value="#{cuentaCorrienteController.selected.haber}" title="#{bundle.CreateCuentaCorrienteTitle_haber}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreyApellido}" for="nombreyApellido" />
+                        <p:inputText id="nombreyApellido" value="#{cuentaCorrienteController.selected.nombreyApellido}" title="#{bundle.CreateCuentaCorrienteTitle_nombreyApellido}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_direccionReal}" for="direccionReal" />
+                        <p:inputText id="direccionReal" value="#{cuentaCorrienteController.selected.direccionReal}" title="#{bundle.CreateCuentaCorrienteTitle_direccionReal}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_direccionFacturacion}" for="direccionFacturacion" />
+                        <p:inputText id="direccionFacturacion" value="#{cuentaCorrienteController.selected.direccionFacturacion}" title="#{bundle.CreateCuentaCorrienteTitle_direccionFacturacion}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreDeFantasia}" for="nombreDeFantasia" />
+                        <p:inputText id="nombreDeFantasia" value="#{cuentaCorrienteController.selected.nombreDeFantasia}" title="#{bundle.CreateCuentaCorrienteTitle_nombreDeFantasia}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreDeFacturacion}" for="nombreDeFacturacion" />
+                        <p:inputText id="nombreDeFacturacion" value="#{cuentaCorrienteController.selected.nombreDeFacturacion}" title="#{bundle.CreateCuentaCorrienteTitle_nombreDeFacturacion}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_codigoPostal}" for="codigoPostal" />
+                        <p:inputText id="codigoPostal" value="#{cuentaCorrienteController.selected.codigoPostal}" title="#{bundle.CreateCuentaCorrienteTitle_codigoPostal}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{cuentaCorrienteController.selected.telefono}" title="#{bundle.CreateCuentaCorrienteTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_credito}" for="credito" />
+                        <p:inputText id="credito" value="#{cuentaCorrienteController.selected.credito}" title="#{bundle.CreateCuentaCorrienteTitle_credito}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_descuento}" for="descuento" />
+                        <p:inputText id="descuento" value="#{cuentaCorrienteController.selected.descuento}" title="#{bundle.CreateCuentaCorrienteTitle_descuento}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_fechaDePago}" for="fechaDePago" />
+                        <p:calendar id="fechaDePago" pattern="MM/dd/yyyy" value="#{cuentaCorrienteController.selected.fechaDePago}" title="#{bundle.EditCuentaCorrienteTitle_fechaDePago}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_conducta}" for="conducta" />
+                        <p:inputText id="conducta" value="#{cuentaCorrienteController.selected.conducta}" title="#{bundle.CreateCuentaCorrienteTitle_conducta}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_cuit}" for="cuit" />
+                        <p:inputText id="cuit" value="#{cuentaCorrienteController.selected.cuit}" title="#{bundle.CreateCuentaCorrienteTitle_cuit}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{cuentaCorrienteController.selected.observaciones}" title="#{bundle.CreateCuentaCorrienteTitle_observaciones}" />
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_localidadID}" for="localidadID" />
+                        <p:selectOneMenu id="localidadID" value="#{cuentaCorrienteController.selected.localidadID}" >
+                            <f:selectItems value="#{localidadesController.itemsAvailableSelectOne}"
+                                           var="localidadIDItem"
+                                           itemValue="#{localidadIDItem}"/>
+                        </p:selectOneMenu>
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_formaDePagoID}" for="formaDePagoID" />
+                        
+                        <p:inputText id="formaDePagoID" value="#{cuentaCorrienteController.selected.formaDePagoID}" />
+                        
+                                              
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_condicionIVAID}" for="condicionIVAID" />
+                        <p:selectOneMenu id="condicionIVAID" value="#{cuentaCorrienteController.selected.condicionIVAID}" >
+                            <f:selectItems value="#{condicionIVAController.itemsAvailableSelectOne}"
+                                           var="condicionIVAIDItem"
+                                           itemValue="#{condicionIVAIDItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cuentaCorrienteController.create}" value="#{bundle.Save}" update="display,:CuentaCorrienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'CuentaCorrienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CuentaCorrienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

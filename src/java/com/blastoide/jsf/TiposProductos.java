@@ -124,7 +124,7 @@ public class TiposProductos implements Serializable {
 
     @Override
     public String toString() {
-        return "tipoProducto=" + nombre + " ]";
+        return  nombre ;
     }
     
 }

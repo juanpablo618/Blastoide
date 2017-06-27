@@ -12,8 +12,6 @@
             <h:form id="DomiciliosCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{domiciliosController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateDomiciliosLabel_domiciliosID}" for="domiciliosID" />
-                        <p:inputText id="domiciliosID" value="#{domiciliosController.selected.domiciliosID}" title="#{bundle.CreateDomiciliosTitle_domiciliosID}" required="true" requiredMessage="#{bundle.CreateDomiciliosRequiredMessage_domiciliosID}"/>
                         <p:outputLabel value="#{bundle.CreateDomiciliosLabel_calle}" for="calle" />
                         <p:inputText id="calle" value="#{domiciliosController.selected.calle}" title="#{bundle.CreateDomiciliosTitle_calle}" required="true" requiredMessage="#{bundle.CreateDomiciliosRequiredMessage_calle}"/>
                         <p:outputLabel value="#{bundle.CreateDomiciliosLabel_numero}" for="numero" />

@@ -154,7 +154,7 @@ public class Eventualidades implements Serializable {
 
     @Override
     public String toString() {
-        return "eventualidad=" + eventualidadID + " ]";
+        return  observaciones ;
     }
     
 }

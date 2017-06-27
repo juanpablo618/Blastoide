@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ImagenesListForm">
+            <h:form id="ImagenesListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListImagenesTitle}">
                     <p:dataTable id="datalist" value="#{imagenesController.items}" var="item"
                                  selectionMode="single" selection="#{imagenesController.selected}"

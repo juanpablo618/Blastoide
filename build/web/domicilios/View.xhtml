@@ -12,8 +12,6 @@
             <h:form id="DomiciliosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{domiciliosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewDomiciliosLabel_domiciliosID}"/>
-                        <h:outputText value="#{domiciliosController.selected.domiciliosID}" title="#{bundle.ViewDomiciliosTitle_domiciliosID}"/>
                         <h:outputText value="#{bundle.ViewDomiciliosLabel_calle}"/>
                         <h:outputText value="#{domiciliosController.selected.calle}" title="#{bundle.ViewDomiciliosTitle_calle}"/>
                         <h:outputText value="#{bundle.ViewDomiciliosLabel_numero}"/>

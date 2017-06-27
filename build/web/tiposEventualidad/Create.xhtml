@@ -12,8 +12,6 @@
             <h:form id="TiposEventualidadCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposEventualidadController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_tipoEventualidadID}" for="tipoEventualidadID" />
-                        <p:inputText id="tipoEventualidadID" value="#{tiposEventualidadController.selected.tipoEventualidadID}" title="#{bundle.CreateTiposEventualidadTitle_tipoEventualidadID}" required="true" requiredMessage="#{bundle.CreateTiposEventualidadRequiredMessage_tipoEventualidadID}"/>
                         <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tiposEventualidadController.selected.nombre}" title="#{bundle.CreateTiposEventualidadTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTiposEventualidadRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateTiposEventualidadLabel_descripcion}" for="descripcion" />

@@ -12,8 +12,6 @@
             <h:form id="DepositosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{depositosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewDepositosLabel_depositoID}"/>
-                        <h:outputText value="#{depositosController.selected.depositoID}" title="#{bundle.ViewDepositosTitle_depositoID}"/>
                         <h:outputText value="#{bundle.ViewDepositosLabel_nombre}"/>
                         <h:outputText value="#{depositosController.selected.nombre}" title="#{bundle.ViewDepositosTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewDepositosLabel_descripcion}"/>

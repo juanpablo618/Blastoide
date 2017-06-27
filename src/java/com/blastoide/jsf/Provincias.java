@@ -109,7 +109,7 @@ public class Provincias implements Serializable {
 
     @Override
     public String toString() {
-        return "provincia=" + nombre + " ]";
+        return nombre ;
     }
     
 }

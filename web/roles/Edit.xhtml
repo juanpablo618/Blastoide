@@ -12,8 +12,6 @@
             <h:form id="RolesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{rolesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditRolesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{rolesController.selected.id}" title="#{bundle.EditRolesTitle_id}" required="true" requiredMessage="#{bundle.EditRolesRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.EditRolesLabel_name}" for="name" />
                         <p:inputText id="name" value="#{rolesController.selected.name}" title="#{bundle.EditRolesTitle_name}" required="true" requiredMessage="#{bundle.EditRolesRequiredMessage_name}"/>
                     </p:panelGrid>

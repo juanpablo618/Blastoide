@@ -12,8 +12,6 @@
             <h:form id="TiposEventualidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposEventualidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTiposEventualidadLabel_tipoEventualidadID}"/>
-                        <h:outputText value="#{tiposEventualidadController.selected.tipoEventualidadID}" title="#{bundle.ViewTiposEventualidadTitle_tipoEventualidadID}"/>
                         <h:outputText value="#{bundle.ViewTiposEventualidadLabel_nombre}"/>
                         <h:outputText value="#{tiposEventualidadController.selected.nombre}" title="#{bundle.ViewTiposEventualidadTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewTiposEventualidadLabel_descripcion}"/>

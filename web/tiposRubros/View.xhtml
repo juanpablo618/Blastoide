@@ -12,8 +12,6 @@
             <h:form id="TiposRubrosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposRubrosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTiposRubrosLabel_tipoRubroID}"/>
-                        <h:outputText value="#{tiposRubrosController.selected.tipoRubroID}" title="#{bundle.ViewTiposRubrosTitle_tipoRubroID}"/>
                         <h:outputText value="#{bundle.ViewTiposRubrosLabel_nombre}"/>
                         <h:outputText value="#{tiposRubrosController.selected.nombre}" title="#{bundle.ViewTiposRubrosTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewTiposRubrosLabel_descripcion}"/>

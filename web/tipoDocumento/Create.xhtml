@@ -12,8 +12,6 @@
             <h:form id="TipoDocumentoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoDocumentoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTipoDocumentoLabel_tipoDocumentoID}" for="tipoDocumentoID" />
-                        <p:inputText id="tipoDocumentoID" value="#{tipoDocumentoController.selected.tipoDocumentoID}" title="#{bundle.CreateTipoDocumentoTitle_tipoDocumentoID}" required="true" requiredMessage="#{bundle.CreateTipoDocumentoRequiredMessage_tipoDocumentoID}"/>
                         <p:outputLabel value="#{bundle.CreateTipoDocumentoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tipoDocumentoController.selected.nombre}" title="#{bundle.CreateTipoDocumentoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTipoDocumentoRequiredMessage_nombre}"/>
                     </p:panelGrid>

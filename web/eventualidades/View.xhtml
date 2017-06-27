@@ -12,8 +12,6 @@
             <h:form id="EventualidadesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{eventualidadesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEventualidadesLabel_eventualidadID}"/>
-                        <h:outputText value="#{eventualidadesController.selected.eventualidadID}" title="#{bundle.ViewEventualidadesTitle_eventualidadID}"/>
                         <h:outputText value="#{bundle.ViewEventualidadesLabel_fecha}"/>
                         <h:outputText value="#{eventualidadesController.selected.fecha}" title="#{bundle.ViewEventualidadesTitle_fecha}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />

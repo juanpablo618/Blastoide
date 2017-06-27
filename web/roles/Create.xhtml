@@ -12,8 +12,6 @@
             <h:form id="RolesCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{rolesController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateRolesLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{rolesController.selected.id}" title="#{bundle.CreateRolesTitle_id}" required="true" requiredMessage="#{bundle.CreateRolesRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateRolesLabel_name}" for="name" />
                         <p:inputText id="name" value="#{rolesController.selected.name}" title="#{bundle.CreateRolesTitle_name}" required="true" requiredMessage="#{bundle.CreateRolesRequiredMessage_name}"/>
                     </p:panelGrid>

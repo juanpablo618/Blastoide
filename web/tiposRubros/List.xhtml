@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="TiposRubrosListForm">
+            <h:form id="TiposRubrosListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListTiposRubrosTitle}">
                     <p:dataTable id="datalist" value="#{tiposRubrosController.items}" var="item"
                                  selectionMode="single" selection="#{tiposRubrosController.selected}"
@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTiposRubrosTitle_tipoRubroID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoRubroID}"/>
-                        </p:column>
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTiposRubrosTitle_nombre}"/>

@@ -12,8 +12,6 @@
             <h:form id="ProvinciasViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{provinciasController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProvinciasLabel_provinciaID}"/>
-                        <h:outputText value="#{provinciasController.selected.provinciaID}" title="#{bundle.ViewProvinciasTitle_provinciaID}"/>
                         <h:outputText value="#{bundle.ViewProvinciasLabel_nombre}"/>
                         <h:outputText value="#{provinciasController.selected.nombre}" title="#{bundle.ViewProvinciasTitle_nombre}"/>
                     </p:panelGrid>

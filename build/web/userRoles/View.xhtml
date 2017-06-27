@@ -12,8 +12,6 @@
             <h:form id="UserRolesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{userRolesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUserRolesLabel_userId}"/>
-                        <h:outputText value="#{userRolesController.selected.userId}" title="#{bundle.ViewUserRolesTitle_userId}"/>
                         <h:outputText value="#{bundle.ViewUserRolesLabel_users}"/>
                         <h:outputText value="#{userRolesController.selected.users}" title="#{bundle.ViewUserRolesTitle_users}"/>
                         <h:outputText value="#{bundle.ViewUserRolesLabel_roleId}"/>

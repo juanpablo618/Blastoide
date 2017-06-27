@@ -124,7 +124,7 @@ public class TiposRubros implements Serializable {
 
     @Override
     public String toString() {
-        return "tipoRubro=" + nombre + " ]";
+        return nombre ;
     }
     
 }

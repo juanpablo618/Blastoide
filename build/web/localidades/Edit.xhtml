@@ -12,8 +12,6 @@
             <h:form id="LocalidadesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localidadesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditLocalidadesLabel_localidadID}" for="localidadID" />
-                        <p:inputText id="localidadID" value="#{localidadesController.selected.localidadID}" title="#{bundle.EditLocalidadesTitle_localidadID}" required="true" requiredMessage="#{bundle.EditLocalidadesRequiredMessage_localidadID}"/>
                         <p:outputLabel value="#{bundle.EditLocalidadesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{localidadesController.selected.nombre}" title="#{bundle.EditLocalidadesTitle_nombre}" required="true" requiredMessage="#{bundle.EditLocalidadesRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditLocalidadesLabel_codigoPostal}" for="codigoPostal" />

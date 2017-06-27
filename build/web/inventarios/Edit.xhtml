@@ -12,9 +12,7 @@
             <h:form id="InventariosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventariosController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditInventariosLabel_inventarioID}" for="inventarioID" />
-                        <p:inputText id="inventarioID" value="#{inventariosController.selected.inventarioID}" title="#{bundle.EditInventariosTitle_inventarioID}" required="true" requiredMessage="#{bundle.EditInventariosRequiredMessage_inventarioID}"/>
-                        <p:outputLabel value="#{bundle.EditInventariosLabel_cu}" for="cu" />
+                       <p:outputLabel value="#{bundle.EditInventariosLabel_cu}" for="cu" />
                         <p:inputText id="cu" value="#{inventariosController.selected.cu}" title="#{bundle.EditInventariosTitle_cu}" required="true" requiredMessage="#{bundle.EditInventariosRequiredMessage_cu}"/>
                         <p:outputLabel value="#{bundle.EditInventariosLabel_cc}" for="cc" />
                         <p:inputText id="cc" value="#{inventariosController.selected.cc}" title="#{bundle.EditInventariosTitle_cc}" required="true" requiredMessage="#{bundle.EditInventariosRequiredMessage_cc}"/>

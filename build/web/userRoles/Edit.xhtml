@@ -12,8 +12,6 @@
             <h:form id="UserRolesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{userRolesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditUserRolesLabel_userId}" for="userId" />
-                        <p:inputText id="userId" value="#{userRolesController.selected.userId}" title="#{bundle.EditUserRolesTitle_userId}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_userId}"/>
                         <p:outputLabel value="#{bundle.EditUserRolesLabel_users}" for="users" />
                         <p:selectOneMenu id="users" value="#{userRolesController.selected.users}" required="true" requiredMessage="#{bundle.EditUserRolesRequiredMessage_users}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

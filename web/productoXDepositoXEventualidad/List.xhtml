@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -14,7 +14,7 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ProductoXDepositoXEventualidadListForm">
+            <h:form id="ProductoXDepositoXEventualidadListForm" style="width: 105%;">
                 <p:panel header="#{bundle.ListProductoXDepositoXEventualidadTitle}">
                     <p:dataTable id="datalist" value="#{productoXDepositoXEventualidadController.items}" var="item"
                                  selectionMode="single" selection="#{productoXDepositoXEventualidadController.selected}"
@@ -43,19 +43,19 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoXDepositoXEventualidadTitle_productos}"/>
                             </f:facet>
-                            <h:outputText value="#{item.productos}"/>
+                            <h:outputText value="#{item.productos.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoXDepositoXEventualidadTitle_eventualidades}"/>
                             </f:facet>
-                            <h:outputText value="#{item.eventualidades}"/>
+                            <h:outputText value="#{item.eventualidades.observaciones}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductoXDepositoXEventualidadTitle_depositos}"/>
                             </f:facet>
-                            <h:outputText value="#{item.depositos}"/>
+                            <h:outputText value="#{item.depositos.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoXDepositoXEventualidadController.prepareCreate}" update=":ProductoXDepositoXEventualidadCreateForm" oncomplete="PF('ProductoXDepositoXEventualidadCreateDialog').show()"/>

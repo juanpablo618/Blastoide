@@ -1,2 +1,0 @@
-# Blastoide
-blastoide proyecto lucas

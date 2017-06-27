@@ -12,8 +12,6 @@
             <h:form id="EventualidadesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{eventualidadesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEventualidadesLabel_eventualidadID}" for="eventualidadID" />
-                        <p:inputText id="eventualidadID" value="#{eventualidadesController.selected.eventualidadID}" title="#{bundle.EditEventualidadesTitle_eventualidadID}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_eventualidadID}"/>
                         <p:outputLabel value="#{bundle.EditEventualidadesLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{eventualidadesController.selected.fecha}" title="#{bundle.EditEventualidadesTitle_fecha}" required="true" requiredMessage="#{bundle.EditEventualidadesRequiredMessage_fecha}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditEventualidadesLabel_observaciones}" for="observaciones" />
