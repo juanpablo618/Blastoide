@@ -294,4 +294,13 @@ public class Productos implements Serializable {
         return "Producto= " + nombre ;
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

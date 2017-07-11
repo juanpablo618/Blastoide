@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-06-2017 a las 21:18:37
+-- Tiempo de generación: 11-07-2017 a las 23:19:11
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -19,6 +19,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `Blastoide`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Cliente`
+--
+
+CREATE TABLE `Cliente` (
+  `ClienteID` int(11) NOT NULL,
+  `nombre` varchar(300) NOT NULL,
+  `dni` varchar(100) DEFAULT NULL,
+  `TipoCliente` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Cliente`
+--
+
+INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `TipoCliente`) VALUES
+(1, 'juan pablo', '35054822', 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +101,19 @@ CREATE TABLE `Depositos` (
   `depositoID` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `DetalleVenta`
+--
+
+CREATE TABLE `DetalleVenta` (
+  `codigo` int(11) NOT NULL,
+  `codVenta` int(11) NOT NULL,
+  `codProducto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -567,9 +600,40 @@ CREATE TABLE `Users` (
   `Username` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Venta`
+--
+
+CREATE TABLE `Venta` (
+  `ventaID` int(11) NOT NULL,
+  `empleado` varchar(500) DEFAULT NULL,
+  `ClienteID` int(11) NOT NULL,
+  `comentario` varchar(1000) DEFAULT NULL,
+  `nroInterno` int(11) DEFAULT NULL,
+  `estadoDeVenta` varchar(250) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `monto` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Venta`
+--
+
+INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`) VALUES
+(1, 'juan', 1, 'comentario', 202, 'var var ', '2017-07-25', '21'),
+(2, 'empleado', 1, 'comentariocomentario', 213123, 'estadoestado', '2017-07-20', '12312');
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `Cliente`
+--
+ALTER TABLE `Cliente`
+  ADD PRIMARY KEY (`ClienteID`);
 
 --
 -- Indices de la tabla `condicionIVA`
@@ -591,6 +655,14 @@ ALTER TABLE `CuentaCorriente`
 --
 ALTER TABLE `Depositos`
   ADD PRIMARY KEY (`depositoID`);
+
+--
+-- Indices de la tabla `DetalleVenta`
+--
+ALTER TABLE `DetalleVenta`
+  ADD PRIMARY KEY (`codigo`),
+  ADD KEY `codProducto` (`codProducto`),
+  ADD KEY `codVenta` (`codVenta`);
 
 --
 -- Indices de la tabla `Domicilios`
@@ -749,9 +821,21 @@ ALTER TABLE `Users`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indices de la tabla `Venta`
+--
+ALTER TABLE `Venta`
+  ADD PRIMARY KEY (`ventaID`),
+  ADD KEY `ClienteID` (`ClienteID`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `Cliente`
+--
+ALTER TABLE `Cliente`
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
@@ -761,12 +845,17 @@ ALTER TABLE `condicionIVA`
 -- AUTO_INCREMENT de la tabla `CuentaCorriente`
 --
 ALTER TABLE `CuentaCorriente`
-  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `Depositos`
 --
 ALTER TABLE `Depositos`
   MODIFY `depositoID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `DetalleVenta`
+--
+ALTER TABLE `DetalleVenta`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -863,6 +952,11 @@ ALTER TABLE `UnidadesMedida`
 ALTER TABLE `Users`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `Venta`
+--
+ALTER TABLE `Venta`
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -872,6 +966,13 @@ ALTER TABLE `Users`
 ALTER TABLE `CuentaCorriente`
   ADD CONSTRAINT `CuentaCorriente_ibfk_1` FOREIGN KEY (`localidadID`) REFERENCES `Localidades` (`LocalidadID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `CuentaCorriente_ibfk_3` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `DetalleVenta`
+--
+ALTER TABLE `DetalleVenta`
+  ADD CONSTRAINT `DetalleVenta_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`productoID`),
+  ADD CONSTRAINT `DetalleVenta_ibfk_2` FOREIGN KEY (`codVenta`) REFERENCES `Venta` (`ventaID`);
 
 --
 -- Filtros para la tabla `Domicilios`
@@ -949,6 +1050,12 @@ ALTER TABLE `Proveedores`
 ALTER TABLE `UserRoles`
   ADD CONSTRAINT `UserRoles_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`),
   ADD CONSTRAINT `UserRoles_ibfk_2` FOREIGN KEY (`RoleId`) REFERENCES `UserRoles` (`UserId`);
+
+--
+-- Filtros para la tabla `Venta`
+--
+ALTER TABLE `Venta`
+  ADD CONSTRAINT `Venta_ibfk_1` FOREIGN KEY (`ClienteID`) REFERENCES `Cliente` (`ClienteID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
