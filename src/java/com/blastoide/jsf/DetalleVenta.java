@@ -49,6 +49,16 @@ private int cantidad;
         this.cantidad = cantidad;
     }
 
+    @Override
+    public String toString() {
+        return "DetalleVenta{" + "codigo=" + codigo + ", venta=" + venta + ", producto=" + producto + ", cantidad=" + cantidad + '}';
+    }
+
+    
+    
+    
+    
+    
     
     
     

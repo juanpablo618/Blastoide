@@ -4,6 +4,15 @@ import com.blastoide.jpa.VentaDAO;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -100,11 +109,55 @@ public class VentaBean implements Serializable{
     }
     
     
+    public void generarFactura() throws FileNotFoundException, DocumentException{
     
+        
+        double monto = 0;
+            
+            for(DetalleVenta det : lista){
+                monto += det.getProducto().getPrecioVenta() * det.getCantidad();
+                
+            }
+            
+            
+            venta.setMonto(monto);
+            venta.setFecha(Calendar.getInstance().getTime());
+            //dao.registrar(venta, lista);
+            
+        
+            // Se crea el documento
+            Document documento = new Document();
+            // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+            FileOutputStream ficheroPdf = new FileOutputStream("/home/developer/Desktop/fichero.pdf");
+            // Se abre el documento.
+            documento.open(); 
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+            PdfWriter.getInstance(documento,ficheroPdf).setInitialLeading(10);
+            
+                
+        //crea tabla    
+        PdfPTable tabla = new PdfPTable(3);
+            
+        System.out.println("lista: "+lista.toString());
+        System.out.println("venta: "+venta.toString());
+        
+        documento.add(new Paragraph("Mundo Limpiaza - factura sin valor comercial"));
+         documento.add(new Paragraph("LISTA: "));
+                
+        documento.add(new Paragraph(lista.toString()));
+         documento.add(new Paragraph("VENTA: "));
+        
+        documento.add(new Paragraph(venta.toString()));
+            
+        documento.close();
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PDF generado"));
+        
+            
+    }
     
-    
-    
-    
-    
+        
+       
     
 }

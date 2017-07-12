@@ -150,4 +150,19 @@ public class Venta {
     public double getMonto() {
         return monto;
     }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "ventaID=" + ventaID + ", fecha=" + fecha + ", cliente=" + cliente + ", monto=" + monto + '}';
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

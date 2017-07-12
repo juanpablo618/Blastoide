@@ -48,28 +48,28 @@
                          emptyMessage="no hay elementos en esta venta"
                              >
                     
-                    
-                    
-                    <p:column headerText="Nombre Producto">
-                        #{det.producto.nombre}
-                    </p:column>
-                    
-                    
-                    <p:column headerText="Precio">
-                        #{det.producto.precioVenta}
-                    </p:column>
-                   
-                    
-                     <p:column headerText="Cantidad">
-                         
-                        #{det.cantidad}
-                    </p:column>
-                    
+                        <p:column headerText="Nombre Producto">
+                            #{det.producto.nombre}
+                        </p:column>
+
+                        <p:column headerText="Precio">
+                            #{det.producto.precioVenta}
+                        </p:column>
+
+                         <p:column headerText="Cantidad">
+                            #{det.cantidad}
+                        </p:column>
+
                     
                 </p:dataTable>
                 <p:commandButton value="registrar" actionListener="#{ventaBean.registrar()}"  />
-
+                <h:commandLink>
+                    <h:graphicImage url="./../resources/images/pdf.png" />
+                    <!--<p:dataExporter type="pdf" target="detalle" fileName="factura" pageOnly="true"  />-->
+                    <p:commandButton value="generar factura" actionListener="#{ventaBean.generarFactura()}"  />
                 
+                </h:commandLink>    
+
             </h:form>
             
             
