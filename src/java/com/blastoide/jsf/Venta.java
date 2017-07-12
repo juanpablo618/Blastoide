@@ -5,6 +5,7 @@
  */
 package com.blastoide.jsf;
 
+import com.blastoide.jpa.ClienteBueno;
 import com.blastoide.jpa.VentaDAO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +23,7 @@ public class Venta {
     
     private int ventaID;
     private Date fecha;
-    private Cliente cliente;
+    private ClienteBueno cliente;
     private double monto;
 
     public void setVentaID(int ventaID) {
@@ -33,7 +34,7 @@ public class Venta {
         this.fecha = fecha;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteBueno cliente) {
         this.cliente = cliente;
     }
 
@@ -142,7 +143,7 @@ public class Venta {
         return fecha;
     }
 
-    public Cliente getCliente() {
+    public ClienteBueno getCliente() {
         return cliente;
     }
 

@@ -14,14 +14,14 @@
 
         <ui:define name="body">
             <f:event type="preRenderView" listener="#{clienteBean.listar('F')}" />
-            <p:growl id="msj" autoUpdate="true"/>
+            <p:growl id="msj" autoUpdate="true" showDetail="true"/>
             
             <h:form id="frm">
                 <p:outputLabel value="Cliente" />
                 
                 <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
-                    <f:selectItems value="#{clienteBean.lstClientes}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
+                    <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
                                
                 </p:selectOneMenu>
                                    
@@ -32,7 +32,7 @@
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                         <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.nombre}" itemValue="#{pro}" />
                 
-                    
+                        
                 </p:selectOneMenu>
                 
                 
@@ -44,11 +44,17 @@
                 <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
                              paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
+                         rowsPerPageTemplate="10,20"
+                         emptyMessage="no hay elementos en esta venta"
                              >
+                    
+                    
+                    
                     <p:column headerText="Nombre Producto">
                         #{det.producto.nombre}
                     </p:column>
+                    
+                    
                     <p:column headerText="Precio">
                         #{det.producto.precioVenta}
                     </p:column>

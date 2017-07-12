@@ -70,12 +70,12 @@
 
                         <ui:insert name="body">
                             <center style="margin-top: 10%;">
-  
+
                                 <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
-                           </center>
+                            </center>
                             <center>
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">Bienvenido #{login.user}</h:outputLabel>
-                            </center>
+                                </center>
                             <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
                                 <h3 style="margin-top:0">Hora:</h3>
                                 <p:clock />
@@ -95,7 +95,10 @@
         </p:layout>
         <br />
         <br />
+        <br />
+        <h:link outcome="/clienteBueno/List" value="Show All ClienteBueno Items"/>
     </h:body>
+
 
 
 

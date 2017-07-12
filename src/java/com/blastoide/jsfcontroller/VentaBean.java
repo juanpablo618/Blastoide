@@ -80,7 +80,8 @@ public class VentaBean implements Serializable{
         try {
             
             for(DetalleVenta det : lista){
-                monto += det.getProducto().getPrecioVenta();
+                monto += det.getProducto().getPrecioVenta() * det.getCantidad();
+                
             }
             
             
@@ -91,6 +92,8 @@ public class VentaBean implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("aviso exitoso"));
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("algo salio mal"));
+        }finally{
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
         
     
