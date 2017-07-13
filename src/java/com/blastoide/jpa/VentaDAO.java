@@ -35,17 +35,13 @@ public class VentaDAO extends DAO{
             
             
             
-            PreparedStatement st = this.getCn().prepareStatement("insert into Venta (ClienteID, monto) values(?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("insert into Venta (ClienteID, monto, formaDePagoID) values(?,?,?)");
                                 System.err.println("llego aca al insert de ventaDAO");
 
-                System.err.println("llego aca -1");
-                //st.setDate(1, (Date) venta.getFecha());
-                System.err.println("llego aca -2");
                 
                 st.setInt(1, venta.getCliente().getClienteID());
                 st.setDouble(2, venta.getMonto());
-          System.err.println("llego aca 2");      
-         System.err.println(st.toString());
+                st.setInt(3, venta.getFormadePagoID());
          
          st.executeUpdate();
          st.close();

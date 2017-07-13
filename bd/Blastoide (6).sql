@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-07-2017 a las 20:23:07
+-- Tiempo de generación: 13-07-2017 a las 22:08:19
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -116,6 +116,17 @@ CREATE TABLE `DetalleVenta` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `DetalleVenta`
+--
+
+INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALUES
+(6, 2, 1, 2),
+(7, 2, 2, 4),
+(8, 2, 3, 8),
+(9, 2, 4, 16),
+(10, 2, 5, 32);
+
 -- --------------------------------------------------------
 
 --
@@ -195,8 +206,7 @@ INSERT INTO `FormaDePago` (`formaDePagoID`, `descripcion`, `nombre`) VALUES
 (4, 'Tarjeta de débito', 'Tarjeta de débito'),
 (5, 'PayPal', 'PayPal'),
 (6, 'Western Union\r\n', 'Western Union\r\n'),
-(7, 'Transferencia bancaria fuera de línea\r\n', 'Transferencia bancaria fuera de línea\r\n'),
-(8, NULL, NULL);
+(7, 'Transferencia bancaria fuera de línea\r\n', 'Transferencia bancaria fuera de línea\r\n');
 
 -- --------------------------------------------------------
 
@@ -614,8 +624,16 @@ CREATE TABLE `Venta` (
   `nroInterno` int(11) DEFAULT NULL,
   `estadoDeVenta` varchar(250) DEFAULT NULL,
   `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `monto` decimal(10,0) DEFAULT NULL
+  `monto` decimal(10,0) DEFAULT NULL,
+  `formaDePagoID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Venta`
+--
+
+INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`, `formaDePagoID`) VALUES
+(2, NULL, 1, NULL, NULL, NULL, '2017-07-13 19:38:04', '1707', 1);
 
 --
 -- Índices para tablas volcadas
@@ -847,7 +865,7 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -947,7 +965,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

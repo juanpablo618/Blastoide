@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FormaDePagoViewDlg" widgetVar="FormaDePagoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFormaDePagoTitle}">
+            <h:form id="FormaDePagoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formaDePagoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFormaDePagoLabel_formaDePagoID}"/>
+                        <h:outputText value="#{formaDePagoController.selected.formaDePagoID}" title="#{bundle.ViewFormaDePagoTitle_formaDePagoID}"/>
+                        <h:outputText value="#{bundle.ViewFormaDePagoLabel_descripcion}"/>
+                        <h:outputText value="#{formaDePagoController.selected.descripcion}" title="#{bundle.ViewFormaDePagoTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewFormaDePagoLabel_nombre}"/>
+                        <h:outputText value="#{formaDePagoController.selected.nombre}" title="#{bundle.ViewFormaDePagoTitle_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FormaDePagoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

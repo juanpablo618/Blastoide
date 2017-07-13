@@ -25,7 +25,18 @@ public class Venta {
     private Date fecha;
     private ClienteBueno cliente;
     private double monto;
+    private int formadePagoID;
 
+    public int getFormadePagoID() {
+        return formadePagoID;
+    }
+
+    public void setFormadePagoID(int formadePagoID) {
+        this.formadePagoID = formadePagoID;
+    }
+    
+    
+    
     public void setVentaID(int ventaID) {
         this.ventaID = ventaID;
     }
@@ -153,7 +164,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "ventaID=" + ventaID + ", fecha=" + fecha + ", cliente=" + cliente + ", monto=" + monto + '}';
+        return "Fecha=" + fecha + ", Cliente=" + cliente.getNombre() + ", Monto total=" + monto;
     }
     
     

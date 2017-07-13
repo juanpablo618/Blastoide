@@ -17,7 +17,10 @@
             <p:growl id="msj" autoUpdate="true" showDetail="true"/>
             
             <h:form id="frm">
-                <p:outputLabel value="Cliente" />
+                
+                <br></br>
+
+                <p:outputLabel value="Cliente: "  style="color:white" />
                 
                 <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
@@ -25,8 +28,10 @@
                                
                 </p:selectOneMenu>
                                    
-                                   
-                <p:outputLabel value="Producto" />
+                <br></br>
+                <br></br>
+
+                <p:outputLabel value="Producto: "  style="color:white" />
                     
                 <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter">
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
@@ -35,8 +40,8 @@
                         
                 </p:selectOneMenu>
                 
-                
-                <p:outputLabel value="Cantidad" />
+                                
+                <p:outputLabel value="Cantidad: " style="color:white" />
                 <p:inputText value="#{ventaBean.cantidad}" />
                 
                 <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle"/>
@@ -62,11 +67,22 @@
 
                     
                 </p:dataTable>
-                <p:commandButton value="registrar" actionListener="#{ventaBean.registrar()}"  />
+                <br></br>
+                
+                <p:outputLabel value="Forma de Pago:" style="color:white" />
+                    
+                <p:selectOneMenu value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                
+                        
+                </p:selectOneMenu>
+                <br></br>
+                
+                
+                <p:commandButton value="Facturar" actionListener="#{ventaBean.facturar()}"  />
                 <h:commandLink>
-                    <h:graphicImage url="./../resources/images/pdf.png" />
-                    <!--<p:dataExporter type="pdf" target="detalle" fileName="factura" pageOnly="true"  />-->
-                    <p:commandButton value="generar factura" actionListener="#{ventaBean.generarFactura()}"  />
+                    <p:commandButton value="generar Presupuesto" actionListener="#{ventaBean.presupuestar()}"  />
                 
                 </h:commandLink>    
 

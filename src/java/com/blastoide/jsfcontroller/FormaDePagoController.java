@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jsfcontroller;
 
-import com.blastoide.jpa.FormaDePagoFacade;
-import com.blastoide.jsf.FormaDePago;
+import com.blastoide.jpa.FormaDePago;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
+import com.blastoide.jsf.FormaDePagoFacade;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -16,23 +12,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Named;
 
-/**
- *
- * @author developer
- */
 @Named("formaDePagoController")
 @SessionScoped
-public class FormaDePagoController implements Serializable{
-    
+public class FormaDePagoController implements Serializable {
+
     @EJB
-    private com.blastoide.jpa.FormaDePagoFacade ejbFacade;
+    private com.blastoide.jsf.FormaDePagoFacade ejbFacade;
     private List<FormaDePago> items = null;
     private FormaDePago selected;
 
@@ -138,7 +130,7 @@ public class FormaDePagoController implements Serializable{
                 return null;
             }
             FormaDePagoController controller = (FormaDePagoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "FormaDePagoController");
+                    getValue(facesContext.getELContext(), null, "formaDePagoController");
             return controller.getFormaDePago(getKey(value));
         }
 
@@ -169,5 +161,5 @@ public class FormaDePagoController implements Serializable{
         }
 
     }
-    
+
 }
