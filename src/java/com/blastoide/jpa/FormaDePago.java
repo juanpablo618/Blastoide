@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author developer
+ * @author juan C.
  */
 @Entity
 @Table(name = "FormaDePago")
@@ -29,7 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "FormaDePago.findAll", query = "SELECT f FROM FormaDePago f")
     , @NamedQuery(name = "FormaDePago.findByFormaDePagoID", query = "SELECT f FROM FormaDePago f WHERE f.formaDePagoID = :formaDePagoID")
     , @NamedQuery(name = "FormaDePago.findByDescripcion", query = "SELECT f FROM FormaDePago f WHERE f.descripcion = :descripcion")
+    
     , @NamedQuery(name = "FormaDePago.findByNombre", query = "SELECT f FROM FormaDePago f WHERE f.nombre = :nombre")})
+    
 public class FormaDePago implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,6 +46,10 @@ public class FormaDePago implements Serializable {
     @Size(max = 500)
     @Column(name = "nombre")
     private String nombre;
+    
+    @Column(name = "porcentaje")
+    private Double porcentaje;
+    
 
     public FormaDePago() {
     }
@@ -56,9 +62,23 @@ public class FormaDePago implements Serializable {
         return formaDePagoID;
     }
 
+    
     public void setFormaDePagoID(Integer formaDePagoID) {
         this.formaDePagoID = formaDePagoID;
     }
+
+    public Double getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Double porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+    
+    
+    
+    
+    
 
     public String getDescripcion() {
         return descripcion;

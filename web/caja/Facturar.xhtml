@@ -44,6 +44,8 @@
                 <p:outputLabel value="Cantidad: " style="color:white" />
                 <p:inputText value="#{ventaBean.cantidad}" />
                 
+                
+                
                 <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle"/>
                 
                 <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
@@ -78,7 +80,6 @@
                         
                 </p:selectOneMenu>
                 <br></br>
-                
                 
                 <p:commandButton value="Facturar" actionListener="#{ventaBean.facturar()}"  />
                 <h:commandLink>

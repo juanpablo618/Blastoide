@@ -12,12 +12,16 @@
             <h:form id="FormaDePagoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{formaDePagoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateFormaDePagoLabel_formaDePagoID}" for="formaDePagoID" />
-                        <p:inputText id="formaDePagoID" value="#{formaDePagoController.selected.formaDePagoID}" title="#{bundle.CreateFormaDePagoTitle_formaDePagoID}" required="true" requiredMessage="#{bundle.CreateFormaDePagoRequiredMessage_formaDePagoID}"/>
+                        
+                        
                         <p:outputLabel value="#{bundle.CreateFormaDePagoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{formaDePagoController.selected.descripcion}" title="#{bundle.CreateFormaDePagoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateFormaDePagoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{formaDePagoController.selected.nombre}" title="#{bundle.CreateFormaDePagoTitle_nombre}" />
+                        
+                        <p:outputLabel value="% de interés" for="porcentajeInteres" />
+                        <p:inputText id="porcentajeInteres" value="#{formaDePagoController.selected.porcentaje}" title="PorcentajeInteres" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{formaDePagoController.create}" value="#{bundle.Save}" update="display,:FormaDePagoListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormaDePagoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FormaDePagoCreateDialog.hide()"/>

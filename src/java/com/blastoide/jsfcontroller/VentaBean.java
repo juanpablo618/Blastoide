@@ -1,10 +1,13 @@
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.configuraciones.ConfiguracionesGenerales;
+import com.blastoide.jpa.FormaDePago;
+import com.blastoide.jpa.FormaDePagoDAO;
 import com.blastoide.jpa.VentaDAO;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
+import com.blastoide.jsf.util.MembretePresupuesto;
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
@@ -46,6 +49,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     private int formaDePagoID;
 
+    
     public int getFormaDePagoID() {
         return formaDePagoID;
     }
@@ -98,9 +102,19 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     }
 
+    
+    
+/**
+ *
+ *  
+ * monto = es el total del precio de todos los productos en la venta por su cantidad.
+ */
     public void facturar() throws Exception {
 
         VentaDAO dao;
+        FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
+        
+        
         double monto = 0;
         try {
 
@@ -108,15 +122,29 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 monto += det.getProducto().getPrecioVenta() * det.getCantidad();
 
             }
+            
+            Double porcentaje;
+            porcentaje = formapagoDao.buscarPorcentaje(formaDePagoID);
 
+            System.err.println("porcentaje: "+porcentaje);
+            
+            double montoFinal;
+            
+            montoFinal = monto*porcentaje /100.0;
+            
+            System.err.println("montofinal: "+montoFinal);
+            
+            
+            monto = monto + montoFinal; 
+            
             dao = new VentaDAO();
             venta.setMonto(monto);
             venta.setFecha(Calendar.getInstance().getTime());
             venta.setFormadePagoID(formaDePagoID);
             dao.registrar(venta, lista);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("aviso exitoso"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("algo salio mal"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
         } finally {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
@@ -129,62 +157,62 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
         for (DetalleVenta det : lista) {
             monto += det.getProducto().getPrecioVenta() * det.getCantidad();
-
         }
 
         venta.setMonto(monto);
         venta.setFecha(Calendar.getInstance().getTime());
-        //dao.registrar(venta, lista);
-
-        // Se crea el documento
-        Document documento = new Document(PageSize.A4, 35, 30, 50, 50);
-        // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
-        Date fechaDiaria = Calendar.getInstance().getTime();
-
-
         
-        FileOutputStream ficheroPdf = new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(fechaDiaria.toString()).concat(".pdf"));
+         MembretePresupuesto doc = new MembretePresupuesto();
+            doc.createPdf("documento.pdf",lista,venta);
+        
+        // Se crea el documento
+        //Document documento = new Document(PageSize.A4, 35, 30, 50, 50);
+        // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+        //Date fechaDiaria = Calendar.getInstance().getTime();
+
+        //FileOutputStream ficheroPdf = new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(fechaDiaria.toString()).concat(".pdf"));
 
         // Se asocia el documento al OutputStream y se indica que el espaciado entre
         // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
-        PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(10);
+        //PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(10);
 
         // Se abre el documento.
-        documento.open();
+        //documento.open();
 
-        Image image;
-        try {
+      //  Image image;
+      //  try {
             //  ./../resources/images/pdf.png
-            image = Image.getInstance(getURL_DE_LOGO_MUNDO_LIMPIEZA());
-            image.setAbsolutePosition(10, 650f);
+      //      image = Image.getInstance(getURL_DE_LOGO_MUNDO_LIMPIEZA());
+      //      image.setAbsolutePosition(10, 650f);
 
-            documento.add(image);
-        } catch (BadElementException ex) {
-            System.out.println("Image BadElementException" + ex);
-        }
+      //      documento.add(image);
+      //  } catch (BadElementException ex) {
+      //      System.out.println("Image BadElementException" + ex);
+      //  }
 
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
-        documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
 
-        documento.add(new Paragraph("Mundo Limpieza - Presupuesto sin valor comercial"));
+       // documento.add(new Paragraph("Mundo Limpieza - Presupuesto sin valor comercial"));
 
-        documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Phrase(Chunk.NEWLINE));
 
-        documento.add(new Paragraph("LISTA de productos y cantidad: "));
-        documento.add(new Paragraph(lista.toString()));
-        documento.add(new Phrase(Chunk.NEWLINE));
+       // documento.add(new Paragraph("LISTA de productos y cantidad: "));
+        //documento.add(new Paragraph(lista.toString()));
+       
+        //documento.add(new Phrase(Chunk.NEWLINE));
 
-        documento.add(new Paragraph("Posible VENTA al cliente: "));
-        documento.add(new Paragraph(venta.toString()));
-        documento.add(new Phrase(Chunk.NEWLINE));
+        //documento.add(new Paragraph("Posible VENTA al cliente: "));
+        //documento.add(new Paragraph(venta.toString()));
+        //documento.add(new Phrase(Chunk.NEWLINE));
 
-        documento.close();
+        //documento.close();
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PDF generado"));
 
