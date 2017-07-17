@@ -25,28 +25,46 @@
                 <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                     <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
-                               
                 </p:selectOneMenu>
                                    
                 <br></br>
+                <p:separator />
                 <br></br>
-
-                <p:outputLabel value="Producto: "  style="color:white" />
+                <p:outputLabel value="Forma de Pago:" style="color:white" />
                     
+                <p:selectOneMenu value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
+                        <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                </p:selectOneMenu>
+                
+                
+                <br></br>
+                <br></br>
+                <p:separator />
+                
+                
+                <p:outputLabel value="Producto: "  style="color:white" />
                 <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter">
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                         <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.nombre}" itemValue="#{pro}" />
-                
-                        
                 </p:selectOneMenu>
                 
-                                
                 <p:outputLabel value="Cantidad: " style="color:white" />
                 <p:inputText value="#{ventaBean.cantidad}" />
                 
                 
-                
                 <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle"/>
+                
+                <br></br>
+                <p:separator />
+                <br></br>
+                
+                
+                <br></br>
+                <br></br>
+                
+                                
+                
                 
                 <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
                              paginator="true"
@@ -55,12 +73,14 @@
                          emptyMessage="no hay elementos en esta venta"
                              >
                     
-                        <p:column headerText="Nombre Producto">
+                        <p:column headerText="Nombre del Producto">
                             #{det.producto.nombre}
                         </p:column>
 
-                        <p:column headerText="Precio">
-                            #{det.producto.precioVenta}
+                        <p:column headerText="Precio de venta Por unidad:">
+                            <h:outputText value="#{det.producto.precioFinalAFacturar}" >
+                                <f:convertNumber pattern="#00.00" />
+                            </h:outputText>
                         </p:column>
 
                          <p:column headerText="Cantidad">
@@ -71,15 +91,6 @@
                 </p:dataTable>
                 <br></br>
                 
-                <p:outputLabel value="Forma de Pago:" style="color:white" />
-                    
-                <p:selectOneMenu value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
-                        <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
-                
-                        
-                </p:selectOneMenu>
-                <br></br>
                 
                 <p:commandButton value="Facturar" actionListener="#{ventaBean.facturar()}"  />
                 <h:commandLink>

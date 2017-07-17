@@ -1,4 +1,3 @@
-
 package com.blastoide.jsf.util;
 
 import static com.blastoide.configuraciones.ConfiguracionesGenerales.getCARPETA_DE_PRESUPUESTOS;
@@ -11,9 +10,12 @@ import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,47 +25,90 @@ import java.util.List;
  * @author developer
  */
 public class MembretePresupuesto {
-    
-       /**
+
+    /**
      * Crea un documento con encabezado
-     * 
+     *
      * @param filename Nombre del archivo
      * @param lista de objetos DetalleVenta
      * @param venta para sacar el monto, el cliente, y la forma de pago
-     * 
+     *
      */
-    public void createPdf(String filename, List<DetalleVenta> lista, Venta venta) throws IOException, DocumentException
-    {        
+    public void createPdf(String filename, List<DetalleVenta> lista, Venta venta) throws IOException, DocumentException {
         Document document = new Document(PageSize.LETTER, 36, 36, 140, 36);
-        
+
         Date fechaDiaria = Calendar.getInstance().getTime();
-        
+
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(fechaDiaria.toString()).concat(".pdf")));
-        
+
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
         Paragraph parrafo;
         int i = 0;
-        
+
         // indicamos que objecto manejara los eventos al escribir el Pdf
         writer.setPageEvent(encabezado);
-        
+
         document.open();
-        
-            parrafo = new Paragraph("Esta es una de las paginas de prueba de nuestro programa, es la pagina numero 0x" + String.format("%03X", i+42));            
-            parrafo.setAlignment(Element.ALIGN_CENTER);
-            
-            document.add(parrafo);
-            
-            document.add(Chunk.NEWLINE);
-            
-            
-            document.add(new Paragraph(venta.toString()));
 
-            document.add(new Paragraph(lista.toString()));
+        parrafo = new Paragraph("Presupuesto sin valor comercial - Mundo Limpieza");
+        parrafo.setAlignment(Element.ALIGN_CENTER);
 
+        document.add(parrafo);
+
+        document.add(Chunk.NEWLINE);
+
+        Paragraph parrafo4 = new Paragraph("Nombre del cliente :" + venta.getCliente().getNombre());
+        document.add(parrafo4);
+
+        Paragraph parrafo5 = new Paragraph("fecha: " + venta.getFecha());
+        document.add(parrafo5);
+
+        document.add(Chunk.NEWLINE);
+
+        PdfPTable table = new PdfPTable(4);
+        table.addCell("CANTIDAD");
+        table.addCell("DETALLE DEL PRODUCTO");
+        table.addCell("P.U");
+        table.addCell("P.T");
+
+        double totalDeFactura = 0;
+
+        for (DetalleVenta det : lista) {
+
+            //cantidad
+            
+            table.addCell("" + new DecimalFormat("#.##").format(det.getCantidad()));
+            //detalle nombre del producto
+            table.addCell(det.getProducto().toString());
+            //precio unitario con el interes sumado
+            table.addCell("" + new DecimalFormat("#.##").format(det.getProducto().getPrecioFinalAFacturar()));
+            //precio total el pu con interes sumado * cantidad
+            totalDeFactura = totalDeFactura + det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+            table.addCell("" + new DecimalFormat("#.##").format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad()));
+
+        }
+
+        table.addCell("");
+        table.addCell("");
+        table.addCell("Precio total:");
+        table.addCell(""+new DecimalFormat("#.##").format(totalDeFactura));
         
-        document.close();        
+        
+        PdfPCell celdaFinal3 = new PdfPCell(new Paragraph(" "));
+
+        // Indicamos cuantas columnas ocupa la celda
+        celdaFinal3.setColspan(4);
+        table.addCell(celdaFinal3);
+
+
+        PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración, Dni: "));
+
+        celdaFinal2.setColspan(4);
+        table.addCell(celdaFinal2);
+
+        document.add(table);
+
+        document.close();
     }
-    
-    
+
 }

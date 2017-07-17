@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-07-2017 a las 22:49:34
+-- Tiempo de generación: 17-07-2017 a las 22:34:05
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -58,7 +58,9 @@ CREATE TABLE `condicionIVA` (
 
 INSERT INTO `condicionIVA` (`condicionIVAID`, `nombre`, `descripcion`) VALUES
 (1, 'responsable inscripto', 'responsable inscripto'),
-(2, 'responsable no categorizado', 'responsable no categorizado');
+(2, 'Consumidor Final', 'Consumidor Final'),
+(3, 'Monotributista', 'Monotributista'),
+(4, 'Exento', 'Exento');
 
 -- --------------------------------------------------------
 
@@ -190,13 +192,17 @@ CREATE TABLE `FormaDePago` (
 --
 
 INSERT INTO `FormaDePago` (`formaDePagoID`, `descripcion`, `nombre`, `porcentaje`) VALUES
-(1, 'en dinero en efectivo', 'Efectivo', 21),
-(2, 'transferencia bancaria', 'transferencia bancaria', 11),
-(3, 'Tarjeta de crédito', 'Tarjeta de crédito', 4),
-(4, 'Tarjeta de débito', 'Tarjeta de débito', 27),
-(5, 'PayPal', 'PayPal', 2),
-(6, 'Western Union\r\n', 'Western Union\r\n', 51),
-(7, 'Transferencia bancaria fuera de línea\r\n', 'Transferencia bancaria fuera de línea\r\n', 41);
+(1, 'Contado efectivo', 'Contado efectivo', 2),
+(2, 'Contado', 'Contado', 3),
+(3, 'Cuenta Corriente(-)(negativa)', 'Cta Cte (-)', 3),
+(4, 'Cuenta Corriente con 1 *', 'Cta Cte *', 4),
+(5, 'Cuenta Corriente con 2 *', 'Cta Cte **', 5),
+(6, 'Cuenta Corriente con 3 ***', 'Cta Cte ***', 6),
+(7, 'Tarjetas de Crédito de 1 a 3 cuotas.', 'Tarjetas de Crédito 1 a 3 Cuotas.', 7),
+(8, 'Tarjetas de Crédito de 4 a 6 cuotas.', 'Tarjetas de Crédito (4 a 6 Cuotas) ', 8),
+(9, 'Tarjetas de Crédito de 7 a 12 cuotas.', 'Tarjetas de Creito (7 a 12 Cuotas) ', 9),
+(10, 'Tarjetas de Crédito ahora 12 Jueves a domingos.', 'T. Ahora 12 ', 10),
+(11, 'Tarjetas de Débito.', 'Tarjetas de Débito.', 11);
 
 -- --------------------------------------------------------
 
@@ -332,19 +338,20 @@ CREATE TABLE `Productos` (
   `tipoProductoID` int(11) NOT NULL,
   `tipoRubroID` int(11) NOT NULL,
   `ultimaActualizacionStock` date NOT NULL,
-  `inventarioID` int(11) NOT NULL
+  `inventarioID` int(11) NOT NULL,
+  `precioFinalAFacturar` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Productos`
 --
 
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`) VALUES
-(1, '123456789', 'ayudin', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1),
-(2, '1234567891234', 'limpia vidrio', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1),
-(3, '1234567899874', 'alfombra', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1),
-(4, '1234567899874', 'escoba', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1),
-(5, '1234567899999', 'lavandina', 'marca', 'fragancia', 'caracteristica', 'XXG', 21.86, 1, 2, 1, '2017-05-17', 1);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`) VALUES
+(1, '123456789', 'ayudin', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL),
+(2, '1234567891234', 'limpia vidrio', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
+(3, '1234567899874', 'alfombra', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
+(4, '1234567899874', 'escoba', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
+(5, '1234567899999', 'lavandina', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,6 +480,28 @@ CREATE TABLE `Roles` (
   `Id` int(11) NOT NULL,
   `Name` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `TipoClientes`
+--
+
+CREATE TABLE `TipoClientes` (
+  `tipoClienteID` int(11) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `nombre` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `TipoClientes`
+--
+
+INSERT INTO `TipoClientes` (`tipoClienteID`, `descripcion`, `nombre`) VALUES
+(1, 'Revendedor', 'Revendedor'),
+(2, 'Mayorista', 'Mayorista'),
+(3, 'Distribuidor', 'Distribuidor'),
+(4, 'Franquicia', 'Franquicia');
 
 -- --------------------------------------------------------
 
@@ -771,6 +800,12 @@ ALTER TABLE `Roles`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indices de la tabla `TipoClientes`
+--
+ALTER TABLE `TipoClientes`
+  ADD PRIMARY KEY (`tipoClienteID`);
+
+--
 -- Indices de la tabla `TipoDocumento`
 --
 ALTER TABLE `TipoDocumento`
@@ -833,7 +868,7 @@ ALTER TABLE `Cliente`
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
 ALTER TABLE `condicionIVA`
-  MODIFY `condicionIVAID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `condicionIVAID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `CuentaCorriente`
 --
@@ -848,7 +883,7 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -868,7 +903,7 @@ ALTER TABLE `Eventualidades`
 -- AUTO_INCREMENT de la tabla `FormaDePago`
 --
 ALTER TABLE `FormaDePago`
-  MODIFY `formaDePagoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `formaDePagoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `Imagenes`
 --
@@ -915,6 +950,11 @@ ALTER TABLE `Provincias`
 ALTER TABLE `Roles`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `TipoClientes`
+--
+ALTER TABLE `TipoClientes`
+  MODIFY `tipoClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT de la tabla `TipoDocumento`
 --
 ALTER TABLE `TipoDocumento`
@@ -948,7 +988,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

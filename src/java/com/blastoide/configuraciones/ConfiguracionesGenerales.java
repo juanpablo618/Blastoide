@@ -12,7 +12,7 @@ package com.blastoide.configuraciones;
 public abstract class ConfiguracionesGenerales {
     
     
-    private static final String URL_DE_LOGO_MUNDO_LIMPIEZA = "http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza.PNG";
+    private static final String URL_DE_LOGO_MUNDO_LIMPIEZA = "http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza2.jpg";
     
     
     private static final String CARPETA_DE_PRESUPUESTOS = "/home/developer/Desktop/Presupuesto";

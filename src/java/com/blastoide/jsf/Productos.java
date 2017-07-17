@@ -110,6 +110,10 @@ public class Productos implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoID")
     private Collection<Imagenes> imagenesCollection;
 
+    
+    private double precioFinalAFacturar;
+    
+    
     public Productos() {
     }
 
@@ -117,7 +121,7 @@ public class Productos implements Serializable {
         this.productoID = productoID;
     }
 
-    public Productos(Integer productoID, String codigo, String nombre, String marca, String fragancia, String caracteristica, String medida, double precioVenta, Date ultimaActualizacionStock) {
+    public Productos(Integer productoID, String codigo, String nombre, String marca, String fragancia, String caracteristica, String medida, double precioVenta, Date ultimaActualizacionStock, double  precioFinalAFacturar) {
         this.productoID = productoID;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -127,8 +131,18 @@ public class Productos implements Serializable {
         this.medida = medida;
         this.precioVenta = precioVenta;
         this.ultimaActualizacionStock = ultimaActualizacionStock;
+        this.precioFinalAFacturar = precioFinalAFacturar;
     }
 
+    public double getPrecioFinalAFacturar() {
+        return precioFinalAFacturar;
+    }
+
+    public void setPrecioFinalAFacturar(double precioFinalAFacturar) {
+        this.precioFinalAFacturar = precioFinalAFacturar;
+    }
+
+    
     public Integer getProductoID() {
         return productoID;
     }
@@ -291,7 +305,7 @@ public class Productos implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto= " + nombre ;
+        return nombre ;
     }
     
     
