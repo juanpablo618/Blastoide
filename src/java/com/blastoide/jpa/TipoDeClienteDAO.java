@@ -13,16 +13,16 @@ import java.sql.ResultSet;
  *
  * @author cuello.juanpablo@gmail.com
  */
-public class FormaDePagoDAO extends DAO{
+public class TipoDeClienteDAO extends DAO{
     
-    public Double buscarPorcentaje(int FormaDePagoID ) throws Exception{
+    public Double buscarPorcentajeDeTipoDeCLiente(int TipoCliente ) throws Exception{
                 
                 try {
 
                     this.Conectar();
                     this.getCn().setAutoCommit(false);
 
-                    String sql = "SELECT porcentaje FROM FormaDePago where formaDePagoID = "+FormaDePagoID ;
+                    String sql = "SELECT porcentajeInteres FROM TipoClientes where tipoClienteID = "+TipoCliente ;
                     
                  PreparedStatement st2 = this.getCn().prepareStatement(sql);
 
@@ -44,4 +44,7 @@ public class FormaDePagoDAO extends DAO{
                         return null;
 
         }
+    
+    
+    
 }

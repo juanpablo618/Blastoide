@@ -31,7 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "ClienteBueno.findByClienteID", query = "SELECT c FROM ClienteBueno c WHERE c.clienteID = :clienteID")
     , @NamedQuery(name = "ClienteBueno.findByNombre", query = "SELECT c FROM ClienteBueno c WHERE c.nombre = :nombre")
     , @NamedQuery(name = "ClienteBueno.findByDni", query = "SELECT c FROM ClienteBueno c WHERE c.dni = :dni")
-    , @NamedQuery(name = "ClienteBueno.findByTipoCliente", query = "SELECT c FROM ClienteBueno c WHERE c.tipoCliente = :tipoCliente")})
+    , @NamedQuery(name = "ClienteBueno.findByTipoCliente", query = "SELECT c FROM ClienteBueno c WHERE c.tipoCliente = :tipoCliente")
+    , @NamedQuery(name = "ClienteBueno.findByFormaDePagoID", query = "SELECT c FROM ClienteBueno c WHERE c.formaDePagoId = :formaDePagoId")
+        
+
+})
 public class ClienteBueno implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,7 +54,17 @@ public class ClienteBueno implements Serializable {
     private String dni;
     @Column(name = "TipoCliente")
     private Integer tipoCliente;
+    @Column(name = "FormaDePagoID")
+    private Integer formaDePagoId;
 
+    public Integer getFormaDePagoId() {
+        return formaDePagoId;
+    }
+
+    public void setFormaDePagoId(Integer formaDePagoId) {
+        this.formaDePagoId = formaDePagoId;
+    }
+    
     public ClienteBueno() {
     }
 

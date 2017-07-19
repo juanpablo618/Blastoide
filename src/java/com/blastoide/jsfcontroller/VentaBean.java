@@ -1,8 +1,10 @@
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.configuraciones.ConfiguracionesGenerales;
+import com.blastoide.jpa.ClienteBueno;
 import com.blastoide.jpa.FormaDePago;
 import com.blastoide.jpa.FormaDePagoDAO;
+import com.blastoide.jpa.TipoDeClienteDAO;
 import com.blastoide.jpa.VentaDAO;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -47,7 +50,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     private int cantidad;
     private List<DetalleVenta> lista = new ArrayList();
     
-    private int formaDePagoID;
+    private int formaDePagoID = 1;
 
     
     public int getFormaDePagoID() {
@@ -93,17 +96,25 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.venta = venta;
     }
 
+    
+    
     public void agregar() throws Exception {
 
         
         
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
         Double porcentaje;
-            
         porcentaje = formapagoDao.buscarPorcentaje(formaDePagoID);
-        System.err.println("porcentaje: "+porcentaje);
+        System.err.println("porcentaje por Forma De Pago: "+porcentaje);
 
         
+        
+        TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
+        Double porcentajePorTipoDeCliente;
+        porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoCliente());
+        System.err.println("porcentajePor Tipo De Cliente: "+porcentajePorTipoDeCliente);
+                
+                
         DetalleVenta det = new DetalleVenta();
         
         det.setCantidad(cantidad);
@@ -111,25 +122,29 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
         Double precioUnitario = producto.getPrecioVenta();
                     System.err.println("Producto precio venta unitario: "+producto.getPrecioVenta());
+                    
+                    
 
         double precioDePorcentajeASumar;
+        double precioDePorcentajePorTipoDeClienteASumar;
             
         
             precioDePorcentajeASumar = precioUnitario*porcentaje /100.0;
+            System.err.println("precio De Porcentaje A Sumar: "+precioDePorcentajeASumar);
+
             
-                    System.err.println("precioDePorcentajeASumar: "+precioDePorcentajeASumar);
-
-           Double PrecioTotal = precioDePorcentajeASumar + precioUnitario;
-
-                               System.err.println("PrecioTotal: "+PrecioTotal);
+            precioDePorcentajePorTipoDeClienteASumar = precioUnitario*porcentajePorTipoDeCliente /100.0;
+            
+            
+            
+            
+           Double PrecioTotal = precioUnitario + precioDePorcentajeASumar - precioDePorcentajePorTipoDeClienteASumar;
+            System.err.println("PrecioTotal: "+PrecioTotal);
 
            
         producto.setPrecioFinalAFacturar(PrecioTotal);
                     
-                    
         det.setProducto(producto);
-        
-        
         
         this.lista.add(det);
         
@@ -141,12 +156,14 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 /**
  *
  *  
- * monto = es el total del precio de todos los productos en la venta por su cantidad.
+ * monto = es el total del precio de todos ya con los intereses sumados de "tipo de cliente" y los intereses sumados por "forma de pago" los productos en la venta por su cantidad.
+ * también faltaría por "condición de IVa " que es 0 por ahora por eso no fué hecho todavía.
  */
     public void facturar() throws Exception {
 
         VentaDAO dao;
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
+        
         
         
         double monto = 0;
@@ -156,20 +173,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 monto += det.getProducto().getPrecioVenta() * det.getCantidad();
                     
             }
-            
-            Double porcentaje;
-            porcentaje = formapagoDao.buscarPorcentaje(formaDePagoID);
-
-            System.err.println("porcentaje: "+porcentaje);
-            
-            double montoFinal;
-            
-            montoFinal = monto*porcentaje /100.0;
-            
-            System.err.println("montofinal: "+montoFinal);
-            
-            
-            monto = monto + montoFinal; 
             
             dao = new VentaDAO();
             venta.setMonto(monto);
@@ -209,4 +212,22 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     }
 
+    
+ /*   public Map<String, Map<String, String>> getData() {
+        return data;
+    }
+ 
+    TRABAJAR CON ESTO
+    https://www.primefaces.org/showcase/ui/ajax/dropdown.xhtml
+    
+    public void cuandoClienteCambie() {
+        if(this.venta.getCliente() !=null )
+            cities = data.get(country);
+        else
+            cities = new HashMap<String, String>();
+    }
+   */ 
+    
+    
+    
 }

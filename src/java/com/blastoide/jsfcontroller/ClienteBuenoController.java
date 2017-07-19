@@ -28,6 +28,7 @@ public class ClienteBuenoController implements Serializable {
     private List<ClienteBueno> items = null;
     private ClienteBueno selected;
 
+    
     public ClienteBuenoController() {
     }
 

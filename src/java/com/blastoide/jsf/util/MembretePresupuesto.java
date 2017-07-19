@@ -66,11 +66,21 @@ public class MembretePresupuesto {
         document.add(Chunk.NEWLINE);
 
         PdfPTable table = new PdfPTable(4);
-        table.addCell("CANTIDAD");
-        table.addCell("DETALLE DEL PRODUCTO");
+        
+        
+        float[] medidaCeldas = {0.55f, 2.25f, 0.50f, 0.50f};
+
+        // ASIGNAS LAS MEDIDAS A LA TABLA (ANCHO)
+        table.setWidths(medidaCeldas);
+        
+        
+        table.addCell("Cantidad");
+        table.addCell("Detalle del producto");
         table.addCell("P.U");
         table.addCell("P.T");
 
+        
+        
         double totalDeFactura = 0;
 
         for (DetalleVenta det : lista) {
@@ -94,16 +104,12 @@ public class MembretePresupuesto {
         table.addCell(""+new DecimalFormat("#.##").format(totalDeFactura));
         
         
-        PdfPCell celdaFinal3 = new PdfPCell(new Paragraph(" "));
-
-        // Indicamos cuantas columnas ocupa la celda
-        celdaFinal3.setColspan(4);
-        table.addCell(celdaFinal3);
 
 
-        PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración, Dni: "));
+        PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración y Dni: "));
 
         celdaFinal2.setColspan(4);
+        celdaFinal2.setMinimumHeight(50);
         table.addCell(celdaFinal2);
 
         document.add(table);

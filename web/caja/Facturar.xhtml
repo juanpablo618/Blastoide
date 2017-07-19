@@ -22,7 +22,8 @@
 
                 <p:outputLabel value="Cliente: "  style="color:white" />
                 
-                <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
+                <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter"   >
+                    <p:ajax listener="#{ventaBean.cuandoClienteCambie}" update="formadepago" />
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                     <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
                 </p:selectOneMenu>
@@ -32,7 +33,7 @@
                 <br></br>
                 <p:outputLabel value="Forma de Pago:" style="color:white" />
                     
-                <p:selectOneMenu value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
+                <p:selectOneMenu id="formadepago" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                         <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
                 </p:selectOneMenu>
@@ -87,6 +88,12 @@
                             #{det.cantidad}
                         </p:column>
 
+                    
+                       <p:column headerText="accion">
+                           <p:commandButton value="borrar" icon="ui-icon-plus" actionListener="#{ventaBean.lista.remove(det)}" update="detalle"/>
+                        </p:column>
+                    
+                    
                     
                 </p:dataTable>
                 <br></br>

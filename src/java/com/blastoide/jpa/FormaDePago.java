@@ -118,7 +118,7 @@ public class FormaDePago implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jpa.FormaDePago[ formaDePagoID=" + formaDePagoID + " ]";
+        return  nombre ;
     }
     
 }

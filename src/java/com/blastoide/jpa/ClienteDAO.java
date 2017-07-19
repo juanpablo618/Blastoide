@@ -27,7 +27,7 @@ public class ClienteDAO extends DAO{
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCn().prepareCall("SELECT ClienteID, nombre, dni, TipoCliente from Cliente");
+            PreparedStatement st = this.getCn().prepareCall("SELECT ClienteID, nombre, dni, TipoCliente, FormaDePagoID from Cliente");
             rs = st.executeQuery();
                 lista = new ArrayList();
             while(rs.next()){
@@ -36,7 +36,7 @@ public class ClienteDAO extends DAO{
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDni(rs.getString("dni"));
                 cliente.setTipoCliente(rs.getInt("TipoCliente"));
-                
+                cliente.setFormaDePagoID(rs.getInt("FormaDePagoID"));
                 lista.add(cliente);
                 
             }

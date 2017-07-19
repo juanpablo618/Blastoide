@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 17-07-2017 a las 22:34:05
+-- Tiempo de generación: 19-07-2017 a las 22:54:40
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -30,15 +30,18 @@ CREATE TABLE `Cliente` (
   `ClienteID` int(11) NOT NULL,
   `nombre` varchar(300) NOT NULL,
   `dni` varchar(100) DEFAULT NULL,
-  `TipoCliente` int(11) DEFAULT NULL
+  `TipoCliente` int(11) DEFAULT NULL,
+  `FormaDePagoID` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Cliente`
 --
 
-INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `TipoCliente`) VALUES
-(1, 'juan pablo', '35054822', 1);
+INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `TipoCliente`, `FormaDePagoID`) VALUES
+(1, 'juan pablo', '35054822', 1, 4),
+(2, 'pedro revendedor ', '1231231', 1, 7),
+(3, 'ricardo mayorista', '21312312', 4, 7);
 
 -- --------------------------------------------------------
 
@@ -49,18 +52,19 @@ INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `TipoCliente`) VALUES
 CREATE TABLE `condicionIVA` (
   `condicionIVAID` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(50) NOT NULL
+  `descripcion` varchar(50) NOT NULL,
+  `porcentajeInteres` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `condicionIVA`
 --
 
-INSERT INTO `condicionIVA` (`condicionIVAID`, `nombre`, `descripcion`) VALUES
-(1, 'responsable inscripto', 'responsable inscripto'),
-(2, 'Consumidor Final', 'Consumidor Final'),
-(3, 'Monotributista', 'Monotributista'),
-(4, 'Exento', 'Exento');
+INSERT INTO `condicionIVA` (`condicionIVAID`, `nombre`, `descripcion`, `porcentajeInteres`) VALUES
+(1, 'responsable inscripto', 'responsable inscripto', 0),
+(2, 'Consumidor Final', 'Consumidor Final', 0),
+(3, 'Monotributista', 'Monotributista', 0),
+(4, 'Exento', 'Exento', 0);
 
 -- --------------------------------------------------------
 
@@ -347,11 +351,11 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`) VALUES
-(1, '123456789', 'ayudin', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL),
-(2, '1234567891234', 'limpia vidrio', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
-(3, '1234567899874', 'alfombra', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
-(4, '1234567899874', 'escoba', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
-(5, '1234567899999', 'lavandina', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL);
+(1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL),
+(2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
+(3, '1234567899874', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
+(4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
+(5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -490,18 +494,20 @@ CREATE TABLE `Roles` (
 CREATE TABLE `TipoClientes` (
   `tipoClienteID` int(11) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
-  `nombre` varchar(500) NOT NULL
+  `nombre` varchar(500) NOT NULL,
+  `porcentajeInteres` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `TipoClientes`
 --
 
-INSERT INTO `TipoClientes` (`tipoClienteID`, `descripcion`, `nombre`) VALUES
-(1, 'Revendedor', 'Revendedor'),
-(2, 'Mayorista', 'Mayorista'),
-(3, 'Distribuidor', 'Distribuidor'),
-(4, 'Franquicia', 'Franquicia');
+INSERT INTO `TipoClientes` (`tipoClienteID`, `descripcion`, `nombre`, `porcentajeInteres`) VALUES
+(1, 'Revendedor', 'Revendedor', 20),
+(2, 'Mayorista', 'Mayorista', 22),
+(3, 'Distribuidor', 'Distribuidor', 23.5),
+(4, 'Franquicia', 'Franquicia', 25),
+(5, 'Cliente común', 'Cliente', 0);
 
 -- --------------------------------------------------------
 
@@ -863,7 +869,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
 ALTER TABLE `Cliente`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
@@ -883,7 +889,7 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -953,7 +959,7 @@ ALTER TABLE `Roles`
 -- AUTO_INCREMENT de la tabla `TipoClientes`
 --
 ALTER TABLE `TipoClientes`
-  MODIFY `tipoClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tipoClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `TipoDocumento`
 --
@@ -988,7 +994,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --

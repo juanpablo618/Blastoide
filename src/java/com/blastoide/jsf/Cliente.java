@@ -12,11 +12,20 @@ import java.util.List;
  * @author developer
  */
 public class Cliente {
-    
+
     private int ClienteID;
     private String nombre;
     private String dni;
     private int tipoCliente;
+    private int formaDePagoID;
+
+    public int getFormaDePagoID() {
+        return formaDePagoID;
+    }
+
+    public void setFormaDePagoID(int formaDePagoID) {
+        this.formaDePagoID = formaDePagoID;
+    }
 
     public int getClienteID() {
         return ClienteID;
@@ -25,7 +34,7 @@ public class Cliente {
     public void setClienteID(int ClienteID) {
         this.ClienteID = ClienteID;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -79,8 +88,5 @@ public class Cliente {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

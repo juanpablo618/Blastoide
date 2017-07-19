@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.ClienteDAO;
@@ -16,7 +12,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 
 @ManagedBean
@@ -67,16 +63,10 @@ public class ClienteBean {
                }else{
                         dao = new ClienteDAO();
                         lstClientes = dao.listar();
-                        
-               System.err.println("paso por 222");
                
                }
                
-               
-
-            
-            
-        } catch (Exception e) {
+         } catch (Exception e) {
         }
  
     
