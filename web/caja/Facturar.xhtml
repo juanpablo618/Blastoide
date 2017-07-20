@@ -23,22 +23,24 @@
                 <p:outputLabel value="Cliente: "  style="color:white" />
                 
                 <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter"   >
-                    <p:ajax listener="#{ventaBean.cuandoClienteCambie}" update="formadepago" />
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
                     <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
                 </p:selectOneMenu>
-                                   
+                
+                <h:commandButton action="#{ventaBean.transferir()}"  value="cargar" />
+                
                 <br></br>
+                
                 <p:separator />
                 <br></br>
                 <p:outputLabel value="Forma de Pago:" style="color:white" />
                     
                 <p:selectOneMenu id="formadepago" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
+                    <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}" />
                         <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
                 </p:selectOneMenu>
                 
-                
+                    
                 <br></br>
                 <br></br>
                 <p:separator />
@@ -73,20 +75,34 @@
                          rowsPerPageTemplate="10,20"
                          emptyMessage="no hay elementos en esta venta"
                              >
+
+                        
+                        <p:column headerText="Cantidad">
+                            #{det.cantidad}
+                        </p:column>
+                    
+                        <p:column headerText="Codigo">
+                            #{det.producto.codigo}
+                        </p:column>
                     
                         <p:column headerText="Nombre del Producto">
                             #{det.producto.nombre}
                         </p:column>
-
-                        <p:column headerText="Precio de venta Por unidad:">
+                    
+                        <p:column headerText="P.U.">
                             <h:outputText value="#{det.producto.precioFinalAFacturar}" >
                                 <f:convertNumber pattern="#00.00" />
                             </h:outputText>
                         </p:column>
-
-                         <p:column headerText="Cantidad">
-                            #{det.cantidad}
+                    
+                    
+                        <p:column headerText="P.T.">
+                                <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
+                                <f:convertNumber pattern="#00.00" />
+                            </h:outputText>
                         </p:column>
+                    
+
 
                     
                        <p:column headerText="accion">

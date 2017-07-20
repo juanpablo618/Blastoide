@@ -47,17 +47,12 @@ public class VentaDAO extends DAO{
          st.close();
          
          
-         
-         
-         
         PreparedStatement st2 = this.getCn().prepareStatement("SELECT LAST_INSERT_ID() from Venta limit 1");
-        System.err.println("llego aca 3");
         ResultSet rs;
         int CodVenta = 0;
                  
 
         rs = st2.executeQuery();
-        System.err.println("llego aca 4");
         
         while(rs.next()){
             CodVenta = rs.getInt(1);
@@ -67,14 +62,12 @@ public class VentaDAO extends DAO{
        for(DetalleVenta det : lista){
            
                 PreparedStatement st3 = this.getCn().prepareStatement("insert into DetalleVenta (CodVenta, productoID, cantidad) values(?,?,?)"); 
-                    System.err.println("llego aca al insert de DetalleVenta");
                     System.err.println("CodVenta:"+ CodVenta);
                     st3.setInt(1, CodVenta);
                     st3.setInt(2, det.getProducto().getProductoID());
                     st3.setInt(3, det.getCantidad());
                     
-                             System.err.println("st 3 : "+st3.toString());
-
+                    
                     st3.executeUpdate();
                     st3.close();
                     

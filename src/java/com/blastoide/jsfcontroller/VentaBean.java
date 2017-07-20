@@ -50,7 +50,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     private int cantidad;
     private List<DetalleVenta> lista = new ArrayList();
     
-    private int formaDePagoID = 1;
+    private int formaDePagoID;
 
     
     public int getFormaDePagoID() {
@@ -212,21 +212,18 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     }
 
+   
     
- /*   public Map<String, Map<String, String>> getData() {
-        return data;
-    }
- 
-    TRABAJAR CON ESTO
-    https://www.primefaces.org/showcase/ui/ajax/dropdown.xhtml
+    public void transferir(){
     
-    public void cuandoClienteCambie() {
-        if(this.venta.getCliente() !=null )
-            cities = data.get(country);
-        else
-            cities = new HashMap<String, String>();
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+        
+        ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoId());
+        
     }
-   */ 
+    
     
     
     
