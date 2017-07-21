@@ -47,7 +47,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     private Venta venta = new Venta();
     private Productos producto = new Productos();
-    private int cantidad;
+    private int cantidad = 1;
     private List<DetalleVenta> lista = new ArrayList();
     
     private int formaDePagoID;
@@ -170,14 +170,18 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         try {
 
             for (DetalleVenta det : lista) {
-                monto += det.getProducto().getPrecioVenta() * det.getCantidad();
+                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
                     
             }
+            
+            
             
             dao = new VentaDAO();
             venta.setMonto(monto);
             venta.setFecha(Calendar.getInstance().getTime());
             venta.setFormadePagoID(formaDePagoID);
+            
+            
             dao.registrar(venta, lista);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
         } catch (Exception e) {
@@ -223,6 +227,31 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoId());
         
     }
+    
+    public void cambiarDetalleVenta(DetalleVenta deta, int cantidad){
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+        
+        for (DetalleVenta det : lista) {
+            if(det.getCodigo() == deta.getCodigo())
+                deta.setCantidad(cantidad);
+        }
+
+    
+    }
+    
+    
+    
+    
+    
+    public List<Productos> completenombre(String query) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        ProductosController productosController = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+        return productosController.getItems();
+    }
+    
     
     
     

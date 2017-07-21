@@ -12,3 +12,8 @@ form {
     width: 105%;
 }
     
+.buttons input {
+    margin: 5px;
+    padding: 5px 5px 5px 20px; /* 20px makes room for your background image */
+    border: 1px solid #aaa;
+}

@@ -17,26 +17,26 @@
             <p:growl id="msj" autoUpdate="true" showDetail="true"/>
             
             <h:form id="frm">
-                
+               
                 <br></br>
 
-                <p:outputLabel value="Cliente: "  style="color:white" />
+                <p:outputLabel value="Cliente: "  style="color:white ; margin: 10px ;  " />
                 
-                <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter"   >
-                    <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
+                <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
                     <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
                 </p:selectOneMenu>
                 
-                <h:commandButton action="#{ventaBean.transferir()}"  value="cargar" />
+                <h:commandButton action="#{ventaBean.transferir()}"  value="cargar" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="    width: 70px; height: 30px; margin: 10px; " />
                 
                 <br></br>
                 
                 <p:separator />
                 <br></br>
-                <p:outputLabel value="Forma de Pago:" style="color:white" />
+                <p:outputLabel value="Forma de Pago:" style="color:white ; margin: 10px"  />
                     
-                <p:selectOneMenu id="formadepago" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter">
-                    <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}" />
+                <p:selectOneMenu id="formadepago" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter" style="margin: 10px;"  >
+                    <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}"  />
                         <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
                 </p:selectOneMenu>
                 
@@ -46,17 +46,17 @@
                 <p:separator />
                 
                 
-                <p:outputLabel value="Producto: "  style="color:white" />
-                <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter">
-                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}" />
-                        <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.nombre}" itemValue="#{pro}" />
+                <p:outputLabel value="Producto: "  style="color:white; margin: 10px" />
+                
+                
+                <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="startsWith" style="margin: 10px;">
+                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
+                        <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.codigo}" itemValue="#{pro}" />
                 </p:selectOneMenu>
                 
-                <p:outputLabel value="Cantidad: " style="color:white" />
-                <p:inputText value="#{ventaBean.cantidad}" />
+                                
                 
-                
-                <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle"/>
+                <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle" style="margin: 10px;" />
                 
                 <br></br>
                 <p:separator />
@@ -74,11 +74,20 @@
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="10,20"
                          emptyMessage="no hay elementos en esta venta"
-                             >
+                         style="margin: 10px" >
 
                         
                         <p:column headerText="Cantidad">
-                            #{det.cantidad}
+                            
+                           <!-- #{det.cantidad}
+                           -->
+                           
+                                <p:inputText value="#{det.cantidad}"   />
+                
+                                <h:commandButton  action="#{ventaBean.cambiarDetalleVenta(det,det.cantidad)}"  value="Cambiar" />
+                                    
+                            
+                            
                         </p:column>
                     
                         <p:column headerText="Codigo">
@@ -120,8 +129,9 @@
                     <p:commandButton value="generar Presupuesto" actionListener="#{ventaBean.presupuestar()}"  />
                 
                 </h:commandLink>    
+            
 
-            </h:form>
+        </h:form>
             
             
 

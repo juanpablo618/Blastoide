@@ -5,6 +5,8 @@
  */
 package com.blastoide.jsf;
 
+import javax.faces.context.FacesContext;
+
 /**
  *
  * @author developer
@@ -54,12 +56,7 @@ private int cantidad;
         return  producto + " " + cantidad + "||";
     }
 
-    
-    
-    
-    
-    
-    
+  
     
     
 }
