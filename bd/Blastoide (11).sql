@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-07-2017 a las 18:48:37
+-- Tiempo de generación: 25-07-2017 a las 22:00:09
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -121,6 +121,15 @@ CREATE TABLE `DetalleVenta` (
   `productoID` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `DetalleVenta`
+--
+
+INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALUES
+(8, 5, 4, 1),
+(9, 5, 3, 1),
+(10, 5, 1, 82);
 
 -- --------------------------------------------------------
 
@@ -353,7 +362,7 @@ CREATE TABLE `Productos` (
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`) VALUES
 (1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL),
 (2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
-(3, '1234567899874', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
+(3, '1234567899875', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
 (4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
 (5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL);
 
@@ -654,6 +663,13 @@ CREATE TABLE `Venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `Venta`
+--
+
+INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`, `formaDePagoID`) VALUES
+(5, NULL, 1, NULL, NULL, NULL, '2017-07-21 18:26:11', '5686', 4);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -889,7 +905,7 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -994,7 +1010,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --

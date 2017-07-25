@@ -103,16 +103,18 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
         
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
+        
         Double porcentaje;
         porcentaje = formapagoDao.buscarPorcentaje(formaDePagoID);
-        System.err.println("porcentaje por Forma De Pago: "+porcentaje);
+                            System.err.println("porcentaje por Forma De Pago: "+porcentaje);
 
         
         
         TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
+        
         Double porcentajePorTipoDeCliente;
         porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoCliente());
-        System.err.println("porcentajePor Tipo De Cliente: "+porcentajePorTipoDeCliente);
+                            System.err.println("porcentajePor Tipo De Cliente: "+porcentajePorTipoDeCliente);
                 
                 
         DetalleVenta det = new DetalleVenta();
@@ -121,7 +123,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
         
         Double precioUnitario = producto.getPrecioVenta();
-                    System.err.println("Producto precio venta unitario: "+producto.getPrecioVenta());
+                            System.err.println("Producto precio venta unitario: "+producto.getPrecioVenta());
                     
                     
 
@@ -130,7 +132,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             
         
             precioDePorcentajeASumar = precioUnitario*porcentaje /100.0;
-            System.err.println("precio De Porcentaje A Sumar: "+precioDePorcentajeASumar);
+                            System.err.println("precio De Porcentaje A Sumar: "+precioDePorcentajeASumar);
 
             
             precioDePorcentajePorTipoDeClienteASumar = precioUnitario*porcentajePorTipoDeCliente /100.0;
@@ -145,6 +147,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         producto.setPrecioFinalAFacturar(PrecioTotal);
                     
         det.setProducto(producto);
+        
+        ComprobarSiExiste(det);
         
         this.lista.add(det);
         
@@ -251,9 +255,27 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         ProductosController productosController = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
         return productosController.getItems();
     }
+
+    private void ComprobarSiExiste(DetalleVenta det) {
     
-    
-    
-    
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+        
+        //FacesContext context2 = FacesContext.getCurrentInstance();
+        //DetalleVenta detalleVenta = context2.getApplication().evaluateExpressionGet(context, "#{detalleVenta}", DetalleVenta.class);
+        
+        
+        for (int i=0 ; i<ventaBean.getLista().size();i++){
+            
+            if(det.getProducto().getCodigo().equals(ventaBean.getLista().get(i).getProducto().getCodigo())){
+                    int cantidadTotal = ventaBean.getLista().get(i).getCantidad();
+                        cantidadTotal = cantidadTotal +1;
+                    det.setCantidad(cantidadTotal);
+                    ventaBean.getLista().remove(i);
+            }
+        }
+        
+    }
     
 }
