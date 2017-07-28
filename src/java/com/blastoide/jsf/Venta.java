@@ -5,7 +5,7 @@
  */
 package com.blastoide.jsf;
 
-import com.blastoide.jpa.ClienteBueno;
+import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jpa.VentaDAO;
 import java.util.ArrayList;
 import java.util.Date;

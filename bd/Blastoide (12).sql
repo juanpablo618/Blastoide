@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-07-2017 a las 22:00:09
+-- Tiempo de generación: 28-07-2017 a las 22:47:04
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -30,18 +30,35 @@ CREATE TABLE `Cliente` (
   `ClienteID` int(11) NOT NULL,
   `nombre` varchar(300) NOT NULL,
   `dni` varchar(100) DEFAULT NULL,
-  `TipoCliente` int(11) DEFAULT NULL,
-  `FormaDePagoID` int(20) DEFAULT NULL
+  `tipoClienteID` int(11) DEFAULT NULL,
+  `FormaDePagoID` int(20) DEFAULT NULL,
+  `apellido` varchar(500) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `cuitCuil` varchar(50) DEFAULT NULL,
+  `fechaNacimiento` date DEFAULT NULL,
+  `numeroDocumento` bigint(20) DEFAULT NULL,
+  `razonSocial` varchar(1000) DEFAULT NULL,
+  `sexo` varchar(500) DEFAULT NULL,
+  `telefonoFijo` varchar(250) DEFAULT NULL,
+  `telefonoCelular` varchar(250) DEFAULT NULL,
+  `fiadoMaximo` int(11) DEFAULT NULL,
+  `tipoDocumentoID` int(11) DEFAULT NULL,
+  `Real_domicilioID` int(11) DEFAULT NULL,
+  `Fiscal_domicilioID` int(11) DEFAULT NULL,
+  `condicionIvaID` int(11) DEFAULT NULL,
+  `diaDePago` varchar(250) DEFAULT NULL,
+  `cuentaCorrienteID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Cliente`
 --
 
-INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `TipoCliente`, `FormaDePagoID`) VALUES
-(1, 'juan pablo', '35054822', 1, 4),
-(2, 'pedro revendedor ', '1231231', 1, 7),
-(3, 'ricardo mayorista', '21312312', 4, 7);
+INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `tipoClienteID`, `FormaDePagoID`, `apellido`, `email`, `cuitCuil`, `fechaNacimiento`, `numeroDocumento`, `razonSocial`, `sexo`, `telefonoFijo`, `telefonoCelular`, `fiadoMaximo`, `tipoDocumentoID`, `Real_domicilioID`, `Fiscal_domicilioID`, `condicionIvaID`, `diaDePago`, `cuentaCorrienteID`) VALUES
+(1, 'juan pablo', '35054822', 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'pedro revendedor ', '1231231', 1, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'ricardo mayorista', '21312312', 4, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'lucas', '35054822', 3, 5, 'valinotti', 'email', '203548200', NULL, 35054822, '', 'masculino', '4522524', '15332550', NULL, NULL, NULL, NULL, 1, 'Mon Jan 16 18:24:00 CST 8', 34);
 
 -- --------------------------------------------------------
 
@@ -100,6 +117,26 @@ CREATE TABLE `CuentaCorriente` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `CuentasCorrientes`
+--
+
+CREATE TABLE `CuentasCorrientes` (
+  `cuentaCorrienteID` int(11) NOT NULL,
+  `saldo` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `CuentasCorrientes`
+--
+
+INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `saldo`) VALUES
+(32, 15000),
+(33, 20000),
+(34, 15000);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `Depositos`
 --
 
@@ -107,6 +144,22 @@ CREATE TABLE `Depositos` (
   `depositoID` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `DetalleCuentasCorrientes`
+--
+
+CREATE TABLE `DetalleCuentasCorrientes` (
+  `detalleCuentaCorrienteID` int(11) NOT NULL,
+  `debe` float DEFAULT NULL,
+  `haber` float DEFAULT NULL,
+  `descripcion` varchar(1000) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `cuentaCorrienteID` int(11) DEFAULT NULL,
+  `ventaID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -695,10 +748,22 @@ ALTER TABLE `CuentaCorriente`
   ADD KEY `condicionIVAID` (`condicionIVAID`);
 
 --
+-- Indices de la tabla `CuentasCorrientes`
+--
+ALTER TABLE `CuentasCorrientes`
+  ADD PRIMARY KEY (`cuentaCorrienteID`);
+
+--
 -- Indices de la tabla `Depositos`
 --
 ALTER TABLE `Depositos`
   ADD PRIMARY KEY (`depositoID`);
+
+--
+-- Indices de la tabla `DetalleCuentasCorrientes`
+--
+ALTER TABLE `DetalleCuentasCorrientes`
+  ADD PRIMARY KEY (`detalleCuentaCorrienteID`);
 
 --
 -- Indices de la tabla `DetalleVenta`
@@ -885,7 +950,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
 ALTER TABLE `Cliente`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
@@ -897,10 +962,20 @@ ALTER TABLE `condicionIVA`
 ALTER TABLE `CuentaCorriente`
   MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `CuentasCorrientes`
+--
+ALTER TABLE `CuentasCorrientes`
+  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+--
 -- AUTO_INCREMENT de la tabla `Depositos`
 --
 ALTER TABLE `Depositos`
   MODIFY `depositoID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
+--
+ALTER TABLE `DetalleCuentasCorrientes`
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --

@@ -3,8 +3,15 @@ package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.ClienteDAO;
 import com.blastoide.jsf.Cliente;
+import com.blastoide.jsf.CuentasCorrientes;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
@@ -21,6 +28,22 @@ public class ClienteBean {
     
     private List<Cliente> lstClientes;
     private Cliente cliente = new Cliente();
+    
+    private CuentasCorrientes cuentasCorrientes = new CuentasCorrientes();
+
+    
+    
+    
+    
+    
+    
+    public CuentasCorrientes getCuentasCorrientes() {
+        return cuentasCorrientes;
+    }
+
+    public void setCuentasCorrientes(CuentasCorrientes cuentasCorrientes) {
+        this.cuentasCorrientes = cuentasCorrientes;
+    }
 
     
     
@@ -105,7 +128,25 @@ public class ClienteBean {
     }
     
     
+    public void CrearClienteNuevo(){
+        try{
+            
+            ClienteDAO clientedao;
+            clientedao = new ClienteDAO();
+            System.err.println("paso para el clienteDAO");
+            
+            clientedao.crearClienteNuevo(cliente,cuentasCorrientes);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente creado exitosamente"));
+        
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar el cliente"));
+        } finally {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        }
+
+        
     
+    }
     
     
     

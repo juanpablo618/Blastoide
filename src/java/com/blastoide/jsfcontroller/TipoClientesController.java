@@ -1,9 +1,9 @@
 package com.blastoide.jsfcontroller;
 
-import com.blastoide.jsf.ClienteBueno;
+import com.blastoide.jsf.TipoClientes;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
-import com.blastoide.jpa.ClienteBuenoFacade;
+import com.blastoide.jpa.TipoClientesFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,24 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("clienteBuenoController")
+@Named("tipoClientesController")
 @SessionScoped
-public class ClienteBuenoController implements Serializable {
+public class TipoClientesController implements Serializable {
 
     @EJB
-    private com.blastoide.jpa.ClienteBuenoFacade ejbFacade;
-    private List<ClienteBueno> items = null;
-    private ClienteBueno selected;
+    private com.blastoide.jpa.TipoClientesFacade ejbFacade;
+    private List<TipoClientes> items = null;
+    private TipoClientes selected;
 
-    
-    public ClienteBuenoController() {
+    public TipoClientesController() {
     }
 
-    public ClienteBueno getSelected() {
+    public TipoClientes getSelected() {
         return selected;
     }
 
-    public void setSelected(ClienteBueno selected) {
+    public void setSelected(TipoClientes selected) {
         this.selected = selected;
     }
 
@@ -46,36 +45,36 @@ public class ClienteBuenoController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ClienteBuenoFacade getFacade() {
+    private TipoClientesFacade getFacade() {
         return ejbFacade;
     }
 
-    public ClienteBueno prepareCreate() {
-        selected = new ClienteBueno();
+    public TipoClientes prepareCreate() {
+        selected = new TipoClientes();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ClienteBuenoCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ClienteBuenoUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ClienteBuenoDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<ClienteBueno> getItems() {
+    public List<TipoClientes> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -110,29 +109,29 @@ public class ClienteBuenoController implements Serializable {
         }
     }
 
-    public ClienteBueno getClienteBueno(java.lang.Integer id) {
+    public TipoClientes getTipoClientes(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<ClienteBueno> getItemsAvailableSelectMany() {
+    public List<TipoClientes> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<ClienteBueno> getItemsAvailableSelectOne() {
+    public List<TipoClientes> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = ClienteBueno.class)
-    public static class ClienteBuenoControllerConverter implements Converter {
+    @FacesConverter(forClass = TipoClientes.class)
+    public static class TipoClientesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ClienteBuenoController controller = (ClienteBuenoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "clienteBuenoController");
-            return controller.getClienteBueno(getKey(value));
+            TipoClientesController controller = (TipoClientesController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "tipoClientesController");
+            return controller.getTipoClientes(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -152,11 +151,11 @@ public class ClienteBuenoController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ClienteBueno) {
-                ClienteBueno o = (ClienteBueno) object;
-                return getStringKey(o.getClienteID());
+            if (object instanceof TipoClientes) {
+                TipoClientes o = (TipoClientes) object;
+                return getStringKey(o.getTipoClienteID());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ClienteBueno.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoClientes.class.getName()});
                 return null;
             }
         }

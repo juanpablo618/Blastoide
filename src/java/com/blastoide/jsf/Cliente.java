@@ -5,12 +5,18 @@
  */
 package com.blastoide.jsf;
 
+import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
+
+@ManagedBean
+@ViewScoped
 public class Cliente {
 
     private int ClienteID;
@@ -19,6 +25,121 @@ public class Cliente {
     private int tipoCliente;
     private int formaDePagoID;
 
+    
+    private String apellido;
+    private String sexo;
+    private String telefonoFijo;
+    private String telefonoCelular;
+    private int condicionIva;
+    private String razonSocial;
+    private String cuitCuil;
+    private String diaDePago;
+    private String email;
+    private int cuentaCorrienteID;
+
+    
+    
+    public int getCuentaCorrienteID() {
+        return cuentaCorrienteID;
+    }
+
+    public void setCuentaCorrienteID(int cuentaCorrienteID) {
+        this.cuentaCorrienteID = cuentaCorrienteID;
+    }
+    
+    
+    
+    
+    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getTelefonoFijo() {
+        return telefonoFijo;
+    }
+
+    public void setTelefonoFijo(String telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
+    }
+
+    public String getTelefonoCelular() {
+        return telefonoCelular;
+    }
+
+    public void setTelefonoCelular(String telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
+    }
+
+    public int getCondicionIva() {
+        return condicionIva;
+    }
+
+    public void setCondicionIva(int condicionIva) {
+        this.condicionIva = condicionIva;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    public String getCuitCuil() {
+        return cuitCuil;
+    }
+
+    public void setCuitCuil(String cuitCuil) {
+        this.cuitCuil = cuitCuil;
+    }
+
+    
+    
+    public String getDiaDePago() {
+        return diaDePago;
+    }
+
+    public void setDiaDePago(String diaDePago) {
+        this.diaDePago = diaDePago;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public int getFormaDePagoID() {
         return formaDePagoID;
     }
@@ -89,4 +210,8 @@ public class Cliente {
         return true;
     }
 
+    
+    
+    
+    
 }

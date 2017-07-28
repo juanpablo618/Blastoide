@@ -25,7 +25,8 @@ public class TipoDeClienteDAO extends DAO{
                     String sql = "SELECT porcentajeInteres FROM TipoClientes where tipoClienteID = "+TipoCliente ;
                     
                  PreparedStatement st2 = this.getCn().prepareStatement(sql);
-
+System.err.println("st2 de buscar porcentaje de tipo de cliente: "+st2.toString());
+                
 
                 ResultSet rs;
                 rs = st2.executeQuery();

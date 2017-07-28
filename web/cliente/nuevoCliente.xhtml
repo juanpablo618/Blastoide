@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+    
+    <ui:composition template="/index.xhtml">
+
+        
+
+        <ui:define name="body">
+        
+            <center>
+            <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">crear un cliente nuevo</h:outputLabel>
+            </center>
+                            
+            
+            <p:growl id="msj" autoUpdate="true" showDetail="true"/>
+            
+           
+            
+            <h:form id="frm">
+               
+                <p:separator />
+                
+                <br></br>
+                <p:outputLabel value="Información básica: " style="color:white ; margin: 10px"  />
+                <br></br>
+                <p:outputLabel value="datos personales:" style="color:white ; margin: 10px"  />
+                <br></br>
+                <br></br>
+                <p:outputLabel value="Nombre: " style="color:white ; margin: 10px"  />
+                
+                    <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="debe ingresar el nombre"/>
+                
+                
+                <p:outputLabel value="Apellido: " style="color:white ; margin: 10px"  />
+                
+                    <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  title="Apellido" required="true" requiredMessage="debe ingresar el apellido"/>
+                
+                <p:outputLabel value="Documento: " style="color:white ; margin: 10px"  />
+                
+                    <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni"/>
+                
+                <p:outputLabel value="Sexo: " style="color:white ; margin: 10px"  />
+                
+                    <p:selectOneMenu value="#{clienteBean.cliente.sexo}" >
+                        <f:selectItem  itemLabel="masculino" itemValue="masculino"  />
+                        <f:selectItem  itemLabel="femenino" itemValue="femenino"  />
+                    </p:selectOneMenu>
+                <br></br>
+                <br></br>  
+                <br></br>  
+                
+                <p:outputLabel value="Razon Social: " style="color:white ; margin: 10px"  />
+                
+                        <p:inputText id="razonSocial" value="#{clienteBean.cliente.razonSocial}" title="razonSocial" required="false" requiredMessage="debe ingresar el la razon Social"/>
+                
+                <p:outputLabel value="Cuit o cuil: " style="color:white ; margin: 10px"  />
+                
+                        <p:inputText id="cuitCuil" value="#{clienteBean.cliente.cuitCuil}" title="cuitCuil" required="true" requiredMessage="debe ingresar el cuit o cuil"/>
+                
+                <br></br>
+                
+                
+                <br></br>
+                <p:separator />
+                <br></br>
+                <p:outputLabel value="datos de Contacto:" style="color:white ; margin: 10px"  />
+                <br></br>
+                <br></br>    
+                
+                <p:outputLabel value="Teléfono fijo: " style="color:white ; margin: 10px"  />
+                
+                     <p:inputText id="telFijo" value="#{clienteBean.cliente.telefonoFijo}" title="telFijo" required="true" requiredMessage="debe ingresar el tel. fijo"/>
+               <br></br>
+                
+                <p:outputLabel value="Teléfono Celular: " style="color:white ; margin: 10px"  />
+                
+                    <p:inputText id="telCelular" value="#{clienteBean.cliente.telefonoCelular}" title="telCelular" required="true" requiredMessage="debe ingresar el tel. Celular"/>
+                
+                <p:outputLabel value="Email: " style="color:white ; margin: 10px"  />
+                
+                    <p:inputText id="email" value="#{clienteBean.cliente.email}" title="email" required="true" requiredMessage="debe ingresar el email"/>
+                
+                    
+               <br></br>
+                <br></br>
+                <p:separator />
+                <p:outputLabel value="datos del Cliente:" style="color:white ; margin: 10px"  />
+                <br></br>
+                <br></br>      
+                
+                
+                <p:outputLabel value="Condicion de Iva: " style="color:white ; margin: 10px"  />
+                
+                        <p:selectOneMenu id="condicionIva" value="#{clienteBean.cliente.condicionIva}" style="margin: 10px;"  >
+                            <f:selectItems value="#{condicionIVAController.items}" var="condicionIva" itemLabel="#{condicionIva.nombre}" itemValue="#{condicionIva.condicionIVAID}" />
+                        </p:selectOneMenu>
+                <br></br>  
+                
+                <p:outputLabel value="Tipo de Cliente: " style="color:white ; margin: 10px"  />
+                
+                        <p:selectOneMenu id="tipoCliente" value="#{clienteBean.cliente.tipoCliente}" style="margin: 10px;"  >
+                            <f:selectItems value="#{tipoClientesController.items}" var="tipoCliente" itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente.tipoClienteID}" />
+                        </p:selectOneMenu>
+                
+                
+                <br></br>  
+                <br></br>  
+                
+                <p:outputLabel value="Forma de pago: " style="color:white ; margin: 10px"  />
+                
+                        <p:selectOneMenu id="formaDePago" value="#{clienteBean.cliente.formaDePagoID}" style="margin: 10px;"  >
+                            <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                        </p:selectOneMenu>
+                
+                
+                
+                <p:separator />
+                
+                <p:outputLabel value="Cuenta Corriente:" style="color:white ; margin: 10px"  />
+                <br></br>     
+                <br></br>     
+                
+                <p:outputLabel value="Día de Pago: " style="color:white ; margin: 10px"  />
+                <p:calendar id="diaDePago" value="#{clienteBean.cliente.diaDePago}"  >
+                   <f:convertDateTime pattern="yyyy/mm/dd"/>  
+                </p:calendar>
+                
+               
+
+                <p:outputLabel value="Saldo: " style="color:white ; margin: 10px"  />
+                <p:inputText id="saldo" value="#{clienteBean.cuentasCorrientes.saldo}" title="salgo" required="true" requiredMessage="debe ingresar el saldo"/>
+                <br></br>     
+                <br></br>     
+                
+                <p:commandButton value="Crear" icon="ui-icon-plus" actionListener="#{clienteBean.CrearClienteNuevo()}"  style="margin: 10px;" />
+            
+            </h:form>
+                
+        </ui:define>
+    </ui:composition>
+    
+    
+    
+    
+    
+    
+</html>

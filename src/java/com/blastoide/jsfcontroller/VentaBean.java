@@ -1,7 +1,7 @@
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.configuraciones.ConfiguracionesGenerales;
-import com.blastoide.jpa.ClienteBueno;
+import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jpa.FormaDePago;
 import com.blastoide.jpa.FormaDePagoDAO;
 import com.blastoide.jpa.TipoDeClienteDAO;
@@ -62,8 +62,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     }
     
     
-    
-    
     public List<DetalleVenta> getLista() {
         return lista;
     }
@@ -113,7 +111,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
         
         Double porcentajePorTipoDeCliente;
-        porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoCliente());
+        porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
                             System.err.println("porcentajePor Tipo De Cliente: "+porcentajePorTipoDeCliente);
                 
                 
@@ -166,7 +164,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void facturar() throws Exception {
 
         VentaDAO dao;
-        FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
         
         
         
@@ -228,7 +225,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
         
-        ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoId());
+        ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoID());
         
     }
     

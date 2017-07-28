@@ -5,7 +5,7 @@
  */
 package com.blastoide.jpa;
 
-import com.blastoide.jsf.ClienteBueno;
+import com.blastoide.jsf.TipoClientes;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author developer
  */
 @Stateless
-public class ClienteBuenoFacade extends AbstractFacade<ClienteBueno> {
+public class TipoClientesFacade extends AbstractFacade<TipoClientes> {
 
     @PersistenceContext(unitName = "BlastoidePU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ClienteBuenoFacade extends AbstractFacade<ClienteBueno> {
         return em;
     }
 
-    public ClienteBuenoFacade() {
-        super(ClienteBueno.class);
+    public TipoClientesFacade() {
+        super(TipoClientes.class);
     }
     
 }

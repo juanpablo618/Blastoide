@@ -26,6 +26,7 @@ public class FormaDePagoDAO extends DAO{
                     
                  PreparedStatement st2 = this.getCn().prepareStatement(sql);
 
+System.err.println("st2 de buscar porcentaje de Forma de pago: "+st2.toString());
 
                 ResultSet rs;
                 rs = st2.executeQuery();

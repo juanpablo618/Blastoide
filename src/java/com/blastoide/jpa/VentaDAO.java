@@ -5,12 +5,10 @@
  */
 package com.blastoide.jpa;
 
-import com.blastoide.jpa.conexion.ConexionMySql;
+
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Venta;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;

@@ -7,15 +7,14 @@ package com.blastoide.jpa;
 
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Cliente;
+import com.blastoide.jsf.CuentasCorrientes;
+
 import java.sql.*;
 import java.util.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author developer
- */
+
 public class ClienteDAO extends DAO{
     
     
@@ -27,7 +26,7 @@ public class ClienteDAO extends DAO{
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCn().prepareCall("SELECT ClienteID, nombre, dni, TipoCliente, FormaDePagoID from Cliente");
+            PreparedStatement st = this.getCn().prepareCall("SELECT ClienteID, nombre, dni, tipoClienteID, FormaDePagoID from Cliente");
             rs = st.executeQuery();
                 lista = new ArrayList();
             while(rs.next()){
@@ -35,7 +34,7 @@ public class ClienteDAO extends DAO{
                 cliente.setClienteID(rs.getInt("ClienteID"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setDni(rs.getString("dni"));
-                cliente.setTipoCliente(rs.getInt("TipoCliente"));
+                cliente.setTipoCliente(rs.getInt("tipoClienteID"));
                 cliente.setFormaDePagoID(rs.getInt("FormaDePagoID"));
                 lista.add(cliente);
                 
@@ -60,7 +59,7 @@ public class ClienteDAO extends DAO{
         
         try {
             this.Conectar();
-            PreparedStatement st = this.getCn().prepareCall("SELECT nombre, dni, TipoCliente from Cliente where ClienteID= ?");
+            PreparedStatement st = this.getCn().prepareCall("SELECT nombre, dni, tipoClienteID from Cliente where ClienteID= ?");
             st.setInt(1, cliente.getClienteID());
            rs = st.executeQuery();
             
@@ -68,7 +67,7 @@ public class ClienteDAO extends DAO{
                 clien = new Cliente();
                 clien.setNombre(rs.getString("nombre"));
                 clien.setDni("dni");
-                clien.setTipoCliente(rs.getInt("TipoCliente"));
+                clien.setTipoCliente(rs.getInt("tipoClienteID"));
                 
                 
             }
@@ -85,11 +84,238 @@ public class ClienteDAO extends DAO{
     
     
     
+//        public void crearClienteNuevo(Cliente cliente, CuentasCorrientes cuentasCorrientes) throws SQLException, ClassNotFoundException{
+//            System.err.println("entro al crear cliente nuevo");
+//        try {
+//            
+//            
+//            this.Conectar();
+//            this.getCn().setAutoCommit(false);
+//           
+//            
+//            
+//        PreparedStatement st3 = this.getCn().prepareStatement("insert into Cliente (nombre, dni, tipoClienteID, FormaDePagoID, apellido, email, cuitCuil,  numeroDocumento, razonSocial, sexo, telefonoFijo, telefonoCelular, condicionIvaID, diaDePago ) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+//            System.err.println("cliente apellido:"+ cliente.getApellido());
+//            st3.setString(1, cliente.getNombre());
+//            st3.setString(2, cliente.getDni() );
+//            
+//            st3.setInt(3, cliente.getTipoCliente());
+//            st3.setInt(4, cliente.getFormaDePagoID());
+//            st3.setString(5, cliente.getApellido());
+//            st3.setString(6, cliente.getEmail());
+//            st3.setString(7, cliente.getCuitCuil());
+//            st3.setString(8, cliente.getDni());
+//            st3.setString(9, cliente.getRazonSocial());
+//            st3.setString(10, cliente.getSexo());
+//            st3.setString(11, cliente.getTelefonoFijo());
+//            st3.setString(12, cliente.getTelefonoCelular());
+//            st3.setInt(13, cliente.getCondicionIva());
+//            System.err.println("cliente condicioniva:"+ cliente.getCondicionIva());
+//            
+//            
+//            
+//            st3.setString(14, cliente.getDiaDePago());
+//            
+//            
+//            
+//            System.err.println("cliente dia de pago:"+ cliente.getDiaDePago());
+//            
+//            
+//            
+//            
+//            System.err.println("st3:"+st3.toString());
+//            st3.executeUpdate();
+//            st3.close();
+//        
+//                    
+//                 
+//            PreparedStatement st2 = this.getCn().prepareStatement("SELECT LAST_INSERT_ID() from Cliente limit 1");
+//            ResultSet rs;
+//            int ultimoIdEntbCliente = 1;
+//
+//            System.err.println("st2:"+st2.toString());
+//            System.err.println("ultimoIdEntbCliente:"+ultimoIdEntbCliente);
+//            rs = st2.executeQuery();
+//
+//            while(rs.next()){
+//                ultimoIdEntbCliente = rs.getInt(1);
+//                    }
+//            rs.close();
+//
+//                    
+//                    PreparedStatement st1 = this.getCn().prepareStatement("insert into CuentasCorrientes (cuentaCorrienteID, saldo) values(?,?)"); 
+//                    st1.setInt(1, ultimoIdEntbCliente);
+//                    st1.setFloat(2, cuentasCorrientes.getSaldo());
+//                    
+//                                   System.err.println("st1:"+st1.toString());
+//                    st1.executeUpdate();
+//                    st1.close();
+//                
+//                    this.getCn().commit();
+//                              System.err.println("entro al commit");
+//                              
+//                    } catch (Exception e) {
+//        this.getCn().rollback();
+//                    System.err.println("hizo el rollback");
+//        }finally{
+//            this.Cerrar();
+//        }
+//        
+//
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//    
+//        }
     
     
+     
+//    
+//    public void crearClienteNuevo(Cliente cliente, CuentasCorrientes cuentasCorrientes) throws SQLException, ClassNotFoundException{
+//    
+//        
+//         System.err.println("Cuentas corrientes saldo: " + cuentasCorrientes.getSaldo());
+//        
+//         System.err.println("entro al crear cliente nuevo");
+//        
+//         try {
+//               
+//                this.Conectar();
+//                
+//                    PreparedStatement st1 = this.getCn().prepareStatement("insert into CuentasCorrientes (saldo) values(?);"); 
+//                    st1.setFloat(1, cuentasCorrientes.getSaldo());
+//
+//                    System.err.println("st1:"+st1.toString());
+//                st1.executeUpdate();
+//                st1.close();
+//
+//
+//
+//            PreparedStatement st2 = this.getCn().prepareStatement("SELECT LAST_INSERT_ID() from CuentasCorrientes limit 1;");
+//            ResultSet rs;
+//
+//
+//            System.err.println("st2:"+st2.toString());
+//
+//            int idCuentasCorrientes = 0;
+//            rs = st2.executeQuery();
+//            
+//            while(rs.next()){
+//                idCuentasCorrientes = rs.getInt(1);
+//            }
+//            rs.close();
+//            st2.close();
+//        
+//                
+//
+//                PreparedStatement st3 = this.getCn().prepareStatement("insert into Cliente (nombre, dni, tipoClienteID, FormaDePagoID, apellido, email, cuitCuil,  numeroDocumento, razonSocial, sexo, telefonoFijo, telefonoCelular, condicionIvaID, diaDePago, cuentaCorrienteID) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+//                cliente.setClienteID(idCuentasCorrientes);
+//                System.err.println("cliente id:"+ cliente.getClienteID());
+//
+//                st3.setString(1, cliente.getNombre());
+//                st3.setString(2, cliente.getDni() );
+//
+//                st3.setInt(3, cliente.getTipoCliente());
+//                st3.setInt(4, cliente.getFormaDePagoID());
+//                st3.setString(5, cliente.getApellido());
+//                st3.setString(6, cliente.getEmail());
+//                st3.setString(7, cliente.getCuitCuil());
+//                st3.setString(8, cliente.getDni());
+//                st3.setString(9, cliente.getRazonSocial());
+//                st3.setString(10, cliente.getSexo());
+//                st3.setString(11, cliente.getTelefonoFijo());
+//                st3.setString(12, cliente.getTelefonoCelular());
+//                st3.setInt(13, cliente.getCondicionIva());
+//                st3.setString(14, cliente.getDiaDePago());
+//                st3.setInt(15, cliente.getClienteID());
+//
+//
+//                System.err.println("st3:"+st3.toString());
+//                st3.executeUpdate();
+//                st3.close();
+//                 System.err.println("entro al commit");
+//
+//             
+//         
+//         } catch (Exception e) {
+//                           System.err.println("hizo el rollback");
+//        }finally{
+//            this.Cerrar();
+//        }
+//     
+//    }
     
     
-    
+ public void crearClienteNuevo(Cliente cliente, CuentasCorrientes cuentasCorrientes) throws SQLException, ClassNotFoundException{   
+     try {
+            
+            this.Conectar();
+            this.getCn().setAutoCommit(false);
+            
+            
+            
+            
+            PreparedStatement st = this.getCn().prepareStatement("insert into CuentasCorrientes (saldo) values(?)");
+                          
+                st.setFloat(1, cuentasCorrientes.getSaldo());
+                
+         st.executeUpdate();
+         st.close();
+         
+         
+        PreparedStatement st2 = this.getCn().prepareStatement("SELECT LAST_INSERT_ID() from CuentasCorrientes limit 1");
+        ResultSet rs;
+        int CuentaCorrienteid = 0;
+                 
+
+        rs = st2.executeQuery();
+        
+        while(rs.next()){
+            CuentaCorrienteid = rs.getInt(1);
+        }
+        rs.close();
+        
+
+           
+                PreparedStatement st3 = this.getCn().prepareStatement("insert into Cliente (nombre, dni, tipoClienteID, FormaDePagoID, apellido, email, cuitCuil,  numeroDocumento, razonSocial, sexo, telefonoFijo, telefonoCelular, condicionIvaID, diaDePago, cuentaCorrienteID) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); 
+                    st3.setString(1, cliente.getNombre());
+                    st3.setString(2, cliente.getDni() );
+                    st3.setInt(3, cliente.getTipoCliente());
+                    st3.setInt(4, cliente.getFormaDePagoID());
+                    st3.setString(5, cliente.getApellido());
+                    st3.setString(6, cliente.getEmail());
+                    st3.setString(7, cliente.getCuitCuil());
+                    st3.setString(8, cliente.getDni());
+                    st3.setString(9, cliente.getRazonSocial());
+                    st3.setString(10, cliente.getSexo());
+                    st3.setString(11, cliente.getTelefonoFijo());
+                    st3.setString(12, cliente.getTelefonoCelular());
+                    st3.setInt(13, cliente.getCondicionIva());
+                    st3.setString(14, cliente.getDiaDePago());
+                    st3.setInt(15, CuentaCorrienteid);
+
+                
+                
+                
+                    
+                    st3.executeUpdate();
+                    st3.close();
+                    
+                
+        
+        this.getCn().commit();
+        System.err.println("entro al commit");
+        } catch (Exception e) {
+        this.getCn().rollback();
+                    System.err.println("hizo el rollback");
+        }finally{
+            this.Cerrar();
+        }
+        
+    }
     
     
     
