@@ -259,10 +259,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
         
-        //FacesContext context2 = FacesContext.getCurrentInstance();
-        //DetalleVenta detalleVenta = context2.getApplication().evaluateExpressionGet(context, "#{detalleVenta}", DetalleVenta.class);
-        
-        
+               
         for (int i=0 ; i<ventaBean.getLista().size();i++){
             
             if(det.getProducto().getCodigo().equals(ventaBean.getLista().get(i).getProducto().getCodigo())){

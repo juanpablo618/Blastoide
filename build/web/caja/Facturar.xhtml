@@ -48,15 +48,15 @@
                 
                 <p:outputLabel value="Producto: "  style="color:white; margin: 10px" />
                 
-                
+                <!--Lucas dijo q los codigos de barras tienen maximo -->
                 <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="startsWith" style="margin: 10px;">
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
                         <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.codigo}" itemValue="#{pro}" />
+                <f:ajax listener="#{ventaBean.agregar()}" render="detalle" />
                 </p:selectOneMenu>
                 
-                                
                 
-                <p:commandButton value="Agregar" icon="ui-icon-plus" actionListener="#{ventaBean.agregar()}" update="detalle" style="margin: 10px;" />
+                
                 
                 <br></br>
                 <p:separator />
@@ -115,7 +115,7 @@
 
                     
                        <p:column headerText="accion">
-                           <p:commandButton value="borrar" icon="ui-icon-plus" actionListener="#{ventaBean.lista.remove(det)}" update="detalle"/>
+                           <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.lista.remove(det)}" update="detalle"/>
                         </p:column>
                     
                     

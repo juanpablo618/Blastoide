@@ -8,8 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="DomiciliosEditDlg" widgetVar="DomiciliosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDomiciliosTitle}">
-            <h:form id="DomiciliosEditForm">
+        <p:dialog id="EditarSaldoCtaCorriente" widgetVar="EditarSaldoCtaCorriente" modal="true" resizable="false" appendTo="@(body)" header="EditarSaldoCtaCorriente">
+            <h:form id="EditarSaldoCtaCorriente">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{domiciliosController.selected != null}">
                         <p:outputLabel value="#{bundle.EditDomiciliosLabel_calle}" for="calle" />

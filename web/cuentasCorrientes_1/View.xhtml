@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentasCorrientes_1ViewDlg" widgetVar="CuentasCorrientes_1ViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCuentasCorrientes_1Title}">
+            <h:form id="CuentasCorrientes_1ViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentasCorrientes_1Controller.selected != null}">
+                        <h:outputText value="#{bundle.ViewCuentasCorrientes_1Label_cuentaCorrienteID}"/>
+                        <h:outputText value="#{cuentasCorrientes_1Controller.selected.cuentaCorrienteID}" title="#{bundle.ViewCuentasCorrientes_1Title_cuentaCorrienteID}"/>
+                        <h:outputText value="#{bundle.ViewCuentasCorrientes_1Label_saldo}"/>
+                        <h:outputText value="#{cuentasCorrientes_1Controller.selected.saldo}" title="#{bundle.ViewCuentasCorrientes_1Title_saldo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CuentasCorrientes_1ViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

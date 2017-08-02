@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteBuenoCreateDlg" widgetVar="ClienteBuenoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClienteBuenoTitle}">
+            <h:form id="ClienteBuenoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_clienteID}" for="clienteID" />
+                        <p:inputText id="clienteID" value="#{clienteBuenoController.selected.clienteID}" title="#{bundle.CreateClienteBuenoTitle_clienteID}" required="true" requiredMessage="#{bundle.CreateClienteBuenoRequiredMessage_clienteID}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{clienteBuenoController.selected.nombre}" title="#{bundle.CreateClienteBuenoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateClienteBuenoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_dni}" for="dni" />
+                        <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.CreateClienteBuenoTitle_dni}" />
+                        <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
+                        <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" title="#{bundle.CreateClienteBuenoTitle_tipoCliente}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteBuenoController.create}" value="#{bundle.Save}" update="display,:ClienteBuenoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteBuenoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

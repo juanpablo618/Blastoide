@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CuentasCorrientes_1EditDlg" widgetVar="CuentasCorrientes_1EditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCuentasCorrientes_1Title}">
+            <h:form id="CuentasCorrientes_1EditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{cuentasCorrientes_1Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCuentasCorrientes_1Label_cuentaCorrienteID}" for="cuentaCorrienteID" />
+                        <p:inputText id="cuentaCorrienteID" value="#{cuentasCorrientes_1Controller.selected.cuentaCorrienteID}" title="#{bundle.EditCuentasCorrientes_1Title_cuentaCorrienteID}" required="true" requiredMessage="#{bundle.EditCuentasCorrientes_1RequiredMessage_cuentaCorrienteID}"/>
+                        <p:outputLabel value="#{bundle.EditCuentasCorrientes_1Label_saldo}" for="saldo" />
+                        <p:inputText id="saldo" value="#{cuentasCorrientes_1Controller.selected.saldo}" title="#{bundle.EditCuentasCorrientes_1Title_saldo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{cuentasCorrientes_1Controller.update}" value="#{bundle.Save}" update="display,:CuentasCorrientes_1ListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CuentasCorrientes_1EditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CuentasCorrientes_1EditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -19,7 +19,7 @@
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_dni}" for="dni" />
                         <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.EditClienteBuenoTitle_dni}" />
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
-                        <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoCliente}" title="#{bundle.EditClienteBuenoTitle_tipoCliente}" />
+                        <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" title="#{bundle.EditClienteBuenoTitle_tipoCliente}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{clienteBuenoController.update}" value="#{bundle.Save}" update="display,:ClienteBuenoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteBuenoEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialog.hide()"/>

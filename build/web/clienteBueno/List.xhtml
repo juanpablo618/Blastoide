@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/index.xhtml">
 
 
         <ui:define name="title">
@@ -49,7 +49,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClienteBuenoTitle_tipoCliente}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tipoCliente}"/>
+                            <h:outputText value="#{item.tipoClienteID}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteBuenoController.prepareCreate}" update=":ClienteBuenoCreateForm" oncomplete="PF('ClienteBuenoCreateDialog').show()"/>
