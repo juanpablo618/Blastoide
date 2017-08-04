@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CuentasCorrientes_1.findAll", query = "SELECT c FROM CuentasCorrientes_1 c")
     , @NamedQuery(name = "CuentasCorrientes_1.findByCuentaCorrienteID", query = "SELECT c FROM CuentasCorrientes_1 c WHERE c.cuentaCorrienteID = :cuentaCorrienteID")
-    , @NamedQuery(name = "CuentasCorrientes_1.findBySaldo", query = "SELECT c FROM CuentasCorrientes_1 c WHERE c.saldo = :saldo")})
+    , @NamedQuery(name = "CuentasCorrientes_1.findByLimite", query = "SELECT c FROM CuentasCorrientes_1 c WHERE c.limite = :limite")})
 public class CuentasCorrientes_1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +37,8 @@ public class CuentasCorrientes_1 implements Serializable {
     @Column(name = "cuentaCorrienteID")
     private Integer cuentaCorrienteID;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "saldo")
-    private Float saldo;
+    @Column(name = "limite")
+    private Float limite;
 
     public CuentasCorrientes_1() {
     }
@@ -55,12 +55,12 @@ public class CuentasCorrientes_1 implements Serializable {
         this.cuentaCorrienteID = cuentaCorrienteID;
     }
 
-    public Float getSaldo() {
-        return saldo;
+    public Float getLimite() {
+        return limite;
     }
 
-    public void setSaldo(Float saldo) {
-        this.saldo = saldo;
+    public void setLimite(Float limite) {
+        this.limite = limite;
     }
 
     @Override

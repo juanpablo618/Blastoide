@@ -16,14 +16,14 @@ import java.sql.ResultSet;
 public class CuentasCorrientesDAO extends DAO {
     
     
-    public void CambiarSaldo(int clienteID ,float saldo ) throws Exception{
+    public void CambiarLimite(int clienteID ,float limite ) throws Exception{
         try {
             
             this.Conectar();
             this.getCn().setAutoCommit(false);
             
             
-            String sqlFinal = "UPDATE CuentasCorrientes SET saldo="+saldo + " WHERE cuentaCorrienteID="+clienteID; 
+            String sqlFinal = "UPDATE CuentasCorrientes SET limite="+limite + " WHERE cuentaCorrienteID="+clienteID; 
                     
             System.err.println(sqlFinal.toString());
             
@@ -33,10 +33,10 @@ public class CuentasCorrientesDAO extends DAO {
          st.close();
         
         this.getCn().commit();
-        System.err.println("entro al commit para modificar salgo");
+        System.err.println("entro al commit para modificar limite");
         } catch (Exception e) {
         this.getCn().rollback();
-                    System.err.println("hizo el rollback para modificar saldo");
+                    System.err.println("hizo el rollback para modificar limite");
         }finally{
             this.Cerrar();
         }
@@ -45,27 +45,27 @@ public class CuentasCorrientesDAO extends DAO {
     
 
     
-    public float buscarSaldo(int cuentaCorrienteID) throws Exception{
+    public float buscarLimite(int cuentaCorrienteID) throws Exception{
     
                     try {
 
                     this.Conectar();
                     this.getCn().setAutoCommit(false);
 
-                    String sql = "SELECT saldo FROM CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID ;
+                    String sql = "SELECT limite FROM CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID ;
                     
                  PreparedStatement st2 = this.getCn().prepareStatement(sql);
 
 
                 ResultSet rs;
                 rs = st2.executeQuery();
-                float saldo = 0;
+                float limite = 0;
 
                 while(rs.next()){
-                    saldo = rs.getFloat(1);
+                    limite = rs.getFloat(1);
                 }                   
                 rs.close();
-                return saldo;
+                return limite;
 
                 } catch (Exception e) {
                 }finally{

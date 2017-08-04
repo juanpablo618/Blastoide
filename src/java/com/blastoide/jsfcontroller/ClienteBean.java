@@ -5,6 +5,7 @@ import com.blastoide.jpa.ClienteDAO;
 import com.blastoide.jsf.Cliente;
 import com.blastoide.jsf.CuentasCorrientes;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,8 +24,8 @@ import javax.faces.context.FacesContext;
  */
 
 @ManagedBean
-@RequestScoped
-public class ClienteBean {
+@javax.enterprise.context.SessionScoped
+public class ClienteBean implements Serializable{
     
     private List<Cliente> lstClientes;
     private Cliente cliente = new Cliente();

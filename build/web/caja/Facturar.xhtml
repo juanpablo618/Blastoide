@@ -48,7 +48,6 @@
                 
                 <p:outputLabel value="Producto: "  style="color:white; margin: 10px" />
                 
-                <!--Lucas dijo q los codigos de barras tienen maximo -->
                 <p:selectOneMenu value="#{ventaBean.producto}" converter="omnifaces.SelectItemsConverter" filter="true" filterMatchMode="startsWith" style="margin: 10px;">
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
                         <f:selectItems value="#{productosController.items}" var="pro" itemLabel="#{pro.codigo}" itemValue="#{pro}" />

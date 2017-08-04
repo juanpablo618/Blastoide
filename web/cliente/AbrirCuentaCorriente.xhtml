@@ -62,29 +62,29 @@
                             <f:facet name="header">
                                 <h:outputText value="Email"/>
                             </f:facet>
-                            <h:outputText value="#{item.cuentaCorrienteID}"/>
+                            <h:outputText value="#{item.email}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Saldo"/>
+                                <h:outputText value="limite"/>
                             </f:facet>
                             
-                            <h:outputText id="saldoActual"  value="saldo actual: #{cuentaCorrienteBean.BuscarSaldo(item.cuentaCorrienteID)}"/>
+                            <h:outputText id="limiteActual"  value="Limite actual: #{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}"/>
                             
                         </p:column>
                         
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteBuenoController.prepareCreate}" update=":ClienteBuenoCreateForm" oncomplete="PF('ClienteBuenoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteBuenoViewForm" oncomplete="PF('ClienteBuenoViewDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar saldo" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar Limite" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteBuenoController.destroy}" update=":growl,datalist" disabled="#{empty clienteBuenoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="EditarSaldo.xhtml"/>
+            <ui:include src="nuevoCliente.xhtml"/>
+            <ui:include src="EditarLimite.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>
 

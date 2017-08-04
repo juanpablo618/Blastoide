@@ -21,7 +21,7 @@ import javax.faces.bean.ViewScoped;
 public class CuentasCorrientes {
     
     private int cuentaCorrienteID;
-    private float saldo;
+    private float limite;
 
     public int getCuentaCorrienteID() {
         return cuentaCorrienteID;
@@ -31,12 +31,12 @@ public class CuentasCorrientes {
         this.cuentaCorrienteID = cuentaCorrienteID;
     }
 
-    public float getSaldo() {
-        return saldo;
+    public float getLimite() {
+        return limite;
     }
 
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
+    public void setLimite(float limite) {
+        this.limite = limite;
     }
 
     @Override

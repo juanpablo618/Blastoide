@@ -76,9 +76,7 @@ public class ClienteBuenoController implements Serializable {
     }
 
     public List<ClienteBueno> getItems() {
-        if (items == null) {
             items = getFacade().findAll();
-        }
         return items;
     }
 

@@ -159,9 +159,9 @@ public class ClienteDAO extends DAO{
             this.getCn().setAutoCommit(false);
             
             
-        PreparedStatement st = this.getCn().prepareStatement("insert into CuentasCorrientes (saldo) values(?)");
+        PreparedStatement st = this.getCn().prepareStatement("insert into CuentasCorrientes (limite) values(?)");
                           
-                st.setFloat(1, cuentasCorrientes.getSaldo());
+                st.setFloat(1, cuentasCorrientes.getLimite());
                 
                 st.executeUpdate();
                 st.close();

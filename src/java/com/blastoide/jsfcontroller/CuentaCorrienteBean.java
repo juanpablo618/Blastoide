@@ -40,32 +40,32 @@ public class CuentaCorrienteBean implements Serializable{
     
     
     
-    public void cambiarSaldo(int clienteID ,float saldo) throws Exception{
+    public void cambiarLimite(int clienteID ,float limite) throws Exception{
          
         
         System.err.println("clienteID"+ clienteID);
             
-        System.err.println("saldo:"+ saldo);
+        System.err.println("limite:"+ limite);
         
         
         
         CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-        cuentasCorrientesDAO.CambiarSaldo(clienteID, cuentacorriente.getSaldo());
+        cuentasCorrientesDAO.CambiarLimite(clienteID, cuentacorriente.getLimite());
         
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Saldo actualizado: "+saldo));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("limite actualizado: "+limite));
 
         
     }
     
     
-     public float BuscarSaldo(int cuentaCorrienteID) throws Exception{
+     public float buscarLimite(int cuentaCorrienteID) throws Exception{
      CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-     float retornaSaldo = 0;
+     float retornaLimite = 0;
      
-     retornaSaldo = cuentasCorrientesDAO.buscarSaldo(cuentaCorrienteID);
+     retornaLimite = cuentasCorrientesDAO.buscarLimite(cuentaCorrienteID);
          
-     return retornaSaldo ;
+     return retornaLimite ;
      }
     
 }
