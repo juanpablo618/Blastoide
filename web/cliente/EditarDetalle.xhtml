@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteBuenoEditDlgDetalleForm" widgetVar="ClienteBuenoEditDialogDetalleForm" modal="true" resizable="false" appendTo="@(body)" header="Editar DEtalle De Cta Corriente">
+            <h:form id="ClienteBuenoAgregarDetalleForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
+                        <form>
+                           
+                        <p:outputLabel value="descripción:" />
+                        <p:inputText id="descripcion"  title="descripcion" required="true" requiredMessage="descripcion es requerido"/>
+                        
+                        <p:outputLabel value="monto:" />
+                        <p:inputText id="monto"  title="monto" required="true" requiredMessage="monto es requerido"/>
+                            
+                            
+                            
+                            <h:commandButton  action="#{cuentaCorrienteBean.cambiarLimite(clienteBuenoController.selected.cuentaCorrienteID,cuentaCorrienteBean.cuentacorriente.limite)}"  value="Agregar Detalle"  />
+                        </form> 
+                    </p:panelGrid>
+                    
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialogDetalleForm.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

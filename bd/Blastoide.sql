@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-08-2017 a las 19:15:53
+-- Tiempo de generación: 08-08-2017 a las 22:55:55
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -55,9 +55,12 @@ CREATE TABLE `Cliente` (
 --
 
 INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `tipoClienteID`, `FormaDePagoID`, `apellido`, `email`, `cuitCuil`, `fechaNacimiento`, `numeroDocumento`, `razonSocial`, `sexo`, `telefonoFijo`, `telefonoCelular`, `fiadoMaximo`, `tipoDocumentoID`, `Real_domicilioID`, `Fiscal_domicilioID`, `condicionIvaID`, `diaDePago`, `cuentaCorrienteID`) VALUES
-(2, 'pedro revendedor ', '1231231', 1, 7, 'cardozo', 'pedro.cardozo@gmail.com', '31985698554', NULL, NULL, NULL, NULL, '58967417', '3512844657', NULL, NULL, NULL, NULL, NULL, NULL, 2),
+(2, 'pedro revendedor ', '1231231', 1, 7, 'cardozo', 'pedro.cardozo@gmail.com', '31985698554', NULL, NULL, NULL, NULL, '58967417', '3512844657', NULL, NULL, NULL, NULL, NULL, 'Mon Jan 16 18:24:00 CST 8', 2),
 (3, 'ricardo mayorista', '21312312', 4, 7, 'jaime', 'ricardo.jaime@hotmail.com', '20687589550', NULL, NULL, NULL, NULL, '9865253', '3516586947', NULL, NULL, NULL, NULL, NULL, NULL, 3),
-(17, 'lucas', '565456', 4, 4, 'lucas', 'lucas@lucas.com', '64456564', NULL, 565456, '', 'masculino', '546456546', '66456456', NULL, NULL, NULL, NULL, 3, 'Mon Jan 16 18:18:00 CST 8', 36);
+(17, 'lucas', '565456', 4, 4, 'lucas', 'lucas@lucas.com', '64456564', NULL, 565456, '', 'masculino', '546456546', '66456456', NULL, NULL, NULL, NULL, 3, 'Mon Jan 16 18:18:00 CST 8', 36),
+(21, 'leonardo ', '35054822', 5, 6, 'bondi', 'leonardo@requena.com', '2015482345', NULL, 35054822, '', 'femenino', '4522524', '153351666', NULL, NULL, NULL, NULL, 4, 'Mon Jan 16 18:24:00 CST 8', 39),
+(23, 'filiberto', '78651988', 5, 5, 'chirimisqui', 'chirimisqui@chirimisqui.com', '68989625113', NULL, 78651988, '', 'femenino', '4522524', '153220999', NULL, NULL, NULL, NULL, 3, 'Mon Jan 16 18:17:00 CST 8', 40),
+(25, 'jay', '23123', 4, 6, 'jayjayjay', 'jay@jay.com', '12312312', NULL, 23123, 'jayjayjay', 'femenino', '1231231', '23123123', NULL, NULL, NULL, NULL, 4, 'Mon Jan 16 18:29:00 CST 8', 42);
 
 -- --------------------------------------------------------
 
@@ -121,17 +124,23 @@ CREATE TABLE `CuentaCorriente` (
 
 CREATE TABLE `CuentasCorrientes` (
   `cuentaCorrienteID` int(11) NOT NULL,
-  `saldo` float DEFAULT NULL
+  `limite` float DEFAULT NULL,
+  `debe` float NOT NULL,
+  `saldo` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `CuentasCorrientes`
 --
 
-INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `saldo`) VALUES
-(2, 9873),
-(3, 745),
-(36, 1000);
+INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `debe`, `saldo`) VALUES
+(2, 9873, 0, 0),
+(3, 8000, 0, 0),
+(36, 2000, 42.6284, 0),
+(39, 2000, 0, 0),
+(40, 2000, 0, 0),
+(41, 777, 0, 0),
+(42, 2000, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -156,10 +165,18 @@ CREATE TABLE `DetalleCuentasCorrientes` (
   `debe` float DEFAULT NULL,
   `haber` float DEFAULT NULL,
   `descripcion` varchar(1000) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `cuentaCorrienteID` int(11) DEFAULT NULL,
   `ventaID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `DetalleCuentasCorrientes`
+--
+
+INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `haber`, `descripcion`, `fecha`, `cuentaCorrienteID`, `ventaID`) VALUES
+(1, 200, 0, 'venta copada', '2017-08-09 00:00:00', 2, 6),
+(2, 0, 300, 'entrega de dinero', '2017-08-22 00:00:00', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -173,6 +190,15 @@ CREATE TABLE `DetalleVenta` (
   `productoID` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `DetalleVenta`
+--
+
+INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALUES
+(11, 6, 2, 1),
+(12, 7, 4, 1),
+(13, 8, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -407,7 +433,8 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
 (3, '1234567899875', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
 (4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
-(5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL);
+(5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL),
+(6, '1231234561231', 'servilletas', 'servimax', 'fragancia', 'seda cara', 'GDE', 58, 1, 2, 1, '2017-08-30', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -706,6 +733,15 @@ CREATE TABLE `Venta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `Venta`
+--
+
+INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`, `formaDePagoID`) VALUES
+(6, NULL, 17, NULL, NULL, NULL, '2017-08-04 20:40:27', '40', 4),
+(7, NULL, 17, NULL, NULL, NULL, '2017-08-04 20:43:17', '21', 4),
+(8, NULL, 17, NULL, NULL, NULL, '2017-08-04 20:51:33', '21', 4);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -933,7 +969,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
 ALTER TABLE `Cliente`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
@@ -948,7 +984,7 @@ ALTER TABLE `CuentaCorriente`
 -- AUTO_INCREMENT de la tabla `CuentasCorrientes`
 --
 ALTER TABLE `CuentasCorrientes`
-  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `Depositos`
 --
@@ -958,12 +994,12 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --
 ALTER TABLE `DetalleCuentasCorrientes`
-  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -1013,7 +1049,7 @@ ALTER TABLE `OrdenDeCompra`
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `productoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `productoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
@@ -1068,7 +1104,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --

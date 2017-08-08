@@ -8,6 +8,7 @@ package com.blastoide.jpa;
 import com.blastoide.jpa.conexion.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -45,6 +46,70 @@ public class CuentasCorrientesDAO extends DAO {
     
 
     
+    
+    
+    public Double buscarCantidadQueDebe (int cuentaCorrienteID) throws Exception{
+    
+                 try {
+
+                    this.Conectar();
+                    this.getCn().setAutoCommit(false);
+
+                    String sql = "SELECT debe FROM CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID ;
+                    
+                 PreparedStatement st2 = this.getCn().prepareStatement(sql);
+
+
+                ResultSet rs;
+                rs = st2.executeQuery();
+                Double debe = null ;
+
+                while(rs.next()){
+                    debe = rs.getDouble(1);
+                }                   
+                rs.close();
+                return debe;
+
+                } catch (Exception e) {
+                }finally{
+                    this.Cerrar();
+                }
+        return null;
+        
+    }
+    
+    
+    public float buscarSaldo (int cuentaCorrienteID) throws Exception{
+    try {
+
+                    this.Conectar();
+                    this.getCn().setAutoCommit(false);
+
+                    String sql = "SELECT saldo FROM CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID ;
+                    
+                 PreparedStatement st2 = this.getCn().prepareStatement(sql);
+
+
+                ResultSet rs;
+                rs = st2.executeQuery();
+                float saldo = 0 ;
+
+                while(rs.next()){
+                    saldo = rs.getFloat(1);
+                }                   
+                rs.close();
+                return saldo;
+
+                } catch (Exception e) {
+                }finally{
+                    this.Cerrar();
+                }
+        return 0;
+    
+    }
+    
+    
+    
     public float buscarLimite(int cuentaCorrienteID) throws Exception{
     
                     try {
@@ -72,10 +137,64 @@ public class CuentasCorrientesDAO extends DAO {
                     this.Cerrar();
                 }
         return 0;
-                        
-
       
     }
+    
+    
+    
+    public void  sumarMontoACtaCorriente(int cuentaCorrienteID, double monto) throws SQLException{
+     try {
+            
+            this.Conectar();
+            this.getCn().setAutoCommit(false);
+            
+            
+            
+            PreparedStatement st2 = this.getCn().prepareStatement("SELECT debe from CuentasCorrientes WHERE cuentaCorrienteID="+cuentaCorrienteID);
+                ResultSet rs;
+                float debe = 0;
+
+
+                rs = st2.executeQuery();
+
+                while(rs.next()){
+                    debe = rs.getFloat(1);
+                }
+                rs.close();
+
+            
+            
+            debe = (float) (debe + monto);
+            
+            
+            
+            
+            String sqlFinal = "UPDATE CuentasCorrientes SET debe="+debe + " WHERE cuentaCorrienteID="+cuentaCorrienteID; 
+                    
+            System.err.println(sqlFinal.toString());
+            
+            PreparedStatement st = this.getCn().prepareStatement(sqlFinal);
+
+         st.execute();
+         st.close();
+        
+        this.getCn().commit();
+        System.err.println("Sumo monto a debe en cta corriente");
+        
+     
+        
+        } catch (Exception e) {
+        this.getCn().rollback();
+                    System.err.println("hizo el rollback para sumar monto a debe en cta corriente");
+        }finally{
+            this.Cerrar();
+        }
+        
+        
+    
+    }
+    
+    
     
     
     

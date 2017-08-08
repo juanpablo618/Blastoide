@@ -1,6 +1,8 @@
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.configuraciones.ConfiguracionesGenerales;
+import com.blastoide.jpa.CuentasCorrientesDAO;
+import com.blastoide.jpa.DetalleCuentasCorrientesDAO;
 import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jpa.FormaDePago;
 import com.blastoide.jpa.FormaDePagoDAO;
@@ -163,7 +165,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
  */
     public void facturar() throws Exception {
 
-        VentaDAO dao;
+        VentaDAO ventadao;
         
         
         
@@ -177,14 +179,48 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             
             
             
-            dao = new VentaDAO();
+            ventadao = new VentaDAO();
             venta.setMonto(monto);
             venta.setFecha(Calendar.getInstance().getTime());
             venta.setFormadePagoID(formaDePagoID);
             
             
-            dao.registrar(venta, lista);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+            if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+        
+                CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+           
+                cuentasCorrientesDAO.sumarMontoACtaCorriente(venta.getCliente().getCuentaCorrienteID() , venta.getMonto());
+                
+                
+                ventadao.registrar(venta, lista);
+                
+                
+                
+                
+                //parte nuevaaaa
+                DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
+                //debe , haber, descripcion , fecha , ctacorrienteid, ventaid
+                
+                float saldoactual = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                float haber = 0;
+                
+                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber,"venta el dia"+Calendar.getInstance().getTime().toString(), venta.getCliente().getCuentaCorrienteID() );
+                
+                
+                
+                
+                
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente y monto restado al saldo del cliente"));
+                
+            } else{
+            
+                ventadao.registrar(venta, lista);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                }   
+                
+                
+            
+            
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
         } finally {

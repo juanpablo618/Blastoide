@@ -67,5 +67,21 @@ public class CuentaCorrienteBean implements Serializable{
          
      return retornaLimite ;
      }
+     
+     
+     public Double buscarCantidadQueDebe(int cuentaCorrienteID) throws Exception{
+     CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+     
+     Double retornaCantidadQueDebe;
+     
+     retornaCantidadQueDebe = cuentasCorrientesDAO.buscarCantidadQueDebe(cuentaCorrienteID);
+         
+     return retornaCantidadQueDebe ;
+     
+     
+     
+     }
+     
+     
     
 }
