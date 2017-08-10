@@ -90,7 +90,6 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteBuenoViewForm" oncomplete="PF('ClienteBuenoViewDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar Limite" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
                         
-                            <p:commandButton id="ctaCorrienteButton"   icon="ui-icon-pencil" value="+ detalle" update=":ClienteBuenoAgregarDetalleForm" oncomplete="PF('ClienteBuenoEditDialogDetalleForm').show()" disabled="#{empty clienteBuenoController.selected}"/>
                         
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteBuenoController.destroy}" update=":growl,datalist" disabled="#{empty clienteBuenoController.selected}"/>
                         

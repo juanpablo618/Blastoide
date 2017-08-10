@@ -162,7 +162,11 @@ public class ClienteDAO extends DAO{
         PreparedStatement st = this.getCn().prepareStatement("insert into CuentasCorrientes (limite) values(?)");
                           
                 st.setFloat(1, cuentasCorrientes.getLimite());
-                
+                                System.err.println("st: "+st);
+
+                                System.err.println("cliente: "+cliente);
+                                System.err.println("cuentasCorrientes: "+cuentasCorrientes);
+
                 st.executeUpdate();
                 st.close();
          
@@ -170,7 +174,8 @@ public class ClienteDAO extends DAO{
         PreparedStatement st2 = this.getCn().prepareStatement("SELECT LAST_INSERT_ID() from CuentasCorrientes limit 1");
         ResultSet rs;
         int CuentaCorrienteid = 0;
-                 
+            System.err.println("st2: "+st2);
+             
 
                  rs = st2.executeQuery();
         
@@ -179,7 +184,8 @@ public class ClienteDAO extends DAO{
         }
         rs.close();
         
-
+        System.err.println("CuentaCorrienteid: "+CuentaCorrienteid);
+        
            
         PreparedStatement st3 = this.getCn().prepareStatement("insert into Cliente (nombre, dni, tipoClienteID, FormaDePagoID, apellido, email, cuitCuil,  numeroDocumento, razonSocial, sexo, telefonoFijo, telefonoCelular, condicionIvaID, diaDePago, cuentaCorrienteID) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); 
                     st3.setString(1, cliente.getNombre());
@@ -200,10 +206,14 @@ public class ClienteDAO extends DAO{
     
                     st3.executeUpdate();
                     st3.close();
+        System.err.println("st3: " + st3);
         
         this.getCn().commit();
-        System.err.println("entro al commit");
-        } catch (Exception e) {
+        
+        System.err.println("entro al commit de crearClienteNuevo en ClienteDAO");
+        
+     
+     } catch (Exception e) {
         this.getCn().rollback();
                     System.err.println("hizo el rollback");
         }finally{

@@ -24,7 +24,10 @@ public class DetalleCuentasCorrientes {
     private String fecha;
     private int cuentaCorrienteID;
     private int ventaID;
-
+    private float saldoHistorico;
+    
+    
+    
     public DetalleCuentasCorrientes() {
     }
     
@@ -86,6 +89,20 @@ public class DetalleCuentasCorrientes {
         this.ventaID = ventaID;
     }
 
+    public float getSaldoHistorico() {
+        return saldoHistorico;
+    }
+
+    public void setSaldoHistorico(float saldoHistorico) {
+        this.saldoHistorico = saldoHistorico;
+    }
+
+    
+    
+    
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

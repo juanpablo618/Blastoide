@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class DetalleCuentasCorrientesDAO extends DAO{
     
-    public void insertarDetalleCtaCorriente(double debe, float haber, String descripcion, int cuentaCorrienteID) throws SQLException{
+    public void insertarDetalleCtaCorriente(double debe, float haber, String descripcion, int cuentaCorrienteID, float saldoHistorico) throws SQLException{
     
            try {
             
@@ -46,7 +46,7 @@ public class DetalleCuentasCorrientesDAO extends DAO{
             
             
             
-            PreparedStatement st = this.getCn().prepareStatement("insert into DetalleCuentasCorrientes (debe, haber, descripcion, cuentaCorrienteID, ventaID) values(?,?,?,?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("insert into DetalleCuentasCorrientes (debe, haber, descripcion, cuentaCorrienteID, ventaID, saldoHistorico) values(?,?,?,?,?,?)");
                                 System.err.println("llego aca al insert de DetalleCuentasCorrientesDAO");
 
                 
@@ -55,11 +55,13 @@ public class DetalleCuentasCorrientesDAO extends DAO{
                 st.setString(3, descripcion);
                 st.setInt(4, cuentaCorrienteID);
                 st.setInt(5, ventaID);
+                st.setFloat(6, saldoHistorico);
+                
          st.executeUpdate();
          st.close();
          
         
-        PreparedStatement st4 = this.getCn().prepareStatement("SELECT saldo from CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID) ;
+       /* PreparedStatement st4 = this.getCn().prepareStatement("SELECT saldo from CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID) ;
                     ResultSet rs2;
                     float saldoDeCtaCorriente = 0;
 
@@ -85,7 +87,7 @@ public class DetalleCuentasCorrientesDAO extends DAO{
             st5.execute();
             st5.close();
         
-            
+          */  
             
                 
        
@@ -113,7 +115,7 @@ public class DetalleCuentasCorrientesDAO extends DAO{
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCn().prepareCall("SELECT detalleCuentaCorrienteID, debe, haber, descripcion, fecha, cuentaCorrienteID, ventaID from DetalleCuentasCorrientes where cuentaCorrienteID= "+cuentaCorrienteID);
+            PreparedStatement st = this.getCn().prepareCall("SELECT detalleCuentaCorrienteID, debe, haber, descripcion, fecha, cuentaCorrienteID, ventaID, saldoHistorico from DetalleCuentasCorrientes where cuentaCorrienteID= "+cuentaCorrienteID);
             rs = st.executeQuery();
                 lista = new ArrayList();
             while(rs.next()){
@@ -128,7 +130,7 @@ public class DetalleCuentasCorrientesDAO extends DAO{
                 detalleCtaCorriente.setFecha(rs.getString("fecha"));
                 detalleCtaCorriente.setCuentaCorrienteID(rs.getInt("cuentaCorrienteID"));
                 detalleCtaCorriente.setVentaID(rs.getInt("ventaID"));
-                
+                detalleCtaCorriente.setSaldoHistorico(rs.getFloat("saldoHistorico"));
                 
                 
                 lista.add(detalleCtaCorriente);
@@ -148,7 +150,59 @@ public class DetalleCuentasCorrientesDAO extends DAO{
     }
 
     
+   public void ingresarNuevoDetalleDeCuentaCorriente(float haber, String descripcion, int cuentaCorrienteID, float saldoHistorico) throws SQLException, Exception {
    
+       //tambien debe hacer un update a saldo de la cuenta.
+       
+       
+        try {
+            
+            this.Conectar();
+            this.getCn().setAutoCommit(false);
+            
+            
+        PreparedStatement st = this.getCn().prepareStatement("insert into DetalleCuentasCorrientes (haber, descripcion, cuentaCorrienteID, saldoHistorico) values(?,?,?,?)");
+                          
+                st.setFloat(1, haber);
+                st.setString(2, descripcion);
+                st.setInt(3, cuentaCorrienteID);
+                st.setFloat(4, saldoHistorico);
+                
+                st.executeUpdate();
+                st.close();
+         
+                this.getCn().commit();
+        System.err.println("entro al commit de ingresarNuevoDetalleDeCuentaCorriente en DetalleCuentasCorrientesDAO");
+        } catch (Exception e) {
+        this.getCn().rollback();
+                    System.err.println("hizo el rollback de ingresarNuevoDetalleDeCuentaCorriente en DetalleCuentasCorrientesDAO");
+        }finally{
+            this.Cerrar();
+        }
+ 
+                
+                
+        CuentasCorrientesDAO cuentaCorrienteDAO = new CuentasCorrientesDAO();
+                
+        float saldoActual = cuentaCorrienteDAO.buscarSaldo(cuentaCorrienteID);
+                
+        saldoActual = saldoActual - haber;
+                
+        cuentaCorrienteDAO.actualizarSaldo(cuentaCorrienteID, saldoActual);
+           
+    
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   
+   }
     
     
     

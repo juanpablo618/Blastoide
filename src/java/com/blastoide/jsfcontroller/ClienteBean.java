@@ -134,7 +134,7 @@ public class ClienteBean implements Serializable{
             
             ClienteDAO clientedao;
             clientedao = new ClienteDAO();
-            System.err.println("paso para el clienteDAO");
+            System.err.println("crearClienteNuevo paso por aca");
             
             clientedao.crearClienteNuevo(cliente,cuentasCorrientes);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente creado exitosamente"));

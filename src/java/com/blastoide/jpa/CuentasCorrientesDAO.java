@@ -142,7 +142,7 @@ public class CuentasCorrientesDAO extends DAO {
     
     
     
-    public void  sumarMontoACtaCorriente(int cuentaCorrienteID, double monto) throws SQLException{
+   /*   public void  sumarMontoACtaCorriente(int cuentaCorrienteID, double monto) throws SQLException{
      try {
             
             this.Conectar();
@@ -189,13 +189,115 @@ public class CuentasCorrientesDAO extends DAO {
         }finally{
             this.Cerrar();
         }
-        
-        
+       
+    }
+    */
     
+    public void  sumarMontoACtaCorriente(int cuentaCorrienteID, double monto, int ventaID) throws SQLException{
+     try {
+            
+            this.Conectar();
+            this.getCn().setAutoCommit(false);
+            
+            
+            
+            
+            
+            PreparedStatement st2 = this.getCn().prepareStatement("SELECT debe from DetalleCuentasCorrientes WHERE cuentaCorrienteID = LAST_INSERT_ID()");
+                ResultSet rs;
+                float debe = 0;
+
+
+                rs = st2.executeQuery();
+
+                while(rs.next()){
+                    debe = rs.getFloat(1);
+                }
+                rs.close();
+
+            System.err.println("debe: " + debe);
+
+            
+            debe = (float) (debe + monto);
+            
+            
+            PreparedStatement st3 = this.getCn().prepareStatement("SELECT saldo from CuentasCorrientes WHERE cuentaCorrienteID = " + cuentaCorrienteID);
+                ResultSet rs2;
+                float saldo = 0;
+
+
+                rs2 = st3.executeQuery();
+
+                while(rs2.next()){
+                    saldo = rs2.getFloat(1);
+                }
+                rs2.close();
+
+            System.err.println("saldo: " + debe);
+
+            
+            
+            
+           
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+        this.getCn().commit();
+        System.err.println("Sumo monto a debe en cta corriente");
+        
+     
+        
+        } catch (Exception e) {
+        this.getCn().rollback();
+                    System.err.println("hizo el rollback para sumar monto a debe en cta corriente");
+        }finally{
+            this.Cerrar();
+        }
+       
     }
     
     
     
+    
+    
+    
+    
+    public void actualizarSaldo(int cuentaCorrienteID, float saldoActualizado) throws SQLException{
+    
+        try {
+            
+            this.Conectar();
+            this.getCn().setAutoCommit(false);
+            
+            
+            String sqlFinal = "UPDATE CuentasCorrientes SET saldo="+saldoActualizado + " WHERE cuentaCorrienteID="+cuentaCorrienteID; 
+                    
+            System.err.println(sqlFinal.toString());
+            
+            PreparedStatement st = this.getCn().prepareStatement(sqlFinal);
+
+         st.execute();
+         st.close();
+        
+        this.getCn().commit();
+        System.err.println("entro al commit para actualizar saldo en CuentasCorrientesDAO");
+        } catch (Exception e) {
+        this.getCn().rollback();
+                    System.err.println("hizo el rollback para modificar limite");
+        }finally{
+            this.Cerrar();
+        }
+            
+        
+        
+        
+    
+    }
     
     
 }

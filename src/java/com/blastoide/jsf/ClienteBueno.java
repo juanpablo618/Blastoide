@@ -314,7 +314,7 @@ public class ClienteBueno implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jsf.ClienteBueno[ clienteID=" + clienteID + " ]";
+        return "Cliente=" + nombre + " "+ apellido + " ]";
     }
     
 }

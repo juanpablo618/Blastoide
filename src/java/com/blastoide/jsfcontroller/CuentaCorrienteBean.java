@@ -82,6 +82,20 @@ public class CuentaCorrienteBean implements Serializable{
      
      }
      
+     public float buscarSaldo(int cuentaCorrienteID) throws Exception{
+     
+     CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+     float retornaSaldo = 0;
+     
+     retornaSaldo = cuentasCorrientesDAO.buscarSaldo(cuentaCorrienteID);
+         
+     return retornaSaldo ;
+     
+         
+     }
+     
+
+    
      
     
 }

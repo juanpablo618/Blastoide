@@ -1,6 +1,7 @@
 
 package com.blastoide.jsfcontroller;
 
+import com.blastoide.jpa.CuentasCorrientesDAO;
 import com.blastoide.jpa.DetalleCuentasCorrientesDAO;
 import com.blastoide.jsf.Cliente;
 import com.blastoide.jsf.ClienteBueno;
@@ -27,7 +28,20 @@ public class DetalleCuentasCorrientesBean implements Serializable{
     
     private List<DetalleCuentasCorrientes> lista = new ArrayList();
 
+    private DetalleCuentasCorrientes detalleCtaCorriente = new DetalleCuentasCorrientes();
+
     
+    
+    
+    
+    
+    public DetalleCuentasCorrientes getDetalleCtaCorriente() {
+        return detalleCtaCorriente;
+    }
+
+    public void setDetalleCtaCorriente(DetalleCuentasCorrientes detalleCtaCorriente) {
+        this.detalleCtaCorriente = detalleCtaCorriente;
+    }
     
     
     
@@ -81,6 +95,31 @@ public class DetalleCuentasCorrientesBean implements Serializable{
         
         
         
+    }
+    
+    
+    public void ingresarNuevoHaberEnCuentaCorriente(float haber, String descripcion, int cuentaCorrienteID) throws Exception{
+    
+        
+        //debe hacer 2 cosas
+        CuentasCorrientesDAO cuentaCorrienteDAO = new CuentasCorrientesDAO();
+        
+        float saldoHistorico= cuentaCorrienteDAO.buscarSaldo(cuentaCorrienteID);
+        // insert en detalleCuentasCorrientes
+        
+        float saldoActualizado = saldoHistorico - haber ;
+        
+        
+        DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
+        
+        detalleCuentasCorrientesDAO.ingresarNuevoDetalleDeCuentaCorriente( haber, descripcion, cuentaCorrienteID, saldoActualizado );
+        
+        
+        // Update de SALDO en tabla CuentasCorrientes
+        
+        
+        cuentaCorrienteDAO.actualizarSaldo(cuentaCorrienteID, saldoActualizado);
+    
     }
     
     
