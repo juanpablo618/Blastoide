@@ -15,11 +15,11 @@ import java.util.List;
 import com.blastoide.jsf.DetalleVenta;
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 public class VentaDAO extends DAO{
 
-    
+    /** comentario en javadoc*/ 
     public void registrar(Venta venta, List<DetalleVenta> lista ) throws Exception{
         try {
             

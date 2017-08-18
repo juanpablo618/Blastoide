@@ -4,16 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/DetalleCuentasCorrientesDAO.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/VentaBean.java</file>
             <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/CuentasCorrientesDAO.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/cliente/nuevoCliente.xhtml</file>
             <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/CuentaCorrienteBean.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/cliente/EditarDetalle.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/ClienteDAO.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/Cliente.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/clienteBueno/Edit.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/DetalleCuentasCorrientes.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/cliente/AbrirCuentaCorriente.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/cliente/ListarDetalleCtaCorriente.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/leftmenu.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/Venta.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/DetalleCuentasCorrientesBean.java</file>
             <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/caja/Facturar.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/VentaDAO.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/cliente/AbrirCuentaCorriente.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/ClienteBean.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/VentaBean.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/ClienteDAO.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/DetalleCuentasCorrientes.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/ClienteBueno.java</file>
         </group>
     </open-files>
 </project-private>

@@ -16,6 +16,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +61,13 @@ public class MembretePresupuesto {
         Paragraph parrafo4 = new Paragraph("Nombre del cliente :" + venta.getCliente().getNombre());
         document.add(parrafo4);
 
-        Paragraph parrafo5 = new Paragraph("fecha: " + venta.getFecha());
+                String formato="dd-MM-yyyy";
+                SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
+                
+        
+        
+        
+        Paragraph parrafo5 = new Paragraph("fecha: " + dateFormat.format(venta.getFecha()));
         document.add(parrafo5);
 
         document.add(Chunk.NEWLINE);

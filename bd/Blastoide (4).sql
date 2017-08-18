@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-08-2017 a las 23:06:21
+-- Tiempo de generación: 18-08-2017 a las 22:30:34
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -49,6 +49,13 @@ CREATE TABLE `Cliente` (
   `diaDePago` varchar(250) DEFAULT NULL,
   `cuentaCorrienteID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Cliente`
+--
+
+INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `tipoClienteID`, `FormaDePagoID`, `apellido`, `email`, `cuitCuil`, `fechaNacimiento`, `numeroDocumento`, `razonSocial`, `sexo`, `telefonoFijo`, `telefonoCelular`, `fiadoMaximo`, `tipoDocumentoID`, `Real_domicilioID`, `Fiscal_domicilioID`, `condicionIvaID`, `diaDePago`, `cuentaCorrienteID`) VALUES
+(27, 'juan', '20321031', 4, 5, 'cuello', 'email.com', '2312312', NULL, 20321031, '', 'masculino', '1231231', '123123', NULL, NULL, NULL, NULL, 3, 'Mon Jan 16 18:30:00 CST 8', 44);
 
 -- --------------------------------------------------------
 
@@ -116,6 +123,13 @@ CREATE TABLE `CuentasCorrientes` (
   `saldo` float DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `CuentasCorrientes`
+--
+
+INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `saldo`) VALUES
+(44, 20000, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -127,6 +141,13 @@ CREATE TABLE `Depositos` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Depositos`
+--
+
+INSERT INTO `Depositos` (`depositoID`, `nombre`, `descripcion`) VALUES
+(1, 'deposito 1', 'casa de lucas');
 
 -- --------------------------------------------------------
 
@@ -918,7 +939,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
 ALTER TABLE `Cliente`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
@@ -933,12 +954,12 @@ ALTER TABLE `CuentaCorriente`
 -- AUTO_INCREMENT de la tabla `CuentasCorrientes`
 --
 ALTER TABLE `CuentasCorrientes`
-  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT de la tabla `Depositos`
 --
 ALTER TABLE `Depositos`
-  MODIFY `depositoID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `depositoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --

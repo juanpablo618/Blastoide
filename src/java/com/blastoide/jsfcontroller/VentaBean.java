@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -158,7 +159,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     
 /**
- *
+ *    1 julio de 2017 luego borrar una vez terminado el proyecto
  *  
  * monto = es el total del precio de todos ya con los intereses sumados de "tipo de cliente" y los intereses sumados por "forma de pago" los productos en la venta por su cantidad.
  * también faltaría por "condición de IVa " que es 0 por ahora por eso no fué hecho todavía.
@@ -236,8 +237,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     
     
-    
-    public void facturar() throws Exception {
+//    10 de agosto de 2017 luego borrar
+    /*public void facturar() throws Exception {
 
         VentaDAO ventadao;
         
@@ -308,6 +309,78 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     }
     
+   */ 
+    
+    
+     public void facturar() throws Exception {
+
+        VentaDAO ventadao;
+        
+        
+        
+        double monto = 0;
+        try {
+
+            for (DetalleVenta det : lista) {
+                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+                    
+            }
+            
+            
+            
+            ventadao = new VentaDAO();
+            venta.setMonto(monto);
+            venta.setFecha(Calendar.getInstance().getTime());
+            venta.setFormadePagoID(formaDePagoID);
+            
+            
+            if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+        
+                //1ro registra la venta y sus detalles de la venta
+                ventadao.registrar(venta, lista);
+                
+                
+                
+                //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
+                CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+                DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
+                
+                float haber = 0;
+
+                float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                        
+                saldohistorico = (float) (saldohistorico + venta.getMonto());
+    
+                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber, "venta a cliente con cta corriente: "+venta.getCliente().getCuentaCorrienteID(), venta.getCliente().getCuentaCorrienteID(), saldohistorico );
+                
+                
+                
+                //3ro actualizar saldo de cta corriente
+
+                float saldoactual = saldohistorico  ;
+                 
+                cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
+                
+                
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                
+            } else{
+            
+                ventadao.registrar(venta, lista);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                }   
+                
+                
+            
+            
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
+        } finally {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        }
+
+    }
+    
     
     
     
@@ -334,6 +407,12 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
 
         venta.setMonto(monto);
+        
+
+        
+
+        
+                
         venta.setFecha(Calendar.getInstance().getTime());
         
          MembretePresupuesto doc = new MembretePresupuesto();
