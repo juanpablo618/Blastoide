@@ -323,7 +323,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
 
                         
-
+                //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
                 for (DetalleVenta det : lista) {
                 monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
                 System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
@@ -344,7 +344,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                
                 productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                 productoControllerBean.getSelected().setStockactual(stockModificado);
-                productoControllerBean.update();
+                productoControllerBean.updateSinNotificacion();
                 
                 
                 }
@@ -377,6 +377,35 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             } else{
             
                 ventadao.registrar(venta, lista);
+                
+                //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
+                for (DetalleVenta det : lista) {
+                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+                System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
+                System.err.println("");
+                
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+        
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+        
+                System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                
+                int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
+                System.err.println("stockActual: "+ stockActual );                
+                
+                int stockModificado = stockActual - det.getCantidad();
+                System.err.println("stockModificado: "+ stockModificado );                
+               
+                productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
+                productoControllerBean.getSelected().setStockactual(stockModificado);
+                productoControllerBean.update();
+                
+                
+                }
+                
+                
+                
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
                 }   
                 

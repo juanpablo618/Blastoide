@@ -66,7 +66,9 @@ public class ProductosController implements Serializable {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProductosUpdated"));
     }
 
-
+    public void updateSinNotificacion() {
+        persistirSinMensaje(PersistAction.UPDATE);
+    }
     
     
     public void destroy() {
@@ -112,6 +114,34 @@ public class ProductosController implements Serializable {
         }
     }
 
+    private void persistirSinMensaje(PersistAction persistAction) {
+        if (selected != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETE) {
+                    getFacade().edit(selected);
+                } else {
+                    getFacade().remove(selected);
+                }
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured".concat(" sin mensaje metodo")));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured".concat(" sin mensaje metodo")));
+            }
+        }
+    }
+
+    
     public Productos getProductos(java.lang.Integer id) {
         return getFacade().find(id);
     }
