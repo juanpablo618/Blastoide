@@ -3,7 +3,7 @@ package com.blastoide.jsfcontroller;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
-import com.blastoide.jpa.ProductosFacade;
+import com.blastoide.jsf.ProductosFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.faces.convert.FacesConverter;
 public class ProductosController implements Serializable {
 
     @EJB
-    private com.blastoide.jpa.ProductosFacade ejbFacade;
+    private com.blastoide.jsf.ProductosFacade ejbFacade;
     private List<Productos> items = null;
     private Productos selected;
 
@@ -66,6 +66,9 @@ public class ProductosController implements Serializable {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProductosUpdated"));
     }
 
+
+    
+    
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProductosDeleted"));
         if (!JsfUtil.isValidationFailed()) {

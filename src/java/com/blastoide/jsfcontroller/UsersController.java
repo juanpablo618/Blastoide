@@ -153,7 +153,7 @@ public class UsersController implements Serializable {
             }
             if (object instanceof Users) {
                 Users o = (Users) object;
-                return getStringKey(o.getId());
+                return getStringKey(o.getUid());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Users.class.getName()});
                 return null;

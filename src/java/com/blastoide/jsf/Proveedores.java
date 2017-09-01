@@ -123,9 +123,7 @@ public class Proveedores implements Serializable {
     @JoinColumn(name = "condicionIVAID", referencedColumnName = "condicionIVAID")
     @ManyToOne(optional = false)
     private CondicionIVA condicionIVAID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedores")
-    private Collection<ProductoXProveedor> productoXProveedorCollection;
-
+    
     public Proveedores() {
     }
 
@@ -276,14 +274,6 @@ public class Proveedores implements Serializable {
         this.condicionIVAID = condicionIVAID;
     }
 
-    @XmlTransient
-    public Collection<ProductoXProveedor> getProductoXProveedorCollection() {
-        return productoXProveedorCollection;
-    }
-
-    public void setProductoXProveedorCollection(Collection<ProductoXProveedor> productoXProveedorCollection) {
-        this.productoXProveedorCollection = productoXProveedorCollection;
-    }
 
     @Override
     public int hashCode() {

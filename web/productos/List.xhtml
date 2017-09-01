@@ -10,11 +10,11 @@
 
 
         <ui:define name="title">
-            <h:outputText value="Lista de Productos"></h:outputText>
+            <h:outputText value="#{bundle.ListProductosTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ProductosListForm" style="width: 105%;">
+            <h:form id="ProductosListForm">
                 <p:panel header="#{bundle.ListProductosTitle}">
                     <p:dataTable id="datalist" value="#{productosController.items}" var="item"
                                  selectionMode="single" selection="#{productosController.selected}"
@@ -29,32 +29,41 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Codigo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nombre"/>
+                                <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Precio Venta"/>
+                                <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
                             </f:facet>
-                            <h:outputText value="#{item.precioVenta}">
-                                <f:convertNumber pattern="#0.00" />
+                            <h:outputText value="#{item.marca}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosTitle_precioVenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioVenta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosTitle_ultimaActualizacionStock}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ultimaActualizacionStock}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Ultima actualizacion de Stock"/>
+                                <h:outputText value="#{bundle.ListProductosTitle_stockactual}"/>
                             </f:facet>
-                            <h:outputText value="#{item.ultimaActualizacionStock}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>
+                            <h:outputText value="#{item.stockactual}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosTitle_stockMinimo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>
                         
                         <f:facet name="footer">

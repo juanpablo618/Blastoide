@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-08-2017 a las 22:30:34
+-- Tiempo de generación: 01-09-2017 a las 22:47:14
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -128,7 +128,7 @@ CREATE TABLE `CuentasCorrientes` (
 --
 
 INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `saldo`) VALUES
-(44, 20000, 0);
+(44, 20000, 1362.52);
 
 -- --------------------------------------------------------
 
@@ -166,6 +166,26 @@ CREATE TABLE `DetalleCuentasCorrientes` (
   `saldoHistorico` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `DetalleCuentasCorrientes`
+--
+
+INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `haber`, `descripcion`, `fecha`, `cuentaCorrienteID`, `ventaID`, `saldoHistorico`) VALUES
+(1, 88.752, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 16:05:23', 44, 0, 88.752),
+(2, 21.584, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 16:53:11', 44, 0, 110.336),
+(3, 101.584, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 16:55:31', 44, 0, 211.92),
+(4, 46.4, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 16:57:11', 44, 0, 258.32),
+(5, 46.4, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 16:58:19', 44, 0, 304.72),
+(6, 21.584, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 17:04:58', 44, 0, 326.304),
+(7, 275.04, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 17:05:55', 44, 0, 601.344),
+(8, 108.752, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 17:14:41', 44, 0, 710.096),
+(9, 209.36, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:10:49', 44, 0, 919.456),
+(10, 278.4, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:27:00', 44, 0, 1197.86),
+(11, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:35:31', 44, 0, 1238.63),
+(12, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:36:38', 44, 0, 1279.4),
+(13, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:39:26', 44, 0, 1320.17),
+(14, 42.352, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:39:53', 44, 0, 1362.52);
+
 -- --------------------------------------------------------
 
 --
@@ -178,6 +198,36 @@ CREATE TABLE `DetalleVenta` (
   `productoID` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `DetalleVenta`
+--
+
+INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALUES
+(4, 2, 4, 1),
+(5, 3, 1, 1),
+(6, 3, 2, 1),
+(7, 3, 3, 1),
+(8, 3, 4, 1),
+(9, 3, 5, 1),
+(10, 3, 6, 1),
+(11, 4, 2, 1),
+(12, 4, 4, 1),
+(13, 4, 6, 1),
+(14, 5, 1, 1),
+(15, 5, 2, 2),
+(16, 5, 3, 3),
+(17, 6, 2, 2),
+(18, 7, 2, 2),
+(19, 8, 5, 2),
+(20, 9, 5, 2),
+(21, 10, 6, 9),
+(22, 11, 6, 6),
+(23, 12, 2, 1),
+(24, 13, 2, 1),
+(25, 14, 2, 1),
+(26, 15, 3, 1),
+(27, 15, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -283,35 +333,6 @@ CREATE TABLE `Imagenes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Inventarios`
---
-
-CREATE TABLE `Inventarios` (
-  `inventarioID` int(11) NOT NULL,
-  `Cu` int(11) NOT NULL,
-  `Cc` int(11) NOT NULL,
-  `n` int(11) NOT NULL,
-  `q` int(11) NOT NULL,
-  `dMin` int(11) NOT NULL,
-  `dMax` int(11) NOT NULL,
-  `periodoTiempo` int(11) NOT NULL,
-  `t` int(11) NOT NULL,
-  `m` int(11) NOT NULL,
-  `s` int(11) NOT NULL,
-  `x` int(11) NOT NULL,
-  `z` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `Inventarios`
---
-
-INSERT INTO `Inventarios` (`inventarioID`, `Cu`, `Cc`, `n`, `q`, `dMin`, `dMax`, `periodoTiempo`, `t`, `m`, `s`, `x`, `z`) VALUES
-(1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `Localidades`
 --
 
@@ -388,32 +409,34 @@ INSERT INTO `OrdenDeCompra` (`ordenDeCompraID`, `numeroOC`, `fechaCreacion`, `fe
 
 CREATE TABLE `Productos` (
   `productoID` int(11) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `marca` varchar(100) NOT NULL,
-  `fragancia` varchar(100) NOT NULL,
-  `caracteristica` varchar(200) NOT NULL,
-  `medida` varchar(100) NOT NULL,
+  `codigo` varchar(50) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `marca` varchar(100) DEFAULT NULL,
+  `fragancia` varchar(100) DEFAULT NULL,
+  `caracteristica` varchar(200) DEFAULT NULL,
+  `medida` varchar(100) DEFAULT NULL,
   `precioVenta` double NOT NULL,
-  `unidadMedidaID` int(11) NOT NULL,
-  `tipoProductoID` int(11) NOT NULL,
-  `tipoRubroID` int(11) NOT NULL,
-  `ultimaActualizacionStock` date NOT NULL,
+  `unidadMedidaID` int(11) DEFAULT NULL,
+  `tipoProductoID` int(11) DEFAULT NULL,
+  `tipoRubroID` int(11) DEFAULT NULL,
+  `ultimaActualizacionStock` date DEFAULT NULL,
   `inventarioID` int(11) NOT NULL,
-  `precioFinalAFacturar` double DEFAULT NULL
+  `precioFinalAFacturar` double DEFAULT NULL,
+  `stockactual` int(11) DEFAULT '0',
+  `stockMinimo` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Productos`
 --
 
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`) VALUES
-(1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL),
-(2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL),
-(3, '1234567899875', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL),
-(4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL),
-(5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL),
-(6, '1231234561231', 'servilletas', 'servimax', 'fragancia', 'seda cara', 'GDE', 58, 1, 2, 1, '2017-08-30', 1, 0);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
+(1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL, 50, 5),
+(2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL, 17, 0),
+(3, '1234567899875', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL, 39, 4),
+(4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL, 29, 0),
+(5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL, 60, 6),
+(6, '1231234561231', 'servilletas', 'servimax', 'fragancia', 'seda cara', 'GDE', 58, 1, 2, 1, '2017-08-30', 1, 0, 70, 7);
 
 -- --------------------------------------------------------
 
@@ -668,30 +691,24 @@ INSERT INTO `UnidadesMedida` (`unidadMedidaID`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `UserRoles`
---
-
-CREATE TABLE `UserRoles` (
-  `UserId` int(20) NOT NULL,
-  `RoleId` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `Users`
 --
 
 CREATE TABLE `Users` (
-  `Id` int(11) NOT NULL,
-  `Email` int(11) NOT NULL,
-  `EmailConfirmed` tinyint(1) NOT NULL,
-  `PasswordHash` varchar(300) NOT NULL,
-  `SecurityStamp` int(11) NOT NULL,
-  `PhoneNumber` int(50) NOT NULL,
-  `PhoneNumberConfirmed` tinyint(1) NOT NULL,
-  `Username` varchar(200) NOT NULL
+  `uid` int(20) NOT NULL,
+  `uname` varchar(60) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `rol` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Users`
+--
+
+INSERT INTO `Users` (`uid`, `uname`, `password`, `rol`) VALUES
+(1, 'juan', 'juan', 'vendedor'),
+(2, 'lucas', 'lucas', 'administrador'),
+(3, 'ramiro', 'ramiro', 'administrador');
 
 -- --------------------------------------------------------
 
@@ -710,6 +727,26 @@ CREATE TABLE `Venta` (
   `monto` decimal(10,0) DEFAULT NULL,
   `formaDePagoID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Venta`
+--
+
+INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`, `formaDePagoID`) VALUES
+(2, 'juan', 27, NULL, NULL, NULL, '2017-09-01 17:04:58', '22', 5),
+(3, 'juan', 27, NULL, NULL, NULL, '2017-09-01 17:05:54', '275', 5),
+(4, 'juan', 27, NULL, NULL, NULL, '2017-09-01 17:14:41', '109', 5),
+(5, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:10:48', '209', 5),
+(6, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:17:30', '82', 5),
+(7, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:18:12', '82', 5),
+(8, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:21:06', '160', 5),
+(9, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:21:40', '160', 5),
+(10, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:23:19', '418', 5),
+(11, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:27:00', '278', 5),
+(12, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:35:30', '41', 5),
+(13, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:36:38', '41', 5),
+(14, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:39:26', '41', 5),
+(15, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:39:52', '42', 5);
 
 --
 -- Índices para tablas volcadas
@@ -794,12 +831,6 @@ ALTER TABLE `FormaDePago`
 ALTER TABLE `Imagenes`
   ADD PRIMARY KEY (`imagenID`),
   ADD KEY `productoID` (`productoID`);
-
---
--- Indices de la tabla `Inventarios`
---
-ALTER TABLE `Inventarios`
-  ADD PRIMARY KEY (`inventarioID`);
 
 --
 -- Indices de la tabla `Localidades`
@@ -912,17 +943,10 @@ ALTER TABLE `UnidadesMedida`
   ADD PRIMARY KEY (`unidadMedidaID`);
 
 --
--- Indices de la tabla `UserRoles`
---
-ALTER TABLE `UserRoles`
-  ADD PRIMARY KEY (`UserId`),
-  ADD KEY `RoleId` (`RoleId`);
-
---
 -- Indices de la tabla `Users`
 --
 ALTER TABLE `Users`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- Indices de la tabla `Venta`
@@ -964,12 +988,12 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --
 ALTER TABLE `DetalleCuentasCorrientes`
-  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -995,11 +1019,6 @@ ALTER TABLE `FormaDePago`
 --
 ALTER TABLE `Imagenes`
   MODIFY `imagenID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `Inventarios`
---
-ALTER TABLE `Inventarios`
-  MODIFY `inventarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `Localidades`
 --
@@ -1069,12 +1088,12 @@ ALTER TABLE `UnidadesMedida`
 -- AUTO_INCREMENT de la tabla `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1128,7 +1147,6 @@ ALTER TABLE `OrdenDeCompra`
 --
 ALTER TABLE `Productos`
   ADD CONSTRAINT `Productos_ibfk_1` FOREIGN KEY (`tipoProductoID`) REFERENCES `TiposProductos` (`tipoProductoID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `Productos_ibfk_2` FOREIGN KEY (`inventarioID`) REFERENCES `Inventarios` (`inventarioID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Productos_ibfk_3` FOREIGN KEY (`unidadMedidaID`) REFERENCES `UnidadesMedida` (`unidadMedidaID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Productos_ibfk_4` FOREIGN KEY (`tipoRubroID`) REFERENCES `TiposRubros` (`tipoRubroID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -1162,13 +1180,6 @@ ALTER TABLE `Proveedores`
   ADD CONSTRAINT `Proveedores_ibfk_2` FOREIGN KEY (`Real_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_3` FOREIGN KEY (`Fiscal_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_4` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `UserRoles`
---
-ALTER TABLE `UserRoles`
-  ADD CONSTRAINT `UserRoles_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `Users` (`Id`),
-  ADD CONSTRAINT `UserRoles_ibfk_2` FOREIGN KEY (`RoleId`) REFERENCES `UserRoles` (`UserId`);
 
 --
 -- Filtros para la tabla `Venta`

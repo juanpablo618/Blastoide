@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TiposProductos.findByDescripcion", query = "SELECT t FROM TiposProductos t WHERE t.descripcion = :descripcion")})
 public class TiposProductos implements Serializable {
 
+    @OneToMany(mappedBy = "tipoProductoID")
+    private Collection<Productos> productosCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,9 +56,7 @@ public class TiposProductos implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProductoID")
-    private Collection<Productos> productosCollection;
-
+    
     public TiposProductos() {
     }
 
@@ -126,5 +127,6 @@ public class TiposProductos implements Serializable {
     public String toString() {
         return  nombre ;
     }
+
     
 }

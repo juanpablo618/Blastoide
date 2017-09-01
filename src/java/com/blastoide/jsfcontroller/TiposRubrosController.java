@@ -1,9 +1,9 @@
 package com.blastoide.jsfcontroller;
 
+import com.blastoide.jpa.TiposRubrosFacade;
 import com.blastoide.jsf.TiposRubros;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
-import com.blastoide.jpa.TiposRubrosFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.faces.convert.FacesConverter;
 public class TiposRubrosController implements Serializable {
 
     @EJB
-    private com.blastoide.jpa.TiposRubrosFacade ejbFacade;
+    private TiposRubrosFacade ejbFacade;
     private List<TiposRubros> items = null;
     private TiposRubros selected;
 

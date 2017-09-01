@@ -14,68 +14,37 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="UsersListForm" style="width: 105%;">
+            <h:form id="UsersListForm">
                 <p:panel header="#{bundle.ListUsersTitle}">
                     <p:dataTable id="datalist" value="#{usersController.items}" var="item"
                                  selectionMode="single" selection="#{usersController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.id}"
+                                 rowKey="#{item.uid}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 emptyMessage="No existen usuarios creados"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        
+
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_email}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_uname}"/>
                             </f:facet>
-                            <h:outputText value="#{item.email}"/>
+                            <h:outputText value="#{item.uname}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_emailConfirmed}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_password}"/>
                             </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.emailConfirmed}" disabled="true"/>
+                            <h:outputText value="#{item.password}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_passwordHash}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_rol}"/>
                             </f:facet>
-                            <h:outputText value="#{item.passwordHash}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_securityStamp}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.securityStamp}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_phoneNumber}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.phoneNumber}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_phoneNumberConfirmed}"/>
-                            </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.phoneNumberConfirmed}" disabled="true"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_username}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.username}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_userRoles}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.userRoles}"/>
+                            <h:outputText value="#{item.rol}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>

@@ -12,27 +12,14 @@
             <h:form id="UsersEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditUsersLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{usersController.selected.email}" title="#{bundle.EditUsersTitle_email}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_email}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_emailConfirmed}" for="emailConfirmed" />
-                        <p:selectBooleanCheckbox id="emailConfirmed" value="#{usersController.selected.emailConfirmed}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_emailConfirmed}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_passwordHash}" for="passwordHash" />
-                        <p:inputText id="passwordHash" value="#{usersController.selected.passwordHash}" title="#{bundle.EditUsersTitle_passwordHash}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_passwordHash}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_securityStamp}" for="securityStamp" />
-                        <p:inputText id="securityStamp" value="#{usersController.selected.securityStamp}" title="#{bundle.EditUsersTitle_securityStamp}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_securityStamp}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_phoneNumber}" for="phoneNumber" />
-                        <p:inputText id="phoneNumber" value="#{usersController.selected.phoneNumber}" title="#{bundle.EditUsersTitle_phoneNumber}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_phoneNumber}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_phoneNumberConfirmed}" for="phoneNumberConfirmed" />
-                        <p:selectBooleanCheckbox id="phoneNumberConfirmed" value="#{usersController.selected.phoneNumberConfirmed}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_phoneNumberConfirmed}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_username}" for="username" />
-                        <p:inputText id="username" value="#{usersController.selected.username}" title="#{bundle.EditUsersTitle_username}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_username}"/>
-                        <p:outputLabel value="#{bundle.EditUsersLabel_userRoles}" for="userRoles" />
-                        <p:selectOneMenu id="userRoles" value="#{usersController.selected.userRoles}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{userRolesController.itemsAvailableSelectOne}"
-                                           var="userRolesItem"
-                                           itemValue="#{userRolesItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_uid}" for="uid" />
+                        <p:inputText id="uid" value="#{usersController.selected.uid}" title="#{bundle.EditUsersTitle_uid}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_uid}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_uname}" for="uname" />
+                        <p:inputText id="uname" value="#{usersController.selected.uname}" title="#{bundle.EditUsersTitle_uname}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_uname}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.EditUsersTitle_password}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_password}"/>
+                        <p:outputLabel value="#{bundle.EditUsersLabel_rol}" for="rol" />
+                        <p:inputText id="rol" value="#{usersController.selected.rol}" title="#{bundle.EditUsersTitle_rol}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usersController.update}" value="#{bundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="UsersEditDialog.hide()"/>

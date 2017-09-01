@@ -3,8 +3,6 @@ package com.blastoide.jsfcontroller;
 import com.blastoide.configuraciones.ConfiguracionesGenerales;
 import com.blastoide.jpa.CuentasCorrientesDAO;
 import com.blastoide.jpa.DetalleCuentasCorrientesDAO;
-import com.blastoide.jsf.ClienteBueno;
-import com.blastoide.jpa.FormaDePago;
 import com.blastoide.jpa.FormaDePagoDAO;
 import com.blastoide.jpa.TipoDeClienteDAO;
 import com.blastoide.jpa.VentaDAO;
@@ -12,29 +10,13 @@ import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
 import com.blastoide.jsf.util.MembretePresupuesto;
-import com.lowagie.text.BadElementException;
-import com.lowagie.text.Chunk;
-import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.Image;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -316,8 +298,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
         VentaDAO ventadao;
         
-        
-        
         double monto = 0;
         try {
 
@@ -325,7 +305,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
                     
             }
-            
             
             
             ventadao = new VentaDAO();
@@ -338,6 +317,37 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
                 //1ro registra la venta y sus detalles de la venta
                 ventadao.registrar(venta, lista);
+                
+                System.err.println("tamaño de la lista: "+ lista.size());
+                
+                
+
+                        
+
+                for (DetalleVenta det : lista) {
+                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+                System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
+                System.err.println("");
+                
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+        
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+        
+                System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                
+                int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
+                System.err.println("stockActual: "+ stockActual );                
+                
+                int stockModificado = stockActual - det.getCantidad();
+                System.err.println("stockModificado: "+ stockModificado );                
+               
+                productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
+                productoControllerBean.getSelected().setStockactual(stockModificado);
+                productoControllerBean.update();
+                
+                
+                }
                 
                 
                 
@@ -407,11 +417,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
 
         venta.setMonto(monto);
-        
-
-        
-
-        
                 
         venta.setFecha(Calendar.getInstance().getTime());
         

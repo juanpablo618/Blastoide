@@ -5,11 +5,7 @@
  */
 package com.blastoide.jsf;
 
-import com.blastoide.jsf.ClienteBueno;
-import com.blastoide.jpa.VentaDAO;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -26,7 +22,20 @@ public class Venta {
     private ClienteBueno cliente;
     private double monto;
     private int formadePagoID;
+    
+    private String empleado;
 
+    public String getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(String empleado) {
+        this.empleado = empleado;
+    }
+    
+    
+    
+    
     public int getFormadePagoID() {
         return formadePagoID;
     }

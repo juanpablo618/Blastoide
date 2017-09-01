@@ -5,26 +5,27 @@
  */
 package com.blastoide.jsf;
 
+import com.blastoide.jsf.TiposProductos;
+import com.blastoide.jsf.TiposRubros;
+
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,77 +44,62 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Productos.findByCaracteristica", query = "SELECT p FROM Productos p WHERE p.caracteristica = :caracteristica")
     , @NamedQuery(name = "Productos.findByMedida", query = "SELECT p FROM Productos p WHERE p.medida = :medida")
     , @NamedQuery(name = "Productos.findByPrecioVenta", query = "SELECT p FROM Productos p WHERE p.precioVenta = :precioVenta")
-    , @NamedQuery(name = "Productos.findByUltimaActualizacionStock", query = "SELECT p FROM Productos p WHERE p.ultimaActualizacionStock = :ultimaActualizacionStock")})
+    , @NamedQuery(name = "Productos.findByUltimaActualizacionStock", query = "SELECT p FROM Productos p WHERE p.ultimaActualizacionStock = :ultimaActualizacionStock")
+    , @NamedQuery(name = "Productos.findByInventarioID", query = "SELECT p FROM Productos p WHERE p.inventarioID = :inventarioID")
+    , @NamedQuery(name = "Productos.findByPrecioFinalAFacturar", query = "SELECT p FROM Productos p WHERE p.precioFinalAFacturar = :precioFinalAFacturar")
+    , @NamedQuery(name = "Productos.findByStockactual", query = "SELECT p FROM Productos p WHERE p.stockactual = :stockactual")
+    , @NamedQuery(name = "Productos.findByStockMinimo", query = "SELECT p FROM Productos p WHERE p.stockMinimo = :stockMinimo")})
 public class Productos implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "productoID")
     private Integer productoID;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 50)
     @Column(name = "codigo")
     private String codigo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "marca")
     private String marca;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "fragancia")
     private String fragancia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "caracteristica")
     private String caracteristica;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "medida")
     private String medida;
     @Basic(optional = false)
     @NotNull
     @Column(name = "precioVenta")
     private double precioVenta;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ultimaActualizacionStock")
     @Temporal(TemporalType.DATE)
     private Date ultimaActualizacionStock;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
-    private Collection<ProductoXProveedor> productoXProveedorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
-    private Collection<ProductoXDeposito> productoXDepositoCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "inventarioID")
+    private int inventarioID;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "precioFinalAFacturar")
+    private Double precioFinalAFacturar;
+    @Column(name = "stockactual")
+    private Integer stockactual;
+    @Column(name = "stockMinimo")
+    private Integer stockMinimo;
     @JoinColumn(name = "tipoProductoID", referencedColumnName = "tipoProductoID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TiposProductos tipoProductoID;
-    @JoinColumn(name = "inventarioID", referencedColumnName = "inventarioID")
-    @ManyToOne(optional = false)
-    private Inventarios inventarioID;
-    @JoinColumn(name = "unidadMedidaID", referencedColumnName = "unidadMedidaID")
-    @ManyToOne(optional = false)
-    private UnidadesMedida unidadMedidaID;
     @JoinColumn(name = "tipoRubroID", referencedColumnName = "tipoRubroID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TiposRubros tipoRubroID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
-    private Collection<ProductoXDepositoXEventualidad> productoXDepositoXEventualidadCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoID")
-    private Collection<Imagenes> imagenesCollection;
 
-    
-    private double precioFinalAFacturar;
-    
-    
     public Productos() {
     }
 
@@ -121,28 +107,12 @@ public class Productos implements Serializable {
         this.productoID = productoID;
     }
 
-    public Productos(Integer productoID, String codigo, String nombre, String marca, String fragancia, String caracteristica, String medida, double precioVenta, Date ultimaActualizacionStock, double  precioFinalAFacturar) {
+    public Productos(Integer productoID, double precioVenta, int inventarioID) {
         this.productoID = productoID;
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.marca = marca;
-        this.fragancia = fragancia;
-        this.caracteristica = caracteristica;
-        this.medida = medida;
         this.precioVenta = precioVenta;
-        this.ultimaActualizacionStock = ultimaActualizacionStock;
-        this.precioFinalAFacturar = precioFinalAFacturar;
+        this.inventarioID = inventarioID;
     }
 
-    public double getPrecioFinalAFacturar() {
-        return precioFinalAFacturar;
-    }
-
-    public void setPrecioFinalAFacturar(double precioFinalAFacturar) {
-        this.precioFinalAFacturar = precioFinalAFacturar;
-    }
-
-    
     public Integer getProductoID() {
         return productoID;
     }
@@ -215,22 +185,36 @@ public class Productos implements Serializable {
         this.ultimaActualizacionStock = ultimaActualizacionStock;
     }
 
-    @XmlTransient
-    public Collection<ProductoXProveedor> getProductoXProveedorCollection() {
-        return productoXProveedorCollection;
+    public int getInventarioID() {
+        return inventarioID;
     }
 
-    public void setProductoXProveedorCollection(Collection<ProductoXProveedor> productoXProveedorCollection) {
-        this.productoXProveedorCollection = productoXProveedorCollection;
+    public void setInventarioID(int inventarioID) {
+        this.inventarioID = inventarioID;
     }
 
-    @XmlTransient
-    public Collection<ProductoXDeposito> getProductoXDepositoCollection() {
-        return productoXDepositoCollection;
+    public Double getPrecioFinalAFacturar() {
+        return precioFinalAFacturar;
     }
 
-    public void setProductoXDepositoCollection(Collection<ProductoXDeposito> productoXDepositoCollection) {
-        this.productoXDepositoCollection = productoXDepositoCollection;
+    public void setPrecioFinalAFacturar(Double precioFinalAFacturar) {
+        this.precioFinalAFacturar = precioFinalAFacturar;
+    }
+
+    public Integer getStockactual() {
+        return stockactual;
+    }
+
+    public void setStockactual(Integer stockactual) {
+        this.stockactual = stockactual;
+    }
+
+    public Integer getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public void setStockMinimo(Integer stockMinimo) {
+        this.stockMinimo = stockMinimo;
     }
 
     public TiposProductos getTipoProductoID() {
@@ -241,46 +225,13 @@ public class Productos implements Serializable {
         this.tipoProductoID = tipoProductoID;
     }
 
-    public Inventarios getInventarioID() {
-        return inventarioID;
-    }
-
-    public void setInventarioID(Inventarios inventarioID) {
-        this.inventarioID = inventarioID;
-    }
-
-    public UnidadesMedida getUnidadMedidaID() {
-        return unidadMedidaID;
-    }
-
-    public void setUnidadMedidaID(UnidadesMedida unidadMedidaID) {
-        this.unidadMedidaID = unidadMedidaID;
-    }
-
+  
     public TiposRubros getTipoRubroID() {
         return tipoRubroID;
     }
 
     public void setTipoRubroID(TiposRubros tipoRubroID) {
         this.tipoRubroID = tipoRubroID;
-    }
-
-    @XmlTransient
-    public Collection<ProductoXDepositoXEventualidad> getProductoXDepositoXEventualidadCollection() {
-        return productoXDepositoXEventualidadCollection;
-    }
-
-    public void setProductoXDepositoXEventualidadCollection(Collection<ProductoXDepositoXEventualidad> productoXDepositoXEventualidadCollection) {
-        this.productoXDepositoXEventualidadCollection = productoXDepositoXEventualidadCollection;
-    }
-
-    @XmlTransient
-    public Collection<Imagenes> getImagenesCollection() {
-        return imagenesCollection;
-    }
-
-    public void setImagenesCollection(Collection<Imagenes> imagenesCollection) {
-        this.imagenesCollection = imagenesCollection;
     }
 
     @Override
@@ -307,14 +258,5 @@ public class Productos implements Serializable {
     public String toString() {
         return nombre ;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

@@ -19,7 +19,7 @@
             <h:form id="frm">
                
                 <br></br>
-
+                #{ventaBean.venta.setEmpleado(login.user)}
                 <p:outputLabel value="Cliente: "  style="color:white ; margin: 10px ;  " />
                 
                 <p:selectOneMenu value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter">
@@ -40,11 +40,9 @@
                         <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
                 </p:selectOneMenu>
                 
-                    
                 <br></br>
                 <br></br>
                 <p:separator />
-                
                 
                 <p:outputLabel value="Producto: "  style="color:white; margin: 10px" />
                 
@@ -55,17 +53,12 @@
                 </p:selectOneMenu>
                 
                 
-                
-                
                 <br></br>
                 <p:separator />
                 <br></br>
                 
-                
                 <br></br>
                 <br></br>
-                
-                                
                 
                 
                 <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
@@ -85,8 +78,6 @@
                 
                                 <h:commandButton  action="#{ventaBean.cambiarDetalleVenta(det,det.cantidad)}"  value="Cambiar" />
                                     
-                            
-                            
                         </p:column>
                     
                         <p:column headerText="Codigo">
@@ -111,13 +102,10 @@
                         </p:column>
                     
 
-
-                    
                        <p:column headerText="accion">
                            <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.lista.remove(det)}" update="detalle"/>
                         </p:column>
-                    
-                    
+                  
                     
                 </p:dataTable>
                 <br></br>

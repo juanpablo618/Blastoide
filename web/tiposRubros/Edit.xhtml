@@ -12,6 +12,8 @@
             <h:form id="TiposRubrosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposRubrosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTiposRubrosLabel_tipoRubroID}" for="tipoRubroID" />
+                        <p:inputText id="tipoRubroID" value="#{tiposRubrosController.selected.tipoRubroID}" title="#{bundle.EditTiposRubrosTitle_tipoRubroID}" required="true" requiredMessage="#{bundle.EditTiposRubrosRequiredMessage_tipoRubroID}"/>
                         <p:outputLabel value="#{bundle.EditTiposRubrosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tiposRubrosController.selected.nombre}" title="#{bundle.EditTiposRubrosTitle_nombre}" required="true" requiredMessage="#{bundle.EditTiposRubrosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditTiposRubrosLabel_descripcion}" for="descripcion" />

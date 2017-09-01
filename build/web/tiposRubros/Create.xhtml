@@ -12,6 +12,8 @@
             <h:form id="TiposRubrosCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposRubrosController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTiposRubrosLabel_tipoRubroID}" for="tipoRubroID" />
+                        <p:inputText id="tipoRubroID" value="#{tiposRubrosController.selected.tipoRubroID}" title="#{bundle.CreateTiposRubrosTitle_tipoRubroID}" required="true" requiredMessage="#{bundle.CreateTiposRubrosRequiredMessage_tipoRubroID}"/>
                         <p:outputLabel value="#{bundle.CreateTiposRubrosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tiposRubrosController.selected.nombre}" title="#{bundle.CreateTiposRubrosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTiposRubrosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateTiposRubrosLabel_descripcion}" for="descripcion" />

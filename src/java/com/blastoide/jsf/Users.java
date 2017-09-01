@@ -7,7 +7,6 @@ package com.blastoide.jsf;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,149 +28,81 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
-    , @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id")
-    , @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")
-    , @NamedQuery(name = "Users.findByEmailConfirmed", query = "SELECT u FROM Users u WHERE u.emailConfirmed = :emailConfirmed")
-    , @NamedQuery(name = "Users.findByPasswordHash", query = "SELECT u FROM Users u WHERE u.passwordHash = :passwordHash")
-    , @NamedQuery(name = "Users.findBySecurityStamp", query = "SELECT u FROM Users u WHERE u.securityStamp = :securityStamp")
-    , @NamedQuery(name = "Users.findByPhoneNumber", query = "SELECT u FROM Users u WHERE u.phoneNumber = :phoneNumber")
-    , @NamedQuery(name = "Users.findByPhoneNumberConfirmed", query = "SELECT u FROM Users u WHERE u.phoneNumberConfirmed = :phoneNumberConfirmed")
-    , @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")})
+    , @NamedQuery(name = "Users.findByUid", query = "SELECT u FROM Users u WHERE u.uid = :uid")
+    , @NamedQuery(name = "Users.findByUname", query = "SELECT u FROM Users u WHERE u.uname = :uname")
+    , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
+    , @NamedQuery(name = "Users.findByRol", query = "SELECT u FROM Users u WHERE u.rol = :rol")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "Id")
-    private Integer id;
+    @Column(name = "uid")
+    private Integer uid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Email")
-    private int email;
+    @Size(min = 1, max = 60)
+    @Column(name = "uname")
+    private String uname;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "EmailConfirmed")
-    private boolean emailConfirmed;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 300)
-    @Column(name = "PasswordHash")
-    private String passwordHash;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "SecurityStamp")
-    private int securityStamp;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "PhoneNumber")
-    private int phoneNumber;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "PhoneNumberConfirmed")
-    private boolean phoneNumberConfirmed;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "Username")
-    private String username;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "users")
-    private UserRoles userRoles;
+    @Size(min = 1, max = 60)
+    @Column(name = "password")
+    private String password;
+    @Size(max = 100)
+    @Column(name = "rol")
+    private String rol;
 
     public Users() {
     }
 
-    public Users(Integer id) {
-        this.id = id;
+    public Users(Integer uid) {
+        this.uid = uid;
     }
 
-    public Users(Integer id, int email, boolean emailConfirmed, String passwordHash, int securityStamp, int phoneNumber, boolean phoneNumberConfirmed, String username) {
-        this.id = id;
-        this.email = email;
-        this.emailConfirmed = emailConfirmed;
-        this.passwordHash = passwordHash;
-        this.securityStamp = securityStamp;
-        this.phoneNumber = phoneNumber;
-        this.phoneNumberConfirmed = phoneNumberConfirmed;
-        this.username = username;
+    public Users(Integer uid, String uname, String password) {
+        this.uid = uid;
+        this.uname = uname;
+        this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUid() {
+        return uid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
-    public int getEmail() {
-        return email;
+    public String getUname() {
+        return uname;
     }
 
-    public void setEmail(int email) {
-        this.email = email;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
-    public boolean getEmailConfirmed() {
-        return emailConfirmed;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmailConfirmed(boolean emailConfirmed) {
-        this.emailConfirmed = emailConfirmed;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getRol() {
+        return rol;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public int getSecurityStamp() {
-        return securityStamp;
-    }
-
-    public void setSecurityStamp(int securityStamp) {
-        this.securityStamp = securityStamp;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public boolean getPhoneNumberConfirmed() {
-        return phoneNumberConfirmed;
-    }
-
-    public void setPhoneNumberConfirmed(boolean phoneNumberConfirmed) {
-        this.phoneNumberConfirmed = phoneNumberConfirmed;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public UserRoles getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(UserRoles userRoles) {
-        this.userRoles = userRoles;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (uid != null ? uid.hashCode() : 0);
         return hash;
     }
 
@@ -183,7 +113,7 @@ public class Users implements Serializable {
             return false;
         }
         Users other = (Users) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.uid == null && other.uid != null) || (this.uid != null && !this.uid.equals(other.uid))) {
             return false;
         }
         return true;
@@ -191,7 +121,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Users=" + username + " ]";
+        return "com.blastoide.jsf.Users[ uid=" + uid + " ]";
     }
     
 }

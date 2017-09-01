@@ -33,12 +33,17 @@
                         <p:separator/>                
                         <p:growl id="messages" showDetail="false"/>
 
-                        <p:menuButton value="Lucas V.">
+                        <p:menuButton value="#{login.user}">
                             <p:menuitem value="Home"  icon="ui-icon-home"/>
                             <p:menuitem value="Alertas"  icon="ui-icon-alert"/>
+                            <p:menuitem>
+                                    <h:commandLink action="#{login.logout}" value="SALIR"> </h:commandLink>
+                            </p:menuitem>
                             <p:separator />
-                            
                         </p:menuButton>
+                        
+                        
+                        
                         <p:separator/>
                     </p:toolbarGroup>
             </f:facet>    

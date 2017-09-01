@@ -12,6 +12,8 @@
             <h:form id="UnidadesMedidaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{unidadesMedidaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUnidadesMedidaLabel_unidadMedidaID}"/>
+                        <h:outputText value="#{unidadesMedidaController.selected.unidadMedidaID}" title="#{bundle.ViewUnidadesMedidaTitle_unidadMedidaID}"/>
                         <h:outputText value="#{bundle.ViewUnidadesMedidaLabel_nombre}"/>
                         <h:outputText value="#{unidadesMedidaController.selected.nombre}" title="#{bundle.ViewUnidadesMedidaTitle_nombre}"/>
                     </p:panelGrid>

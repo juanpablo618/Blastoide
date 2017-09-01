@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 
 
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Venta;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
@@ -17,6 +11,8 @@ import com.blastoide.jsf.DetalleVenta;
  *
  * @author cuello.juanpablo@gmail.com
  */
+
+
 public class VentaDAO extends DAO{
 
     /** comentario en javadoc*/ 
@@ -33,14 +29,18 @@ public class VentaDAO extends DAO{
             
             
             
-            PreparedStatement st = this.getCn().prepareStatement("insert into Venta (ClienteID, monto, formaDePagoID) values(?,?,?)");
+            PreparedStatement st = this.getCn().prepareStatement("insert into Venta (ClienteID, monto, formaDePagoID, empleado) values(?,?,?,?)");
                                 System.err.println("llego aca al insert de ventaDAO");
-
+System.err.println("empleado: " +venta.getEmpleado());
                 
                 st.setInt(1, venta.getCliente().getClienteID());
                 st.setDouble(2, venta.getMonto());
                 st.setInt(3, venta.getFormadePagoID());
-         
+                st.setString(4, venta.getEmpleado());
+
+                System.err.println("st: "+st.toString());
+
+                
          st.executeUpdate();
          st.close();
          

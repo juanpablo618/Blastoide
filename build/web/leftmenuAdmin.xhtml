@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui" id="composition"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style>
+            #menuForm{
+                padding: 0px;
+            } 
+            #menu{
+                padding-right: -5px;
+            }
+        </style>
+
+
+    </h:head>
+
+
+    <h:form id="menuForm">
+        <p:growl id="messages" showDetail="false"/>
+
+        <p:slideMenu backLabel="Atras">
+            <p:submenu label="INICIO" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="inicio" outcome="/index.xhtml" />
+            </p:submenu>
+            
+            <p:separator />
+            <p:submenu label="CAJA" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="iniciar valor de caja" outcome="/inicioCaja/InicioCaja.xhtml" />
+                <p:menuitem value="facturar" outcome="/caja/Facturar.xhtml" />
+                
+            </p:submenu>
+            
+            <p:separator />
+            <p:submenu label="VENTA - Sin terminar" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Inventarios" outcome="/inventarios/List.xhtml" />
+            </p:submenu>
+            
+            
+            <p:separator />
+            <p:submenu label="CLIENTES" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Tipo de IVA" outcome="/condicionIVA/List.xhtml" />
+                <p:separator />
+                
+                <p:menuitem value="Tipos de Clientes" outcome="/tipoClientes/List.xhtml" />
+                <p:separator />
+                
+                <p:menuitem value="Localidades" outcome="/localidades/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="crear cliente nuevo" outcome="/cliente/AbrirCuentaCorriente.xhtml"  />
+                <p:separator />
+                <p:menuitem value="ver Detalle de Cta Corriente" outcome="/cliente/ListarDetalleCtaCorriente.xhtml"  />
+                
+                
+                
+            </p:submenu>
+            
+
+            <p:separator />
+            <p:submenu label="OFERTAS" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Ofertas" outcome="/ofertas/List.xhtml" />
+            </p:submenu>
+            
+            <p:separator />
+            <p:submenu label="PRODUCTOS" icon="ui-icon-circle-arrow-e" rendered="true">
+                <p:menuitem value="Productos" outcome="/productos/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Depósitos" outcome="/depositos/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Eventualidades" outcome="/productoXDepositoXEventualidad/List.xhtml" />
+                <p:separator />
+            </p:submenu>
+            
+            <p:separator />
+            <p:submenu label="COMPRAS" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Proveedores" outcome="/proveedores/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Rubro Proveedor" outcome="/tiposRubros/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Domicilio Proveedor" outcome="/domicilios/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Productos Por proveedor" outcome="/productoXProveedor/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Ordenes de compra" outcome="/ordenDeCompra/List.xhtml"/>
+                <p:separator />
+                <p:menuitem value="Estados" outcome="/estado/List.xhtml"/>
+            </p:submenu>
+            
+            <p:separator />
+            <p:submenu label="Usuarios" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Usuarios" outcome="/users/List.xhtml" />
+                <p:separator />
+                </p:submenu>
+            
+            
+            <p:separator />
+            <p:submenu label="Cosas por terminar / Producción" icon="ui-icon-circle-arrow-e">
+                <p:menuitem value="Tipos de Eventualidad" outcome="/tiposEventualidad/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Tipo de Producto" outcome="/tiposProductos/List.xhtml" />  
+                <p:separator />
+                <p:menuitem value="Stock" outcome="/productoXDeposito/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Unidades Medida" outcome="/unidadesMedida/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Perdidas Eventualidad" outcome="/eventualidades/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Imagen Producto" outcome="/imagenes/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Usuarios" outcome="/users/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Roles" outcome="/roles/List.xhtml" />
+                <p:separator />
+                <p:menuitem value="Formas de pago" outcome="/formaDePago/List" />
+                <p:separator />
+                
+            
+            </p:submenu>
+            
+            
+            
+            
+            
+        </p:slideMenu>
+
+        
+    </h:form>
+
+
+    <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+        <h:outputText value="This is a Modal Dialog." />
+    </p:dialog>  
+
+</ui:composition>

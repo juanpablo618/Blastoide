@@ -23,9 +23,7 @@
         <p:growl id="messages" showDetail="false"/>
 
         <p:slideMenu backLabel="Atras">
-            <p:submenu label="INICIO" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="inicio" outcome="/index.xhtml" />
-            </p:submenu>
+                <p:menuitem value="inicio" outcome="/usuarioComun.xhtml" />
             
             <p:separator />
             <p:submenu label="CAJA" icon="ui-icon-circle-arrow-e">
@@ -34,36 +32,7 @@
                 
             </p:submenu>
             
-            <p:separator />
-            <p:submenu label="VENTA - Sin terminar" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="Inventarios" outcome="/inventarios/List.xhtml" />
-            </p:submenu>
-            
-            
-            <p:separator />
-            <p:submenu label="CLIENTES" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="Tipo de IVA" outcome="/condicionIVA/List.xhtml" />
-                <p:separator />
-                
-                <p:menuitem value="Tipos de Clientes" outcome="/tipoClientes/List.xhtml" />
-                <p:separator />
-                
-                <p:menuitem value="Localidades" outcome="/localidades/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="crear cliente nuevo" outcome="/cliente/AbrirCuentaCorriente.xhtml"  />
-                <p:separator />
-                <p:menuitem value="ver Detalle de Cta Corriente" outcome="/cliente/ListarDetalleCtaCorriente.xhtml"  />
-                
-                
-                
-            </p:submenu>
-            
-
-            <p:separator />
-            <p:submenu label="OFERTAS" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="Ofertas" outcome="/ofertas/List.xhtml" />
-            </p:submenu>
-            
+                       
             <p:separator />
             <p:submenu label="PRODUCTOS" icon="ui-icon-circle-arrow-e" rendered="true">
                 <p:menuitem value="Productos" outcome="/productos/List.xhtml" />
@@ -73,55 +42,6 @@
                 <p:menuitem value="Eventualidades" outcome="/productoXDepositoXEventualidad/List.xhtml" />
                 <p:separator />
             </p:submenu>
-            
-            <p:separator />
-            <p:submenu label="COMPRAS" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="Proveedores" outcome="/proveedores/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Rubro Proveedor" outcome="/tiposRubros/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Domicilio Proveedor" outcome="/domicilios/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Productos Por proveedor" outcome="/productoXProveedor/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Ordenes de compra" outcome="/ordenDeCompra/List.xhtml"/>
-                <p:separator />
-                <p:menuitem value="Estados" outcome="/estado/List.xhtml"/>
-            </p:submenu>
-            
-            
-            
-            
-            
-            
-            <p:separator />
-            <p:submenu label="Cosas por terminar / Producción" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="Tipos de Eventualidad" outcome="/tiposEventualidad/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Tipo de Producto" outcome="/tiposProductos/List.xhtml" />  
-                <p:separator />
-                <p:menuitem value="Stock" outcome="/productoXDeposito/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Unidades Medida" outcome="/unidadesMedida/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Perdidas Eventualidad" outcome="/eventualidades/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Imagen Producto" outcome="/imagenes/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Roles de Usuario" outcome="/userRoles/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Usuarios" outcome="/users/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Roles" outcome="/roles/List.xhtml" />
-                <p:separator />
-                <p:menuitem value="Formas de pago" outcome="/formaDePago/List" />
-                <p:separator />
-                
-            
-            </p:submenu>
-            
-            
-            
             
             
         </p:slideMenu>
