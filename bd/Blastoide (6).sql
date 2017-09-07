@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-09-2017 a las 22:47:14
+-- Tiempo de generación: 07-09-2017 a las 22:50:02
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -128,7 +128,7 @@ CREATE TABLE `CuentasCorrientes` (
 --
 
 INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `saldo`) VALUES
-(44, 20000, 1362.52);
+(44, 20000, 1778.95);
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,11 @@ INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `hab
 (11, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:35:31', 44, 0, 1238.63),
 (12, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:36:38', 44, 0, 1279.4),
 (13, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:39:26', 44, 0, 1320.17),
-(14, 42.352, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:39:53', 44, 0, 1362.52);
+(14, 42.352, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 20:39:53', 44, 0, 1362.52),
+(15, 40.768, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 21:01:09', 44, 0, 1403.29),
+(16, 81.536, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 21:01:21', 44, 0, 1484.83),
+(17, 147.056, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 21:01:41', 44, 0, 1631.89),
+(18, 147.056, 0, 'venta a cliente con cta corriente: 44', '2017-09-01 21:02:11', 44, 0, 1778.95);
 
 -- --------------------------------------------------------
 
@@ -227,7 +231,13 @@ INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALU
 (24, 13, 2, 1),
 (25, 14, 2, 1),
 (26, 15, 3, 1),
-(27, 15, 4, 1);
+(27, 15, 4, 1),
+(28, 16, 2, 1),
+(29, 17, 2, 2),
+(30, 18, 2, 2),
+(31, 18, 1, 1),
+(32, 19, 2, 2),
+(33, 19, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -431,12 +441,12 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
-(1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL, 50, 5),
-(2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL, 17, 0),
+(1, '123456789', 'lavandina ayudin doble rendimiento,multisuperficie, por 2 litros', 'marcaprod', 'fragaprod', 'caraprod', '21', 81.9, 1, 2, 1, '2017-05-24', 1, NULL, 48, 5),
+(2, '1234567891234', 'Alcohol en gel, 1 litro', 'marcasa', 'fraganciafra', 'caracaracara', '20', 50.96, 1, 2, 1, '2017-05-31', 1, NULL, 10, 5),
 (3, '1234567899875', 'Glade en aerosol aromatizante', 'marcasa', 'frada', 'asdasdas', 'CM', 25.96, 1, 2, 1, '2017-05-16', 1, NULL, 39, 4),
-(4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL, 29, 0),
+(4, '1234567899874', 'Bolsa de basura transparente', 'marcabra', 'fragabra', 'brabrabra', 'ML', 26.98, 1, 2, 1, '2017-05-30', 1, NULL, 29, 20),
 (5, '1234567899999', 'Papel higienico doble hoja.', 'marca', 'fragancia', 'caracteristica', 'XXG', 100, 1, 2, 1, '2017-05-17', 1, NULL, 60, 6),
-(6, '1231234561231', 'servilletas', 'servimax', 'fragancia', 'seda cara', 'GDE', 58, 1, 2, 1, '2017-08-30', 1, 0, 70, 7);
+(6, '1231234561231', 'servilletas', 'servimax', 'fragancia', 'seda cara', 'GDE', 58, 1, 2, 1, '2017-08-30', 1, 0, 6, 7);
 
 -- --------------------------------------------------------
 
@@ -746,7 +756,11 @@ INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInter
 (12, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:35:30', '41', 5),
 (13, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:36:38', '41', 5),
 (14, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:39:26', '41', 5),
-(15, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:39:52', '42', 5);
+(15, 'juan', 27, NULL, NULL, NULL, '2017-09-01 20:39:52', '42', 5),
+(16, 'juan', 27, NULL, NULL, NULL, '2017-09-01 21:01:08', '41', 5),
+(17, 'juan', 27, NULL, NULL, NULL, '2017-09-01 21:01:20', '82', 5),
+(18, 'juan', 27, NULL, NULL, NULL, '2017-09-01 21:01:41', '147', 5),
+(19, 'juan', 27, NULL, NULL, NULL, '2017-09-01 21:02:11', '147', 5);
 
 --
 -- Índices para tablas volcadas
@@ -988,12 +1002,12 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --
 ALTER TABLE `DetalleCuentasCorrientes`
-  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -1093,7 +1107,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- Restricciones para tablas volcadas
 --

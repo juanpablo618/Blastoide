@@ -28,6 +28,10 @@ public class ProductosController implements Serializable {
     private List<Productos> items = null;
     private Productos selected;
 
+    private List<Productos> itemsSinStock = null;
+    
+    
+    
     public ProductosController() {
     }
 
@@ -86,6 +90,72 @@ public class ProductosController implements Serializable {
         return items;
     }
 
+//    public List<Productos> getItemsSinStock() {
+//        
+//        if (itemsSinStock == null) {
+//            itemsSinStock = getFacade().findAll();
+//        }
+//                
+//        System.err.println("");
+//        System.err.println("itemsSinStock la 1ra vez: " + itemsSinStock.toString());
+//                        
+//                for(int i = 0; i<itemsSinStock.size();i++){
+//                    if(itemsSinStock.get(i).getStockactual() > itemsSinStock.get(i).getStockMinimo()){
+//                        
+//                        System.err.println("producto Id removido: "+ itemsSinStock.get(i).getProductoID() +" Stock actual: " + itemsSinStock.get(i).getStockactual()   + " stock Minimo: " + itemsSinStock.get(i).getStockMinimo());
+//                        itemsSinStock.remove(i);
+//                        
+//                    }
+//
+//                }
+//                
+//                        System.err.println("");
+//                        System.err.println("itemsSinStock tamaño: " + itemsSinStock.size());
+//                        System.err.println("");
+//                        System.err.println("itemsSinStock: " + itemsSinStock.toString());
+//                        
+//        return itemsSinStock;
+//    
+//    }
+    
+    
+    public List<Productos> getItemsSinStock() {
+        
+        if (itemsSinStock == null) {
+            itemsSinStock = getFacade().findAll();
+            
+        }
+                for(Productos p : itemsSinStock){
+                    if(p.getStockactual() > p.getStockMinimo()){
+                        System.err.println("producto Id removido: "+ p.getProductoID() +" Stock actual: " + p.getStockactual()   + " stock Minimo: " + p.getStockMinimo());
+                        itemsSinStock.remove(p);
+                        
+                    }
+
+                }
+        System.err.println("");
+        System.err.println("itemsSinStock la 1ra vez: " + itemsSinStock.toString());
+                        
+                
+                        System.err.println("");
+                        System.err.println("itemsSinStock tamaño: " + itemsSinStock.size());
+                        System.err.println("");
+                        System.err.println("itemsSinStock: " + itemsSinStock.toString());
+                        
+        return itemsSinStock;
+    
+    }
+
+    
+    
+
+    public void setItemsSinStock(List<Productos> itemsSinStock) {
+        this.itemsSinStock = itemsSinStock;
+    }
+
+    
+    
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();

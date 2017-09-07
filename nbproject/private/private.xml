@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/conexion/ConexionMySql.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/login.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/admin.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/topbar.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/index.xhtml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/conexion/DAO.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/TipoDeClienteDAO.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/Login.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/LoginDAO.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/conexion/DataConnect.java</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/WEB-INF/faces-config.xml</file>
-            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jpa/VentaDAO.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/web/productos/ProductosSinStock.xhtml</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/Productos.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsfcontroller/ProductosController.java</file>
+            <file>file:/home/developer/Desktop/fotos%20de%20mundo%20limpieza%20blastoide/blastoide%20creado%20local/08-06-2017/Blastoide/src/java/com/blastoide/jsf/AbstractFacade.java</file>
         </group>
     </open-files>
 </project-private>
