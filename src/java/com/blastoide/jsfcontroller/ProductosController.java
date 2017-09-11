@@ -1,11 +1,14 @@
 package com.blastoide.jsfcontroller;
 
+import com.blastoide.jpa.ProductosDAO;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.ProductosFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -89,63 +92,50 @@ public class ProductosController implements Serializable {
         }
         return items;
     }
+    
+    
 
-//    public List<Productos> getItemsSinStock() {
-//        
+    public List<Productos> getItemsSinStock() throws Exception {
+        
 //        if (itemsSinStock == null) {
 //            itemsSinStock = getFacade().findAll();
 //        }
 //                
 //        System.err.println("");
 //        System.err.println("itemsSinStock la 1ra vez: " + itemsSinStock.toString());
-//                        
-//                for(int i = 0; i<itemsSinStock.size();i++){
-//                    if(itemsSinStock.get(i).getStockactual() > itemsSinStock.get(i).getStockMinimo()){
-//                        
-//                        System.err.println("producto Id removido: "+ itemsSinStock.get(i).getProductoID() +" Stock actual: " + itemsSinStock.get(i).getStockactual()   + " stock Minimo: " + itemsSinStock.get(i).getStockMinimo());
-//                        itemsSinStock.remove(i);
-//                        
+//        
+//            
+//                for(int i = 0; i==itemsSinStock.size();i++){
+//                    if(itemsSinStock.get(i).getStockactual() > itemsSinStock.get(i).getStockMinimo()) {
+//                         itemsSinStock.remove(i);
 //                    }
-//
+//                        System.err.println(itemsSinStock.toString());
+//                        System.err.println("producto Id removido: "+ itemsSinStock.get(i).getProductoID() +" Stock actual: " + itemsSinStock.get(i).getStockactual()   + " stock Minimo: " + itemsSinStock.get(i).getStockMinimo());
+//                
 //                }
 //                
 //                        System.err.println("");
 //                        System.err.println("itemsSinStock tamaño: " + itemsSinStock.size());
 //                        System.err.println("");
 //                        System.err.println("itemsSinStock: " + itemsSinStock.toString());
+//               
+//                        
 //                        
 //        return itemsSinStock;
-//    
-//    }
-    
-    
-    public List<Productos> getItemsSinStock() {
-        
+
+        ProductosDAO productosDao = new ProductosDAO();
+
         if (itemsSinStock == null) {
-            itemsSinStock = getFacade().findAll();
-            
-        }
-                for(Productos p : itemsSinStock){
-                    if(p.getStockactual() > p.getStockMinimo()){
-                        System.err.println("producto Id removido: "+ p.getProductoID() +" Stock actual: " + p.getStockactual()   + " stock Minimo: " + p.getStockMinimo());
-                        itemsSinStock.remove(p);
-                        
-                    }
-
-                }
-        System.err.println("");
-        System.err.println("itemsSinStock la 1ra vez: " + itemsSinStock.toString());
-                        
-                
-                        System.err.println("");
-                        System.err.println("itemsSinStock tamaño: " + itemsSinStock.size());
-                        System.err.println("");
-                        System.err.println("itemsSinStock: " + itemsSinStock.toString());
-                        
-        return itemsSinStock;
+            itemsSinStock = productosDao.listarProductosSinStock();
+        }        
     
+        return itemsSinStock;
     }
-
+    
+    
+    
+    
+    
     
     
 
