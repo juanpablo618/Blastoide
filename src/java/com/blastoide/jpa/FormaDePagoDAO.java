@@ -21,9 +21,9 @@ public class FormaDePagoDAO extends DAO{
 
                     this.Conectar();
                     this.getCn().setAutoCommit(false);
-
+                            
                     String sql = "SELECT porcentaje FROM FormaDePago where formaDePagoID = "+FormaDePagoID ;
-                    
+                    System.out.println(sql);
                  PreparedStatement st2 = this.getCn().prepareStatement(sql);
 
 System.err.println("st2 de buscar porcentaje de Forma de pago: "+st2.toString());

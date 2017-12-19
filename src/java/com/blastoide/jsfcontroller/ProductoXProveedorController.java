@@ -28,9 +28,25 @@ public class ProductoXProveedorController implements Serializable {
     private List<ProductoXProveedor> items = null;
     private ProductoXProveedor selected;
 
+    private List<ProductoXProveedor> filteredItems;
+
+
+    
+    
     public ProductoXProveedorController() {
     }
 
+    public List<ProductoXProveedor> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<ProductoXProveedor> filteredItems) {
+        this.filteredItems = filteredItems;
+    }
+
+    
+    
+    
     public ProductoXProveedor getSelected() {
         return selected;
     }
@@ -40,12 +56,9 @@ public class ProductoXProveedorController implements Serializable {
     }
 
     protected void setEmbeddableKeys() {
-        selected.getProductoXProveedorPK().setProductoID(selected.getProductos().getProductoID());
-        selected.getProductoXProveedorPK().setProveedorID(selected.getProveedores().getProveedorID());
     }
 
     protected void initializeEmbeddableKey() {
-        selected.setProductoXProveedorPK(new com.blastoide.jsf.ProductoXProveedorPK());
     }
 
     private ProductoXProveedorFacade getFacade() {
@@ -112,7 +125,7 @@ public class ProductoXProveedorController implements Serializable {
         }
     }
 
-    public ProductoXProveedor getProductoXProveedor(com.blastoide.jsf.ProductoXProveedorPK id) {
+    public ProductoXProveedor getProductoXProveedor(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
@@ -127,9 +140,6 @@ public class ProductoXProveedorController implements Serializable {
     @FacesConverter(forClass = ProductoXProveedor.class)
     public static class ProductoXProveedorControllerConverter implements Converter {
 
-        private static final String SEPARATOR = "#";
-        private static final String SEPARATOR_ESCAPED = "\\#";
-
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
@@ -140,20 +150,15 @@ public class ProductoXProveedorController implements Serializable {
             return controller.getProductoXProveedor(getKey(value));
         }
 
-        com.blastoide.jsf.ProductoXProveedorPK getKey(String value) {
-            com.blastoide.jsf.ProductoXProveedorPK key;
-            String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new com.blastoide.jsf.ProductoXProveedorPK();
-            key.setProveedorID(Integer.parseInt(values[0]));
-            key.setProductoID(Integer.parseInt(values[1]));
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(com.blastoide.jsf.ProductoXProveedorPK value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getProveedorID());
-            sb.append(SEPARATOR);
-            sb.append(value.getProductoID());
+            sb.append(value);
             return sb.toString();
         }
 
@@ -164,7 +169,7 @@ public class ProductoXProveedorController implements Serializable {
             }
             if (object instanceof ProductoXProveedor) {
                 ProductoXProveedor o = (ProductoXProveedor) object;
-                return getStringKey(o.getProductoXProveedorPK());
+                return getStringKey(o.getProductoXProveedorID());
             } else {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ProductoXProveedor.class.getName()});
                 return null;

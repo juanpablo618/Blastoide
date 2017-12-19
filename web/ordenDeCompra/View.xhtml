@@ -30,8 +30,11 @@
                         <h:outputText value="#{ordenDeCompraController.selected.total}" title="#{bundle.ViewOrdenDeCompraTitle_total}"/>
                         <h:outputText value="#{bundle.ViewOrdenDeCompraLabel_restoTotal}"/>
                         <h:outputText value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.ViewOrdenDeCompraTitle_restoTotal}"/>
-                        <h:outputText value="#{bundle.ViewOrdenDeCompraLabel_estadoID}"/>
-                        <h:outputText value="#{ordenDeCompraController.selected.estadoID}" title="#{bundle.ViewOrdenDeCompraTitle_estadoID}"/>
+                        
+                        <h:outputText value="Estado:"/>
+                        <h:outputText value="#{ordenDeCompraController.selected.estadoID.ambito}" title="#{bundle.ViewOrdenDeCompraTitle_estadoID}"/>
+                   
+                    
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="OrdenDeCompraViewDialog.hide()"/>
                 </h:panelGroup>

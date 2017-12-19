@@ -33,8 +33,16 @@ public class ProductosController implements Serializable {
 
     private List<Productos> itemsSinStock = null;
     
-    
-    
+    private List<Productos> filteredItems;
+
+    public List<Productos> getFilteredItems() {
+        return filteredItems;
+    }
+
+    public void setFilteredItems(List<Productos> filteredItems) {
+        this.filteredItems = filteredItems;
+    }
+
     public ProductosController() {
     }
 
@@ -87,9 +95,7 @@ public class ProductosController implements Serializable {
     }
 
     public List<Productos> getItems() {
-        if (items == null) {
             items = getFacade().findAll();
-        }
         return items;
     }
     
@@ -125,10 +131,8 @@ public class ProductosController implements Serializable {
 
         ProductosDAO productosDao = new ProductosDAO();
 
-        if (itemsSinStock == null) {
             itemsSinStock = productosDao.listarProductosSinStock();
-        }        
-    
+        
         return itemsSinStock;
     }
     

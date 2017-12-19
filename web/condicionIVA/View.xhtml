@@ -12,8 +12,6 @@
             <h:form id="CondicionIVAViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{condicionIVAController.selected != null}">
-                        <h:outputText value="#{bundle.ViewCondicionIVALabel_condicionIVAID}"/>
-                        <h:outputText value="#{condicionIVAController.selected.condicionIVAID}" title="#{bundle.ViewCondicionIVATitle_condicionIVAID}"/>
                         <h:outputText value="#{bundle.ViewCondicionIVALabel_nombre}"/>
                         <h:outputText value="#{condicionIVAController.selected.nombre}" title="#{bundle.ViewCondicionIVATitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewCondicionIVALabel_descripcion}"/>

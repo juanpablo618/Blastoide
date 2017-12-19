@@ -32,18 +32,12 @@
                         <h:outputText value="#{bundle.ViewProductosLabel_medida}"/>
                         <h:outputText value="#{productosController.selected.medida}" title="#{bundle.ViewProductosTitle_medida}"/>
                         
-                        <h:outputText value="#{bundle.ViewProductosLabel_precioVenta}"/>
-                        <h:outputText value="#{productosController.selected.precioVenta}" title="#{bundle.ViewProductosTitle_precioVenta}"/>
-                        
                         <h:outputText value="#{bundle.ViewProductosLabel_ultimaActualizacionStock}"/>
                         <h:outputText value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.ViewProductosTitle_ultimaActualizacionStock}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         
-                        
-                        
-                        
-                        <h:outputText value="#{bundle.ViewProductosLabel_precioFinalAFacturar}"/>
+                        <h:outputText value="precio de venta:"/>
                         <h:outputText value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.ViewProductosTitle_precioFinalAFacturar}"/>
                         
                         <h:outputText value="#{bundle.ViewProductosLabel_stockactual}"/>
@@ -52,11 +46,6 @@
                         <h:outputText value="#{bundle.ViewProductosLabel_stockMinimo}"/>
                         <h:outputText value="#{productosController.selected.stockMinimo}" title="#{bundle.ViewProductosTitle_stockMinimo}"/>
                         
-                        <h:outputText value="#{bundle.ViewProductosLabel_tipoProductoID}"/>
-                        <h:outputText value="#{productosController.selected.tipoProductoID}" title="#{bundle.ViewProductosTitle_tipoProductoID}"/>
-                        
-                    
-                    
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductosViewDialog.hide()"/>
                 </h:panelGroup>

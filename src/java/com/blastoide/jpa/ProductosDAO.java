@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Productos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +45,7 @@ stockMinimo
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCn().prepareCall("SELECT productoID, codigo, nombre, marca, fragancia, caracteristica, medida, precioVenta, ultimaActualizacionStock, stockactual, stockMinimo from Productos where stockMinimo >= stockactual");
+            PreparedStatement st = this.getCn().prepareCall("SELECT productoID, codigo, nombre, marca, fragancia, caracteristica, medida, precioFinalAFacturar, ultimaActualizacionStock, stockactual, stockMinimo from Productos where stockMinimo >= stockactual");
             rs = st.executeQuery();
                 lista = new ArrayList();
             while(rs.next()){
@@ -61,7 +57,7 @@ stockMinimo
                 producto.setFragancia(rs.getString("fragancia"));
                 producto.setCaracteristica(rs.getString("caracteristica"));
                 producto.setMedida(rs.getString("medida"));
-                producto.setPrecioVenta(rs.getDouble("precioVenta"));
+                producto.setPrecioFinalAFacturar(rs.getDouble("precioFinalAFacturar"));
                 
                 producto.setUltimaActualizacionStock(rs.getDate("ultimaActualizacionStock"));
                 producto.setStockactual(rs.getInt("stockactual"));
@@ -80,6 +76,23 @@ stockMinimo
         return lista;
     
     }
-    
-    
+
+    public int buscarPorCodigoDeBarra(String productoCodBarra) throws SQLException {
+       
+        int idBuscado = 0;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCn().prepareCall("SELECT productoID FROM `Productos` WHERE codigo = ".concat(productoCodBarra));
+            rs = st.executeQuery();
+            while(rs.next()){
+                idBuscado = rs.getInt("productoID");
+            }
+        } catch (Exception e) {
+        }finally{
+            this.Cerrar();
+        }
+        return idBuscado;
+
+    }
 }

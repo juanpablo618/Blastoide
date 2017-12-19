@@ -12,8 +12,6 @@
             <h:form id="TipoClientesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoClientesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTipoClientesLabel_tipoClienteID}" for="tipoClienteID" />
-                        <p:inputText id="tipoClienteID" value="#{tipoClientesController.selected.tipoClienteID}" title="#{bundle.EditTipoClientesTitle_tipoClienteID}" required="true" requiredMessage="#{bundle.EditTipoClientesRequiredMessage_tipoClienteID}"/>
                         <p:outputLabel value="#{bundle.EditTipoClientesLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tipoClientesController.selected.descripcion}" title="#{bundle.EditTipoClientesTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoClientesRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditTipoClientesLabel_nombre}" for="nombre" />

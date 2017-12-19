@@ -14,9 +14,13 @@ public abstract class ConfiguracionesGenerales {
     
     private static final String URL_DE_LOGO_MUNDO_LIMPIEZA = "http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza2.jpg";
     
+    //configuracion para mi linux = /home/juan/Documents
     
-    private static final String CARPETA_DE_PRESUPUESTOS = "/home/developer/Desktop/Presupuesto";
+    //ANDA EN PC DE LUCAS NO BORRAR
+    //private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
 
+    private static final String CARPETA_DE_PRESUPUESTOS = "/home/juan/Documents";
+    
     public static String getURL_DE_LOGO_MUNDO_LIMPIEZA() {
         return URL_DE_LOGO_MUNDO_LIMPIEZA;
     }
@@ -24,7 +28,6 @@ public abstract class ConfiguracionesGenerales {
     public static String getCARPETA_DE_PRESUPUESTOS() {
         return CARPETA_DE_PRESUPUESTOS;
     }
-    
     
     
     

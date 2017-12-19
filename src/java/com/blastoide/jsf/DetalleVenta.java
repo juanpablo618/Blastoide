@@ -5,11 +5,11 @@
  */
 package com.blastoide.jsf;
 
-import javax.faces.context.FacesContext;
+import java.util.Objects;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpabloq@gmail.com
  */
 public class DetalleVenta {
     
@@ -52,11 +52,40 @@ private int cantidad;
     }
 
     @Override
-    public String toString() {
-        return  producto + " " + cantidad + "||";
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.codigo;
+        return hash;
     }
 
-  
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DetalleVenta other = (DetalleVenta) obj;
+        if (!Objects.equals(this.producto, other.producto)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+
+    
+
+    @Override
+    public String toString() {
+        return "DetalleVenta{" + "codigo=" + codigo + ", venta=" + venta + ", producto=" + producto + ", cantidad=" + cantidad + '}';
+    }
+
+    
     
     
 }

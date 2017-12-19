@@ -176,7 +176,7 @@ public class Domicilios implements Serializable {
 
     @Override
     public String toString() {
-        return calle;
+        return calle + numero;
     }
     
 }
