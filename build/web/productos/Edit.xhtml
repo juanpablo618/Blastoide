@@ -31,15 +31,14 @@
                         <p:outputLabel value="#{bundle.EditProductosLabel_medida}" for="medida" />
                         <p:inputText id="medida" value="#{productosController.selected.medida}" title="#{bundle.EditProductosTitle_medida}" />
                         
-                        <p:outputLabel value="#{bundle.EditProductosLabel_precioVenta}" for="precioVenta" />
-                        <p:inputText id="precioVenta" value="#{productosController.selected.precioVenta}" title="#{bundle.EditProductosTitle_precioVenta}" required="true" requiredMessage="#{bundle.EditProductosRequiredMessage_precioVenta}"/>
-                        
-                        <p:outputLabel value="#{bundle.EditProductosLabel_ultimaActualizacionStock}" for="ultimaActualizacionStock" />
-                        <p:calendar id="ultimaActualizacionStock" pattern="MM/dd/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}"  showOn="button"/>
+                        <p:outputLabel value="U. actualizacion de stock" for="ultimaActualizacionStock" />
+                        <p:calendar id="ultimaActualizacionStock" pattern="dd/MM/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}"  showOn="button"/>
                         
                         
-                        <p:outputLabel value="#{bundle.EditProductosLabel_precioFinalAFacturar}" for="precioFinalAFacturar" />
-                        <p:inputText id="precioFinalAFacturar" value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.EditProductosTitle_precioFinalAFacturar}" />
+                        <p:outputLabel value="precio de venta:" for="precioFinalAFacturar" />
+                        <p:inputText id="precioFinalAFacturar" value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.EditProductosTitle_precioFinalAFacturar}" >
+                            <f:convertNumber pattern="#0.00" />
+                        </p:inputText>
                         
                         <p:outputLabel value="#{bundle.EditProductosLabel_stockactual}" for="stockactual" />
                         <p:inputText id="stockactual" value="#{productosController.selected.stockactual}" title="#{bundle.EditProductosTitle_stockactual}" />
@@ -47,7 +46,7 @@
                         <p:outputLabel value="#{bundle.EditProductosLabel_stockMinimo}" for="stockMinimo" />
                         <p:inputText id="stockMinimo" value="#{productosController.selected.stockMinimo}" title="#{bundle.EditProductosTitle_stockMinimo}" />
                         
-                        <p:outputLabel value="#{bundle.EditProductosLabel_tipoProductoID}" for="tipoProductoID" />
+                        <p:outputLabel value="tipo de producto:" for="tipoProductoID" />
                         <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{tiposProductosController.itemsAvailableSelectOne}"

@@ -22,32 +22,27 @@
     <h:form id="menuForm">
         <p:growl id="messages" showDetail="false"/>
 
-        <p:slideMenu backLabel="Atras">
+        <p:tieredMenu style="width:150px; font-size: larger;">
+            <p:submenu label="INICIO" icon="ui-icon-circle-arrow-e">
                 <p:menuitem value="inicio" outcome="/usuarioComun.xhtml" />
-            
+            </p:submenu>
+
+
             <p:separator />
             <p:submenu label="CAJA" icon="ui-icon-circle-arrow-e">
-                <p:menuitem value="iniciar valor de caja" outcome="/inicioCaja/InicioCaja.xhtml" />
-                <p:menuitem value="facturar" outcome="/caja/Facturar.xhtml" />
-                
+                <p:menuitem value="Facturar" outcome="/caja/Facturar.xhtml" />
             </p:submenu>
-            
-                       
+
+
             <p:separator />
             <p:submenu label="PRODUCTOS" icon="ui-icon-circle-arrow-e" rendered="true">
                 <p:menuitem value="Productos" outcome="/productos/List.xhtml" />
                 <p:separator />
                 <p:menuitem value="Productos Sin Stock" outcome="/productos/ProductosSinStock.xhtml" />
                 <p:separator />
-                
-                
-                
             </p:submenu>
-            
-            
-        </p:slideMenu>
+        </p:tieredMenu>    
 
-        
     </h:form>
 
 

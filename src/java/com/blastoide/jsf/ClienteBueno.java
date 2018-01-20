@@ -314,7 +314,7 @@ public class ClienteBueno implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente=" + nombre + " "+ apellido + " ]";
+        return  nombre.concat(", ").concat(apellido) ;
     }
     
 }

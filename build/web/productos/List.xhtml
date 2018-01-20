@@ -6,8 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/index.xhtml">
-
+    <ui:composition template="/indexAdmin.xhtml">
+        <style>
+            .output{
+                text-align: right;
+            }
+        </style>
 
         <ui:define name="title">
             <h:outputText value="#{bundle.ListProductosTitle}"></h:outputText>
@@ -22,46 +26,91 @@
                                  rowKey="#{item.productoID}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 filteredValue="#{productosController.filteredItems}"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column style="font-size:10px;" filterBy="#{item.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
+                        
+                        <p:column style="font-size:10px;" filterBy="#{item.codigo}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="codigo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_precioVenta}"/>
+                                <h:outputText value="Caracteristica"/>
                             </f:facet>
-                            <h:outputText value="#{item.precioVenta}"/>
+                            <h:outputText value="#{item.caracteristica}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_ultimaActualizacionStock}"/>
+                                <h:outputText value="Fragancia"/>
                             </f:facet>
-                            <h:outputText value="#{item.ultimaActualizacionStock}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <h:outputText value="#{item.fragancia}"/>
+                        </p:column>
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="Medida"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medida}"/>
+                        </p:column>
+                        
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="Precio de venta"/>
+                            </f:facet>
+                            <h:outputText value="#{item.precioFinalAFacturar}">
+                                <f:convertNumber pattern="#0.00"/>
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_stockactual}"/>
+                                <h:outputText value="Stock actual"/>
                             </f:facet>
                             <h:outputText value="#{item.stockactual}"/>
                         </p:column>
-                        <p:column>
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_stockMinimo}"/>
+                                <h:outputText value="Stock minimo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stockMinimo}"/>
+                        </p:column>
+                        
+                        
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="Ultima actualización"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ultimaActualizacionStock}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="Stock actual"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stockactual}"/>
+                        </p:column>
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="Stock Minimo"/>
                             </f:facet>
                             <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>

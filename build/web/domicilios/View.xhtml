@@ -20,8 +20,8 @@
                         <h:outputText value="#{domiciliosController.selected.departamento}" title="#{bundle.ViewDomiciliosTitle_departamento}"/>
                         <h:outputText value="#{bundle.ViewDomiciliosLabel_piso}"/>
                         <h:outputText value="#{domiciliosController.selected.piso}" title="#{bundle.ViewDomiciliosTitle_piso}"/>
-                        <h:outputText value="#{bundle.ViewDomiciliosLabel_localidadID}"/>
-                        <h:outputText value="#{domiciliosController.selected.localidadID}" title="#{bundle.ViewDomiciliosTitle_localidadID}"/>
+                        <h:outputText value="localidad"/>
+                        <h:outputText value="#{domiciliosController.selected.localidadID.nombre}" title="#{bundle.ViewDomiciliosTitle_localidadID}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="DomiciliosViewDialog.hide()"/>
                 </h:panelGroup>

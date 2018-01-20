@@ -4,18 +4,11 @@ package com.blastoide.jsfcontroller;
 import com.blastoide.jpa.ClienteDAO;
 import com.blastoide.jsf.Cliente;
 import com.blastoide.jsf.CuentasCorrientes;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -71,7 +64,7 @@ public class ClienteBean implements Serializable{
     
     
     
-    public void listar(String valor) throws Exception{
+        public void listar(String valor) throws Exception{
      ClienteDAO dao;
         
            try {

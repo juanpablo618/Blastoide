@@ -12,8 +12,6 @@
             <h:form id="TiposProductosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposProductosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTiposProductosLabel_tipoProductoID}"/>
-                        <h:outputText value="#{tiposProductosController.selected.tipoProductoID}" title="#{bundle.ViewTiposProductosTitle_tipoProductoID}"/>
                         <h:outputText value="#{bundle.ViewTiposProductosLabel_nombre}"/>
                         <h:outputText value="#{tiposProductosController.selected.nombre}" title="#{bundle.ViewTiposProductosTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewTiposProductosLabel_descripcion}"/>

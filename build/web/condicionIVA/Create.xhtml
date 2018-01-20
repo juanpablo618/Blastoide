@@ -12,8 +12,6 @@
             <h:form id="CondicionIVACreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{condicionIVAController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCondicionIVALabel_condicionIVAID}" for="condicionIVAID" />
-                        <p:inputText id="condicionIVAID" value="#{condicionIVAController.selected.condicionIVAID}" title="#{bundle.CreateCondicionIVATitle_condicionIVAID}" required="true" requiredMessage="#{bundle.CreateCondicionIVARequiredMessage_condicionIVAID}"/>
                         <p:outputLabel value="#{bundle.CreateCondicionIVALabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{condicionIVAController.selected.nombre}" title="#{bundle.CreateCondicionIVATitle_nombre}" required="true" requiredMessage="#{bundle.CreateCondicionIVARequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateCondicionIVALabel_descripcion}" for="descripcion" />

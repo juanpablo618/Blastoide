@@ -12,8 +12,6 @@
             <h:form id="CondicionIVAEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{condicionIVAController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditCondicionIVALabel_condicionIVAID}" for="condicionIVAID" />
-                        <p:inputText id="condicionIVAID" value="#{condicionIVAController.selected.condicionIVAID}" title="#{bundle.EditCondicionIVATitle_condicionIVAID}" required="true" requiredMessage="#{bundle.EditCondicionIVARequiredMessage_condicionIVAID}"/>
                         <p:outputLabel value="#{bundle.EditCondicionIVALabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{condicionIVAController.selected.nombre}" title="#{bundle.EditCondicionIVATitle_nombre}" required="true" requiredMessage="#{bundle.EditCondicionIVARequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditCondicionIVALabel_descripcion}" for="descripcion" />

@@ -12,22 +12,30 @@
             <h:form id="ProductoXProveedorEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoXProveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_proveedorID}" for="proveedorID" />
+                        
+                        <p:selectOneMenu id="proveedorID" value="#{productoXProveedorController.selected.proveedorID}" style="margin: 10px;">
+                            <f:selectItems value="#{proveedoresController.itemsAvailableSelectOne}"
+                                           var="tipoProveedorIDItem"
+                                           itemValue="#{tipoProveedorIDItem.proveedorID}"/>
+                        </p:selectOneMenu>
+
+                        
+                        
+                        
+                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_productoID}" for="productoID" />
+                        
+                        
+                        <p:selectOneMenu id="productoID" value="#{productoXProveedorController.selected.productoID}" style="margin: 10px;">
+                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
+                                           var="tipoProductoIDItem"
+                                           itemValue="#{tipoProductoIDItem.productoID}"/>
+                        </p:selectOneMenu>
+                        
+                        
+                        
                         <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_precioCosto}" for="precioCosto" />
                         <p:inputText id="precioCosto" value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.EditProductoXProveedorTitle_precioCosto}" required="true" requiredMessage="#{bundle.EditProductoXProveedorRequiredMessage_precioCosto}"/>
-                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_productos}" for="productos" />
-                        <p:selectOneMenu id="productos" value="#{productoXProveedorController.selected.productos}" required="true" requiredMessage="#{bundle.EditProductoXProveedorRequiredMessage_productos}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
-                                           var="productosItem"
-                                           itemValue="#{productosItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_proveedores}" for="proveedores" />
-                        <p:selectOneMenu id="proveedores" value="#{productoXProveedorController.selected.proveedores}" required="true" requiredMessage="#{bundle.EditProductoXProveedorRequiredMessage_proveedores}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{proveedoresController.itemsAvailableSelectOne}"
-                                           var="proveedoresItem"
-                                           itemValue="#{proveedoresItem}"/>
-                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{productoXProveedorController.update}" value="#{bundle.Save}" update="display,:ProductoXProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductoXProveedorEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProductoXProveedorEditDialog.hide()"/>

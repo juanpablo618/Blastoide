@@ -8,52 +8,49 @@
 
     <ui:composition>
 
-        <p:dialog id="ProductosCreateDlg" widgetVar="ProductosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductosTitle}">
+        <p:dialog id="ProductosCreateDlg" widgetVar="ProductosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.TitleNewProd}">
             <h:form id="ProductosCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateProductosLabel_codigo}" for="codigo" />
-                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" />
-                        
+                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}" />
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" />
-                        
+                        <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}" />
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_marca}" for="marca" />
-                        <p:inputText id="marca" value="#{productosController.selected.marca}" title="#{bundle.CreateProductosTitle_marca}" />
-                        
+                        <p:inputText id="marca" value="#{productosController.selected.marca}" title="#{bundle.CreateProductosTitle_marca}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_marca}" />
+                                       
                         <p:outputLabel value="#{bundle.CreateProductosLabel_fragancia}" for="fragancia" />
                         <p:inputText id="fragancia" value="#{productosController.selected.fragancia}" title="#{bundle.CreateProductosTitle_fragancia}" />
-                        
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_caracteristica}" for="caracteristica" />
                         <p:inputText id="caracteristica" value="#{productosController.selected.caracteristica}" title="#{bundle.CreateProductosTitle_caracteristica}" />
-                        
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_medida}" for="medida" />
                         <p:inputText id="medida" value="#{productosController.selected.medida}" title="#{bundle.CreateProductosTitle_medida}" />
-                        
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_precioVenta}" for="precioVenta" />
-                        <p:inputText id="precioVenta" value="#{productosController.selected.precioVenta}" title="#{bundle.CreateProductosTitle_precioVenta}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_precioVenta}"/>
+
                         
                         <p:outputLabel value="#{bundle.CreateProductosLabel_ultimaActualizacionStock}" for="ultimaActualizacionStock" />
-                        <p:calendar id="ultimaActualizacionStock" pattern="MM/dd/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}"  showOn="button"/>
-                        
-                        
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_precioFinalAFacturar}" for="precioFinalAFacturar" />
+                        <p:calendar id="ultimaActualizacionStock" pattern="dd/MM/yyyy" value="#{productosController.selected.ultimaActualizacionStock}" title="#{bundle.EditProductosTitle_ultimaActualizacionStock}"  showOn="button"/>
+
+
+                        <p:outputLabel value="precio de venta:" for="precioFinalAFacturar" />
                         <p:inputText id="precioFinalAFacturar" value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.CreateProductosTitle_precioFinalAFacturar}" />
-                        
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_stockactual}" for="stockactual" />
                         <p:inputText id="stockactual" value="#{productosController.selected.stockactual}" title="#{bundle.CreateProductosTitle_stockactual}" />
-                        
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_stockMinimo}" for="stockMinimo" />
                         <p:inputText id="stockMinimo" value="#{productosController.selected.stockMinimo}" title="#{bundle.CreateProductosTitle_stockMinimo}" />
-                        
+
                         <p:outputLabel value="#{bundle.CreateProductosLabel_tipoProductoID}" for="tipoProductoID" />
-                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" >
+                        <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" style="width: 85%">
                             <f:selectItems value="#{tiposProductosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"
                                            itemValue="#{tipoProductoIDItem}"/>
                         </p:selectOneMenu>
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{productosController.create}" value="#{bundle.Save}" update="display,:ProductosListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductosCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProductosCreateDialog.hide()"/>

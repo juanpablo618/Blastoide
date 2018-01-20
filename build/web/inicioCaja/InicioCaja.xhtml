@@ -6,21 +6,22 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/index.xhtml">
+    <ui:composition template="/indexAdmin.xhtml">
 
 
 
         <ui:define name="body">
-            <h:form id="ImagenesListForm" style="width: 105%;">
-                
-                <p:outputLabel value="Caja inicial" />
-                        
-                    <p:inputText id="valorCajaInicial"  value="#{cajaDiariaController.valorInicialDiario}" title="valor inicial diario" required="true" requiredMessage="no ingreso valor"> </p:inputText>
-                
-                
-               <p:commandButton actionListener="#{cajaDiariaController.setValorInicialDiario}" />
-                     
-                
+            <h:form id="ImagenesListForm" style="text-align: center;">
+
+                <h1 style="color: white">CAJA INICIAL</h1>
+
+                <p:inputMask id="valorCajaInicial"  value="#{cajaDiariaController.valorInicialDiario}" mask="$9999.99"
+                             style="text-align: left;margin-right: 5px;"> </p:inputMask>
+
+
+                <p:commandButton value="Iniciar Día" actionListener="#{cajaDiariaController.setValorInicialDiario}" />
+
+
             </h:form>
 
 
