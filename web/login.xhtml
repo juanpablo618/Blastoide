@@ -6,9 +6,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    
-    
-   <h:head>
+
+
+    <h:head>
         <title>Login ML</title>
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></link>
         <style>
@@ -25,39 +25,39 @@
             }
         </style>
     </h:head>  
-    
-<h:body style="background: url(images/mundoLimpieza2.jpg)">
-	<h:form style="margin-top: 14%; margin-left: 32.5%;">
-            
+
+    <h:body style="background: url(images/mundoLimpieza2.jpg);">
+
+        <h:form style="margin-top: 14%; margin-left: 36.5%; background: rgba(76, 175, 80, 0.3); opacity: 0.9; width: 22.8%;">
+
             <p:growl id="mensajes" showDetail="true" life="2500" autoUpdate="true" />
 
-            <p:panel header="Ingrese su Cuenta por favor . . ." style="font-family: inherit;width:330px; text-align: center; background-color: transparent;
+            <p:panel header="Ingrese su Cuenta por favor . . ." style="font-family: inherit;width:330px; text-align: center; background-color: black;
                      border: none;">
                 <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="Username" />
-                        <p:inputText id="username" value="#{login.user}" required="true" label="Usuario" placeholder="Usuario" style="font-family: serif;" ></p:inputText>
-                        <h:message for="username"></h:message>
-                        <br></br><br></br>
+                    <h:outputText value="Usuario" style="color: white;" />
+                    <p:inputText id="username" value="#{login.user}" required="true" label="Usuario" placeholder="Usuario" style="font-family: serif;" ></p:inputText>
+                    <h:message for="username"></h:message>
+                    <br></br><br></br>
 
-                        <h:outputText value="Password" />
-                        <h:inputSecret id="password" value="#{login.pwd}" style="font-family: serif;" ></h:inputSecret>
-                        <h:message for="password"></h:message>
-                        <br></br><br></br>
-                    
-                        <f:facet name="footer">    
+                    <h:outputText value="Clave" style="color: white;"/>
+                    <h:inputSecret id="password" value="#{login.pwd}" style="font-family: serif;" ></h:inputSecret>
+                    <h:message for="password"></h:message>
+                    <br></br>
+
+                    <f:facet name="footer">    
                         <h:commandButton action="#{login.validateUsernamePassword}"
-                                value="Login" style="font-family: serif;font-weight:bold; font-size: 1.4em; 
-                                text-shadow: -2px -2px 1px red;color: black" ></h:commandButton>
-                        </f:facet>        
-                                
+                                         value="Iniciar Sesión" style="font-family: serif;font-weight:bold; font-size: 1.2em;
+                                         color: black; padding: 3% 20% 3% 20%;" ></h:commandButton>
+                    </f:facet>        
+
                 </h:panelGrid>
             </p:panel>                
-                
-	</h:form>
-    
-    
-</h:body>
-    
-    
-    
+
+        </h:form>
+
+
+    </h:body>
+
+
 </html>

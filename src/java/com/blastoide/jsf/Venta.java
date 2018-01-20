@@ -33,9 +33,6 @@ public class Venta {
         this.empleado = empleado;
     }
     
-    
-    
-    
     public int getFormadePagoID() {
         return formadePagoID;
     }

@@ -5,7 +5,6 @@
  */
 package com.blastoide.jpa;
 
-import com.blastoide.jsf.FormaDePago;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 

@@ -8,7 +8,7 @@
 
    
     
-    <ui:composition template="/index.xhtml">
+    <ui:composition template="/indexAdmin.xhtml">
 
         
 
@@ -22,6 +22,7 @@
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  emptyMessage="No existen clientes con cuentas corrientes."
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -30,16 +31,46 @@
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClienteBuenoTitle_nombre}"/>
+                                <h:outputText value="apellido"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellido}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClienteBuenoTitle_dni}"/>
                             </f:facet>
                             <h:outputText value="#{item.dni}"/>
                         </p:column>
+                        
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="tipo de cliente"/>
+                            </f:facet>
+                            <h:outputText value="#{tipoClientesController.getTipoClientes(item.tipoClienteID).nombre}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="forma de pago"/>
+                            </f:facet>
+                            <h:outputText value="#{formaDePagoController.getFormaDePago(item.formaDePagoID).nombre}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cuil/cuit"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cuitCuil}"/>
+                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="razon social"/>

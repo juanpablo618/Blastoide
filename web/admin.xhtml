@@ -74,12 +74,11 @@
                                 <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
                             </center>
                             <center>
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">BIENVENIDO #{login.user} // administrador</h:outputLabel>
-
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">BIENVENIDO</h:outputLabel><br></br>
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">Administrador: #{login.user}</h:outputLabel>
                             </center>
-                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
-                                <h3 style="margin-top:0">Hora:</h3>
-                                <p:clock />
+                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt; margin-top: 3%;" >
+                                <p:clock pattern="dd/MM/yyyy || HH:mm " />
                             </h:form>
                             <center style="margin-top: 10%;">
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>

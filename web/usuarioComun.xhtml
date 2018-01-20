@@ -6,10 +6,11 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title><ui:insert name="title">Mundo Limpieza / Usuario Común</ui:insert></title>
+        <title><ui:insert name="title">Mundo Limpieza</ui:insert></title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
+        
         <style>
 
             .ui-state-disabled{
@@ -74,14 +75,13 @@
                                 <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
                             </center>
                             <center>
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">BIENVENIDO #{login.user}  // común</h:outputLabel>
-
+                                <h:outputLabel value="BIENVENIDO"  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt"/><br></br>
+                                <h:outputLabel value="Cajero: #{login.user}" style="color: white; text-align: center;font-size: 2.8em;font-family: bolt"/>
                             </center>
-                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
-                                <h3 style="margin-top:0">Hora:</h3>
-                                <p:clock />
+                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt; margin-top: 3%;" >
+                                <p:clock pattern="dd/MM/yyyy || HH:mm "/>
                             </h:form>
-                            
+
 
                         </ui:insert>
                     </div>
@@ -100,33 +100,6 @@
         -->
 
 
-        <br />
-
-        <br />
-        <h:link outcome="/cuentasCorrientes_1/List" value="Show All CuentasCorrientes_1 Items"/>
-        <br />
-        <h:link outcome="/productos/List" value="Show All Productos Items"/>
-        <br />
-        <h:link outcome="/productos/List" value="Show All Productos Items"/>
-        <br />
-        <h:link outcome="/tiposProductos/List" value="Show All TiposProductos Items"/>
-        <br />
-        <h:link outcome="/tiposRubros/List" value="Show All TiposRubros Items"/>
-        <br />
-        <h:link outcome="/unidadesMedida/List" value="Show All UnidadesMedida Items"/>
     </h:body>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>

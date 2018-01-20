@@ -121,7 +121,7 @@ public class TipoClientes implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jsf.TipoClientes[ tipoClienteID=" + tipoClienteID + " ]";
+        return nombre ;
     }
     
 }

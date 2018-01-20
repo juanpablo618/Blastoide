@@ -26,6 +26,15 @@ public class Login implements Serializable {
 	private String pwd;
 	private String msg;
 	private String user;
+        private String rol;
+
+        public String getRol() {
+            return rol;
+        }
+
+        public void setRol(String rol) {
+            this.rol = rol;
+        }
 
 	public String getPwd() {
 		return pwd;
@@ -60,7 +69,9 @@ public class Login implements Serializable {
                         
                          
                          if(LoginDAO.getRol().equals("administrador")){
+                             this.rol = "administrador";
                              return "admin";
+                             
                          }else{
                              return "usuarioComun";
                          }

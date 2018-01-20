@@ -5,27 +5,40 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <style>
         .ui-button{
             margin-bottom: 8px;
         }
-    </style>
-    
-    <h:form>
+        .ui-clock {
+            padding: 12px 10px;
+        }
+        .ui-clock.ui-widget-header {
+            border-right: 1px solid;
+            border-bottom: 1px solid;
+        }
+        </style>
 
-        <center>
-            <h:outputLabel  style="color: white; text-align: center;font-size: 1.8em;font-family: bolt">MUNDO LIMPIEZA</h:outputLabel> <br/>
-            <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt;">Lucas Valinotti</h:outputLabel>
-        </center> <br/>
+        <h:form>
+
+            <center>
+                <h:outputLabel  style="color: white; text-align: center;font-size: 1.8em;font-family: bolt">MUNDO LIMPIEZA</h:outputLabel> <br/>
+                    <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt;">Lucas Valinotti</h:outputLabel>
+            </center> <br/>
 
 
-        <p:toolbar id="toolbarMenu">
-            
-            
-            <f:facet name="right">  
+            <p:toolbar id="toolbarMenu">
+                <f:facet name="left">
+                    <br></br>
+                    
+                    <p:clock pattern="dd/MM/yyyy" />
+                    
+                    <p:clock pattern="HH:mm:ss" />
+                </f:facet>
+
+                <f:facet name="right">  
                     <p:toolbarGroup>
-                        <p:button  icon="ui-icon-home" title="Home"/>
+                        <p:button  icon="ui-icon-home" title="Home" outcome="/index.xhtml"/>
                         <p:separator/>
                         <p:button  icon="ui-icon-alert" title="Alertas Vigentes"/>
                         <p:separator/>
@@ -33,21 +46,18 @@
                         <p:separator/>                
                         <p:growl id="messages" showDetail="false"/>
 
-                        <p:menuButton value="#{login.user}">
+                        <p:menuButton value="#{login.user}" >
                             <p:menuitem value="Home"  icon="ui-icon-home"/>
-                            <p:menuitem value="Alertas"  icon="ui-icon-alert"/>
+                            <p:menuitem value="Alertas"  icon="ui-icon-alert" />
+                            <p:separator />
                             <p:menuitem>
                                     <h:commandLink action="#{login.logout}" value="SALIR"> </h:commandLink>
                             </p:menuitem>
-                            <p:separator />
                         </p:menuButton>
-                        
-                        
-                        
                         <p:separator/>
                     </p:toolbarGroup>
-            </f:facet>    
-        </p:toolbar>
+                </f:facet>    
+            </p:toolbar>
 
-    </h:form>
-</ui:composition>
+        </h:form>
+    </ui:composition>

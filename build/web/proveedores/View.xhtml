@@ -12,6 +12,8 @@
             <h:form id="ProveedoresViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedoresController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProveedoresLabel_razonSocial}"/>
+                        <h:outputText value="#{proveedoresController.selected.razonSocial}" title="#{bundle.ViewProveedoresTitle_razonSocial}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nombre}"/>
                         <h:outputText value="#{proveedoresController.selected.nombre}" title="#{bundle.ViewProveedoresTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_apellido}"/>
@@ -22,15 +24,14 @@
                         <h:outputText value="#{proveedoresController.selected.email}" title="#{bundle.ViewProveedoresTitle_email}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_fechaNacimiento}"/>
                         <h:outputText value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.ViewProveedoresTitle_fechaNacimiento}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_tipoDocumentoID}"/>
                         <h:outputText value="#{proveedoresController.selected.tipoDocumentoID}" title="#{bundle.ViewProveedoresTitle_tipoDocumentoID}"/>
                         
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nroDocumento}"/>
                         <h:outputText value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.ViewProveedoresTitle_nroDocumento}"/>
-                        <h:outputText value="#{bundle.ViewProveedoresLabel_razonSocial}"/>
-                        <h:outputText value="#{proveedoresController.selected.razonSocial}" title="#{bundle.ViewProveedoresTitle_razonSocial}"/>
+                        
                         <h:outputText value="#{bundle.ViewProveedoresLabel_telefono}"/>
                         <h:outputText value="#{proveedoresController.selected.telefono}" title="#{bundle.ViewProveedoresTitle_telefono}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_celular}"/>
@@ -39,12 +40,16 @@
                         <h:outputText value="#{proveedoresController.selected.sexo}" title="#{bundle.ViewProveedoresTitle_sexo}"/>
                         <h:outputText value="#{bundle.ViewProveedoresLabel_web}"/>
                         <h:outputText value="#{proveedoresController.selected.web}" title="#{bundle.ViewProveedoresTitle_web}"/>
+                        
                         <h:outputText value="#{bundle.ViewProveedoresLabel_realdomicilioID}"/>
-                        <h:outputText value="#{proveedoresController.selected.realdomicilioID}" title="#{bundle.ViewProveedoresTitle_realdomicilioID}"/>
+                        <h:outputText value="#{proveedoresController.selected.realdomicilioID.calle.toString()}" title="#{bundle.ViewProveedoresTitle_realdomicilioID}"/>
+                        
                         <h:outputText value="#{bundle.ViewProveedoresLabel_fiscaldomicilioID}"/>
-                        <h:outputText value="#{proveedoresController.selected.fiscaldomicilioID}" title="#{bundle.ViewProveedoresTitle_fiscaldomicilioID}"/>
+                        <h:outputText value="#{proveedoresController.selected.fiscaldomicilioID.toString() }" title="#{bundle.ViewProveedoresTitle_fiscaldomicilioID}"/>
+                        
+                        
                         <h:outputText value="#{bundle.ViewProveedoresLabel_condicionIVAID}"/>
-                        <h:outputText value="#{proveedoresController.selected.condicionIVAID}" title="#{bundle.ViewProveedoresTitle_condicionIVAID}"/>
+                        <h:outputText value="#{proveedoresController.selected.condicionIVAID.toString()}" title="#{bundle.ViewProveedoresTitle_condicionIVAID}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProveedoresViewDialog.hide()"/>
                 </h:panelGroup>

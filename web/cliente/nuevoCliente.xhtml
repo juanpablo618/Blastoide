@@ -14,23 +14,14 @@
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
                        
                         
-                        
-                        
-                        
-                    
-                    
-                            
-                        <p:outputLabel value="Nombre: "  for="nombre" />
-                        <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="debe ingresar el nombre"/>
-
-
                         <p:outputLabel value="Apellido: "   />
-
                         <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  title="Apellido" required="true" requiredMessage="debe ingresar el apellido"/>
 
+                        <p:outputLabel value="Nombre: "  for="nombre" />
+                        <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="debe ingresar el nombre"/>
+                        
                         <p:outputLabel value="Documento: " />
-
-                            <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni"/>
+                        <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni"/>
 
                         <p:outputLabel value="Sexo: "   />
 

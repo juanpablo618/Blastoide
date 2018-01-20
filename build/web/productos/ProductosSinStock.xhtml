@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/index.xhtml">
+    <ui:composition template="/indexAdmin.xhtml">
 
 
         <ui:define name="title">
@@ -15,13 +15,14 @@
 
         <ui:define name="body">
             <h:form id="ProductosListForm">
-                <p:panel header="Productos sin Stock">
+                <p:panel header="Productos sin Stock:">
                     <p:dataTable id="datalist" value="#{productosController.itemsSinStock}" var="item"
                                  selectionMode="single" selection="#{productosController.selected}"
                                  paginator="true"
                                  rowKey="#{item.productoID}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="no existen productos con stock minimo"
                                  >
 
                         <p:ajax event="rowSelect"   update="editButton"/>
@@ -39,18 +40,23 @@
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
-                        <p:column>
+                        
+                        <p:column style="font-size:10px;">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_precioVenta}"/>
+                                <h:outputText value="Precio de venta"/>
                             </f:facet>
-                            <h:outputText value="#{item.precioVenta}"/>
+                            <h:outputText value="#{item.precioFinalAFacturar}">
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
                         </p:column>
+                        
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_ultimaActualizacionStock}"/>
                             </f:facet>
                             <h:outputText value="#{item.ultimaActualizacionStock}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>

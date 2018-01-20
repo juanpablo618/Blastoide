@@ -4,53 +4,6 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <application>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-    
-        <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-    
-    
     
         <navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
@@ -61,13 +14,34 @@
 	</navigation-rule>
     
 
-    
-        
         <navigation-rule>
-                <from-view-id>/users/List.xhtml</from-view-id>
-                <from-view-id>/caja/Facturar.xhtml</from-view-id>
-                <from-view-id>/productos/ProductosSinStock.xhtml</from-view-id>
-                
+                <from-view-id>/users/*</from-view-id>
+                <from-view-id>/inventarios/*</from-view-id>
+                <from-view-id>/productos/*</from-view-id>
+                <from-view-id>/localidades/*</from-view-id>
+                <from-view-id>/tipoClientes/*</from-view-id>
+                <from-view-id>/cliente/*</from-view-id>
+                <from-view-id>/ofertas/*</from-view-id>
+                <from-view-id>/depositos/*</from-view-id>
+                <from-view-id>/proveedores/*</from-view-id>
+                <from-view-id>/caja/*</from-view-id>
+                <from-view-id>/tiposRubros/*</from-view-id>
+                <from-view-id>/domicilios/*</from-view-id>
+                <from-view-id>/ordenDeCompra/*</from-view-id>
+                <from-view-id>/estado/*</from-view-id>
+                <from-view-id>/tiposProductos/*</from-view-id>
+                <from-view-id>/productoXProveedor/List.xhtml</from-view-id>
+                <from-view-id>/caja/List.xhtml</from-view-id>
+               <from-view-id>/productos/ProductosSinStock.xhtml</from-view-id>
+               <from-view-id>/depositos/List.xhtml</from-view-id>
+               <from-view-id>/caja/List.xhtml</from-view-id>
+               <from-view-id>/productoXProveedor/List.xhtml</from-view-id>
+               <from-view-id>/users/List.xhtml</from-view-id>
+               <from-view-id>/productos/List.xhtml</from-view-id>
+               <from-view-id>/caja/Facturar.xhtml</from-view-id>
+               
+
+                  
                 <navigation-case>
                    <from-action>#{login.logout}</from-action>
                    <to-view-id>/logout.xhtml</to-view-id>
@@ -75,8 +49,14 @@
                 </navigation-case>
 
         </navigation-rule>
-        
-        
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
     </application>
     
     

@@ -18,20 +18,20 @@
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_apellido}" for="apellido" />
                         <p:inputText id="apellido" value="#{proveedoresController.selected.apellido}" title="#{bundle.EditProveedoresTitle_apellido}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_apellido}"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_cuit}" for="cuit" />
-                        <p:inputText id="cuit" value="#{proveedoresController.selected.cuit}" title="#{bundle.EditProveedoresTitle_cuit}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_cuit}"/>
+                        <p:inputMask id="cuit" value="#{proveedoresController.selected.cuit}" title="#{bundle.EditProveedoresTitle_cuit}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_cuit}" mask="99-99999999-9"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_email}" for="email" />
                         <p:inputText id="email" value="#{proveedoresController.selected.email}" title="#{bundle.EditProveedoresTitle_email}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_email}"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_fechaNacimiento}" for="fechaNacimiento" />
                         <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.EditProveedoresTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fechaNacimiento}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_tipoDocumentoID}" for="tipoDocumentoID" />
-                        <p:selectOneMenu id="tipoDocumentoID" value="#{proveedoresController.selected.tipoDocumentoID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_tipoDocumentoID}">
+                        <p:selectOneMenu id="tipoDocumentoID" value="#{proveedoresController.selected.tipoDocumentoID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_tipoDocumentoID}" style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{tipoDocumentoController.itemsAvailableSelectOne}"
                                            var="tipoDocumentoIDItem"
                                            itemValue="#{tipoDocumentoIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_nroDocumento}" for="nroDocumento" />
-                        <p:inputText id="nroDocumento" value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.EditProveedoresTitle_nroDocumento}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_nroDocumento}"/>
+                        <p:inputMask id="nroDocumento" value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.EditProveedoresTitle_nroDocumento}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_nroDocumento}" mask="99999999" style="direction: rtl; text-align: left"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_razonSocial}" for="razonSocial" />
                         <p:inputText id="razonSocial" value="#{proveedoresController.selected.razonSocial}" title="#{bundle.EditProveedoresTitle_razonSocial}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_razonSocial}"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_telefono}" for="telefono" />
@@ -44,21 +44,21 @@
                         <p:inputText id="web" value="#{proveedoresController.selected.web}" title="#{bundle.EditProveedoresTitle_web}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_web}"/>
                         
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
-                        <p:selectOneMenu id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}">
+                        <p:selectOneMenu id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}" style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
                                            var="realdomicilioIDItem"
                                            itemValue="#{realdomicilioIDItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProveedoresLabel_fiscaldomicilioID}" for="fiscaldomicilioID" />
-                        <p:selectOneMenu id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}">
+                        <p:outputLabel value="#{bundle.EditProveedoresLabel_fiscaldomicilioID}" for="fiscaldomicilioID"/>
+                        <p:selectOneMenu id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}"  style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
                                            var="fiscaldomicilioIDItem"
                                            itemValue="#{fiscaldomicilioIDItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_condicionIVAID}" for="condicionIVAID" />
-                        <p:selectOneMenu id="condicionIVAID" value="#{proveedoresController.selected.condicionIVAID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_condicionIVAID}">
+                        <p:selectOneMenu id="condicionIVAID" value="#{proveedoresController.selected.condicionIVAID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_condicionIVAID}" style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{condicionIVAController.itemsAvailableSelectOne}"
                                            var="condicionIVAIDItem"

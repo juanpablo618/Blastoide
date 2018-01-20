@@ -8,10 +8,10 @@ package com.blastoide.jsf;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -20,54 +20,74 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author developer
+ * @author juan
  */
 @Entity
 @Table(name = "ProductoXProveedor")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProductoXProveedor.findAll", query = "SELECT p FROM ProductoXProveedor p")
-    , @NamedQuery(name = "ProductoXProveedor.findByProveedorID", query = "SELECT p FROM ProductoXProveedor p WHERE p.productoXProveedorPK.proveedorID = :proveedorID")
-    , @NamedQuery(name = "ProductoXProveedor.findByProductoID", query = "SELECT p FROM ProductoXProveedor p WHERE p.productoXProveedorPK.productoID = :productoID")
+    , @NamedQuery(name = "ProductoXProveedor.findByProductoXProveedorID", query = "SELECT p FROM ProductoXProveedor p WHERE p.productoXProveedorID = :productoXProveedorID")
+    , @NamedQuery(name = "ProductoXProveedor.findByProveedorID", query = "SELECT p FROM ProductoXProveedor p WHERE p.proveedorID = :proveedorID")
+    , @NamedQuery(name = "ProductoXProveedor.findByProductoID", query = "SELECT p FROM ProductoXProveedor p WHERE p.productoID = :productoID")
     , @NamedQuery(name = "ProductoXProveedor.findByPrecioCosto", query = "SELECT p FROM ProductoXProveedor p WHERE p.precioCosto = :precioCosto")})
 public class ProductoXProveedor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ProductoXProveedorPK productoXProveedorPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ProductoXProveedorID")
+    private Integer productoXProveedorID;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ProveedorID")
+    private int proveedorID;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ProductoID")
+    private int productoID;
     @Basic(optional = false)
     @NotNull
     @Column(name = "precioCosto")
     private int precioCosto;
-    @JoinColumn(name = "ProductoID", referencedColumnName = "productoID", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Productos productos;
-    @JoinColumn(name = "ProveedorID", referencedColumnName = "ProveedorID", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Proveedores proveedores;
 
     public ProductoXProveedor() {
     }
 
-    public ProductoXProveedor(ProductoXProveedorPK productoXProveedorPK) {
-        this.productoXProveedorPK = productoXProveedorPK;
+    public ProductoXProveedor(Integer productoXProveedorID) {
+        this.productoXProveedorID = productoXProveedorID;
     }
 
-    public ProductoXProveedor(ProductoXProveedorPK productoXProveedorPK, int precioCosto) {
-        this.productoXProveedorPK = productoXProveedorPK;
+    public ProductoXProveedor(Integer productoXProveedorID, int proveedorID, int productoID, int precioCosto) {
+        this.productoXProveedorID = productoXProveedorID;
+        this.proveedorID = proveedorID;
+        this.productoID = productoID;
         this.precioCosto = precioCosto;
     }
 
-    public ProductoXProveedor(int proveedorID, int productoID) {
-        this.productoXProveedorPK = new ProductoXProveedorPK(proveedorID, productoID);
+    public Integer getProductoXProveedorID() {
+        return productoXProveedorID;
     }
 
-    public ProductoXProveedorPK getProductoXProveedorPK() {
-        return productoXProveedorPK;
+    public void setProductoXProveedorID(Integer productoXProveedorID) {
+        this.productoXProveedorID = productoXProveedorID;
     }
 
-    public void setProductoXProveedorPK(ProductoXProveedorPK productoXProveedorPK) {
-        this.productoXProveedorPK = productoXProveedorPK;
+    public int getProveedorID() {
+        return proveedorID;
+    }
+
+    public void setProveedorID(int proveedorID) {
+        this.proveedorID = proveedorID;
+    }
+
+    public int getProductoID() {
+        return productoID;
+    }
+
+    public void setProductoID(int productoID) {
+        this.productoID = productoID;
     }
 
     public int getPrecioCosto() {
@@ -78,26 +98,10 @@ public class ProductoXProveedor implements Serializable {
         this.precioCosto = precioCosto;
     }
 
-    public Productos getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Productos productos) {
-        this.productos = productos;
-    }
-
-    public Proveedores getProveedores() {
-        return proveedores;
-    }
-
-    public void setProveedores(Proveedores proveedores) {
-        this.proveedores = proveedores;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productoXProveedorPK != null ? productoXProveedorPK.hashCode() : 0);
+        hash += (productoXProveedorID != null ? productoXProveedorID.hashCode() : 0);
         return hash;
     }
 
@@ -108,7 +112,7 @@ public class ProductoXProveedor implements Serializable {
             return false;
         }
         ProductoXProveedor other = (ProductoXProveedor) object;
-        if ((this.productoXProveedorPK == null && other.productoXProveedorPK != null) || (this.productoXProveedorPK != null && !this.productoXProveedorPK.equals(other.productoXProveedorPK))) {
+        if ((this.productoXProveedorID == null && other.productoXProveedorID != null) || (this.productoXProveedorID != null && !this.productoXProveedorID.equals(other.productoXProveedorID))) {
             return false;
         }
         return true;
@@ -116,7 +120,7 @@ public class ProductoXProveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "" + productoXProveedorPK + " ";
+        return "com.blastoide.jsf.ProductoXProveedor[ productoXProveedorID=" + productoXProveedorID + " ]";
     }
     
 }

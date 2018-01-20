@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/index.xhtml">
+    <ui:composition template="/indexAdmin.xhtml">
 
 
         <ui:define name="title">
@@ -27,12 +27,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCondicionIVATitle_condicionIVAID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.condicionIVAID}"/>
-                        </p:column>
+
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCondicionIVATitle_nombre}"/>

@@ -12,12 +12,16 @@
             <h:form id="ProductoXProveedorViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoXProveedorController.selected != null}">
+                        <h:outputText value="proveedor:"/>
+                        <h:outputText value="#{proveedoresController.getProveedores(productoXProveedorController.selected.proveedorID).nombre}" title="#{bundle.ViewProductoXProveedorTitle_proveedorID}"/>
+                        
+                        <h:outputText value="#{bundle.ViewProductoXProveedorLabel_productoID}"/>
+                        <h:outputText value="#{productosController.getProductos(productoXProveedorController.selected.productoID).nombre}" title="#{bundle.ViewProductoXProveedorTitle_productoID}"/>
+                        
+                        
+                        
                         <h:outputText value="#{bundle.ViewProductoXProveedorLabel_precioCosto}"/>
                         <h:outputText value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.ViewProductoXProveedorTitle_precioCosto}"/>
-                        <h:outputText value="#{bundle.ViewProductoXProveedorLabel_productos}"/>
-                        <h:outputText value="#{productoXProveedorController.selected.productos}" title="#{bundle.ViewProductoXProveedorTitle_productos}"/>
-                        <h:outputText value="#{bundle.ViewProductoXProveedorLabel_proveedores}"/>
-                        <h:outputText value="#{productoXProveedorController.selected.proveedores}" title="#{bundle.ViewProductoXProveedorTitle_proveedores}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductoXProveedorViewDialog.hide()"/>
                 </h:panelGroup>

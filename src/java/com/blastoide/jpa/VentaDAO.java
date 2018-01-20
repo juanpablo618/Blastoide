@@ -73,10 +73,10 @@ System.err.println("empleado: " +venta.getEmpleado());
         } 
         
         this.getCn().commit();
-        System.err.println("entro al commit");
+        System.err.println("entro al commit de VentaDAO");
         } catch (Exception e) {
         this.getCn().rollback();
-                    System.err.println("hizo el rollback");
+                    System.err.println("hizo el rollback en ventaDAO");
         }finally{
             this.Cerrar();
         }
