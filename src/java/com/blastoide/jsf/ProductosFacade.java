@@ -5,9 +5,8 @@
  */
 package com.blastoide.jsf;
 
+
 import com.blastoide.jsf.AbstractFacade;
-import com.blastoide.jsf.AbstractFacade;
-import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Productos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
