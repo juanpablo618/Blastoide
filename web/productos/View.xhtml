@@ -38,8 +38,11 @@
                         </h:outputText>
                         
                         <h:outputText value="precio de venta:"/>
-                        <h:outputText value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.ViewProductosTitle_precioFinalAFacturar}"/>
-                        
+                                               
+                         <h:outputText value="#{productosController.selected.precioFinalAFacturar}" title="#{bundle.ViewProductosTitle_precioFinalAFacturar}">
+                                <f:convertNumber pattern="#0.00" />
+                         </h:outputText>
+                         
                         <h:outputText value="#{bundle.ViewProductosLabel_stockactual}"/>
                         <h:outputText value="#{productosController.selected.stockactual}" title="#{bundle.ViewProductosTitle_stockactual}"/>
                         

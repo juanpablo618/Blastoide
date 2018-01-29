@@ -16,16 +16,27 @@
                         
                         <h:outputText value="#{bundle.ViewCajaLabel_fecha}"/>
                         <h:outputText value="#{cajaController.selected.fecha}" title="#{bundle.ViewCajaTitle_fecha}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewCajaLabel_descripcion}"/>
                         <h:outputText value="#{cajaController.selected.descripcion}" title="#{bundle.ViewCajaTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewCajaLabel_ingreso}"/>
-                        <h:outputText value="#{cajaController.selected.ingreso}" title="#{bundle.ViewCajaTitle_ingreso}"/>
+                        
+                        
+                        <h:outputText value="#{cajaController.selected.ingreso}" title="#{bundle.ViewCajaTitle_ingreso}">
+                                <f:convertNumber pattern="#0.00" />
+                        </h:outputText>
+                            
+                        
+                        
                         <h:outputText value="#{bundle.ViewCajaLabel_egreso}"/>
-                        <h:outputText value="#{cajaController.selected.egreso}" title="#{bundle.ViewCajaTitle_egreso}"/>
+                     
+                        
+                    <h:outputText value="#{cajaController.selected.egreso}" title="#{bundle.ViewCajaTitle_egreso}">
+                                <f:convertNumber pattern="#0.00" />
+                        </h:outputText>
+                        
+                    
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="CajaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
