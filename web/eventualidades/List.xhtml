@@ -21,7 +21,9 @@
                                  paginator="true"
                                  rowKey="#{item.eventualidadID}"
                                  rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rowsPerPageTemplate="20,30,40,50"
+                                 resizableColumns="true"
+                                 emptyMessage="no existen eventualidades todavía"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>

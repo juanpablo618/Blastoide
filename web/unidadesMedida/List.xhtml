@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/indexAdmin.xhtml">
 
 
         <ui:define name="title">
@@ -21,7 +21,8 @@
                                  paginator="true"
                                  rowKey="#{item.unidadMedidaID}"
                                  rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rowsPerPageTemplate="20,30,40,50"
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>

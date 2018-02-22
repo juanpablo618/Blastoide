@@ -52,20 +52,19 @@
 
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="112" style="background-color: #dae3e9; border: none" >
-                <ui:include src="topbar.xhtml"/>
-            </p:layoutUnit>
+
+                <p:layoutUnit position="north" size="112" style="background-color: #dae3e9; border: none" >
+                    <ui:include src="topbar.xhtml"/>
+                </p:layoutUnit>
+                
 
             <p:layoutUnit position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #dae3e9; border: none;">
             </p:layoutUnit>
 
-            <p:layoutUnit position="center" style="background-color: #dae3e9">
+            <p:layoutUnit position="center" style="background-color: #dae3e9 ">
                 <p:growl id="growl" showDetail="false" />
                 <div>
-                    <div align="left" style="float: left;">
-                        <ui:include src="leftmenuAdmin.xhtml"/>
-                    </div>
-
+                    
                     <div style="width: 83%; float: left; margin-left: 8px;">
 
                         <ui:insert name="body">
@@ -87,6 +86,9 @@
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>
                                 </center>
 
+                            <center >
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
+                                </center>
 
                         </ui:insert>
                     </div>

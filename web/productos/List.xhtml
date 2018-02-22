@@ -9,7 +9,7 @@
     <ui:composition template="/indexAdmin.xhtml">
         <style>
             .output{
-                text-align: right;
+                text-align: center;
             }
         </style>
 
@@ -27,6 +27,7 @@
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  filteredValue="#{productosController.filteredItems}"
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
