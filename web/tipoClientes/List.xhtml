@@ -45,7 +45,12 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoClientesTitle_porcentajeInteres}"/>
                             </f:facet>
-                            <h:outputText value="#{item.porcentajeInteres}"/>
+                        
+                            <h:outputText value="#{item.porcentajeInteres}">
+                            <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                        
+                        
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoClientesController.prepareCreate}" update=":TipoClientesCreateForm" oncomplete="PF('TipoClientesCreateDialog').show()"/>

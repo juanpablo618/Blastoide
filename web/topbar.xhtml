@@ -27,12 +27,12 @@
         </center> <br/>
 
 
-        <p:toolbar id="toolbarMenu">
+        <p:toolbar id="toolbarMenu" style="font-weight: bold; border: none">
             <f:facet name="left"  >
                 <h:form>  
                     <p:growl id="messages"/>
 
-                    <p:menubar>
+                    <p:menubar style="font-weight: bold;">
                         <p:submenu label="Inicio" icon="ui-icon-document">
                             <p:menuitem value="inicio" outcome="/indexAdmin.xhtml" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
@@ -91,13 +91,7 @@
 
                             <p:menuitem value="Tipos de Eventualidad" outcome="/tiposEventualidad/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Unidades Medida" outcome="/unidadesMedida/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Perdidas Eventualidad" outcome="/eventualidades/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Imagen Producto" outcome="/imagenes/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Roles" outcome="/roles/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
+                            <p:menuitem value="Perdidas por Eventualidad" outcome="/eventualidades/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
                             <p:menuitem value="Formas de pago" outcome="/formaDePago/List" rendered="#{login.rol eq 'administrador'}" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />

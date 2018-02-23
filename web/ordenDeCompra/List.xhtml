@@ -64,13 +64,17 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListOrdenDeCompraTitle_total}"/>
                             </f:facet>
-                            <h:outputText value="#{item.total}"/>
+                            <h:outputText value="#{item.total}">
+                             <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListOrdenDeCompraTitle_restoTotal}"/>
                             </f:facet>
-                            <h:outputText value="#{item.restoTotal}"/>
+                            <h:outputText value="#{item.restoTotal}">
+                             <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

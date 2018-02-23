@@ -65,7 +65,7 @@
                 <p:growl id="growl" showDetail="false" />
                 <div>
                     
-                    <div style="width: 83%; float: left; margin-left: 8px;">
+                    <div style="width: 100%; align-items: center; margin-left: 8px; ">
 
                         <ui:insert name="body">
                             <center style="margin-top: 10%;">
@@ -80,7 +80,7 @@
                                 <p:clock />
                             </h:form>
                             <center style="margin-top: 10%;">
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt;">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
                                 </center>
                                 <center >
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>

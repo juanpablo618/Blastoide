@@ -18,10 +18,12 @@
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewEventualidadesLabel_observaciones}"/>
                         <h:outputText value="#{eventualidadesController.selected.observaciones}" title="#{bundle.ViewEventualidadesTitle_observaciones}"/>
-                        <h:outputText value="#{bundle.ViewEventualidadesLabel_totalPerdida}"/>
+                        <h:outputText value="perdidad total:"/>
                         <h:outputText value="#{eventualidadesController.selected.totalPerdida}" title="#{bundle.ViewEventualidadesTitle_totalPerdida}"/>
-                        <h:outputText value="#{bundle.ViewEventualidadesLabel_tipoEventualidadID}"/>
-                        <h:outputText value="#{eventualidadesController.selected.tipoEventualidadID}" title="#{bundle.ViewEventualidadesTitle_tipoEventualidadID}"/>
+                       
+                        
+                        <h:outputText value="tipo de eventualidad:"/>
+                        <h:outputText value="#{eventualidadesController.selected.tipoEventualidadID.nombre}" title="#{bundle.ViewEventualidadesTitle_tipoEventualidadID}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EventualidadesViewDialog.hide()"/>
                 </h:panelGroup>
