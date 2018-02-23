@@ -20,10 +20,11 @@
                                  selectionMode="single" selection="#{cajaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="20,30,40,50"
+                                 rows="30"
+                                 rowsPerPageTemplate="30,40,50"
                                  filteredValue="#{cajaController.filteredCaja}"
                                  emptyMessage="no hay registros de facturación diaria."
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>

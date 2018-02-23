@@ -22,17 +22,12 @@
                                  rowKey="#{item.tipoRubroID}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTiposRubrosTitle_tipoRubroID}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoRubroID}"/>
-                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTiposRubrosTitle_nombre}"/>

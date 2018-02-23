@@ -22,6 +22,8 @@
                                  rowKey="#{item.formaDePagoID}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="no existen formas de pago creadas"
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>

@@ -21,8 +21,9 @@
                                  paginator="true"
                                  rowKey="#{item.id}"
                                  rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 emptyMessage="No existen roles"
+                                 rowsPerPageTemplate="20,30,40,50"
+                                 emptyMessage="No existen roles todavía"
+                                 resizableColumns="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>

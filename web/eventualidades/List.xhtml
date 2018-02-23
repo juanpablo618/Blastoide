@@ -21,7 +21,9 @@
                                  paginator="true"
                                  rowKey="#{item.eventualidadID}"
                                  rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rowsPerPageTemplate="20,30,40,50"
+                                 resizableColumns="true"
+                                 emptyMessage="no existen eventualidades todavía"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -44,15 +46,19 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEventualidadesTitle_totalPerdida}"/>
+                                <h:outputText value="Perdida total"/>
                             </f:facet>
                             <h:outputText value="#{item.totalPerdida}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEventualidadesTitle_tipoEventualidadID}"/>
+                                <h:outputText value="Tipo de eventualidad"/>
                             </f:facet>
-                            <h:outputText value="#{item.tipoEventualidadID}"/>
+                        
+                            <h:outputText value="#{item.tipoEventualidadID.nombre}"/>
+                        
+                        
+                        
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{eventualidadesController.prepareCreate}" update=":EventualidadesCreateForm" oncomplete="PF('EventualidadesCreateDialog').show()"/>
