@@ -12,7 +12,7 @@
             <h:form id="EstadoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estadoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEstadoLabel_ambito}"/>
+                        <h:outputText value="Estado:"/>
                         <h:outputText value="#{estadoController.selected.ambito}" title="#{bundle.ViewEstadoTitle_ambito}"/>
                         <h:outputText value="#{bundle.ViewEstadoLabel_descripcion}"/>
                         <h:outputText value="#{estadoController.selected.descripcion}" title="#{bundle.ViewEstadoTitle_descripcion}"/>

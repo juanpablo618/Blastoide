@@ -53,40 +53,47 @@
                         
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_sexo}" for="sexo" />
                         
-                        <p:selectOneMenu id="sexo" value="#{proveedoresController.selected.sexo}" required="true" requiredMessage="#{bundle.CreateProveedoresRequiredMessage_sexo}" style="width: 85%;">
+                        <p:selectOneMenu id="sexo" value="#{proveedoresController.selected.sexo}" required="true" requiredMessage="#{bundle.CreateProveedoresRequiredMessage_sexo}" style="width: 85%; margin: 0px">
                             <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
                             <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
                             <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
                         </p:selectOneMenu>
                         
                         
-                        
-                        
-                        
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_web}" for="web" />
                         <p:inputText id="web" value="#{proveedoresController.selected.web}" title="#{bundle.CreateProveedoresTitle_web}" required="true" requiredMessage="#{bundle.CreateProveedoresRequiredMessage_web}"/>
                         
-                                                
-                        <p:outputLabel value="#{bundle.CreateProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
-                        <p:selectOneMenu id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}" style="width: 85%;">
-                            <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
-                                           var="realdomicilioIDItem"
-                                           itemValue="#{realdomicilioIDItem}"/>
-                        </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
+                            <p:selectOneMenu id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}" style="width: 85%;">
+                                <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
+                               <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
+                                               var="realdomicilioIDItem"
+                                               itemValue="#{realdomicilioIDItem}"/>
+                            </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_fiscaldomicilioID}" for="fiscaldomicilioID" />
                         <p:selectOneMenu id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}" style="width: 85%;">
+                             <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
                             <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
                                            var="fiscaldomicilioIDItem"
                                            itemValue="#{fiscaldomicilioIDItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_condicionIVAID}" for="condicionIVAID" />
                         <p:selectOneMenu id="condicionIVAID" value="#{proveedoresController.selected.condicionIVAID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_condicionIVAID}" style="width: 85%;">
+                             <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
                             <f:selectItems value="#{condicionIVAController.itemsAvailableSelectOne}"
                                            var="condicionIVAIDItem"
                                            itemValue="#{condicionIVAIDItem}"/>
                         </p:selectOneMenu>
+                        
+                       <f:facet name="footer">
+                          
+                           <p:button href="../domicilios/List.xhtml" value="nuevo domicilio"></p:button>
+                           <p:button href="../condicionIVA/List.xhtml" value="nueva condicion Iva"></p:button>
+                        
+                       </f:facet>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proveedoresController.create}" value="#{bundle.Save}" update="display,:ProveedoresListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProveedoresCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProveedoresCreateDialog.hide()"/>

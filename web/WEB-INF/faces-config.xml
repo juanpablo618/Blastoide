@@ -60,10 +60,10 @@
             <from-view-id>/localidades/List.xhtml</from-view-id>
             <from-view-id>/tipoClientes/List.xhtml</from-view-id>
             <from-view-id>/condicionIVA/List.xhtml</from-view-id>
-                  <from-view-id>/caja/List.xhtml</from-view-id>
-                  <from-view-id>/caja/Facturar.xhtml</from-view-id>
-                  <from-view-id>/faces/*</from-view-id>
-                  
+            <from-view-id>/caja/List.xhtml</from-view-id>
+            <from-view-id>/caja/Facturar.xhtml</from-view-id>
+            <from-view-id>/faces/*</from-view-id>
+            <from-view-id>/domicilios/List.xhtml</from-view-id>    
                   
             <navigation-case>
                 <from-action>#{login.logout}</from-action>

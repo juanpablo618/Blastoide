@@ -20,9 +20,10 @@
                         <p:inputText id="departamento" value="#{domiciliosController.selected.departamento}" title="#{bundle.CreateDomiciliosTitle_departamento}" required="true" requiredMessage="#{bundle.CreateDomiciliosRequiredMessage_departamento}"/>
                         <p:outputLabel value="#{bundle.CreateDomiciliosLabel_piso}" for="piso" />
                         <p:inputText id="piso" value="#{domiciliosController.selected.piso}" title="#{bundle.CreateDomiciliosTitle_piso}" required="true" requiredMessage="#{bundle.CreateDomiciliosRequiredMessage_piso}"/>
-                        <p:outputLabel value="#{bundle.CreateDomiciliosLabel_localidadID}" for="localidadID" />
+                        <p:outputLabel value="localidad:" for="localidadID" />
                         <p:selectOneMenu id="localidadID" value="#{domiciliosController.selected.localidadID}" required="true" requiredMessage="#{bundle.EditDomiciliosRequiredMessage_localidadID}">
-                            <f:selectItems value="#{localidadesController.itemsAvailableSelectOne}"
+                                 <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
+                                <f:selectItems value="#{localidadesController.itemsAvailableSelectOne}"
                                            var="localidadIDItem"
                                            itemValue="#{localidadIDItem}"/>
                         </p:selectOneMenu>
