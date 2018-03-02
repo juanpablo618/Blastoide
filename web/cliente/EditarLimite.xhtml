@@ -13,11 +13,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
                         <form>
-                            <p:inputText  value="#{cuentaCorrienteBean.cuentacorriente.limite}"/>
-                            <h:commandButton  action="#{cuentaCorrienteBean.cambiarLimite(clienteBuenoController.selected.cuentaCorrienteID,cuentaCorrienteBean.cuentacorriente.limite)}"  value="Cambiar Limite"  />
+                            <p:inputText  value="#{cuentaCorrienteBean.cuentacorriente.limite}" style="width: 100%;"/><br></br>
+                            <h:commandButton  action="#{cuentaCorrienteBean.cambiarLimite(clienteBuenoController.selected.cuentaCorrienteID,cuentaCorrienteBean.cuentacorriente.limite)}"  value="Editar Limite" style="width: 100%;" />
                         </form> 
                     </p:panelGrid>
-                    
+
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -12,7 +12,7 @@
             <h:form id="EstadoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estadoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEstadoLabel_ambito}" for="ambito" />
+                        <p:outputLabel value="Estado:" for="ambito" />
                         <p:inputText id="ambito" value="#{estadoController.selected.ambito}" title="#{bundle.CreateEstadoTitle_ambito}" required="true" requiredMessage="#{bundle.CreateEstadoRequiredMessage_ambito}"/>
                         <p:outputLabel value="#{bundle.CreateEstadoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{estadoController.selected.descripcion}" title="#{bundle.CreateEstadoTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateEstadoRequiredMessage_descripcion}"/>

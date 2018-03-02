@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estadoController.selected != null}">
                         
-                        <p:outputLabel value="#{bundle.EditEstadoLabel_ambito}" for="ambito" />
+                        <p:outputLabel value="Estado:" for="ambito" />
                         <p:inputText id="ambito" value="#{estadoController.selected.ambito}" title="#{bundle.EditEstadoTitle_ambito}" required="true" requiredMessage="#{bundle.EditEstadoRequiredMessage_ambito}"/>
                         <p:outputLabel value="#{bundle.EditEstadoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{estadoController.selected.descripcion}" title="#{bundle.EditEstadoTitle_descripcion}" required="true" requiredMessage="#{bundle.EditEstadoRequiredMessage_descripcion}"/>
