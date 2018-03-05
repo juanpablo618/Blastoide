@@ -52,14 +52,14 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="tipo de cliente"/>
+                                <h:outputText value="T. de cliente"/>
                             </f:facet>
                             <h:outputText value="#{tipoClientesController.getTipoClientes(item.tipoClienteID).nombre}"/>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="forma de pago"/>
+                                <h:outputText value="F. de pago"/>
                             </f:facet>
                             <h:outputText value="#{formaDePagoController.getFormaDePago(item.formaDePagoID).nombre}"/>
                         </p:column>
@@ -98,7 +98,7 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Cantidad que debe:"/>
+                                <h:outputText value="Debe:"/>
                             </f:facet>
 
                             <h:outputText id="cantidadQueDebe"  value="#{cuentaCorrienteBean.buscarCantidadQueDebe(item.cuentaCorrienteID)}"/>
