@@ -119,19 +119,7 @@
                             </h:outputText>
 
                         </p:column>
-                        <p:column style="font-size:10px;" styleClass="#{item.stockactual le 0 ? 'red' : ''}" >
-                            <f:facet name="header">
-                                <h:outputText value="Stock actual"/>
-                            </f:facet>
-                            <h:outputText value="#{item.stockactual}"/>
-                        </p:column>
-                        <p:column style="font-size:10px;">
-                            <f:facet name="header">
-                                <h:outputText value="Stock Minimo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.stockMinimo}"/>
-                        </p:column>
-
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   style="border-color:#01B2A0 ;background: #01B2A0;font-weight: bold" icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
