@@ -61,6 +61,7 @@
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">
+                            <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CajaViewForm" oncomplete="PF('CajaViewDialog').show()" disabled="#{empty cajaController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CajaEditForm" oncomplete="PF('CajaEditDialog').show()" disabled="#{empty cajaController.selected}"/>

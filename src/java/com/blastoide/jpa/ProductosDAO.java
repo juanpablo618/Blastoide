@@ -95,4 +95,24 @@ stockMinimo
         return idBuscado;
 
     }
+
+    public double buscarPrecioFinalAFacturar(int idProductoPorCambiarValor) throws SQLException {
+    double precioFinalBuscado = 0;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement st;
+        st = this.getCn().prepareCall("SELECT precioFinalAFacturar FROM `Productos` WHERE productoID = "+idProductoPorCambiarValor);
+            rs = st.executeQuery();
+            while(rs.next()){
+                precioFinalBuscado = rs.getDouble("precioFinalAFacturar");
+            }
+        } catch (Exception e) {
+        }finally{
+            this.Cerrar();
+        }
+        return precioFinalBuscado;
+
+        
+    }
 }

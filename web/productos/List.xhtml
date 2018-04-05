@@ -121,6 +121,7 @@
                         </p:column>
                         
                         <f:facet name="footer">
+                            <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
                             <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   style="border-color:#01B2A0 ;background: #01B2A0;font-weight: bold" icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>

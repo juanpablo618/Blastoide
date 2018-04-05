@@ -64,7 +64,8 @@
             <from-view-id>/caja/Facturar.xhtml</from-view-id>
             <from-view-id>/faces/*</from-view-id>
             <from-view-id>/domicilios/List.xhtml</from-view-id>    
-                  
+            <from-view-id>/users/List.xhtml</from-view-id>    
+      
             <navigation-case>
                 <from-action>#{login.logout}</from-action>
                 <to-view-id>/logout.xhtml</to-view-id>
