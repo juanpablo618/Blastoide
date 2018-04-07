@@ -135,9 +135,15 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
             for(int i=0 ; i<ventaBean.getLista().size() ; i++){
 
-
-            Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
-            System.err.println("Producto precio venta unitario: "+precioUnitario);
+                int idProductoPorCambiarValor = ventaBean.getLista().get(i).getProducto().getProductoID();
+                
+                ProductosDAO productosDao = new ProductosDAO();
+                
+                double precioFinalDelProductoEnBD = productosDao.buscarPrecioFinalAFacturar(idProductoPorCambiarValor);
+                
+            //Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
+            Double precioUnitario = precioFinalDelProductoEnBD ;
+            System.err.println("Producto precio venta unitario modificado por juan: "+precioUnitario);
 
 
             double cantidadDeFormaDePago;

@@ -41,8 +41,7 @@
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
-                        
-                        <p:column style="font-size:10px;">
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Precio de venta"/>
                             </f:facet>
@@ -50,25 +49,15 @@
                                 <f:convertNumber pattern="#0.00"/>
                             </h:outputText>
                         </p:column>
-                        
-                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_ultimaActualizacionStock}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ultimaActualizacionStock}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_stockactual}"/>
+                                <h:outputText value="Stock Actual"/>
                             </f:facet>
                             <h:outputText value="#{item.stockactual}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_stockMinimo}"/>
+                                <h:outputText value="Stock minimo"/>
                             </f:facet>
                             <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>
