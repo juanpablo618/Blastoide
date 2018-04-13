@@ -1,6 +1,5 @@
 package com.blastoide.jsf.util;
 
-import static com.blastoide.configuraciones.ConfiguracionesGenerales.getCARPETA_DE_PRESUPUESTOS;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Venta;
 import com.lowagie.text.Chunk;
@@ -17,6 +16,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import com.blastoide.configuraciones.CommonConstants;
 
 /**
  *
@@ -39,7 +39,7 @@ public class MembretePresupuesto {
                 System.out.println("venta: " +venta.toString());
        // Date fechaDiaria = Calendar.getInstance().getTime();
 
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(filename).concat(".pdf")));
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(CommonConstants.CARPETA_DONDE_SE_DESCARGAN_LOS_DOCUMENTOS.concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
         Paragraph parrafo;
@@ -63,29 +63,22 @@ public class MembretePresupuesto {
                 String formato="dd-MM-yyyy";
                 SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
                 
-        
-        
-        
         Paragraph parrafo5 = new Paragraph("Fecha: " + dateFormat.format(venta.getFecha()));
         document.add(parrafo5);
 
         document.add(Chunk.NEWLINE);
 
         PdfPTable table = new PdfPTable(4);
-        
-        
+                
         float[] medidaCeldas = {0.55f, 2.25f, 0.50f, 0.50f};
 
         // ASIGNAS LAS MEDIDAS A LA TABLA (ANCHO)
         table.setWidths(medidaCeldas);
-        
-        
+                
         table.addCell("Cantidad");
         table.addCell("Detalle del producto");
         table.addCell("P.U");
         table.addCell("P.T");
-
-        
         
         double totalDeFactura = 0;
 
