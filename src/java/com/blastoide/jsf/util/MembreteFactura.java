@@ -1,6 +1,5 @@
 package com.blastoide.jsf.util;
 
-import static com.blastoide.configuraciones.ConfiguracionesGenerales.getCARPETA_DE_PRESUPUESTOS;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Venta;
 import com.lowagie.text.Chunk;
@@ -9,18 +8,15 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import com.blastoide.configuraciones.CommonConstants;
 /**
  *
  * @author cuello.juanpablo@gmail.com
@@ -42,7 +38,8 @@ public class MembreteFactura {
                 System.out.println("venta: " +venta.toString());
        // Date fechaDiaria = Calendar.getInstance().getTime();
 
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(filename).concat(".pdf")));
+        PdfWriter writer;
+        writer = PdfWriter.getInstance(document, new FileOutputStream(CommonConstants.CARPETA_DONDE_SE_DESCARGAN_LOS_DOCUMENTOS.concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
         Paragraph parrafo;

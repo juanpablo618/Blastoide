@@ -2,31 +2,23 @@ package com.blastoide.jsfcontroller;
 
 /**
  *
- * @author juan
+ * @author cuello.juanpablo@gmail.com
  */
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
-import org.primefaces.context.RequestContext;
+import com.blastoide.configuraciones.CommonConstants;
 
 @ManagedBean
 public class DownloadBean implements Serializable {
 
 private static final long serialVersionUID = 626953318628565053L;
-
-//configuracion para mi linux = file:///home/juan/Documents
-
-//configuracion q anda para lucas
-private static final String PDF_URL = "file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
-
-//private static final String PDF_URL = "file:///home/juan/Documents";
-
+private static final String PDF_URL =  CommonConstants.CARPETA_LEE_EL_DOCUMENTO;
 
 /**
      * This method reads PDF from the URL and writes it back as a response. 
@@ -78,13 +70,5 @@ responseOutputStream.close();
 // (such as an HTTP redirect), and that the request processing lifecycle should be terminated
 // as soon as the current phase is completed.
 facesContext.responseComplete();
-
-//FacesContext context = FacesContext.getCurrentInstance();
-        
-//VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-
-//ventaBean.setLista(null);
-//    System.err.println("ccaaaaaaaaaaaaaaaaacccccccccaaaaaaaaa: " + ventaBean.getLista());
-
 }
 }

@@ -1,6 +1,6 @@
 package com.blastoide.jsf.util;
 
-import static com.blastoide.configuraciones.ConfiguracionesGenerales.getURL_DE_LOGO_MUNDO_LIMPIEZA;
+import com.blastoide.configuraciones.CommonConstants;
 import com.lowagie.text.Document;
 import com.lowagie.text.Image;
 import com.lowagie.text.Phrase;
@@ -12,7 +12,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 /**
  *
- * @author Juan Cuello
+ * @author cuello.juanpablo@gmail.com
  */
 
 public class FormatoDocumentoPresupuesto extends PdfPageEventHelper
@@ -30,7 +30,7 @@ public class FormatoDocumentoPresupuesto extends PdfPageEventHelper
             PdfPCell celda1 = new PdfPCell(new Phrase("Mundo Limpieza"));
             PdfPCell celda2 = new PdfPCell(new Phrase("tel: 455224/ 15537730"));
             
-            imagen = Image.getInstance(getURL_DE_LOGO_MUNDO_LIMPIEZA());
+            imagen = Image.getInstance(CommonConstants.URL_DE_LOGO_MUNDO_LIMPIEZA);
             imagen.setAbsolutePosition(10, 650f);            
             
             celda1.setBorder(Rectangle.BOTTOM);
