@@ -5,7 +5,7 @@
  */
 package com.blastoide.jsf;
 
-import com.blastoide.jsf.Estado;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;

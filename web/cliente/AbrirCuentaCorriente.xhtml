@@ -104,10 +104,12 @@
                                 <h:outputText value="limite:"/>
                             </f:facet>
 
-                            <h:outputText id="limiteActual"  value=" #{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}">
-                                <f:convertNumber pattern="#0.00"/>
-                            </h:outputText>
-
+                            <h:outputText value="#{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}">
+                                <f:convertNumber pattern="#0.00" />
+                         </h:outputText>
+                         
+                            
+                            
                         </p:column>
 
                         <f:facet name="footer">

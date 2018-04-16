@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="ProveedoresViewDlg" widgetVar="ProveedoresViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedoresTitle}">
+        <p:dialog id="ProveedoresViewDlg" widgetVar="ProveedoresViewDialog" modal="true" resizable="false" appendTo="@(body)" header="ver proveedor">
             <h:form id="ProveedoresViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proveedoresController.selected != null}">
@@ -26,8 +26,8 @@
                         <h:outputText value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.ViewProveedoresTitle_fechaNacimiento}">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewProveedoresLabel_tipoDocumentoID}"/>
-                        <h:outputText value="#{proveedoresController.selected.tipoDocumentoID}" title="#{bundle.ViewProveedoresTitle_tipoDocumentoID}"/>
+                        <h:outputText value="tipo de documento:"/>
+                        <h:outputText value="#{tipoDocumentoController.getTipoDocumento(proveedoresController.selected.tipoDocumentoID.tipoDocumentoID).nombre}"/>
                         
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nroDocumento}"/>
                         <h:outputText value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.ViewProveedoresTitle_nroDocumento}"/>
