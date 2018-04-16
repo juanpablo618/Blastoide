@@ -312,9 +312,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
                 float haber = 0;
                 float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-                        
+                       
+                venta.setVentaID(ventadao.buscarUltimoIdInsertado());
+                
                 saldohistorico = (float) (saldohistorico + venta.getMonto());
-                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber, "venta a cliente con cta corriente: "+venta.getCliente().getCuentaCorrienteID(), venta.getCliente().getCuentaCorrienteID(), saldohistorico );
+                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber, "FAC-"+venta.getVentaID(), venta.getCliente().getCuentaCorrienteID(), saldohistorico );
                 
                 //3ro actualizar saldo de cta corriente
                 float saldoactual = saldohistorico  ;
@@ -430,9 +432,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
                 float haber = 0;
                 float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-                        
+                
+                venta.setVentaID(ventadao.buscarUltimoIdInsertado());
+                
                 saldohistorico = (float) (saldohistorico + venta.getMonto());
-                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber, "venta a cliente con cta corriente: "+venta.getCliente().getCuentaCorrienteID(), venta.getCliente().getCuentaCorrienteID(), saldohistorico );
+                detalleCuentasCorrientesDAO.insertarDetalleCtaCorriente(venta.getMonto(), haber, "PRE-"+venta.getVentaID(), venta.getCliente().getCuentaCorrienteID(), saldohistorico );
                 
                 //3ro actualizar saldo de cta corriente
                 float saldoactual = saldohistorico  ;

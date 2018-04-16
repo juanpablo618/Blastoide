@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import com.blastoide.jsf.DetalleVenta;
+import java.sql.SQLException;
 /**
  *
  * @author cuello.juanpablo@gmail.com
@@ -82,6 +83,23 @@ System.err.println("empleado: " +venta.getEmpleado());
         }
         
     }
+
+    public int buscarUltimoIdInsertado() throws ClassNotFoundException, SQLException {
     
+            this.Conectar();
+        
+        PreparedStatement st2 = this.getCn().prepareStatement("SELECT MAX(ventaID) AS id FROM Venta");
+        ResultSet rs;
+        int CodVenta = 0;
+                 
+
+        rs = st2.executeQuery();
+        
+        while(rs.next()){
+            CodVenta = rs.getInt(1);
+        }
+        rs.close();
+        return CodVenta;
+    }
     
 }
