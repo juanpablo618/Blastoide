@@ -17,7 +17,12 @@
                         <p:outputLabel value="#{bundle.EditUsersLabel_password}" for="password" />
                         <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.EditUsersTitle_password}" required="true" requiredMessage="#{bundle.EditUsersRequiredMessage_password}"/>
                         <p:outputLabel value="#{bundle.EditUsersLabel_rol}" for="rol" />
-                        <p:inputText id="rol" value="#{usersController.selected.rol}" title="#{bundle.EditUsersTitle_rol}" />
+                        <p:selectOneMenu id="rol" value="#{usersController.selected.rol}" >
+                                <f:selectItem itemLabel="Seleccionar uno" itemValue="" />
+                                <f:selectItem itemLabel="Administrador" itemValue="administrador" />
+                            <f:selectItem itemLabel="Vendedor" itemValue="vendedor" />
+                                <f:selectItem itemLabel="Repositor" itemValue="repositor" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usersController.update}" value="#{bundle.Save}" update="display,:UsersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="UsersEditDialog.hide()"/>

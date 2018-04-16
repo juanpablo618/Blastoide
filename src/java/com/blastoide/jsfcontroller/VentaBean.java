@@ -55,7 +55,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.productoCondBarra = productoCondBarra;
     }
     
+    public void borrarVentaActual(){
     
+    this.getLista().clear();
+    this.venta.setCliente(null); 
+    }
     
     public String getNombreDelDocumento() {
         return nombreDelDocumento;
@@ -186,9 +190,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
           this.producto = productoControllerBean.getProductos(idBuscado);
         
-       // System.out.println("producto: "+ this.producto.toString());
-        
-          
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
         
         Double porcentajeDeFormaDePago;
@@ -242,63 +243,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
         
     }
-    
-//    public void agregar() throws Exception {
-//
-//        try {
-//        System.out.println("Entro al metodo agregar de la clase ventaBean: ");
-//        System.out.println("");
-//        
-//        FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
-//        
-//        Double porcentajeDeFormaDePago;
-//        porcentajeDeFormaDePago = formapagoDao.buscarPorcentaje(formaDePagoID);
-//                            System.err.println("porcentaje por Forma De Pago: "+porcentajeDeFormaDePago);
-//
-//        TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
-//        
-//        Double porcentajePorTipoDeCliente;
-//        porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
-//                            System.err.println("porcentaje Por Tipo De Cliente: "+porcentajePorTipoDeCliente);
-//                
-//                
-//        DetalleVenta det = new DetalleVenta();
-//        
-//        det.setCantidad(cantidad);
-//        
-//        
-//        Double precioUnitario = producto.getPrecioVenta();
-//                            System.err.println("Producto precio venta unitario (preciofinal a facturar): "+producto.getPrecioFinalAFacturar());
-//                    
-//                    
-//
-//        double cantidadDeFormaDePago;
-//        double cantidadPorTipoDeCliente;
-//            
-//        
-//            cantidadDeFormaDePago = precioUnitario*porcentajeDeFormaDePago /100.0;
-//                            System.err.println("Cantidad a Sumar de forma de pago: "+cantidadDeFormaDePago);
-//
-//            
-//            cantidadPorTipoDeCliente = precioUnitario*porcentajePorTipoDeCliente /100.0;
-//            
-//           Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
-//            System.err.println("PrecioTotal: "+PrecioTotal);
-//
-//           
-//        producto.setPrecioFinalAFacturar(PrecioTotal);
-//                    
-//        det.setProducto(producto);
-//        
-//        ComprobarSiExiste(det);
-//        
-//        this.lista.add(det);
-//        
-//        } catch (Exception e) {
-//           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("1RO SELECCIONAR UN CLIENTE"));
-//        }
-//        
-//    }
     
      public void facturar() throws Exception {
 
@@ -406,7 +350,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
 
             }
-   
+            
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
         } finally {
@@ -593,15 +537,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     
     public void BorrarDetalle(DetalleVenta detalleVenta){
-       // System.out.println("mi lista: "+ this.lista.toString());
-         //           this.lista.remove(detalleVenta);
-        
-                    
-                    
        FacesContext context = FacesContext.getCurrentInstance();
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-        
-               
+       
         for (int i=0 ; i<ventaBean.getLista().size();i++){
             if(detalleVenta.getProducto().getCodigo().equals(ventaBean.getLista().get(i).getProducto().getCodigo())){
                     ventaBean.getLista().remove(i);

@@ -17,9 +17,9 @@ public abstract class ConfiguracionesGenerales {
     //configuracion para mi linux = /home/juan/Documents
     
     //ANDA EN PC DE LUCAS NO BORRAR
-    private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
+    //private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
 
-    //private static final String CARPETA_DE_PRESUPUESTOS = "/home/juan/Documents";
+    private static final String CARPETA_DE_PRESUPUESTOS = "/home/juan/Documents";
     
     public static String getURL_DE_LOGO_MUNDO_LIMPIEZA() {
         return URL_DE_LOGO_MUNDO_LIMPIEZA;

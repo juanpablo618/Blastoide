@@ -12,11 +12,11 @@
             <h:form id="LocalidadesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localidadesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewLocalidadesLabel_nombre}"/>
+                        <h:outputText value="nombre:"/>
                         <h:outputText value="#{localidadesController.selected.nombre}" title="#{bundle.ViewLocalidadesTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewLocalidadesLabel_codigoPostal}"/>
+                        <h:outputText value="codigo postal:"/>
                         <h:outputText value="#{localidadesController.selected.codigoPostal}" title="#{bundle.ViewLocalidadesTitle_codigoPostal}"/>
-                        <h:outputText value="#{bundle.ViewLocalidadesLabel_provinciaID}"/>
+                        <h:outputText value="província:"/>
                         <h:outputText value="#{localidadesController.selected.provinciaID.nombre}" title="#{bundle.ViewLocalidadesTitle_provinciaID}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LocalidadesViewDialog.hide()"/>

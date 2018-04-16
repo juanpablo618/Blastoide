@@ -16,8 +16,12 @@
                         <p:inputText id="descripcion" value="#{tipoClientesController.selected.descripcion}" title="#{bundle.EditTipoClientesTitle_descripcion}" required="true" requiredMessage="#{bundle.EditTipoClientesRequiredMessage_descripcion}"/>
                         <p:outputLabel value="#{bundle.EditTipoClientesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tipoClientesController.selected.nombre}" title="#{bundle.EditTipoClientesTitle_nombre}" required="true" requiredMessage="#{bundle.EditTipoClientesRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditTipoClientesLabel_porcentajeInteres}" for="porcentajeInteres" />
-                        <p:inputText id="porcentajeInteres" value="#{tipoClientesController.selected.porcentajeInteres}" title="#{bundle.EditTipoClientesTitle_porcentajeInteres}" />
+                        <p:outputLabel value="% de interés" for="porcentajeInteres" />
+                        <p:inputText id="porcentajeInteres" value="#{tipoClientesController.selected.porcentajeInteres}" title="#{bundle.EditTipoClientesTitle_porcentajeInteres}" >
+                        <f:convertNumber pattern="#0.00"/>
+                            
+                        </p:inputText>
+                    
                     </p:panelGrid>
                     <p:commandButton actionListener="#{tipoClientesController.update}" value="#{bundle.Save}" update="display,:TipoClientesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoClientesEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TipoClientesEditDialog.hide()"/>
