@@ -73,7 +73,7 @@
       
             <navigation-case>
                 <from-action>#{login.logout}</from-action>
-                <to-view-id>/logout.xhtml</to-view-id>
+                <to-view-id>/login.xhtml</to-view-id>
                 <redirect/>
             </navigation-case>
 
