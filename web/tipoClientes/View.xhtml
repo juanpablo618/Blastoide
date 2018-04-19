@@ -12,12 +12,14 @@
             <h:form id="TipoClientesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoClientesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTipoClientesLabel_descripcion}"/>
+                        <h:outputText value="descripción"/>
                         <h:outputText value="#{tipoClientesController.selected.descripcion}" title="#{bundle.ViewTipoClientesTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewTipoClientesLabel_nombre}"/>
                         <h:outputText value="#{tipoClientesController.selected.nombre}" title="#{bundle.ViewTipoClientesTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewTipoClientesLabel_porcentajeInteres}"/>
-                        <h:outputText value="#{tipoClientesController.selected.porcentajeInteres}" title="#{bundle.ViewTipoClientesTitle_porcentajeInteres}"/>
+                        <h:outputText value="#{tipoClientesController.selected.porcentajeInteres}" title="#{bundle.ViewTipoClientesTitle_porcentajeInteres}">
+                             <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="TipoClientesViewDialog.hide()"/>
                 </h:panelGroup>

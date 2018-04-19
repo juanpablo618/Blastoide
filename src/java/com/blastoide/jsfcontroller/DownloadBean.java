@@ -2,13 +2,14 @@ package com.blastoide.jsfcontroller;
 
 /**
  *
- * @author juan
+ * @author cuello.juanpablo@gmail.com
  */
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -23,7 +24,7 @@ private static final long serialVersionUID = 626953318628565053L;
 //configuracion para mi linux = file:///home/juan/Documents
 
 //configuracion q anda para lucas
-private static final String PDF_URL = "file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
+private static final String PDF_URL = "file:///home/juan/Documents";
 
 //private static final String PDF_URL = "file:///home/juan/Documents";
 
@@ -80,11 +81,6 @@ responseOutputStream.close();
 facesContext.responseComplete();
 
 //FacesContext context = FacesContext.getCurrentInstance();
-        
-//VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-
-//ventaBean.setLista(null);
-//    System.err.println("ccaaaaaaaaaaaaaaaaacccccccccaaaaaaaaa: " + ventaBean.getLista());
 
 }
 }

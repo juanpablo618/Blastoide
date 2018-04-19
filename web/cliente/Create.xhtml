@@ -17,7 +17,7 @@
                         <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{clienteBuenoController.selected.nombre}" title="#{bundle.CreateClienteBuenoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateClienteBuenoRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_dni}" for="dni" />
-                        <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.CreateClienteBuenoTitle_dni}" />
+                        <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.CreateClienteBuenoTitle_dni}" size="10"/>
                         <p:outputLabel value="#{bundle.CreateClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
                         <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" title="#{bundle.CreateClienteBuenoTitle_tipoCliente}" />
                     </p:panelGrid>

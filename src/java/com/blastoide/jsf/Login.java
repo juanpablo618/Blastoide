@@ -8,6 +8,7 @@ package com.blastoide.jsf;
  */
 import com.blastoide.jpa.LoginDAO;
 import com.blastoide.jsfcontroller.UsersController;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
@@ -89,9 +90,14 @@ public class Login implements Serializable {
 	}
 
 	//logout event, invalidate session
-	public String logout() {
+        //TODO mejorar este metodo que devuelva un string con "login" el nombre del archivo que quiero redireccionar 
+        public void logout() throws IOException {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.getExternalContext().redirect("Login.xhtml");
+           
+
 	}
 }

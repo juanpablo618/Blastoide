@@ -10,13 +10,11 @@
 
     <ui:composition template="/indexAdmin.xhtml">
 
-
-
         <ui:define name="body">
             <f:event type="preRenderView" listener="#{clienteBean.listar('F')}" />
             <p:growl id="msj" autoUpdate="true" showDetail="true"/>
             <h:form style="float: right; border: 2px solid white; margin-top: 10px;">
-
+                    
                 <br></br>                    <br></br>                    <br></br>
                 <p:outputLabel value="IMPORTE A PAGAR:" style="color:white ; margin: 10px;"  />
                 <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   />
@@ -42,7 +40,10 @@
                 <h:commandButton action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente()}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
 
             </h:form>  
+             
+                        <h3 style="margin-top: 0 ;color: white" >Saldo de la cta Corriente: #{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)} </h3>
 
+            
             <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -54,72 +55,34 @@
 
 
                 <p:column headerText="Fecha" >
-
-
-
                     <h:outputText value="#{detalleCuentasCorrientes.fecha}">
                         <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>  
-
-
-                </p:column>
-
-                <p:column headerText="DESCRIPCION">
-                    #{detalleCuentasCorrientes.descripcion}          
-
                 </p:column>
 
                 <p:column headerText="COMPROBANTE">
-
-                    
-
-                    <h:outputText id="COMPROBANTE"  value="#{detalleCuentasCorrientes.ventaID}">
-                        <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-
+                    #{detalleCuentasCorrientes.descripcion}          
                 </p:column>
-
+                    
                 <p:column headerText="DEBE">
-
-
-
                     <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
                         <f:convertNumber pattern="#0.00"/>
                     </h:outputText>
-
                 </p:column>
 
                 <p:column headerText="HABER">
-
-
-
                     <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
                         <f:convertNumber pattern="#0.00"/>
                     </h:outputText>
-
-
                 </p:column>
 
                 <p:column headerText="SALDO">
-
-
-
                     <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
                         <f:convertNumber pattern="#0.00"/>
                     </h:outputText>
-
-
                 </p:column>
-
-
             </p:dataTable>
             <br></br>
-
-
-            <h3 style="margin-top: 0 ;color: white" >Saldo de la cta Corriente: #{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)} </h3>
-
         </ui:define>
     </ui:composition>
-
-
 </html>

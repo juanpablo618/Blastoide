@@ -21,7 +21,7 @@
                         <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  title="Apellido" required="true" requiredMessage="debe ingresar el apellido"/>
 
                         <p:outputLabel value="Documento: " />
-                        <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni"/>
+                        <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni" maxlength="8"/>
 
                         <p:outputLabel value="Sexo: "   />
 
@@ -36,7 +36,7 @@
 
                         <p:outputLabel value="Cuit o cuil: "   />
 
-                                <p:inputText id="cuitCuil" value="#{clienteBean.cliente.cuitCuil}" title="cuitCuil" required="true" requiredMessage="debe ingresar el cuit o cuil"/>
+                                <p:inputText id="cuitCuil" value="#{clienteBean.cliente.cuitCuil}" title="cuitCuil" required="true" requiredMessage="debe ingresar el cuit o cuil" maxlength="12"/>
 
                         <p:separator />
                         <p:outputLabel value=" // datos de Contacto //" style="color: #0074B1;"  />

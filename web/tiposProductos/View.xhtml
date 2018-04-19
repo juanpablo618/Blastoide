@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="TiposProductosViewDlg" widgetVar="TiposProductosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTiposProductosTitle}">
+        <p:dialog id="TiposProductosViewDlg" widgetVar="TiposProductosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="ver tipo de producto:">
             <h:form id="TiposProductosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposProductosController.selected != null}">

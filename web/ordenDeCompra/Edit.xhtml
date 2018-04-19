@@ -24,13 +24,9 @@
                         <p:inputText id="total" value="#{ordenDeCompraController.selected.total}" title="#{bundle.EditOrdenDeCompraTitle_total}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_total}"/>
                         <p:outputLabel value="#{bundle.EditOrdenDeCompraLabel_restoTotal}" for="restoTotal" />
                         <p:inputText id="restoTotal" value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.EditOrdenDeCompraTitle_restoTotal}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_restoTotal}"/>
-                        <p:outputLabel value="Estado" for="estadoID" />
-                        <p:selectOneMenu id="estadoID" value="#{ordenDeCompraController.selected.estadoID}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_estadoID}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{estadoController.itemsAvailableSelectOne}"
-                                           var="estadoIDItem"
-                                           itemValue="#{estadoIDItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="Estado" for="estado" />
+                        <p:inputText id="estado" value="#{ordenDeCompraController.selected.estado}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ordenDeCompraController.update}" value="#{bundle.Save}" update="display,:OrdenDeCompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenDeCompraEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="OrdenDeCompraEditDialog.hide()"/>

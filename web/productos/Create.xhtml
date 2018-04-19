@@ -45,7 +45,7 @@
                         <p:outputLabel value="#{bundle.CreateProductosLabel_stockMinimo}" for="stockMinimo" />
                         <p:inputText id="stockMinimo" value="#{productosController.selected.stockMinimo}" title="#{bundle.CreateProductosTitle_stockMinimo}" />
 
-                        <p:outputLabel value="#{bundle.CreateProductosLabel_tipoProductoID}" for="tipoProductoID" />
+                        <p:outputLabel value="tipo de producto:" for="tipoProductoID" />
                         <p:selectOneMenu id="tipoProductoID" value="#{productosController.selected.tipoProductoID}" style="width: 85%">
                             <f:selectItems value="#{tiposProductosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"

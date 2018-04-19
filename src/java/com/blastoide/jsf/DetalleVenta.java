@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jsf;
 
 import java.util.Objects;
@@ -76,16 +71,8 @@ private int cantidad;
         return true;
     }
 
-    
-
-    
-
     @Override
     public String toString() {
         return "DetalleVenta{" + "codigo=" + codigo + ", venta=" + venta + ", producto=" + producto + ", cantidad=" + cantidad + '}';
     }
-
-    
-    
-    
 }

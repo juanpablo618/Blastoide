@@ -22,12 +22,16 @@
                         <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.EditClienteBuenoTitle_dni}" />
                     
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
-                        <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" title="#{bundle.EditClienteBuenoTitle_tipoCliente}" />
+                        
+                        <p:selectOneMenu id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" style="margin: 10px;"  >
+                                    <f:selectItems value="#{tipoClientesController.items}" var="tipoCliente" itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente.tipoClienteID}" />
+                        </p:selectOneMenu>
                     
-
                         <p:outputLabel value="forma de pago" for="formaDePago" />
-                        <p:inputText id="formaDePago" value="#{clienteBuenoController.selected.formaDePagoID}" title="forma de pago" />
-                    
+                         <p:selectOneMenu id="formaDePago" value="#{clienteBuenoController.selected.formaDePagoID}" style="margin: 10px;"  >
+                                    <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                        </p:selectOneMenu>
+
                         <p:outputLabel value="cuit/cuil" for="cuitCuil" />
                         <p:inputText id="cuitCuil" value="#{clienteBuenoController.selected.cuitCuil}" title="cuit/cuil" />
                     
