@@ -41,7 +41,7 @@
                                 <h:outputText value="#{bundle.ListOrdenDeCompraTitle_fechaCreacion}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaCreacion}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -49,7 +49,7 @@
                                 <h:outputText value="#{bundle.ListOrdenDeCompraTitle_fechaEmision}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaEmision}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -57,7 +57,7 @@
                                 <h:outputText value="#{bundle.ListOrdenDeCompraTitle_fechaCierre}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaCierre}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -78,9 +78,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListOrdenDeCompraTitle_estadoID}"/>
+                                <h:outputText value="Estado"/>
                             </f:facet>
-                            <h:outputText value="#{item.estadoID.ambito}"/>
+                            <h:outputText value="#{item.estado}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ordenDeCompraController.prepareCreate}" update=":OrdenDeCompraCreateForm" oncomplete="PF('OrdenDeCompraCreateDialog').show()"/>

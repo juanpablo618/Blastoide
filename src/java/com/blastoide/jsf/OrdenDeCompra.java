@@ -51,7 +51,7 @@ public class OrdenDeCompra implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "numeroOC")
-    private int numeroOC;
+    private Double numeroOC = null;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fechaCreacion")
@@ -70,15 +70,18 @@ public class OrdenDeCompra implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "total")
-    private float total;
+    private Double total = null;
     @Basic(optional = false)
     @NotNull
     @Column(name = "restoTotal")
-    private float restoTotal;
+    private Double restoTotal = null;
     @JoinColumn(name = "estadoID", referencedColumnName = "estadoID")
     @ManyToOne(optional = false)
     private Estado estadoID;
-
+    @Column(name = "estado")
+    private String estado;
+    
+    
     public OrdenDeCompra() {
     }
 
@@ -86,7 +89,7 @@ public class OrdenDeCompra implements Serializable {
         this.ordenDeCompraID = ordenDeCompraID;
     }
 
-    public OrdenDeCompra(Integer ordenDeCompraID, int numeroOC, Date fechaCreacion, Date fechaEmision, Date fechaCierre, float total, float restoTotal) {
+    public OrdenDeCompra(Integer ordenDeCompraID, Double numeroOC, Date fechaCreacion, Date fechaEmision, Date fechaCierre, Double total, Double restoTotal, String estado) {
         this.ordenDeCompraID = ordenDeCompraID;
         this.numeroOC = numeroOC;
         this.fechaCreacion = fechaCreacion;
@@ -94,6 +97,15 @@ public class OrdenDeCompra implements Serializable {
         this.fechaCierre = fechaCierre;
         this.total = total;
         this.restoTotal = restoTotal;
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Integer getOrdenDeCompraID() {
@@ -104,11 +116,11 @@ public class OrdenDeCompra implements Serializable {
         this.ordenDeCompraID = ordenDeCompraID;
     }
 
-    public int getNumeroOC() {
+    public Double getNumeroOC() {
         return numeroOC;
     }
 
-    public void setNumeroOC(int numeroOC) {
+    public void setNumeroOC(Double numeroOC) {
         this.numeroOC = numeroOC;
     }
 
@@ -136,19 +148,19 @@ public class OrdenDeCompra implements Serializable {
         this.fechaCierre = fechaCierre;
     }
 
-    public float getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public float getRestoTotal() {
+    public Double getRestoTotal() {
         return restoTotal;
     }
 
-    public void setRestoTotal(float restoTotal) {
+    public void setRestoTotal(Double restoTotal) {
         this.restoTotal = restoTotal;
     }
 
