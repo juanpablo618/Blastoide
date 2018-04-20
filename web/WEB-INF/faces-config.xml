@@ -13,7 +13,6 @@
             </navigation-case>
         </navigation-rule>
     
-
         <navigation-rule>
             <from-view-id>/users/*</from-view-id>
             <from-view-id>/inventarios/*</from-view-id>
@@ -70,12 +69,11 @@
             <from-view-id>/localidades/List.xhtml</from-view-id>    
             <from-view-id>/cliente/ListarDetalleCtaCorriente.xhtml</from-view-id>
 
-      
-            <navigation-case>
-                <from-action>#{login.logout}</from-action>
-                <to-view-id>/login.xhtml</to-view-id>
-                <redirect/>
-            </navigation-case>
+       <navigation-case>
+            <from-action>#{login.logout}</from-action>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
 
         </navigation-rule>
         <resource-bundle>
@@ -87,6 +85,5 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
-    
-    
+
 </faces-config>

@@ -12,11 +12,8 @@
             <h:form id="CajaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cajaController.selected != null}">
-                        
-                        
                         <p:outputLabel value="#{bundle.EditCajaLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{cajaController.selected.fecha}" title="#{bundle.EditCajaTitle_fecha}"  showOn="button"/>
-                        
                         <p:outputLabel value="#{bundle.EditCajaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{cajaController.selected.descripcion}" title="#{bundle.EditCajaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditCajaLabel_ingreso}" for="ingreso" />
@@ -29,6 +26,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

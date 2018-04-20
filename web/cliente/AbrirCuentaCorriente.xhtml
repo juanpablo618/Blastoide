@@ -31,6 +31,7 @@
                             </f:facet>
                             <h:outputText value="#{item.apellido}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="nombre"/>
@@ -44,7 +45,6 @@
                             </f:facet>
                             <h:outputText value="#{item.dni}"/>
                         </p:column>
-
 
                         <p:column>
                             <f:facet name="header">
@@ -73,24 +73,28 @@
                             </f:facet>
                             <h:outputText value="#{item.razonSocial}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="tel. fijo"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoFijo}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="tel. celular"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoCelular}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Debe:"/>
@@ -99,17 +103,15 @@
                             <h:outputText id="cantidadQueDebe"  value="#{cuentaCorrienteBean.buscarCantidadQueDebe(item.cuentaCorrienteID)}"/>
 
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="limite:"/>
                             </f:facet>
 
-                            <h:outputText value="#{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}">
+                         <h:outputText value="#{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}">
                                 <f:convertNumber pattern="#0.00" />
                          </h:outputText>
-                         
-                            
-                            
                         </p:column>
 
                         <f:facet name="footer">
@@ -125,10 +127,8 @@
 
             <ui:include src="nuevoCliente.xhtml"/>
             <ui:include src="Edit.xhtml"/>
-
             <ui:include src="EditarLimite.xhtml"/>
             <ui:include src="EditarDetalle.xhtml"/>
-
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>

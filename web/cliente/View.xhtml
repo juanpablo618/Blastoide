@@ -13,14 +13,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
                         
-                        
                         <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}"/>
                         <h:outputText value="#{clienteBuenoController.selected.nombre}" title="#{bundle.ViewClienteBuenoTitle_nombre}"/>
                         
                         <h:outputText value="apellido:"/>
                         <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/>
-                        
-                        
                         
                         <h:outputText value="Dni:"/>
                         <h:outputText value="#{clienteBuenoController.selected.dni}" title="#{bundle.ViewClienteBuenoTitle_dni}"/>
@@ -31,10 +28,8 @@
                         <h:outputText value="Forma de pago:"/>
                         <h:outputText value="#{formaDePagoController.getFormaDePago(clienteBuenoController.selected.formaDePagoID).nombre}"/>
                         
-                        
                         <h:outputText value="Razon Social:"/>
                         <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/>
-                        
                         
                         <h:outputText value="Tel. fijo:"/>
                         <h:outputText value="#{clienteBuenoController.selected.telefonoFijo}" title="telFijo"/>
@@ -47,17 +42,11 @@
                         
                         <h:outputText value="cuit-cuil:"/>
                         <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/>
-                        
-                        
-                        
-                    
-                    
                     
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

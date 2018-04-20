@@ -3,7 +3,6 @@ package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.CuentasCorrientesDAO;
 import com.blastoide.jpa.DetalleCuentasCorrientesDAO;
-import com.blastoide.jsf.Cliente;
 import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jsf.DetalleCuentasCorrientes;
 import java.io.Serializable;
@@ -24,17 +23,9 @@ import javax.faces.context.FacesContext;
 public class DetalleCuentasCorrientesBean implements Serializable{
     
     private ClienteBueno cliente;
-     
-    
     private List<DetalleCuentasCorrientes> lista = new ArrayList();
-
     private DetalleCuentasCorrientes detalleCtaCorriente = new DetalleCuentasCorrientes();
 
-    
-    
-    
-    
-    
     public DetalleCuentasCorrientes getDetalleCtaCorriente() {
         return detalleCtaCorriente;
     }
@@ -42,9 +33,6 @@ public class DetalleCuentasCorrientesBean implements Serializable{
     public void setDetalleCtaCorriente(DetalleCuentasCorrientes detalleCtaCorriente) {
         this.detalleCtaCorriente = detalleCtaCorriente;
     }
-    
-    
-    
     
     public ClienteBueno getCliente() {
         return cliente;
@@ -59,27 +47,19 @@ public class DetalleCuentasCorrientesBean implements Serializable{
     }
 
     public void setLista(List<DetalleCuentasCorrientes> lista) {
-        
-        
         this.lista = lista;
-         
     }
-    
     
     public List<DetalleCuentasCorrientes> darlistaConDetalles(int cuentaCorrienteID) throws Exception{
         
         DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
                 
        System.err.println("vino al darlistaConDetalles");
-            System.err.println("cuentaCorrienteID: "+cuentaCorrienteID);
+       System.err.println("cuentaCorrienteID: "+cuentaCorrienteID);
        
-                        lista = detalleCuentasCorrientesDAO.listar(cuentaCorrienteID);
-                        return lista;
-
-
+            lista = detalleCuentasCorrientesDAO.listar(cuentaCorrienteID);
+            return lista;
     }
-    
-    
     
     public void pedirDetalleCtaCorriente() throws Exception{
     
@@ -87,14 +67,9 @@ public class DetalleCuentasCorrientesBean implements Serializable{
         
         DetalleCuentasCorrientesBean detalleCtaCorrienteBean = context.getApplication().evaluateExpressionGet(context, "#{detalleCuentasCorrientesBean}", DetalleCuentasCorrientesBean.class);
         
-            
-        
         detalleCtaCorrienteBean.darlistaConDetalles(this.cliente.getCuentaCorrienteID());
         System.err.println("vino al pedirDetalleCtaCorriente:");
         System.err.println("id de cta corriente del cliente: "+this.cliente.getCuentaCorrienteID());
-        
-        
-        
     }
     
     
@@ -106,22 +81,14 @@ public class DetalleCuentasCorrientesBean implements Serializable{
         
         float saldoHistorico= cuentaCorrienteDAO.buscarSaldo(cuentaCorrienteID);
         // insert en detalleCuentasCorrientes
-        
         float saldoActualizado = saldoHistorico - haber ;
-        
-        
+               
         DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
-        
         detalleCuentasCorrientesDAO.ingresarNuevoDetalleDeCuentaCorriente( haber, descripcion, cuentaCorrienteID, saldoActualizado );
         
-        
         // Update de SALDO en tabla CuentasCorrientes
-        
-        
         cuentaCorrienteDAO.actualizarSaldo(cuentaCorrienteID, saldoActualizado);
-    
+        
     }
-    
-    
     
 }

@@ -42,16 +42,17 @@
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCajaTitle_ingreso}"/>
                             </f:facet>
+                            
                             <h:outputText value="#{item.ingreso}">
                                 <f:convertNumber pattern="#0.00" />
                             </h:outputText>
-                            
-                            
                         </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>

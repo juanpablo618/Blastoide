@@ -24,7 +24,7 @@ private static final long serialVersionUID = 626953318628565053L;
 //configuracion para mi linux = file:///home/juan/Documents
 
 //configuracion q anda para lucas
-private static final String PDF_URL = "file:///home/juan/Documents";
+private static final String PDF_URL = "file:///home/developer/Documents";
 
 //private static final String PDF_URL = "file:///home/juan/Documents";
 

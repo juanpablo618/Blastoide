@@ -12,7 +12,6 @@
             <h:outputText value="#{bundle.ListProductoXProveedorTitle}"></h:outputText>
         </ui:define>
 
-
         <ui:define name="body">
             
              <h:form  id="formDeFiltrado" style="display: inline;">
@@ -39,6 +38,7 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  filteredValue="#{productoXProveedorController.filteredItems}"
                                  resizableColumns="true"
+                                 emptyMessage="no existen resultado para esta busqueda"
                                  >
                         
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -65,22 +65,21 @@
                             <h:outputText value="#{productosController.getProductos(item.productoID).codigo}"/>
                             
                         </p:column>
-                        
-                        
-                        
-                        
+                      
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Precio Costo:"/>
                             </f:facet>
                             <h:outputText value="#{item.precioCosto}"/>
                         </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoXProveedorController.prepareCreate}" update=":ProductoXProveedorCreateForm" oncomplete="PF('ProductoXProveedorCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductoXProveedorViewForm" oncomplete="PF('ProductoXProveedorViewDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductoXProveedorEditForm" oncomplete="PF('ProductoXProveedorEditDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productoXProveedorController.destroy}" update=":growl,datalist" disabled="#{empty productoXProveedorController.selected}"/>
                         </f:facet>
+                    
                     </p:dataTable>
                 </p:panel>
             </h:form>

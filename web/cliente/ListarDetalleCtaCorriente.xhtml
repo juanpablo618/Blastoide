@@ -15,48 +15,49 @@
             <p:growl id="msj" autoUpdate="true" showDetail="true"/>
             <h:form style="float: right; border: 2px solid white; margin-top: 10px;">
                     
-                <br></br>                    <br></br>                    <br></br>
+                <br></br><br></br><br></br>
                 <p:outputLabel value="IMPORTE A PAGAR:" style="color:white ; margin: 10px;"  />
-                <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   />
+                <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
+                    <f:convertNumber pattern="#0.00"/>
+                </p:inputText>
 
                 <p:outputLabel value="CONCEPTO:" style="color:white ; margin: 10px;"  />
                 <p:inputText style="margin-right: 5px;" value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion}"/>
-
-                <p:commandButton value="CARGAR"  action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}"  />
-
+                <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}"
+                                 />
+                
+                
+                
             </h:form> 
 
             <h:form id="frmDetalleParaCtaCorriente" >
-
-                <br></br>                    <br></br>                    <br></br>
-
+                <br></br><br></br><br></br>
                 <p:outputLabel value="CLIENTE: "  style="color:white ; margin: 10px ; " />
-
                 <p:selectOneMenu value="#{detalleCuentasCorrientesBean.cliente}" converter="omnifaces.SelectItemsConverter" style=" width: 15%; margin-top: 3px;">
                     <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
                     <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemValue="#{cli}" />
                 </p:selectOneMenu>
-
                 <h:commandButton action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente()}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
-
             </h:form>  
              
-                        <h3 style="margin-top: 0 ;color: white" >Saldo de la cta Corriente: #{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)} </h3>
-
-            
+                <h3 style="margin-top: 0 ;color: white" >Saldo de la cta Corriente: #{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)} </h3>
+         
+          <h:form id="detalleCtaCorrienteForm">
+                      
             <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="10,20"
+                         rowsPerPageTemplate="20,30,40"
                          emptyMessage="no hay Detalles en la Cta corriente de este cliente"
                          style="margin: 30px;" 
                          resizableColumns="true"
+                         
                          >
 
-
+                
                 <p:column headerText="Fecha" >
                     <h:outputText value="#{detalleCuentasCorrientes.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:outputText>  
                 </p:column>
 
@@ -81,7 +82,9 @@
                         <f:convertNumber pattern="#0.00"/>
                     </h:outputText>
                 </p:column>
+                
             </p:dataTable>
+         </h:form>     
             <br></br>
         </ui:define>
     </ui:composition>
