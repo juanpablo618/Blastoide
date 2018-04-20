@@ -13,23 +13,17 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
                         <form>
-                           
-                        <p:outputLabel value="descripción:" />
-                        <p:inputText id="descripcion"  title="descripcion" required="true" requiredMessage="descripcion es requerido"/>
-                        
-                        <p:outputLabel value="monto:" />
-                        <p:inputText id="monto"  title="monto" required="true" requiredMessage="monto es requerido"/>
-                            
-                            
-                            
+                                <p:outputLabel value="descripción:" />
+                                <p:inputText id="descripcion"  title="descripcion" required="true" requiredMessage="descripcion es requerido"/>
+
+                                <p:outputLabel value="monto:" />
+                                <p:inputText id="monto"  title="monto" required="true" requiredMessage="monto es requerido"/>
                             <h:commandButton  action="#{cuentaCorrienteBean.cambiarLimite(clienteBuenoController.selected.cuentaCorrienteID,cuentaCorrienteBean.cuentacorriente.limite)}"  value="Agregar Detalle"  />
                         </form> 
                     </p:panelGrid>
-                    
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialogDetalleForm.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
-    </ui:composition>
+   </ui:composition>
 </html>

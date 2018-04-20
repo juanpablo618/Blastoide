@@ -12,17 +12,17 @@
             <h:form id="ClienteBuenoEditForm2">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
+                        
                         <p:outputLabel value="apellido" for="apellido" />
                         <p:inputText id="apellido" value="#{clienteBuenoController.selected.apellido}" title="apellido" required="true" requiredMessage="apellido es requerido"/>
                         
-                        
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{clienteBuenoController.selected.nombre}" title="#{bundle.EditClienteBuenoTitle_nombre}" required="true" requiredMessage="#{bundle.EditClienteBuenoRequiredMessage_nombre}"/>
+                        
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_dni}" for="dni" />
                         <p:inputText id="dni" value="#{clienteBuenoController.selected.dni}" title="#{bundle.EditClienteBuenoTitle_dni}" />
                     
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
-                        
                         <p:selectOneMenu id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" style="margin: 10px;"  >
                                     <f:selectItems value="#{tipoClientesController.items}" var="tipoCliente" itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente.tipoClienteID}" />
                         </p:selectOneMenu>
@@ -30,7 +30,7 @@
                         <p:outputLabel value="forma de pago" for="formaDePago" />
                          <p:selectOneMenu id="formaDePago" value="#{clienteBuenoController.selected.formaDePagoID}" style="margin: 10px;"  >
                                     <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
-                        </p:selectOneMenu>
+                         </p:selectOneMenu>
 
                         <p:outputLabel value="cuit/cuil" for="cuitCuil" />
                         <p:inputText id="cuitCuil" value="#{clienteBuenoController.selected.cuitCuil}" title="cuit/cuil" />
@@ -46,15 +46,12 @@
                         
                         <p:outputLabel value="Email" for="Email" />
                         <p:inputText id="Email" value="#{clienteBuenoController.selected.email}" title="email" />
-
-                                                
-                        
                     </p:panelGrid>
+                    
                     <p:commandButton actionListener="#{clienteBuenoController.update}" value="#{bundle.Save}" update="display,:ClienteBuenoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClienteBuenoEditDialog2');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

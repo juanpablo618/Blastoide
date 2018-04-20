@@ -7,7 +7,6 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="ClienteBuenoEditDlg" widgetVar="ClienteBuenoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Limite">
             <h:form id="ClienteBuenoEditForm">
                 <h:panelGroup id="display">
@@ -17,11 +16,9 @@
                             <h:commandButton  action="#{cuentaCorrienteBean.cambiarLimite(clienteBuenoController.selected.cuentaCorrienteID,cuentaCorrienteBean.cuentacorriente.limite)}"  value="Editar Limite" style="width: 100%;" />
                         </form> 
                     </p:panelGrid>
-
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

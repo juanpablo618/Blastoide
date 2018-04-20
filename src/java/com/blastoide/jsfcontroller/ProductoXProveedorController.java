@@ -63,11 +63,6 @@ public class ProductoXProveedorController implements Serializable {
     public void setProveedorNombre(String proveedorNombre) {
         this.proveedorNombre = proveedorNombre;
     }
-
-    
-    
-    
-    
     public String getProductoID() {
         return productoID;
     }

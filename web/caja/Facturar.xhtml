@@ -15,6 +15,7 @@
 
             <h:form id="frmCliente" style="display: inline;">
                 #{ventaBean.venta.setEmpleado(login.user)}
+                
                 <p:column>
                     <br></br><br></br><br></br><br></br>
                      <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold; padding-right: 163px">Cliente: </h:outputLabel>
@@ -23,22 +24,18 @@
                         <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
                         <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemDescription="#{cli.apellido}"  itemValue="#{cli}" />
                         <p:ajax listener="#{ventaBean.transferir()}" update="formadepagoID" />
-                                            
                      </p:selectOneMenu>
-
-                    
                 </p:column>
+                
                 <br></br>
                 <p:column id="columnFP">
-
-                 <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;margin: 10px">FORMA DE PAGO: </h:outputLabel>
+                    <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;margin: 10px">FORMA DE PAGO: </h:outputLabel>
 
                     <p:selectOneMenu  id="formadepagoID" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter" style="margin: 10px;" >
                         <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}"  />
                         <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
-                            <p:ajax listener="#{ventaBean.CambiarFormaDePago()}" update=":tablaDetalleVenta:detalle" />
+                        <p:ajax listener="#{ventaBean.CambiarFormaDePago()}" update=":tablaDetalleVenta:detalle" />
                     </p:selectOneMenu>
-                
                 </p:column>
             </h:form>        
             
@@ -47,25 +44,18 @@
                     <p:panel id="elegirProd" style="background: #496479;">
                 
                        <p:focus context="elegirProd"/>
-
-                       <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;">Producto: </h:outputLabel>
-
-                        <p:inputText value="#{ventaBean.productoCondBarra}" id="productoCodBarra">  </p:inputText> 
-
-                        <h:commandButton value="Agregar" action="#{ventaBean.agregarPorCodBarra(ventaBean.productoCondBarra)}"
-                        style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
+                            <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;">Producto: </h:outputLabel>
+                            <p:inputText value="#{ventaBean.productoCondBarra}" id="productoCodBarra">  </p:inputText> 
+                        
+                            <h:commandButton value="Agregar" action="#{ventaBean.agregarPorCodBarra(ventaBean.productoCondBarra)}"
+                            style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
                     
                         <h:commandButton value="nueva venta" action="#{ventaBean.borrarVentaActual()}"
                         style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 40% " />
-                    
-                        
                     </p:panel>        
-                    
-                    
                     <br></br>
                 </h:form>
                 
-            
             <h:form id="tablaDetalleVenta" style="display: inline;">    
                 <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
                              paginator="true"
@@ -74,14 +64,10 @@
                              emptyMessage="no hay elementos en esta venta"
                              resizableColumns="true" >
 
-
                     <p:column headerText="Cantidad" style="font-size:18px;">
 
-                        <!-- #{det.cantidad}
-                        -->
                         <center>
                             <p:inputText value="#{det.cantidad}" size="5" style="text-align: center"/>
-
                             <h:commandButton  action="#{ventaBean.cambiarDetalleVenta(det,det.cantidad)}" value="EDITAR" 
                                               style="margin: 4px; padding: 3px;" />
                         </center>
@@ -91,7 +77,6 @@
                         #{det.producto.codigo}
                     </p:column>
                     
-
                     <p:column headerText="Producto" style="font-size:15px;">
                         #{det.producto.nombre}
                     </p:column>
@@ -118,13 +103,11 @@
                         </h:outputText>
                     </p:column>
 
-
                     <p:column headerText="P.T." style="font-size:18px;">
                         <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
                             <f:convertNumber pattern="#00.00" />
                         </h:outputText>
                     </p:column>
-
 
                     <p:column headerText="accion" style="font-size:15px;">
                         <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.BorrarDetalle(det)}" update="detalle"/>
@@ -133,14 +116,12 @@
                 </p:dataTable>
                 <br></br>
 
-                
                 <h:commandButton value="FACTURAR" actionListener="#{ventaBean.facturar()}"
                                  action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #a7e14f; border-color: #a7e14f " />
                 
                 <h:commandButton value="PRESUPUESTAR" actionListener="#{ventaBean.presupuestar()}"
                     action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #4fb2e1 " />
   
-                
             </h:form>
 
         </ui:define>

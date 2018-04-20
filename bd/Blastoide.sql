@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-04-2018 a las 02:20:25
--- Versión del servidor: 10.1.25-MariaDB
--- Versión de PHP: 5.6.31
+-- Tiempo de generación: 20-04-2018 a las 22:19:49
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -54,7 +52,8 @@ INSERT INTO `caja` (`id`, `fecha`, `descripcion`, `ingreso`, `egreso`) VALUES
 (22, '16/04/2018', 'cliente: franquicia', 94.8, 0),
 (23, '16/04/2018', 'cliente: franquicia', 94.8, 0),
 (24, '16/04/2018', 'cliente: franquicia', 79, 0),
-(25, '16/04/2018', 'cliente: franquicia', 79, 0);
+(25, '16/04/2018', 'cliente: franquicia', 79, 0),
+(26, '20/04/2018', 'cliente: mayorista', 388.79999999999995, 0);
 
 -- --------------------------------------------------------
 
@@ -177,7 +176,7 @@ INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `saldo`) VALUES
 (50, 10000, 0),
 (51, 20000, 0),
 (52, 2000000, 0),
-(53, 30000, 584.6);
+(53, 30000, 441.6);
 
 -- --------------------------------------------------------
 
@@ -224,7 +223,21 @@ INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `hab
 (17, 94.8, 0, 'FAC-0', '2018-04-16 23:07:38', 53, 0, 331.8),
 (18, 94.8, 0, 'FAC-0', '2018-04-16 23:08:51', 53, 0, 426.6),
 (19, 79, 0, 'FAC-0', '2018-04-16 23:22:27', 53, 0, 505.6),
-(20, 79, 0, 'FAC-25', '2018-04-16 23:32:27', 53, 0, 584.6);
+(20, 79, 0, 'FAC-25', '2018-04-16 23:32:27', 53, 0, 584.6),
+(21, NULL, 50, 'pago de lo q debe', '2018-04-20 15:01:21', 53, NULL, 534.6),
+(22, NULL, 20, 'pago lo que debe 20 pesos', '2018-04-20 15:22:25', 53, NULL, 514.6),
+(23, NULL, 10, 'pago lo que debe 10 pesos', '2018-04-20 15:44:47', 53, NULL, 504.6),
+(24, NULL, 10, 'pago lo que debe 10 pesos', '2018-04-20 15:48:18', 53, NULL, 494.6),
+(25, NULL, 0, '', '2018-04-20 15:48:44', 53, NULL, 494.6),
+(26, NULL, 10, 'pago lo q debe 10 pesos', '2018-04-20 15:51:08', 53, NULL, 484.6),
+(27, NULL, 0, '', '2018-04-20 15:52:52', 53, NULL, 484.6),
+(28, NULL, 4, 'pago 4 pesos el rata', '2018-04-20 15:53:35', 53, NULL, 480.6),
+(29, NULL, 4, 'pago 4 pesos el rata', '2018-04-20 15:53:39', 53, NULL, 476.6),
+(30, NULL, 10, 'pago 10 pesos juan', '2018-04-20 17:05:34', 0, NULL, -10),
+(31, NULL, 20, '20 pesos pago', '2018-04-20 17:35:17', 53, NULL, 456.6),
+(32, NULL, 6, '6 peso', '2018-04-20 17:36:05', 53, NULL, 450.6),
+(33, NULL, 3, 'tres peso', '2018-04-20 17:50:04', 53, NULL, 447.6),
+(34, NULL, 6, '6 pesitos', '2018-04-20 17:59:39', 53, NULL, 441.6);
 
 -- --------------------------------------------------------
 
@@ -235,7 +248,7 @@ INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `hab
 CREATE TABLE `DetalleVenta` (
   `codigo` int(11) NOT NULL,
   `codVenta` int(11) NOT NULL,
-  `productoID` int(11) NOT NULL,
+  `productoID` int(11) DEFAULT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -248,7 +261,8 @@ INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALU
 (26, 22, 1619, 1),
 (27, 23, 1619, 1),
 (28, 24, 1626, 1),
-(29, 25, 1629, 1);
+(29, 25, 1629, 1),
+(30, 26, 1619, 4);
 
 -- --------------------------------------------------------
 
@@ -455,9 +469,6 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
-(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 50, NULL, NULL, NULL, NULL, 0, 100, -26, 4),
-(1618, '7798181180101', '	ROLLO DE COCINA	', '	ACQUA	', '	X40PAÑOS C/U	', '', '300', 60, NULL, NULL, NULL, NULL, 0, 110, -4, 32),
-(1619, '7790520012807', '	LIMPIADOR LIQUIDO	', '	MR. MUSCULO - GLADE	', '	EXPLOSION FLORAL	', NULL, '900.00', 70, NULL, NULL, NULL, NULL, 0, 120, -6, 12),
 (1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 6),
 (1621, '7790520009944', '	INSECTICIDA	', '	RAID	', '	CASA Y JARDIN	', NULL, '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 12),
 (1622, '7798184680806', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'VAINILLA', '', '125.00', 50, NULL, NULL, NULL, '2017-12-12', 0, 100, 0, 5),
@@ -480,7 +491,6 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (1639, '7790520985163', '	GLADE TOQUE	', '	GLADE	', '	COCINA CITRICA	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1640, '7793253041274', '	POETT INTENSE	', '	POETT	', '	BOSQUE DE BAMBU	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1641, '7793253041335', '	POETT INTENSE	', '	POETT	', '	DULCES MOMENTOS	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(1642, '7793253041328', '	POETT INTENSE	', '	POETT	', '	ESPIRITU JOVEN	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1643, '7793253411602', '	POETT INTENSE	', '	POETT	', '	SUAVIDAD DE ALGODON	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1644, '7790520008121', '	GLADE TOQUE	', '	GLADE	', '	MAÑANA DE CAMPO	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1645, '7790520008206', '	GLADE TOQUE	', '	GLADE	', '	HARMONY	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -841,12 +851,12 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2000, '7899026421813', '	SHAMPOO	', '	ELVIVE	', '	RE-NUTRICION	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2001, '7791293027623', '	SHAMPOO	', '	DOVE	', '	OLEO NUTRICION	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2002, '7891150022645', '	SHAMPOO	', '	DOVE	', '	POST ALISADO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 3),
-(2003, '7791293027524', '	SHAMPOO	', '	DOVE	', '	RECONSTRUCCION COMPLETA	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 4);
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
+(2003, '7791293027524', '	SHAMPOO	', '	DOVE	', '	RECONSTRUCCION COMPLETA	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 4),
 (2004, '7791293027081', '	SHAMPOO	', '	SEDAL	', '	CREMA BALANCE	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2005, '7791293020785', '	SHAMPOO	', '	SEDAL	', '	COLOR VITAL	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2006, '7791293027258', '	SHAMPOO	', '	SEDAL	', '	CERAMIDAS	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(2007, '7791293027395', '	SHAMPOO	', '	SEDAL	', '	LISO PERFECTO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(2007, '7791293027395', '	SHAMPOO	', '	SEDAL	', '	LISO PERFECTO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
 (2008, '7791293027456', '	SHAMPOO	', '	SEDAL	', '	RIZOS OBEDIENTES	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2009, '7791293022963', '	SHAMPOO	', '	SEDAL	', '	POST ALISADO QUIMICO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2010, '7791293020792', '	ACONDICIONADOR	', '	SEDAL	', '	COLOR VITAL	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -1244,12 +1254,12 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2402, '8760568', '	CREMA P/AFEITARSE	', '	AVON	', '	BLUE BLAZER	', NULL, '85', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2403, '8740944', '	CREMA P/AFEITARSE	', '	AVON	', '	WILD COUNTRY	', NULL, '85', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2404, '7899089444316', '	CREMA P/MANOS	', '	AVON	', '	DAMASCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(2405, '7899089429047', '	CREMA P/MANOS	', '	AVON	', '	FRESA Y CHOC BCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2);
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
+(2405, '7899089429047', '	CREMA P/MANOS	', '	AVON	', '	FRESA Y CHOC BCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2406, '8758705', '	LOCION P/CUERPO	', '	AVON	', '	MINERALS GEMS	', NULL, '250', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
 (2407, '7790829004886', '	COLONIA	', '	AVON	', '	ROSAS ROJAS Y DURAZNOS	', NULL, '200', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
 (2408, '7899089442879', '	ACONDICIONADOR	', '	AVON	', '	FRAMBUESA	', NULL, '300', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
-(2409, '8767306', '	LOCION P/CUERPO EN CREMA	', '	AVON	', '	GUARANA Y MIEL	', NULL, '220', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
+(2409, '8767306', '	LOCION P/CUERPO EN CREMA	', '	AVON	', '	GUARANA Y MIEL	', NULL, '220', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
 (2410, '7899089478267', '	PUNTITA	', '	AVON	', '	MOROCCAN ARGAN OIL	', NULL, '15', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2411, '7899089426060', '	MASCARA PESTAÑAS	', '	AVON	', '	NEGRO	', NULL, '9', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2412, '8757637', '	PUNTITA	', '	AVON	', '	CONC. HIDRO-ACTIVO	', NULL, '15', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -1433,10 +1443,9 @@ CREATE TABLE `ProductoXProveedor` (
 INSERT INTO `ProductoXProveedor` (`ProductoXProveedorID`, `ProveedorID`, `ProductoID`, `precioCosto`) VALUES
 (4, 1, 1620, 140),
 (5, 2, 1620, 100),
-(6, 1, 1618, 56),
-(7, 2, 1619, 90),
 (8, 2, 1700, 67),
-(9, 2, 1618, 0);
+(50, 1, 1620, 987),
+(51, 2, 1620, 988);
 
 -- --------------------------------------------------------
 
@@ -1692,7 +1701,8 @@ INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInter
 (22, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:07:37', '95', 4),
 (23, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:08:51', '95', 4),
 (24, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:22:26', '79', 4),
-(25, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:32:26', '79', 4);
+(25, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:32:26', '79', 4),
+(26, 'lucas', 34, NULL, NULL, NULL, '2018-04-20 13:58:15', '389', 2);
 
 --
 -- Índices para tablas volcadas
@@ -1914,7 +1924,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
@@ -1944,12 +1954,12 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --
 ALTER TABLE `DetalleCuentasCorrientes`
-  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -1999,7 +2009,7 @@ ALTER TABLE `Productos`
 -- AUTO_INCREMENT de la tabla `ProductoXProveedor`
 --
 ALTER TABLE `ProductoXProveedor`
-  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
@@ -2054,7 +2064,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- Restricciones para tablas volcadas
 --
@@ -2065,13 +2075,6 @@ ALTER TABLE `Venta`
 ALTER TABLE `CuentaCorriente`
   ADD CONSTRAINT `CuentaCorriente_ibfk_1` FOREIGN KEY (`localidadID`) REFERENCES `Localidades` (`LocalidadID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `CuentaCorriente_ibfk_3` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `DetalleVenta`
---
-ALTER TABLE `DetalleVenta`
-  ADD CONSTRAINT `DetalleVenta_ibfk_1` FOREIGN KEY (`productoID`) REFERENCES `Productos` (`productoID`),
-  ADD CONSTRAINT `DetalleVenta_ibfk_2` FOREIGN KEY (`codVenta`) REFERENCES `Venta` (`ventaID`);
 
 --
 -- Filtros para la tabla `Domicilios`
@@ -2126,7 +2129,6 @@ ALTER TABLE `Proveedores`
   ADD CONSTRAINT `Proveedores_ibfk_2` FOREIGN KEY (`Real_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_3` FOREIGN KEY (`Fiscal_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_4` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
