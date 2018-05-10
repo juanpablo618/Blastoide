@@ -24,10 +24,12 @@ public abstract class ConfiguracionesGenerales {
 //configuracion para mi linux = file:///home/juan/Documents
 //configuracion q anda para lucas file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\
 //private static final String PDF_URL = "file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
-
-    
+   
 private static final String PDF_URL = "file:///home/developer/Documents";
 
+    public static String getPDF_URL() {
+        return PDF_URL;
+    }
     public static String getURL_DE_LOGO_MUNDO_LIMPIEZA() {
         return URL_DE_LOGO_MUNDO_LIMPIEZA;
     }
