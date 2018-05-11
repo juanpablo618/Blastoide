@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.configuraciones;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 public abstract class ConfiguracionesGenerales {
-    
-    
+        
     private static final String URL_DE_LOGO_MUNDO_LIMPIEZA = "http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza2.jpg";
     
     //configuracion para mi linux = /home/juan/Documents
@@ -37,5 +31,4 @@ private static final String PDF_URL = "file:///home/developer/Documents";
     public static String getCARPETA_DE_PRESUPUESTOS() {
         return CARPETA_DE_PRESUPUESTOS;
     }
-    
 }

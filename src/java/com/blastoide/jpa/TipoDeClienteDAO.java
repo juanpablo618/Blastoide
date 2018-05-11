@@ -40,7 +40,4 @@ System.err.println("st2 de buscar porcentaje de tipo de cliente: "+st2.toString(
                         return null;
 
         }
-    
-    
-    
 }

@@ -26,13 +26,11 @@
                         <p:inputText id="restoTotal" value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.EditOrdenDeCompraTitle_restoTotal}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_restoTotal}"/>
                         <p:outputLabel value="Estado" for="estado" />
                         <p:inputText id="estado" value="#{ordenDeCompraController.selected.estado}"/>
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ordenDeCompraController.update}" value="#{bundle.Save}" update="display,:OrdenDeCompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenDeCompraEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="OrdenDeCompraEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

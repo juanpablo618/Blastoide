@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jsf;
 
-import java.util.Date;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -24,8 +17,6 @@ public class Cliente {
     private String dni;
     private int tipoCliente;
     private int formaDePagoID;
-
-    
     private String apellido;
     private String sexo;
     private String telefonoFijo;
@@ -36,8 +27,6 @@ public class Cliente {
     private String diaDePago;
     private String email;
     private int cuentaCorrienteID;
-
-    
     
     public int getCuentaCorrienteID() {
         return cuentaCorrienteID;
@@ -46,11 +35,6 @@ public class Cliente {
     public void setCuentaCorrienteID(int cuentaCorrienteID) {
         this.cuentaCorrienteID = cuentaCorrienteID;
     }
-    
-    
-    
-    
-    
 
     public String getEmail() {
         return email;
@@ -59,7 +43,6 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     
     public String getApellido() {
         return apellido;
@@ -116,8 +99,6 @@ public class Cliente {
     public void setCuitCuil(String cuitCuil) {
         this.cuitCuil = cuitCuil;
     }
-
-    
     
     public String getDiaDePago() {
         return diaDePago;
@@ -126,19 +107,6 @@ public class Cliente {
     public void setDiaDePago(String diaDePago) {
         this.diaDePago = diaDePago;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     public int getFormaDePagoID() {
         return formaDePagoID;
@@ -210,8 +178,4 @@ public class Cliente {
         return true;
     }
 
-    
-    
-    
-    
 }

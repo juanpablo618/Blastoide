@@ -1,4 +1,3 @@
-
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.CuentasCorrientesDAO;
@@ -11,7 +10,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 
 /**
  *
@@ -75,7 +73,6 @@ public class DetalleCuentasCorrientesBean implements Serializable{
     
     public void ingresarNuevoHaberEnCuentaCorriente(float haber, String descripcion, int cuentaCorrienteID) throws Exception{
     
-        
         //debe hacer 2 cosas
         CuentasCorrientesDAO cuentaCorrienteDAO = new CuentasCorrientesDAO();
         
@@ -90,5 +87,4 @@ public class DetalleCuentasCorrientesBean implements Serializable{
         cuentaCorrienteDAO.actualizarSaldo(cuentaCorrienteID, saldoActualizado);
         
     }
-    
 }

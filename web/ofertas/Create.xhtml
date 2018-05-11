@@ -13,8 +13,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ofertasController.selected != null}">
                         
-                        
-                        
                         <p:outputLabel value="#{bundle.CreateOfertasLabel_titulo}" for="titulo" />
                         <p:inputText id="titulo" value="#{ofertasController.selected.titulo}" title="#{bundle.CreateOfertasTitle_titulo}" />
                         <p:outputLabel value="#{bundle.CreateOfertasLabel_descripcion}" for="descripcion" />

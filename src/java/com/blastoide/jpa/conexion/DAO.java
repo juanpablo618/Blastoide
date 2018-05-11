@@ -2,8 +2,6 @@ package com.blastoide.jpa.conexion;
 
 import java.sql.*;
 
-
-
 public class DAO {
 
 private Connection cn;
@@ -17,19 +15,17 @@ private Connection cn;
     }
 
        
-public void Conectar() throws ClassNotFoundException, SQLException{
+    public void Conectar() throws ClassNotFoundException, SQLException{
     
     try {
         
-                Class.forName("com.mysql.jdbc.Driver");
-                cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Blastoide?user=root&password=");
+            Class.forName("com.mysql.jdbc.Driver");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Blastoide?user=root&password=");
 
-    } catch (Exception e) {
+        } catch (Exception e) {
         throw e;
+            }
     }
-
-    }
-
 
     public void Cerrar() throws SQLException{
         
@@ -40,8 +36,6 @@ public void Conectar() throws ClassNotFoundException, SQLException{
         }
 
     }
-
-
     
     public static Connection getConnection() {
 		try {
@@ -54,7 +48,7 @@ public void Conectar() throws ClassNotFoundException, SQLException{
 					+ ex.getMessage());
 			return null;
 		}
-	}
+    }
 
 	public static void close(Connection con) {
 		try {
@@ -62,6 +56,4 @@ public void Conectar() throws ClassNotFoundException, SQLException{
 		} catch (Exception ex) {
 		}
 	}
-    
-
 }

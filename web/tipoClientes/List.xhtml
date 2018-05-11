@@ -8,7 +8,6 @@
 
     <ui:composition template="/indexAdmin.xhtml">
 
-
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTipoClientesTitle}"></h:outputText>
         </ui:define>
@@ -27,7 +26,6 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
 
                         <p:column>
                             <f:facet name="header">
@@ -49,9 +47,8 @@
                             <h:outputText value="#{item.porcentajeInteres}">
                             <f:convertNumber pattern="#0.00"/>
                             </h:outputText>
-                        
-                        
                         </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoClientesController.prepareCreate}" update=":TipoClientesCreateForm" oncomplete="PF('TipoClientesCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoClientesViewForm" oncomplete="PF('TipoClientesViewDialog').show()" disabled="#{empty tipoClientesController.selected}"/>
@@ -67,5 +64,4 @@
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
-
 </html>

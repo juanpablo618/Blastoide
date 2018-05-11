@@ -89,9 +89,6 @@ public class ProductoXProveedorController implements Serializable {
         this.producto = producto;
     }
 
-    
-    
-    
     public List<ProductoXProveedor> getFilteredItems() {
         return filteredItems;
     }
@@ -99,9 +96,6 @@ public class ProductoXProveedorController implements Serializable {
     public void setFilteredItems(List<ProductoXProveedor> filteredItems) {
         this.filteredItems = filteredItems;
     }
-
-    
-    
     
     public ProductoXProveedor getSelected() {
         return selected;
@@ -233,20 +227,15 @@ public class ProductoXProveedorController implements Serializable {
         }
 
     }
-
     
     public void filtrarPorProductoOPorProveedor(){
         filteredItems = new ArrayList<>();
-        //System.out.println("items.size():" + items.size());
-        //System.out.println("items:" + items.toString());
-        //System.out.println("producto:" + producto.toString());
-        //System.out.println("proveedor:" + proveedor.toString());
         
         System.out.println("Entro al metodo filtrarPorProductoOPorProveedor");
         
         if(producto == null && proveedor == null){
 
-                           filteredItems = items;
+                    filteredItems = items;
                       
         }else{
                 
@@ -279,34 +268,25 @@ public class ProductoXProveedorController implements Serializable {
                     }
                 }
         }
-        
     }
-    
     
     public void filtrarPorProducto(){
         filteredItems = new ArrayList<>();
         
         if(producto != null){
             
-            
-                for(int i = 0; i<items.size();i++){
+                    for(int i = 0; i<items.size();i++){
                         if(producto.getProductoID() == items.get(i).getProductoID()){
                             filteredItems.add(items.get(i));
                         }
                     }
-            
         }else{
             filteredItems = items;
-             
         }
-        
     }
     
         public void filtrarPorProveedor(){
         filteredItems = new ArrayList<>();
-        //System.out.println("items.size():" + items.size());
-        //System.out.println("items:" + items.toString());
-        //System.out.println("proveedor.getProductoID():" + proveedor.getProveedorID().toString());
                 if(proveedor != null){
 
                  for(int i = 0; i<items.size();i++){
@@ -321,23 +301,6 @@ public class ProductoXProveedorController implements Serializable {
                 }
         }
  
-//       public void filtrarPorProductoDos(){
-//        filteredItems = new ArrayList<>();
-//        
-//        for(int i = 0; i<items.size();i++){
-//            String cadena = "";
-//            cadena = String.valueOf(items.get(i).getProductoID());
-//            
-//            if(productoID.equals(cadena)){
-//                filteredItems.add(items.get(i));
-//            }
-//            
-//            if(filteredItems.isEmpty()){
-//                filteredItems = null;
-//            }
-//        }
-//    }
-    
      public List FiltrarPorProductoYProveedor (String productoCodigo){
         filteredItems = new ArrayList<>();
      
@@ -346,7 +309,6 @@ public class ProductoXProveedorController implements Serializable {
         
         ProductosController productosController = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
         
-        //ProveedoresController proveedorController = context.getApplication().evaluateExpressionGet(context, "#{proveedoresController}", ProveedoresController.class);
                                String todos = "todos";
                          System.out.println("producto CODIGO:" +productoCodigo);
                         // System.out.println("proveedorNombre:" +proveedorNombre);
@@ -355,7 +317,6 @@ public class ProductoXProveedorController implements Serializable {
                              System.out.println("validacion 2: "+  productoCodigo.equalsIgnoreCase(todos));        
                         
                         System.out.println("validacion 3: "+  productoCodigo.isEmpty());        
-                        
                        
                         if(productoCodigo.equalsIgnoreCase(todos) || productoCodigo.isEmpty() ){
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("no se encontro nungun resultado"));
@@ -376,5 +337,4 @@ public class ProductoXProveedorController implements Serializable {
                         }
                         
      }   
-        
 }

@@ -6,8 +6,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-
-
     <ui:composition template="/indexAdmin.xhtml">
 
         <ui:define name="body">
@@ -25,8 +23,6 @@
                 <p:inputText style="margin-right: 5px;" value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion}"/>
                 <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}"
                                  />
-                
-                
                 
             </h:form> 
 
@@ -53,8 +49,7 @@
                          resizableColumns="true"
                          
                          >
-
-                
+ 
                 <p:column headerText="Fecha" >
                     <h:outputText value="#{detalleCuentasCorrientes.fecha}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>

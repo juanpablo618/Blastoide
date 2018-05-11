@@ -14,35 +14,30 @@
                     <p:panelGrid columns="2" rendered="#{ordenDeCompraController.selected != null}">
                         <h:outputText value="#{bundle.ViewOrdenDeCompraLabel_numeroOC}"/>
                         <h:outputText value="#{ordenDeCompraController.selected.numeroOC}" title="#{bundle.ViewOrdenDeCompraTitle_numeroOC}"/>
-                        
                         <h:outputText value="Fecha de creación:"/>
                         <h:outputText value="#{ordenDeCompraController.selected.fechaCreacion}" title="#{bundle.ViewOrdenDeCompraTitle_fechaCreacion}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        
                         <h:outputText value="Fecha de Emision:"/>
                         <h:outputText value="#{ordenDeCompraController.selected.fechaEmision}" title="#{bundle.ViewOrdenDeCompraTitle_fechaEmision}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="Fecha de Cierre:"/>
                         <h:outputText value="#{ordenDeCompraController.selected.fechaCierre}" title="#{bundle.ViewOrdenDeCompraTitle_fechaCierre}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewOrdenDeCompraLabel_total}"/>
                         <h:outputText value="#{ordenDeCompraController.selected.total}" title="#{bundle.ViewOrdenDeCompraTitle_total}">
                          <f:convertNumber pattern="#0.00"/>
                         </h:outputText>
-                        
                         <h:outputText value="#{bundle.ViewOrdenDeCompraLabel_restoTotal}"/>
                         <h:outputText value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.ViewOrdenDeCompraTitle_restoTotal}">
                               <f:convertNumber pattern="#0.00"/>
                            
                         </h:outputText>
-                        
                         <h:outputText value="Estado:"/>
                         <h:outputText value="#{ordenDeCompraController.selected.estado}"/>
                    
-                    
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="OrdenDeCompraViewDialog.hide()"/>
                 </h:panelGroup>

@@ -21,13 +21,9 @@ public class DetalleCuentasCorrientes {
     private int ventaID;
     private float saldoHistorico;
     
-    
-    
     public DetalleCuentasCorrientes() {
     }
     
-    
-
     public int getDetalleCuentaCorrienteID() {
         return detalleCuentaCorrienteID;
     }
@@ -92,12 +88,6 @@ public class DetalleCuentasCorrientes {
         this.saldoHistorico = saldoHistorico;
     }
 
-    
-    
-    
-    
-    
-    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -127,10 +117,5 @@ public class DetalleCuentasCorrientes {
     public String toString() {
         return "DetalleCuentasCorrientes{" + "detalleCuentaCorrienteID=" + detalleCuentaCorrienteID + ", debe=" + debe + ", haber=" + haber + ", descripcion=" + descripcion + ", fecha=" + fecha + ", cuentaCorrienteID=" + cuentaCorrienteID + ", ventaID=" + ventaID + '}';
     }
-    
-    
-    
 
-    
-    
 }

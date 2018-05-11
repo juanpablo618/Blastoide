@@ -7,8 +7,6 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.ProductosFacade;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -103,32 +101,6 @@ public class ProductosController implements Serializable {
 
     public List<Productos> getItemsSinStock() throws Exception {
         
-//        if (itemsSinStock == null) {
-//            itemsSinStock = getFacade().findAll();
-//        }
-//                
-//        System.err.println("");
-//        System.err.println("itemsSinStock la 1ra vez: " + itemsSinStock.toString());
-//        
-//            
-//                for(int i = 0; i==itemsSinStock.size();i++){
-//                    if(itemsSinStock.get(i).getStockactual() > itemsSinStock.get(i).getStockMinimo()) {
-//                         itemsSinStock.remove(i);
-//                    }
-//                        System.err.println(itemsSinStock.toString());
-//                        System.err.println("producto Id removido: "+ itemsSinStock.get(i).getProductoID() +" Stock actual: " + itemsSinStock.get(i).getStockactual()   + " stock Minimo: " + itemsSinStock.get(i).getStockMinimo());
-//                
-//                }
-//                
-//                        System.err.println("");
-//                        System.err.println("itemsSinStock tamaño: " + itemsSinStock.size());
-//                        System.err.println("");
-//                        System.err.println("itemsSinStock: " + itemsSinStock.toString());
-//               
-//                        
-//                        
-//        return itemsSinStock;
-
         ProductosDAO productosDao = new ProductosDAO();
 
             itemsSinStock = productosDao.listarProductosSinStock();
@@ -136,20 +108,10 @@ public class ProductosController implements Serializable {
         return itemsSinStock;
     }
     
-    
-    
-    
-    
-    
-    
-
     public void setItemsSinStock(List<Productos> itemsSinStock) {
         this.itemsSinStock = itemsSinStock;
     }
 
-    
-    
-    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -205,7 +167,6 @@ public class ProductosController implements Serializable {
         }
     }
 
-    
     public Productos getProductos(java.lang.Integer id) {
         return getFacade().find(id);
     }
@@ -256,7 +217,5 @@ public class ProductosController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

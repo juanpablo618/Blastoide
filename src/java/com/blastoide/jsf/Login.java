@@ -7,7 +7,6 @@ package com.blastoide.jsf;
  * http://www.journaldev.com/7252/jsf-authentication-login-logout-database-example
  */
 import com.blastoide.jpa.LoginDAO;
-import com.blastoide.jsfcontroller.UsersController;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -68,7 +67,6 @@ public class Login implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);
                         
-                         
                          if(LoginDAO.getRol().equals("administrador")){
                              this.rol = "administrador";
                              return "admin";
@@ -76,9 +74,6 @@ public class Login implements Serializable {
                          }else{
                              return "usuarioComun";
                          }
-                                                
-			
-                        
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -97,7 +92,6 @@ public class Login implements Serializable {
                 
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.getExternalContext().redirect("Login.xhtml");
-           
-
-	}
+        
+        }
 }

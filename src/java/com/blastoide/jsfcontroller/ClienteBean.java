@@ -1,4 +1,3 @@
-
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.ClienteDAO;
@@ -24,12 +23,6 @@ public class ClienteBean implements Serializable{
     private Cliente cliente = new Cliente();
     
     private CuentasCorrientes cuentasCorrientes = new CuentasCorrientes();
-
-    
-    
-    
-    
-    
     
     public CuentasCorrientes getCuentasCorrientes() {
         return cuentasCorrientes;
@@ -38,8 +31,6 @@ public class ClienteBean implements Serializable{
     public void setCuentasCorrientes(CuentasCorrientes cuentasCorrientes) {
         this.cuentasCorrientes = cuentasCorrientes;
     }
-
-    
     
     public List<Cliente> getLstClientes() {
         return lstClientes;
@@ -48,8 +39,6 @@ public class ClienteBean implements Serializable{
     public void setLstClientes(List<Cliente> lstClientes) {
         this.lstClientes = lstClientes;
     }
-
-    
     
     public Cliente getCliente() {
         return cliente;
@@ -59,34 +48,27 @@ public class ClienteBean implements Serializable{
         this.cliente = cliente;
     }
     
-    
-    
-    
-    
-    
-        public void listar(String valor) throws Exception{
+    public void listar(String valor) throws Exception{
      ClienteDAO dao;
         
            try {
                if(valor.equals("F") ){
                
-                   if(isPostBacak() == false){
+                    if(isPostBacak() == false){
                    
                         dao = new ClienteDAO();
                         lstClientes = dao.listar();
                         System.err.println("paso por listar de clienteBean");
-               }
+                    }
                    
                }else{
                         dao = new ClienteDAO();
                         lstClientes = dao.listar();
-               
                }
                
          } catch (Exception e) {
         }
  
-    
     }
     
     public void leerId(Cliente cliente) throws Exception{
@@ -99,19 +81,13 @@ public class ClienteBean implements Serializable{
             dao = new ClienteDAO();
            clienteTemporal = dao.leerId(cliente);
             
-           
            if(clienteTemporal != null){
                this.cliente = clienteTemporal;
            }
             
-        } catch (Exception e) {
+            } catch (Exception e) {
         }
- 
-        
-        
-        
     }
-    
     
     private boolean isPostBacak(){
     
@@ -137,15 +113,5 @@ public class ClienteBean implements Serializable{
         } finally {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
-
-        
-    
     }
-    
-    
-    
-    
-    
-    
-    
 }
