@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa.conexion;
 
 import java.sql.Connection;
@@ -10,7 +5,7 @@ import java.sql.DriverManager;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 public class ConexionMySql {
         
@@ -37,27 +32,13 @@ public class ConexionMySql {
             }
             Connection connection = null;
             url ="jdbc:mysql://" + host + ":" + port + "/" + database;
-            // Database connect
-            // Conectamos con la base de datos
             return connection = DriverManager.getConnection(
                     url,
                     user, password);           
-            
-         
-            
+        
         } catch (java.sql.SQLException sqle) {
             System.out.println("Error al conectar con la base de datos de MySQL (" + url + "): " + sqle);
         }
         return null;
     }
-
-
-
-
-   
 }
-
-    
-
-
-

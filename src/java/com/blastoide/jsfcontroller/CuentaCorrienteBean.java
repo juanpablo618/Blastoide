@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jsfcontroller;
 
 import com.blastoide.jpa.CuentasCorrientesDAO;
-import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jsf.CuentasCorrientes_1;
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -35,39 +27,25 @@ public class CuentaCorrienteBean implements Serializable{
         this.cuentacorriente = cuentacorriente;
     }
     
-    
-    
-    
-    
-    
     public void cambiarLimite(int clienteID ,float limite) throws Exception{
-         
-        
+    
         System.err.println("clienteID"+ clienteID);
-            
         System.err.println("limite:"+ limite);
-        
-        
         
         CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
         cuentasCorrientesDAO.CambiarLimite(clienteID, cuentacorriente.getLimite());
         
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("limite actualizado: "+limite));
 
-        
     }
-    
     
      public float buscarLimite(int cuentaCorrienteID) throws Exception{
      CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
      float retornaLimite = 0;
      
      retornaLimite = cuentasCorrientesDAO.buscarLimite(cuentaCorrienteID);
-         
      return retornaLimite ;
      }
-     
      
      public Double buscarCantidadQueDebe(int cuentaCorrienteID) throws Exception{
      CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
@@ -75,10 +53,7 @@ public class CuentaCorrienteBean implements Serializable{
      Double retornaCantidadQueDebe;
      
      retornaCantidadQueDebe = cuentasCorrientesDAO.buscarCantidadQueDebe(cuentaCorrienteID);
-         
      return retornaCantidadQueDebe ;
-     
-     
      
      }
      
@@ -88,14 +63,6 @@ public class CuentaCorrienteBean implements Serializable{
      float retornaSaldo = 0;
      
      retornaSaldo = cuentasCorrientesDAO.buscarSaldo(cuentaCorrienteID);
-         
      return retornaSaldo ;
-     
-         
      }
-     
-
-    
-     
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 
 import com.blastoide.jsf.CuentaCorriente;
@@ -12,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 @Stateless
 public class CuentaCorrienteFacade extends AbstractFacade<CuentaCorriente> {
@@ -28,5 +23,4 @@ public class CuentaCorrienteFacade extends AbstractFacade<CuentaCorriente> {
     public CuentaCorrienteFacade() {
         super(CuentaCorriente.class);
     }
-    
 }

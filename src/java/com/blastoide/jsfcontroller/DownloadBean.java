@@ -4,36 +4,29 @@ package com.blastoide.jsfcontroller;
  *
  * @author cuello.juanpablo@gmail.com
  */
+import com.blastoide.configuraciones.ConfiguracionesGenerales;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 public class DownloadBean implements Serializable {
 
 private static final long serialVersionUID = 626953318628565053L;
 
-//configuracion para mi linux = file:///home/juan/Documents
-
-//configuracion q anda para lucas
-private static final String PDF_URL = "file:///home/developer/Documents";
-
-//private static final String PDF_URL = "file:///home/juan/Documents";
+private static final String PDF_URL = ConfiguracionesGenerales.getPDF_URL();
 
 
 /**
      * This method reads PDF from the URL and writes it back as a response. 
      * @throws IOException 
-    
      * @param nombreDelDocumento */
+
 public void downloadPdf(String nombreDelDocumento) throws IOException, InterruptedException {
     System.err.println("");    
     System.err.println("");

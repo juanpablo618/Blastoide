@@ -7,19 +7,14 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="ProductoXProveedorViewDlg" widgetVar="ProductoXProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProductoXProveedorTitle}">
             <h:form id="ProductoXProveedorViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoXProveedorController.selected != null}">
                         <h:outputText value="proveedor:"/>
                         <h:outputText value="#{proveedoresController.getProveedores(productoXProveedorController.selected.proveedorID).nombre}" title="#{bundle.ViewProductoXProveedorTitle_proveedorID}"/>
-                        
                         <h:outputText value="#{bundle.ViewProductoXProveedorLabel_productoID}"/>
                         <h:outputText value="#{productosController.getProductos(productoXProveedorController.selected.productoID).nombre}" title="#{bundle.ViewProductoXProveedorTitle_productoID}"/>
-                        
-                        
-                        
                         <h:outputText value="#{bundle.ViewProductoXProveedorLabel_precioCosto}"/>
                         <h:outputText value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.ViewProductoXProveedorTitle_precioCosto}"/>
                     </p:panelGrid>
@@ -27,6 +22,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

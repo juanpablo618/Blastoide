@@ -15,10 +15,7 @@
                 
             }
         </style>
-
-
     </h:head>
-
 
     <h:form id="menuForm">
         <p:growl id="messages" showDetail="false"/>
@@ -28,14 +25,12 @@
                 <p:menuitem value="inicio" outcome="/indexAdmin.xhtml" />
                 <p:separator rendered="#{login.rol eq 'administrador'}"/>
                 <p:menuitem value="Usuarios" outcome="/users/List.xhtml" rendered="#{login.rol eq 'administrador'}"/>
-                
             </p:submenu>
             
             <p:separator />
             <p:submenu label="CAJA" icon="ui-icon-circle-arrow-e">
                 <p:menuitem value="facturar" outcome="/caja/Facturar.xhtml" />
                 <p:menuitem value="Caja Diaria" outcome="/caja/List" />
-                
             </p:submenu>
             <p:separator rendered="#{login.rol eq 'administrador'}"/>
             <p:submenu label="CLIENTES" icon="ui-icon-circle-arrow-e" rendered="#{login.rol eq 'administrador'}">
@@ -51,7 +46,6 @@
             </p:submenu>
             
             <p:separator rendered="#{login.rol eq 'administrador'}"/>
-            
             <p:submenu label="PRODUCTOS" icon="ui-icon-circle-arrow-e" rendered="true">
                 <p:menuitem value="Productos" outcome="/productos/List.xhtml" />
                 <p:separator />
@@ -60,7 +54,6 @@
                 <p:menuitem value="Productos Por proveedor" outcome="/productoXProveedor/List.xhtml" />
                 <p:separator />
                 <p:menuitem value="Tipo de Producto" outcome="/tiposProductos/List.xhtml" />  
-                   
             </p:submenu>
             
             <p:separator rendered="#{login.rol eq 'administrador'}"/>
@@ -97,12 +90,9 @@
                 <p:separator />
                 <p:menuitem value="Formas de pago" outcome="/formaDePago/List" />
                 <p:separator />
-                
-            
             </p:submenu>
             
         </p:tieredMenu>
         
     </h:form>
-
 </ui:composition>

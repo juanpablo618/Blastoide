@@ -159,7 +159,5 @@ public class DomiciliosController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

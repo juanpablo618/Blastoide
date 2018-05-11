@@ -8,7 +8,6 @@
 
     <ui:composition template="/index.xhtml">
 
-
         <ui:define name="title">
             <h:outputText value="#{bundle.ListTipoDocumentoTitle}"></h:outputText>
         </ui:define>
@@ -26,7 +25,6 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
 
                         <p:column>
                             <f:facet name="header">
@@ -49,5 +47,4 @@
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
-
 </html>

@@ -7,7 +7,6 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="CuentaCorrienteEditDlg" widgetVar="CuentaCorrienteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCuentaCorrienteTitle}">
             <h:form id="CuentaCorrienteEditForm">
                 <h:panelGroup id="display">
@@ -58,15 +57,8 @@
                                            itemValue="#{localidadIDItem}"/>
                         </p:selectOneMenu>
                         
-                        
                         <p:outputLabel value="#{bundle.EditCuentaCorrienteLabel_formaDePagoID}" for="formaDePagoID" />
-                        
                         <p:inputText id="formaDePagoID" value="#{cuentaCorrienteController.selected.formaDePagoID}" />
-                        
-                            
-                        
-                        
-                        
                         <p:outputLabel value="#{bundle.EditCuentaCorrienteLabel_condicionIVAID}" for="condicionIVAID" />
                         <p:selectOneMenu id="condicionIVAID" value="#{cuentaCorrienteController.selected.condicionIVAID}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -80,6 +72,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

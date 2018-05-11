@@ -59,7 +59,6 @@
                             <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
                         </p:selectOneMenu>
                         
-                        
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_web}" for="web" />
                         <p:inputText id="web" value="#{proveedoresController.selected.web}" title="#{bundle.CreateProveedoresTitle_web}" required="true" requiredMessage="#{bundle.CreateProveedoresRequiredMessage_web}"/>
                         
@@ -88,10 +87,8 @@
                         </p:selectOneMenu>
                         
                        <f:facet name="footer">
-                          
                            <p:button href="../domicilios/List.xhtml" value="nuevo domicilio"></p:button>
                            <p:button href="../condicionIVA/List.xhtml" value="nueva condicion Iva"></p:button>
-                        
                        </f:facet>
 
                     </p:panelGrid>
@@ -100,6 +97,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

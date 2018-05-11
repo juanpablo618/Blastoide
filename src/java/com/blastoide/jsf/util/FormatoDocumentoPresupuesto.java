@@ -12,7 +12,7 @@ import com.lowagie.text.pdf.PdfWriter;
 
 /**
  *
- * @author Juan Cuello
+ * @author cuello.juanpablo@gmail.com
  */
 
 public class FormatoDocumentoPresupuesto extends PdfPageEventHelper

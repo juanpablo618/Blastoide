@@ -170,7 +170,4 @@ public class CajaController implements Serializable {
         }
 
     }
-
 }
-
-

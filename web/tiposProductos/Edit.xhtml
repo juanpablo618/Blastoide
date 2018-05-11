@@ -7,13 +7,10 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="TiposProductosEditDlg" widgetVar="TiposProductosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTiposProductosTitle}">
             <h:form id="TiposProductosEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tiposProductosController.selected != null}">
-                        
-                        
                         <p:outputLabel value="#{bundle.EditTiposProductosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tiposProductosController.selected.nombre}" title="#{bundle.EditTiposProductosTitle_nombre}" required="true" requiredMessage="#{bundle.EditTiposProductosRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditTiposProductosLabel_descripcion}" for="descripcion" />
@@ -24,6 +21,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

@@ -4,7 +4,6 @@ import com.blastoide.jsf.Users;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jpa.UsersFacade;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -159,7 +158,5 @@ public class UsersController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

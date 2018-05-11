@@ -62,9 +62,6 @@ public class MembreteFactura {
 
                 String formato="dd-MM-yyyy";
                 SimpleDateFormat dateFormat = new SimpleDateFormat(formato);
-                
-        
-        
         
         Paragraph parrafo5 = new Paragraph("Fecha: " + dateFormat.format(venta.getFecha()));
         document.add(parrafo5);
@@ -79,14 +76,11 @@ public class MembreteFactura {
         // ASIGNAS LAS MEDIDAS A LA TABLA (ANCHO)
         table.setWidths(medidaCeldas);
         
-        
         table.addCell("Cantidad");
         table.addCell("Detalle del producto");
         table.addCell("P.U");
         table.addCell("P.T");
 
-        
-        
         double totalDeFactura = 0;
 
         for (DetalleVenta det : lista) {
@@ -110,9 +104,6 @@ public class MembreteFactura {
         table.addCell("Precio total:");
         table.addCell(""+new DecimalFormat("#.##").format(totalDeFactura));
         
-        
-
-
         PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración y Dni: "));
 
         celdaFinal2.setColspan(4);
@@ -124,6 +115,4 @@ public class MembreteFactura {
         document.close();
         
         }
-
-    
 }

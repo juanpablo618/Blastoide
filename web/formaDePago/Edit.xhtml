@@ -12,17 +12,12 @@
             <h:form id="FormaDePagoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{formaDePagoController.selected != null}">
-                        
-                        
                         <p:outputLabel value="#{bundle.EditFormaDePagoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{formaDePagoController.selected.descripcion}" title="#{bundle.EditFormaDePagoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditFormaDePagoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{formaDePagoController.selected.nombre}" title="#{bundle.EditFormaDePagoTitle_nombre}" />
-                        
                         <p:outputLabel value="% de interés" for="porcentajeInteres" />
                         <p:inputText id="porcentajeInteres" value="#{formaDePagoController.selected.porcentaje}" title="Porcentaje de interes" />
-                        
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{formaDePagoController.update}" value="#{bundle.Save}" update="display,:FormaDePagoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FormaDePagoEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FormaDePagoEditDialog.hide()"/>

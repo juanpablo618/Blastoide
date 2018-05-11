@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jsf;
 
 import java.util.Date;
@@ -11,7 +6,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 @ManagedBean
 @ViewScoped
@@ -58,10 +53,7 @@ public class Venta {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-            
     
-    
-
     public int getVentaID() {
         return ventaID;
     }
@@ -82,14 +74,5 @@ public class Venta {
     public String toString() {
         return "Fecha=" + fecha + ", Cliente=" + cliente.getNombre() + ", Monto total=" + monto;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

@@ -14,10 +14,7 @@
                 padding-right: -5px;
             }
         </style>
-
-
     </h:head>
-
 
     <h:form id="menuForm">
         <p:growl id="messages" showDetail="false"/>
@@ -27,12 +24,10 @@
                 <p:menuitem value="inicio" outcome="/usuarioComun.xhtml" />
             </p:submenu>
 
-
             <p:separator />
             <p:submenu label="CAJA" icon="ui-icon-circle-arrow-e">
                 <p:menuitem value="Facturar" outcome="/caja/Facturar.xhtml" />
             </p:submenu>
-
 
             <p:separator />
             <p:submenu label="PRODUCTOS" icon="ui-icon-circle-arrow-e" rendered="true">
@@ -45,9 +40,8 @@
 
     </h:form>
 
-
     <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
         <h:outputText value="This is a Modal Dialog." />
-    </p:dialog>  
-
+    </p:dialog>
+    
 </ui:composition>

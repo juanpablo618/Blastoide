@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author juan
+ * @author cuello.juanpablo@gmail.com
  */
 public class CajaDiariaDAO extends DAO{
     
@@ -25,7 +25,6 @@ public class CajaDiariaDAO extends DAO{
             
             SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
 
-       // String strDate = formDate.format(System.currentTimeMillis()); // option 1
            String strDate = formDate.format(new Date()); // option 2
             
             PreparedStatement st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
@@ -35,7 +34,6 @@ public class CajaDiariaDAO extends DAO{
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());
-
                 
          st.executeUpdate();
          st.close();

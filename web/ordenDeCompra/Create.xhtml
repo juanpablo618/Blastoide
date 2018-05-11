@@ -22,23 +22,17 @@
                         <p:calendar id="fechaEmision" pattern="dd/MM/yyyy" value="#{ordenDeCompraController.selected.fechaEmision}" title="#{bundle.EditOrdenDeCompraTitle_fechaEmision}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_fechaEmision}" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateOrdenDeCompraLabel_fechaCierre}" for="fechaCierre" />
                         <p:calendar id="fechaCierre" pattern="dd/MM/yyyy" value="#{ordenDeCompraController.selected.fechaCierre}" title="#{bundle.EditOrdenDeCompraTitle_fechaCierre}" required="true" requiredMessage="#{bundle.EditOrdenDeCompraRequiredMessage_fechaCierre}" showOn="button"/>
-                        
                         <p:outputLabel value="#{bundle.CreateOrdenDeCompraLabel_total}" for="total" />
                         <p:inputText id="total" value="#{ordenDeCompraController.selected.total}" title="#{bundle.CreateOrdenDeCompraTitle_total}" required="true" requiredMessage="#{bundle.CreateOrdenDeCompraRequiredMessage_total}"/>
-                        
                         <p:outputLabel value="#{bundle.CreateOrdenDeCompraLabel_restoTotal}" for="restoTotal" />
                         <p:inputText id="restoTotal" value="#{ordenDeCompraController.selected.restoTotal}" title="#{bundle.CreateOrdenDeCompraTitle_restoTotal}" required="true" requiredMessage="#{bundle.CreateOrdenDeCompraRequiredMessage_restoTotal}"/>
-                        
                         <p:outputLabel value="Estado:" for="estado" />
                         <p:inputText id="estado" value="#{ordenDeCompraController.selected.estado}"/>
-                        
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{ordenDeCompraController.create}" value="#{bundle.Save}" update="display,:OrdenDeCompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdenDeCompraCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="OrdenDeCompraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

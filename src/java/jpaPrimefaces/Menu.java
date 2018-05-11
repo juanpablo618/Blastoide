@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package jpaPrimefaces;
 
- 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.annotation.PostConstruct;
@@ -83,7 +77,6 @@ public class Menu {
         minutos  = calendario.get(Calendar.MINUTE);
         segundos  = calendario.get(Calendar.SECOND);
     }
-
      
     public void addMessage(String summary, String detail) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);

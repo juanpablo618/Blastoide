@@ -158,11 +158,5 @@ public class ClienteBuenoController implements Serializable {
                 return null;
             }
         }
-
     }
-    
-    
-    
-    
-
 }
