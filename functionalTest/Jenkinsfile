@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('H * * * *')
+    }
+    options {
+        timestamps()
+    }
+    stages {
+        stage("E2E Functional Test Smoke (Stub)") {
+            steps {
+                script {
+                    try {
+                        def DIRECTORY_NAME = sh (script: "pwd | sed 's!.*/!!'", returnStdout: true).trim()
+                        sh "sudo docker run --rm -i -v gradle-cache:/root/.gradle -v jenkins-home:/ws -w /ws/workspace/${DIRECTORY_NAME}/functionalTest --link selenium-hub:selenium gradle_2.5 gradle clean test -Dmetafilter='+suite smoke' -Dwebdriver.driver=chrome -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.url=http://selenium:4444/wd/hub -Dmode.live=false -Dwebdriver.base.url=http://local.swacorp.com --stacktrace"
+                    } catch (e) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
+            }
+        }
+        stage("E2E Functional Test Regression (Stub)") {
+            steps {
+                script {
+                    try {
+                        def DIRECTORY_NAME = sh (script: "pwd | sed 's!.*/!!'", returnStdout: true).trim()
+                        sh "sudo docker run --rm -i -v gradle-cache:/root/.gradle -v jenkins-home:/ws -w /ws/workspace/${DIRECTORY_NAME}/functionalTest --link selenium-hub:selenium gradle_2.5 gradle test -Dmetafilter='+suite regression' -Dwebdriver.driver=chrome -Dwebdriver.remote.driver=chrome -Dwebdriver.remote.url=http://selenium:4444/wd/hub -Dmode.live=false -Dwebdriver.base.url=http://local.swacorp.com --stacktrace"
+                    } catch (e) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                def DIRECTORY_NAME = sh (script: "pwd | sed 's!.*/!!'", returnStdout: true).trim()
+                sh "sudo docker run --rm -i -v gradle-cache:/root/.gradle -v jenkins-home:/ws -w /ws/workspace/${DIRECTORY_NAME}/functionalTest --link selenium-hub:selenium gradle_2.5 gradle aggregate --stacktrace"
+                sh "sudo chmod 777 -R /var/jenkins_home/workspace/${DIRECTORY_NAME}/functionalTest"
+            }
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'functionalTest/target/site/serenity', reportFiles: 'index.html', reportName: 'E2E Serentity Report', reportTitles: ''])
+        }
+    }
+}
