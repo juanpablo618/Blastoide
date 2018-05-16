@@ -13,7 +13,6 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ofertasController.selected != null}">
                         
-                        
                         <p:outputLabel value="#{bundle.EditOfertasLabel_titulo}" for="titulo" />
                         <p:inputText id="titulo" value="#{ofertasController.selected.titulo}" title="#{bundle.EditOfertasTitle_titulo}" />
                         <p:outputLabel value="#{bundle.EditOfertasLabel_descripcion}" for="descripcion" />
@@ -36,6 +35,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

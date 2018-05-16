@@ -8,7 +8,6 @@
 
     <ui:composition template="/indexAdmin.xhtml">
 
-
         <ui:define name="title">
             <h:outputText value="#{bundle.ListFormaDePagoTitle}"></h:outputText>
         </ui:define>
@@ -29,7 +28,6 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFormaDePagoTitle_descripcion}"/>
@@ -42,15 +40,13 @@
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="% de interés"/>
                             </f:facet>
                             <h:outputText value="#{item.porcentaje}"/>
                         </p:column>
-                        
-                        
+               
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{formaDePagoController.prepareCreate}" update=":FormaDePagoCreateForm" oncomplete="PF('FormaDePagoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FormaDePagoViewForm" oncomplete="PF('FormaDePagoViewDialog').show()" disabled="#{empty formaDePagoController.selected}"/>

@@ -19,27 +19,19 @@
                                            var="tipoProveedorIDItem"
                                            itemValue="#{tipoProveedorIDItem.proveedorID}"/>
                         </p:selectOneMenu>
-
-                        
                         <p:outputLabel value="Producto:" for="productoID" />
-                        
                         <p:selectOneMenu id="productoID" value="#{productoXProveedorController.selected.productoID}" style="margin: 10px;">
                             <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"
                                            itemValue="#{tipoProductoIDItem.productoID}"/>
                         </p:selectOneMenu>
-                        
-                        
-                        
                         <p:outputLabel value="#{bundle.CreateProductoXProveedorLabel_precioCosto}" for="precioCosto" />
                         <p:inputText id="precioCosto" value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.CreateProductoXProveedorTitle_precioCosto}" required="true" requiredMessage="#{bundle.CreateProductoXProveedorRequiredMessage_precioCosto}"/>
-                    
                     </p:panelGrid>
                     <p:commandButton actionListener="#{productoXProveedorController.create}" value="#{bundle.Save}" update="display,:ProductoXProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductoXProveedorCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProductoXProveedorCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

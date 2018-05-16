@@ -159,7 +159,5 @@ public class TiposProductosController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

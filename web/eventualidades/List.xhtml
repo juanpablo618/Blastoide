@@ -57,8 +57,6 @@
                         
                             <h:outputText value="#{item.tipoEventualidadID.nombre}"/>
                         
-                        
-                        
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{eventualidadesController.prepareCreate}" update=":EventualidadesCreateForm" oncomplete="PF('EventualidadesCreateDialog').show()"/>

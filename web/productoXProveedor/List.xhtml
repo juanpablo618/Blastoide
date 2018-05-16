@@ -18,15 +18,11 @@
                     <p:panel id="elegirProd" header="Filtrar:" style="background: #496479;">
                 
                        <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;">Producto: </h:outputLabel>
-
                         <p:inputText value="#{productoXProveedorController.productoCodigo}" id="producto">  </p:inputText> 
-                        
                         <h:commandButton value="Filtrar." action="#{productoXProveedorController.FiltrarPorProductoYProveedor(productoXProveedorController.productoCodigo)}"
                         style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
-                    
                     </p:panel>        
-    
-                </h:form>
+            </h:form>
                
             <h:form id="ProductoXProveedorListForm">
                 <p:panel header="Lista de Productos por Proveedor">
@@ -50,7 +46,6 @@
                             </f:facet>
                             <h:outputText value="#{proveedoresController.getProveedores(item.proveedorID).nombre}"/>
                         </p:column>
-                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Producto"/>
@@ -65,7 +60,6 @@
                             <h:outputText value="#{productosController.getProductos(item.productoID).codigo}"/>
                             
                         </p:column>
-                      
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Precio Costo:"/>
@@ -89,5 +83,4 @@
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
-
 </html>

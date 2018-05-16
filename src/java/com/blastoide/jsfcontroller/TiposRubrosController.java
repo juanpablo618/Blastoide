@@ -159,7 +159,5 @@ public class TiposRubrosController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

@@ -45,7 +45,7 @@
                         <h:outputText value="#{cuentaCorrienteController.selected.descuento}" title="#{bundle.ViewCuentaCorrienteTitle_descuento}"/>
                         <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_fechaDePago}"/>
                         <h:outputText value="#{cuentaCorrienteController.selected.fechaDePago}" title="#{bundle.ViewCuentaCorrienteTitle_fechaDePago}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_conducta}"/>
                         <h:outputText value="#{cuentaCorrienteController.selected.conducta}" title="#{bundle.ViewCuentaCorrienteTitle_conducta}"/>
@@ -55,12 +55,8 @@
                         <h:outputText value="#{cuentaCorrienteController.selected.observaciones}" title="#{bundle.ViewCuentaCorrienteTitle_observaciones}"/>
                         <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_localidadID}"/>
                         <h:outputText value="#{cuentaCorrienteController.selected.localidadID}" title="#{bundle.ViewCuentaCorrienteTitle_localidadID}"/>
-                        
-                        
                         <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_formaDePagoID}"/>
                         <h:outputText value="#{cuentaCorrienteController.selected.formaDePagoID}" title="#{bundle.ViewCuentaCorrienteTitle_formaDePagoID}"/>
-                        
-                        
                         <h:outputText value="#{bundle.ViewCuentaCorrienteLabel_condicionIVAID}"/>
                         <h:outputText value="#{cuentaCorrienteController.selected.condicionIVAID}" title="#{bundle.ViewCuentaCorrienteTitle_condicionIVAID}"/>
                     </p:panelGrid>

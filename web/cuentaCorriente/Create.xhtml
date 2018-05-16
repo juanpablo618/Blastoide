@@ -21,25 +21,18 @@
                         <p:inputText id="nroDeComprobante" value="#{cuentaCorrienteController.selected.nroDeComprobante}" title="#{bundle.CreateCuentaCorrienteTitle_nroDeComprobante}" />
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_debe}" for="debe" />
                         <p:inputText id="debe" value="#{cuentaCorrienteController.selected.debe}" title="#{bundle.CreateCuentaCorrienteTitle_debe}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_haber}" for="haber" />
                         <p:inputText id="haber" value="#{cuentaCorrienteController.selected.haber}" title="#{bundle.CreateCuentaCorrienteTitle_haber}" />
-                        
-                        
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreyApellido}" for="nombreyApellido" />
                         <p:inputText id="nombreyApellido" value="#{cuentaCorrienteController.selected.nombreyApellido}" title="#{bundle.CreateCuentaCorrienteTitle_nombreyApellido}" />
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_direccionReal}" for="direccionReal" />
                         <p:inputText id="direccionReal" value="#{cuentaCorrienteController.selected.direccionReal}" title="#{bundle.CreateCuentaCorrienteTitle_direccionReal}" />
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_direccionFacturacion}" for="direccionFacturacion" />
                         <p:inputText id="direccionFacturacion" value="#{cuentaCorrienteController.selected.direccionFacturacion}" title="#{bundle.CreateCuentaCorrienteTitle_direccionFacturacion}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreDeFantasia}" for="nombreDeFantasia" />
                         <p:inputText id="nombreDeFantasia" value="#{cuentaCorrienteController.selected.nombreDeFantasia}" title="#{bundle.CreateCuentaCorrienteTitle_nombreDeFantasia}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_nombreDeFacturacion}" for="nombreDeFacturacion" />
                         <p:inputText id="nombreDeFacturacion" value="#{cuentaCorrienteController.selected.nombreDeFacturacion}" title="#{bundle.CreateCuentaCorrienteTitle_nombreDeFacturacion}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_codigoPostal}" for="codigoPostal" />
                         <p:inputText id="codigoPostal" value="#{cuentaCorrienteController.selected.codigoPostal}" title="#{bundle.CreateCuentaCorrienteTitle_codigoPostal}" />
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_telefono}" for="telefono" />
@@ -52,10 +45,8 @@
                         <p:calendar id="fechaDePago" pattern="MM/dd/yyyy" value="#{cuentaCorrienteController.selected.fechaDePago}" title="#{bundle.EditCuentaCorrienteTitle_fechaDePago}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_conducta}" for="conducta" />
                         <p:inputText id="conducta" value="#{cuentaCorrienteController.selected.conducta}" title="#{bundle.CreateCuentaCorrienteTitle_conducta}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_cuit}" for="cuit" />
                         <p:inputText id="cuit" value="#{cuentaCorrienteController.selected.cuit}" title="#{bundle.CreateCuentaCorrienteTitle_cuit}" />
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_observaciones}" for="observaciones" />
                         <p:inputText id="observaciones" value="#{cuentaCorrienteController.selected.observaciones}" title="#{bundle.CreateCuentaCorrienteTitle_observaciones}" />
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_localidadID}" for="localidadID" />
@@ -65,14 +56,8 @@
                                            itemValue="#{localidadIDItem}"/>
                         </p:selectOneMenu>
                         
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_formaDePagoID}" for="formaDePagoID" />
-                        
                         <p:inputText id="formaDePagoID" value="#{cuentaCorrienteController.selected.formaDePagoID}" />
-                        
-                                              
-                        
-                        
                         <p:outputLabel value="#{bundle.CreateCuentaCorrienteLabel_condicionIVAID}" for="condicionIVAID" />
                         <p:selectOneMenu id="condicionIVAID" value="#{cuentaCorrienteController.selected.condicionIVAID}" >
                             <f:selectItems value="#{condicionIVAController.itemsAvailableSelectOne}"
@@ -85,6 +70,5 @@
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>

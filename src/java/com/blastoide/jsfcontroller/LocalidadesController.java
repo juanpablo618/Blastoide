@@ -159,7 +159,5 @@ public class LocalidadesController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

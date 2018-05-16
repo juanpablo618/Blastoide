@@ -159,7 +159,5 @@ public class TipoClientesController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

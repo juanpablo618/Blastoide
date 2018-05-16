@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.DetalleCuentasCorrientes;
@@ -39,17 +34,9 @@ public class DetalleCuentasCorrientesDAO extends DAO{
                     }
                     rs.close();
 
-            
-            
-            
-            
-            
-            
-            
             PreparedStatement st = this.getCn().prepareStatement("insert into DetalleCuentasCorrientes (debe, haber, descripcion, cuentaCorrienteID, ventaID, saldoHistorico) values(?,?,?,?,?,?)");
                                 System.err.println("llego aca al insert de DetalleCuentasCorrientesDAO");
 
-                
                 st.setDouble(1, debe);
                 st.setFloat(2, haber);
                 st.setString(3, descripcion);
@@ -60,38 +47,6 @@ public class DetalleCuentasCorrientesDAO extends DAO{
          st.executeUpdate();
          st.close();
          
-        
-       /* PreparedStatement st4 = this.getCn().prepareStatement("SELECT saldo from CuentasCorrientes where cuentaCorrienteID = "+cuentaCorrienteID) ;
-                    ResultSet rs2;
-                    float saldoDeCtaCorriente = 0;
-
-
-                    rs2 = st4.executeQuery();
-
-                    while(rs2.next()){
-                        saldoDeCtaCorriente = rs.getFloat(1);
-                    }
-                    rs2.close();
-
-            
-            float saldoActual= (float) (saldoDeCtaCorriente - debe) ;
-         
-         
-           
-           String sqlUpdateSaldoDeCtaCorriente = "UPDATE CuentasCorrientes SET saldo="+saldoActual + " WHERE cuentaCorrienteID="+cuentaCorrienteID; 
-                    
-            System.err.println(sqlUpdateSaldoDeCtaCorriente);
-            
-            PreparedStatement st5 = this.getCn().prepareStatement(sqlUpdateSaldoDeCtaCorriente);
-
-            st5.execute();
-            st5.close();
-        
-          */  
-            
-                
-       
-        
         this.getCn().commit();
         System.err.println("entro al commit de DetalleCuentasCorrientesDAO");
         } catch (Exception e) {
@@ -107,7 +62,6 @@ public class DetalleCuentasCorrientesDAO extends DAO{
     public List<DetalleCuentasCorrientes> listar(int cuentaCorrienteID) throws Exception{
         
         System.err.println("paso para el listar de DetalleCuentasCorrienteDAO");
-        
         System.err.println("cuentaCorrienteID"+cuentaCorrienteID);
         
         List<DetalleCuentasCorrientes> lista;
@@ -120,7 +74,6 @@ public class DetalleCuentasCorrientesDAO extends DAO{
                 lista = new ArrayList();
             while(rs.next()){
                 
-                
                 DetalleCuentasCorrientes detalleCtaCorriente = new DetalleCuentasCorrientes();
                 
                 detalleCtaCorriente.setDetalleCuentaCorrienteID(rs.getInt("detalleCuentaCorrienteID"));
@@ -132,11 +85,9 @@ public class DetalleCuentasCorrientesDAO extends DAO{
                 detalleCtaCorriente.setVentaID(rs.getInt("ventaID"));
                 detalleCtaCorriente.setSaldoHistorico(rs.getFloat("saldoHistorico"));
                 
-                
                 lista.add(detalleCtaCorriente);
                 
             }
-            
             
         } catch (Exception e) {
         throw e;
@@ -146,20 +97,14 @@ public class DetalleCuentasCorrientesDAO extends DAO{
         System.err.println(lista.toString());
             
         return lista;
-    
     }
 
-    
    public void ingresarNuevoDetalleDeCuentaCorriente(float haber, String descripcion, int cuentaCorrienteID, float saldoHistorico) throws SQLException, Exception {
    
        //tambien debe hacer un update a saldo de la cuenta.
-       
-       
         try {
-            
             this.Conectar();
             this.getCn().setAutoCommit(false);
-            
             
         PreparedStatement st = this.getCn().prepareStatement("insert into DetalleCuentasCorrientes (haber, descripcion, cuentaCorrienteID, saldoHistorico) values(?,?,?,?)");
                           
@@ -180,8 +125,6 @@ public class DetalleCuentasCorrientesDAO extends DAO{
             this.Cerrar();
         }
  
-                
-                
         CuentasCorrientesDAO cuentaCorrienteDAO = new CuentasCorrientesDAO();
                 
         float saldoActual = cuentaCorrienteDAO.buscarSaldo(cuentaCorrienteID);
@@ -189,21 +132,7 @@ public class DetalleCuentasCorrientesDAO extends DAO{
         saldoActual = saldoActual - haber;
                 
         cuentaCorrienteDAO.actualizarSaldo(cuentaCorrienteID, saldoActual);
-           
-    
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-   
+        
    }
-    
-    
     
 }

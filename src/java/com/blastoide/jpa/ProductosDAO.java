@@ -14,30 +14,6 @@ import java.util.List;
  */
 public class ProductosDAO extends DAO{
     
-    
-    
-    
-/* todas las columnas en la bd actualmente 11 sep. 2017
-productoID
-codigo
-nombre
-marca
-fragancia
-caracteristica
-medida
-precioVenta
-unidadMedidaID (no se usa)
-tipoProductoID 
-tipoRubroID (no se usa)
-        
-        
-ultimaActualizacionStock
-inventarioID
-precioFinalAFacturar (no se usa)
-stockactual
-stockMinimo
-*/
-    
     public List<Productos> listarProductosSinStock() throws Exception{
         
         List<Productos> lista;
@@ -67,14 +43,12 @@ stockMinimo
                 
             }
             
-            
         } catch (Exception e) {
         throw e;
         }finally{
             this.Cerrar();
         }
         return lista;
-    
     }
 
     public int buscarPorCodigoDeBarra(String productoCodBarra) throws SQLException {
@@ -112,7 +86,5 @@ stockMinimo
             this.Cerrar();
         }
         return precioFinalBuscado;
-
-        
     }
 }

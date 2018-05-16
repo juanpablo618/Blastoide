@@ -13,12 +13,10 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{formaDePagoController.selected != null}">
                         
-                        
                         <p:outputLabel value="#{bundle.CreateFormaDePagoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{formaDePagoController.selected.descripcion}" title="#{bundle.CreateFormaDePagoTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.CreateFormaDePagoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{formaDePagoController.selected.nombre}" title="#{bundle.CreateFormaDePagoTitle_nombre}" />
-                        
                         <p:outputLabel value="% de interés" for="porcentajeInteres" />
                         <p:inputText id="porcentajeInteres" value="#{formaDePagoController.selected.porcentaje}" title="PorcentajeInteres" />
                         

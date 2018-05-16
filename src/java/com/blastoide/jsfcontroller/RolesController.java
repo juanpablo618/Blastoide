@@ -159,7 +159,5 @@ public class RolesController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

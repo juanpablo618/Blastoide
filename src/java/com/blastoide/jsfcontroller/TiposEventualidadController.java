@@ -159,7 +159,5 @@ public class TiposEventualidadController implements Serializable {
                 return null;
             }
         }
-
     }
-
 }

@@ -107,8 +107,6 @@
                             </f:facet>
                             <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>
-
-
                         <p:column style="font-size:10px;" >
 
                             <f:facet name="header">
@@ -117,7 +115,6 @@
                             <h:outputText value="#{item.ultimaActualizacionStock}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
-
                         </p:column>
                         
                         <f:facet name="footer">
@@ -136,5 +133,4 @@
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
-
 </html>

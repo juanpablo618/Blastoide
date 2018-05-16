@@ -1,15 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 
 import com.blastoide.jsf.AbstractFacade;
-import com.blastoide.jsf.AbstractFacade;
-import com.blastoide.jsf.AbstractFacade;
-import com.blastoide.jsf.Estado;
-import com.blastoide.jsf.Estado;
 import com.blastoide.jsf.Estado;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author developer
+ * @author cuello.juanpablo@gmail.com
  */
 @Stateless
 public class EstadoFacade extends AbstractFacade<Estado> {

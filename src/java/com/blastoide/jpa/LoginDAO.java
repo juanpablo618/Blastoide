@@ -9,9 +9,6 @@ package com.blastoide.jpa;
 
 
 import com.blastoide.jpa.conexion.DAO;
-import com.blastoide.jsf.Users;
-import com.blastoide.jsfcontroller.UsersController;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,9 +26,6 @@ public class LoginDAO {
         LoginDAO.rol = rol;
     }
     
-    
-    
-    
 	public static boolean validate(String user, String password) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -45,15 +39,8 @@ public class LoginDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				//result found, means valid inputs
-                                
-                                //UsuarioDAO usuariodao = new UsuarioDAO();
-                                //usuariodao.BuscarUsuario("uname");
-                                
-                                
                                 System.err.println("rol: " + rs.getString("rol"));
                                 setRol(rs.getString("rol"));
-                                
                                 return true;
 
 			}
@@ -65,9 +52,7 @@ public class LoginDAO {
 		}
 		return false;
 	}
-        
-        
-        
+
 }
 
 

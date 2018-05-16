@@ -69,7 +69,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.nombreDelDocumento = nombreDelDocumento;
     }
     
-           
     public int getFormaDePagoID() {
         return formaDePagoID;
     }
@@ -77,7 +76,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void setFormaDePagoID(int formaDePagoID) {
         this.formaDePagoID = formaDePagoID;
     }
-    
     
     public List<DetalleVenta> getLista() {
     
@@ -112,11 +110,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.venta = venta;
     }
 
-    
     public void CambiarFormaDePago() throws Exception {
 
         try {
-             
             System.out.println("En el metodo CambiarFormaDePago: ");
             System.out.println("");
 
@@ -134,9 +130,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
             FacesContext context = FacesContext.getCurrentInstance();
         
-        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-                                
-
+            VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+            
             for(int i=0 ; i<ventaBean.getLista().size() ; i++){
 
                 int idProductoPorCambiarValor = ventaBean.getLista().get(i).getProducto().getProductoID();
@@ -145,14 +140,13 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
                 double precioFinalDelProductoEnBD = productosDao.buscarPrecioFinalAFacturar(idProductoPorCambiarValor);
                 
-            //Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
-            Double precioUnitario = precioFinalDelProductoEnBD ;
-            System.err.println("Producto precio venta unitario modificado por juan: "+precioUnitario);
+                //Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
+                Double precioUnitario = precioFinalDelProductoEnBD ;
+                System.err.println("Producto precio venta unitario modificado por juan: "+precioUnitario);
 
 
-            double cantidadDeFormaDePago;
-            double cantidadPorTipoDeCliente;
-
+                double cantidadDeFormaDePago;
+                double cantidadPorTipoDeCliente;
 
                 cantidadDeFormaDePago = precioUnitario*porcentajeDeFormaDePago /100.0;
                 System.err.println("Cantidad a Sumar de forma de pago: "+cantidadDeFormaDePago);
@@ -160,13 +154,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 cantidadPorTipoDeCliente = precioUnitario*porcentajePorTipoDeCliente /100.0;
                 
                 System.err.println("Cantidad a restar por tipo de cliente: "+cantidadPorTipoDeCliente);
-
                 
                Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
                 System.err.println("PrecioTotal: "+PrecioTotal);
 
              ventaBean.getLista().get(i).getProducto().setPrecioFinalAFacturar(PrecioTotal);
-            
         }                    
         } catch (Exception e) {
             
@@ -174,12 +166,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
     }
 
-   
-     public void agregarPorCodBarra(String productoCodBarra) throws Exception {
+    public void agregarPorCodBarra(String productoCodBarra) throws Exception {
 
         try {
-       // System.out.println("Entro al metodo agregarPorCodBarra de la clase ventaBean: ");
-       // System.out.println("productoCodBarra: "+ productoCodBarra);
         
         FacesContext context = FacesContext.getCurrentInstance();
         ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
@@ -210,23 +199,18 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
         Double precioUnitario = this.producto.getPrecioFinalAFacturar();
                             System.err.println("Producto precio final a facturar: "+this.producto.getPrecioFinalAFacturar());
-                    
-                    
-
+    
         double cantidadDeFormaDePago;
         double cantidadPorTipoDeCliente;
-            
         
             cantidadDeFormaDePago = precioUnitario*porcentajeDeFormaDePago /100.0;
                             System.err.println("Cantidad a Sumar de forma de pago: "+cantidadDeFormaDePago);
 
-            
             cantidadPorTipoDeCliente = precioUnitario*porcentajePorTipoDeCliente /100.0;
             
            Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
             System.err.println("PrecioTotal: "+PrecioTotal);
-
-           
+       
         this.producto.setPrecioFinalAFacturar(PrecioTotal);
                     
         det.setProducto(this.producto);
@@ -241,7 +225,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.productoCondBarra = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El producto no tiene cargado el precio de venta ."));
         }
-        
     }
     
      public void facturar() throws Exception {
@@ -359,8 +342,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         }
      }
-    
-     
 
      public void presupuestar() throws FileNotFoundException, DocumentException, IOException {
 
@@ -471,7 +452,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
                 }
                 
-                
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PDF generado"));
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
             }   
@@ -482,8 +462,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
          
         }
      }
-    
-    
     
     public void transferir(){
     
@@ -504,13 +482,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(det.getCodigo() == deta.getCodigo())
                 deta.setCantidad(cantidad);
         }
-
-    
     }
-    
-    
-    
-    
     
     public List<Productos> completenombre(String query) {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -521,10 +493,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     private void ComprobarSiExiste(DetalleVenta det) {
     
-        
         FacesContext context = FacesContext.getCurrentInstance();
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-        
                
         for (int i=0 ; i<ventaBean.getLista().size();i++){
             
@@ -535,10 +505,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     ventaBean.getLista().remove(i);
             }
         }
-        
     }
-    
-    
     
     public void BorrarDetalle(DetalleVenta detalleVenta){
        FacesContext context = FacesContext.getCurrentInstance();
@@ -551,7 +518,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
    
     }
-
 
 /**
      * This method reads PDF from the URL and writes it back as a response. 
@@ -599,6 +565,4 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         // as soon as the current phase is completed.
         facesContext.responseComplete();
     }
-    
-    
 }
