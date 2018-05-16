@@ -1,0 +1,104 @@
+podTemplate(
+        label: 'early_bird_e2e_live',
+        nodeUsageMode: 'EXCLUSIVE',
+        containers: [
+                containerTemplate(
+                        name: 'gradle',
+                        image: '172.26.97.6:30583/docker-gradle:2.5-ubuntu',
+                        alwaysPullImage: true,
+                        ttyEnabled: true,
+                        envVars: [
+                                //TODO uncomment this when network issues are fixed and Glb Nexus can be used
+                                envVar(key: 'ORG_GRADLE_PROJECT_nexusPublicUrl', value: 'http://172.26.97.6:30081/repository/maven'),
+                                envVar(key: 'ORG_GRADLE_PROJECT_NexusPublic', value: 'http://172.26.97.6:30081/repository/maven'),
+                                envVar(key: 'ORG_GRADLE_PROJECT_pactBrokerHost', value: '172.26.97.6'),
+                                envVar(key: 'ORG_GRADLE_PROJECT_pactBrokerPort', value: '30082'),
+                        ],
+                        command: 'cat',
+                        privileged: true
+                ),
+                containerTemplate(
+                        name: 'hub',
+                        image: '172.26.97.6:30583/selenium/hub',
+                        alwaysPullImage: true,
+                        ttyEnabled: true,
+                        envVars: [
+                                envVar (key: 'SE_OPTS', value: '-debug')
+                        ],
+                        command: 'cat',
+                        privileged: true
+                ),
+                containerTemplate(
+                        name: 'node-firefox',
+                        image: '172.26.97.6:30583/selenium/node-firefox:2.53.0',
+                        alwaysPullImage: true,
+                        ttyEnabled: true,
+                        envVars: [
+                                envVar (key: 'SE_OPTS', value: '-debug')
+                                //envVar (key: 'HUB_HOST', value: 'localhost')
+                        ],
+                        command: 'cat',
+                        privileged: true
+                )
+        ],
+        volumes: [
+                hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock'),
+                hostPathVolume(hostPath: '/root/.docker', mountPath: '/home/jenkins/.docker'),
+                hostPathVolume(hostPath: '/root/.docker', mountPath: '/var/jenkins_home/.docker')
+        ],
+        imagePullSecrets: [ 'docker-registry-secret' ]
+)
+{
+    timestamps {
+        node('early_bird_e2e_live') {
+
+            try {
+
+                def baseUrl = '';
+                def metaFilter = '';
+                def seleniumHubUrl = 'http://hub:4444/wd/hub';
+                def browsers = 'firefox';
+
+                container('gradle') {
+
+                    stage('Checkout Workspace') {
+                        checkout scm
+                    }
+
+                    stage('Input Base URL') {
+
+                        baseUrl = input message: 'Input environment base url:', ok: 'Continue', parameters: [string(defaultValue: 'http://southwest.dev2.southwest.com/', name: 'baseUrl', trim: true)]
+                    }
+
+                    stage('Input Metafilters') {
+
+                        metaFilter = input message: 'Input JBehave \'meta-filters\':', ok: 'Run E2E Live Tests', parameters: [string(defaultValue: '+product earlyBird', name: 'metaFilter', trim: true)]
+                    }
+
+                    stage('Run E2E Test') {
+
+                        sh 'gradle --project-dir functionalTest clean test -Dmode.live=true -Dwebdriver.base.url=' + baseUrl + ' -Dmetafilter="' + metaFilter + '" -Dwebdriver.remote.url=' + seleniumHubUrl + ' -Dwebdriver.remote.driver=' + browsers + ' --info --stacktrace'
+                    }
+                }
+
+            } catch (e) {
+
+                currentBuild.result = 'UNSTABLE'
+
+            } finally {
+                container('gradle') {
+                    sh 'gradle --project-dir functionalTest aggregate --info --stacktrace'
+                }
+                publishHTML([
+                        allowMissing         : true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : 'functionalTest/target/site/serenity',
+                        reportFiles          : 'index.html',
+                        reportName           : 'Serenity E2E Test Report',
+                        reportTitles         : ''
+                ])
+            }
+        }
+    }
+}
