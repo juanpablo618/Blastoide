@@ -36,8 +36,13 @@
                 <h:commandButton action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente()}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
             </h:form>  
              
-                <h3 style="margin-top: 0 ;color: white" >Saldo de la cta Corriente: #{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)} </h3>
-         
+                <h3>   
+                    <h:outputText style="margin-top: 0 ;color: white" value="Saldo en cuenta corriente: "></h:outputText>
+                    <h:outputText style="margin-top: 0 ;color: white" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}">
+                        <f:convertNumber pattern="#0.00"/>
+                    </h:outputText>
+                </h3>
+                
           <h:form id="detalleCtaCorrienteForm">
                       
             <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 

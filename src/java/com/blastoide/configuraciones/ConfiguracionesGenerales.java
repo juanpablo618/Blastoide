@@ -11,7 +11,8 @@ public abstract class ConfiguracionesGenerales {
     //configuracion para mi linux = /home/juan/Documents
     //ANDA EN PC DE LUCAS NO BORRAR
     //private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
-    private static final String CARPETA_DE_PRESUPUESTOS = "/home/developer/Documents";
+
+  private static final String CARPETA_DE_PRESUPUESTOS = "/home/developer/Documents";
     
 /////////////////////////////////////////////////////////////////////////////DOWNLOAD BEAN ////////////////////////////////////////////////////
 
