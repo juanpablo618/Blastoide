@@ -1,0 +1,49 @@
+group 'functionalTest'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    //first, choose serenity jbehave version
+    serenity_jbehave_version = "1.34.0"
+    //then, use the same version for serenity core used by serenity jbehave
+    serenity_version = "1.7.5"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath('net.serenity-bdd:serenity-gradle-plugin:1.7.5')
+    }
+}
+
+dependencies {
+    compile "net.serenity-bdd:serenity-jbehave:$serenity_jbehave_version"
+    compile "net.serenity-bdd:serenity-screenplay-webdriver:$serenity_version"
+
+    compile 'org.assertj:assertj-core:3.4+'
+    compile 'org.slf4j:slf4j-simple:1.7+'
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test {
+    systemProperty "webdriver.driver", System.getProperty("webdriver.driver")
+    systemProperty "webdriver.remote.url", System.getProperty("webdriver.remote.url")
+    systemProperty "webdriver.remote.driver", System.getProperty("webdriver.remote.driver")
+    systemProperty "metafilter", System.getProperty("metafilter")
+    systemProperty "webdriver.base.url", System.getProperty("webdriver.base.url")
+    systemProperty "mode.live", System.getProperty("mode.live")
+}
