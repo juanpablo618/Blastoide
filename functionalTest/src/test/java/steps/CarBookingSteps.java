@@ -58,6 +58,7 @@ public class CarBookingSteps {
         actor.attemptsTo(
                 new LlenarUsuarioDelSistema(firstName, lastName),
                 new FacturarProducto()
+
         );
     }
 
