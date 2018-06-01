@@ -1,5 +1,5 @@
 Meta:
-@product Blastoide2
+@product Blastoide3
 
 Narrative:
 Como usuario administrador
@@ -9,8 +9,8 @@ luego quiero poder ver la factura generada
 Scenario: facturacion a cliente comun y poder ver la factura
 
 Given Yo estoy en la pagina de Login
-When Yo entro con el usuario <firstName> y la password <lastName>
-Then I validate the confirmation number
+When Yo entro a todas las paginas con el usuario <firstName> y la password <lastName>
+Then Yo valido que el titulo este presente
 Examples:
 | firstName | lastName |
 | lucas     | lucas    |
