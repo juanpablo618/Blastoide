@@ -22,6 +22,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -79,6 +81,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     public List<DetalleVenta> getLista() {
     
+        Collections.reverse(lista);
+        
         return lista;
     }
 
