@@ -21,11 +21,6 @@
 
     <h:form>
 
-        <center>
-            <h:outputLabel  id="OutPutlabelMundoLimpieza" style="color: white; text-align: center;font-size: 1.8em;font-family: bolt">MUNDO LIMPIEZA</h:outputLabel> <br/>
-            <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt;">Lucas Valinotti</h:outputLabel>
-        </center> <br/>
-
         <p:toolbar id="toolbarMenu" style="font-weight: bold; border: none">
             <f:facet name="left"  >
                 <h:form>  
@@ -62,7 +57,8 @@
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
                             <p:menuitem value="Productos Por proveedor" outcome="/productoXProveedor/List.xhtml"  />
                             <p:separator />
-                            <p:menuitem value="Tipo de Producto" outcome="/tiposProductos/List.xhtml"  />  
+                            <p:menuitem value="Rubro" outcome="/tiposRubros/List.xhtml"  /> 
+                            
                         </p:submenu>
                         
                         <p:submenu label="Compras" icon="ui-icon-document" rendered="#{login.rol eq 'administrador'}">

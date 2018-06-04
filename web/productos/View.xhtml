@@ -47,6 +47,10 @@
                         
                         <h:outputText value="#{bundle.ViewProductosLabel_stockMinimo}"/>
                         <h:outputText value="#{productosController.selected.stockMinimo}" title="#{bundle.ViewProductosTitle_stockMinimo}"/>
+
+                        <h:outputText value="Rubro:"/>
+                        <h:outputText value="#{productosController.selected.tipoRubroID.nombre}"/>
+                       
                         
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductosViewDialog.hide()"/>
