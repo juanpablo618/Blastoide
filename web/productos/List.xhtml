@@ -60,32 +60,34 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column style="font-size:10px;" filterBy="#{item.nombre}" filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
-                        </p:column>
-
                         <p:column style="font-size:10px;" filterBy="#{item.codigo}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="codigo"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
-
-                        <p:column style="font-size:10px;">
+                        
+                        <p:column style="font-size:10px;" filterBy="#{item.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
+                                <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
-                            <h:outputText value="#{item.marca}"/>
+                            <h:outputText value="#{item.nombre}"/>
                         </p:column>
+                        
                         <p:column style="font-size:10px;">
                             <f:facet name="header">
                                 <h:outputText value="Caracteristica"/>
                             </f:facet>
                             <h:outputText value="#{item.caracteristica}"/>
                         </p:column>
+                        
+                        <p:column style="font-size:10px;">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.marca}"/>
+                        </p:column>
+                        
                         <p:column style="font-size:10px;">
                             <f:facet name="header">
                                 <h:outputText value="Fragancia"/>
@@ -97,6 +99,12 @@
                                 <h:outputText value="Medida"/>
                             </f:facet>
                             <h:outputText value="#{item.medida}"/>
+                        </p:column>
+                        <p:column style="font-size:10px;" filterBy="#{item.tipoRubroID.nombre}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Rubro"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoRubroID.nombre}"/>
                         </p:column>
 
                         <p:column style="font-size:10px;">

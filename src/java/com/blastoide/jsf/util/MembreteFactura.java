@@ -82,27 +82,55 @@ public class MembreteFactura {
         table.addCell("P.T");
 
         double totalDeFactura = 0;
+        DecimalFormat formateador = new DecimalFormat("####.00");
+        DecimalFormat formateadorCantidades = new DecimalFormat("#.##");
 
         for (DetalleVenta det : lista) {
 
             //cantidad
-            table.addCell("" + new DecimalFormat("#.##").format(det.getCantidad()));
+            table.addCell("" + formateadorCantidades.format(det.getCantidad()));
             //detalle nombre del producto
-            table.addCell(det.getProducto().toString());
+            String detallePorProducto = "";
+            
+             detallePorProducto = detallePorProducto + det.getProducto().toString();
+            detallePorProducto = detallePorProducto + " ";
+             
+            
+            if(det.getProducto().getMarca()!=null){
+               detallePorProducto = detallePorProducto + det.getProducto().getMarca();
+            }else{
+                if(det.getProducto().getCaracteristica()!=null){
+                    detallePorProducto = detallePorProducto + " ";
+                    detallePorProducto = detallePorProducto + det.getProducto().getCaracteristica();
+                }else{
+                    if(det.getProducto().getFragancia()!=null){
+                        detallePorProducto = detallePorProducto + " ";
+                        detallePorProducto = detallePorProducto + det.getProducto().getFragancia();
+                    }else{
+                        if(det.getProducto().getMedida()!=null){
+                            detallePorProducto = detallePorProducto + " ";
+                            detallePorProducto = detallePorProducto + det.getProducto().getMedida();
+                        }
+                    }
+                }
+            }
+            
+            System.out.println("detallePorProducto :" +detallePorProducto);
+            table.addCell(detallePorProducto);
             //precio unitario con el interes sumado
             
-            table.addCell("" + det.getProducto().getPrecioFinalAFacturar());
+            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar()));
             //precio total el pu con interes sumado * cantidad
                         
             totalDeFactura = totalDeFactura + det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-            table.addCell("" + new DecimalFormat("#.##").format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad()));
+            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad()));
             
         }
-
+        
         table.addCell("");
         table.addCell("");
         table.addCell("Precio total:");
-        table.addCell(""+new DecimalFormat("#.##").format(totalDeFactura));
+        table.addCell(""+ formateador.format(totalDeFactura));
         
         PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración y Dni: "));
 
