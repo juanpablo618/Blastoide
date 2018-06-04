@@ -6,6 +6,7 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -170,4 +172,42 @@ public class CajaController implements Serializable {
         }
 
     }
+    
+    
+    public void mostrarVentaDiariaActual(){
+            Calendar c = Calendar.getInstance();
+               String dia = Integer.toString(c.get(Calendar.DATE));
+               String mes = Integer.toString(c.get(Calendar.MONTH));
+               String annio = Integer.toString(c.get(Calendar.YEAR));
+
+                
+                String fechaDiaria = mes + "/" + dia + "/" + annio;
+                
+                System.out.println("fechaDiaria: " + fechaDiaria);
+                
+                
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+         
+        double totalVentaDiaria = 0;
+        
+        for(int index=0; index<=cajaController.getItems().size() - 1;index++){
+                
+            System.out.println("cajaController.getItems().get(index).getFecha(): " + cajaController.getItems().get(index).getFecha());
+                
+            
+                if(cajaController.getItems().get(index).getFecha().equals(fechaDiaria)){
+                    totalVentaDiaria = totalVentaDiaria + cajaController.getItems().get(index).getIngreso();
+                }
+                
+        }
+        
+                        System.out.println("totalVentaDiaria: " + totalVentaDiaria);
+
+        System.out.println("Total vendido hoy: "+ totalVentaDiaria);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Total vendido hoy: "+ totalVentaDiaria));
+
+                
+    }
+    
 }

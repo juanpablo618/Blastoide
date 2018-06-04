@@ -20,9 +20,8 @@
                     <br></br><br></br><br></br><br></br>
                      <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold; padding-right: 163px">Cliente: </h:outputLabel>
             
-                     <p:selectOneMenu  id="seleccionarCliente" value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter" style="width: 15%;">
-                        <f:selectItem noSelectionOption="true" itemLabel="seleccione" itemValue="#{null}"  />
-                        <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemDescription="#{cli.apellido}"  itemValue="#{cli}" />
+                     <p:selectOneMenu  id="seleccionarCliente" value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter" style="width: 15%;" filter="true" filterMatchMode="startsWith" >
+                         <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombre}" itemDescription="#{cli.apellido}"  itemValue="#{cli}" />
                         <p:ajax listener="#{ventaBean.transferir()}" update="formadepagoID" />
                      </p:selectOneMenu>
                 </p:column>
