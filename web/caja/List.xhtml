@@ -60,9 +60,12 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CajaViewForm" oncomplete="PF('CajaViewDialog').show()" disabled="#{empty cajaController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cajaController.destroy}" update=":growl,datalist" disabled="#{empty cajaController.selected}"/>
+                        
                             <br></br>
-                            <p:commandButton id="saldoDiario" icon="ui-icon-star" value="venta del día" actionListener="#{cajaController.mostrarVentaDiariaActual}" />
+                                <p:commandButton update=":growl,datalist" value="venta diaria" icon="ui-icon-script" actionListener="#{cajaController.mostrarVentaDiariaActual()}" />
+                        
                         </f:facet>
+                        
                     </p:dataTable>
                 </p:panel>
             </h:form>
