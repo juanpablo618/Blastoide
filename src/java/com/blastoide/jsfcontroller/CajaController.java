@@ -6,6 +6,10 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,10 +18,12 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 
 @Named("cajaController")
 @SessionScoped
@@ -170,4 +176,26 @@ public class CajaController implements Serializable {
         }
 
     }
+    
+    public void mostrarVentaDiariaActual(){
+                SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaDeHoy = formDate.format(new Date()); 
+            
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+         
+        double totalVentaDiaria = 0;
+        
+        for(int index=0; index<=cajaController.getItems().size() - 1;index++){
+           
+                if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                    totalVentaDiaria = totalVentaDiaria + cajaController.getItems().get(index).getIngreso();
+                }
+        }
+        
+        System.out.println("Total vendido hoy: "+ totalVentaDiaria);
+        JsfUtil.addSuccessMessage("total vendido hoy: "+ totalVentaDiaria);
+            
+    }
+    
 }

@@ -32,16 +32,21 @@
 
         <ui:define name="body">
             <h:form id="ProductosListForm">
+                <p:remoteCommand name="onload" oncomplete="PF('productosTable').clearFilters()" autoRun="true" />
+
                 <p:panel header="#{bundle.ListProductosTitle}">
                     <p:dataTable id="datalist" value="#{productosController.items}" var="item"
                                  selectionMode="single" selection="#{productosController.selected}"
+                                 widgetVar="productosTable"
                                  paginator="true"
                                  rowKey="#{item.productoID}"
                                  rows="30"
                                  rowsPerPageTemplate="30,40,50"
                                  filteredValue="#{productosController.filteredItems}"
                                  resizableColumns="true"
-                                 rowStyleClass="#{item.stockactual le 0 ? 'red' : ''}">
+                                 rowStyleClass="#{item.stockactual le 0 ? 'red' : ''}"
+                                 emptyMessage="no existen productos creados"
+                                 >
                         
                         <f:facet name="{Exporters}">
                             <h:commandLink>

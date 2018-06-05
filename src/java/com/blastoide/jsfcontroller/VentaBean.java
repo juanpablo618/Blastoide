@@ -60,7 +60,29 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void borrarVentaActual(){
     
     this.getLista().clear();
-    this.venta.setCliente(null); 
+    
+    FacesContext context = FacesContext.getCurrentInstance();
+        
+    ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
+        
+    //System.out.println("clienteBuenoController.getClienteBueno(32)"+ clienteBuenoController.getClienteBueno(32));
+    int clienteComunConContadoEfectivo = 0;
+    
+    for(int i=0;i<=clienteBuenoController.getItems().size() -1;i++){
+            if( (clienteBuenoController.getItems().get(i).getApellido().equals("comun") ) || (clienteBuenoController.getItems().get(i).getNombre().equals("cliente"))){
+                       clienteComunConContadoEfectivo =  clienteBuenoController.getItems().get(i).getClienteID();
+            }
+    }
+    
+        System.out.println("ACAAAA:"+ clienteComunConContadoEfectivo );
+    
+    this.venta.setCliente(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo));
+    
+    //    System.out.println("clienteBuenoController.getClienteBueno(32).getFormaDePagoID()"+ clienteBuenoController.getClienteBueno(32).getFormaDePagoID());
+    
+        this.venta.setFormadePagoID(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo).getFormaDePagoID());
+        
+        transferir();
     }
     
     public String getNombreDelDocumento() {
