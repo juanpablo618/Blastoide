@@ -65,54 +65,54 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column style="font-size:10px;" filterBy="#{item.codigo}" filterMatchMode="contains">
+                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.codigo}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="codigo"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px;" filterBy="#{item.nombre}" filterMatchMode="contains">
+                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Caracteristica"/>
                             </f:facet>
                             <h:outputText value="#{item.caracteristica}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Fragancia"/>
                             </f:facet>
                             <h:outputText value="#{item.fragancia}"/>
                         </p:column>
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Medida"/>
                             </f:facet>
                             <h:outputText value="#{item.medida}"/>
                         </p:column>
-                        <p:column style="font-size:10px;" filterBy="#{item.tipoRubroID.nombre}" filterMatchMode="contains">
+                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.tipoRubroID.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Rubro"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoRubroID.nombre}"/>
                         </p:column>
 
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Precio de venta"/>
                             </f:facet>
@@ -121,19 +121,19 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Stock actual"/>
                             </f:facet>
                             <h:outputText value="#{item.stockactual}"/>
                         </p:column>
-                        <p:column style="font-size:10px;">
+                        <p:column style="font-size:10px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Stock minimo"/>
                             </f:facet>
                             <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>
-                        <p:column style="font-size:10px;" >
+                        <p:column style="font-size:10px; text-align: center;" >
 
                             <f:facet name="header">
                                 <h:outputText value="Ultima actualización"/>

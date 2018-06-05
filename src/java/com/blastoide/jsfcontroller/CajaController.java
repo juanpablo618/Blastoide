@@ -6,6 +6,8 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -195,6 +197,34 @@ public class CajaController implements Serializable {
         
         System.out.println("Total vendido hoy: "+ totalVentaDiaria);
         JsfUtil.addSuccessMessage("total vendido hoy: "+ totalVentaDiaria);
+            
+    }
+    
+    public void mostrarVentaMensualActual() throws ParseException{
+                SimpleDateFormat formDate = new SimpleDateFormat("MM/yyyy");
+                String mesYAnnioDeHoy = formDate.format(new Date()); 
+            
+            System.out.println("mesYAnnioDeHoy: "+ mesYAnnioDeHoy);    
+                
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+         
+        double totalVentaMensual = 0;
+        
+        for(int index=0; index<=cajaController.getItems().size() - 1;index++){
+                
+            String fechaDeCaja = cajaController.getItems().get(index).getFecha();
+                        fechaDeCaja = fechaDeCaja.substring(3);
+            
+                System.out.println("fechaDeCaja CORTADA: "+ fechaDeCaja);    
+
+                if(fechaDeCaja.equals(mesYAnnioDeHoy)){
+                    totalVentaMensual = totalVentaMensual + cajaController.getItems().get(index).getIngreso();
+                }
+        }
+        
+        System.out.println("Total vendido mensual: "+ totalVentaMensual);
+        JsfUtil.addSuccessMessage("total vendido mensual: "+ totalVentaMensual);
             
     }
     
