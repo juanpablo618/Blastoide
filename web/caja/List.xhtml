@@ -17,6 +17,17 @@
                 <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
 
                 <p:panel header="Caja Diaria">
+                    
+                     <h:outputText value="venta diaria solo efectivo: " />
+                     <h:outputText value="#{cajaController.ventaDiariaActual}">
+                            <f:convertNumber pattern="#00.00" />
+                     </h:outputText>
+                     <br></br>
+                     <h:outputText value="venta diaria solo tarjetas: " />
+                     <h:outputText value="#{cajaController.ventaDiariaActualSoloTarjetas}">
+                            <f:convertNumber pattern="#00.00" />
+                     </h:outputText>
+                                         
                     <p:dataTable id="datalist" value="#{cajaController.items}" var="item"
                                  selectionMode="single" selection="#{cajaController.selected}"
                                  paginator="true"
@@ -55,6 +66,16 @@
                             </h:outputText>
                         </p:column>
                         
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Egreso:"/>
+                            </f:facet>
+                            
+                            <h:outputText value="#{item.egreso}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>
@@ -62,9 +83,9 @@
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cajaController.destroy}" update=":growl,datalist" disabled="#{empty cajaController.selected}"/>
                         
                             <br></br>
-                                <p:commandButton update=":growl,datalist" value="venta diaria" icon="ui-icon-script" actionListener="#{cajaController.mostrarVentaDiariaActual()}" />
+                                <p:commandButton update=":growl,datalist" value="venta diaria // no funciona" icon="ui-icon-script" actionListener="#{cajaController.mostrarVentaDiariaActual()}" />
                             <br></br>
-                                <p:commandButton update=":growl,datalist" value="venta mensual" icon="ui-icon-script" actionListener="#{cajaController.mostrarVentaMensualActual()}" />
+                                <p:commandButton update=":growl,datalist" value="venta mensual // no funciona" icon="ui-icon-script" actionListener="#{cajaController.mostrarVentaMensualActual()}" />
                         
                         </f:facet>
                         

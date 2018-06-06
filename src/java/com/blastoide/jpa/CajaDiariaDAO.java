@@ -2,9 +2,11 @@ package com.blastoide.jpa;
 
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Venta;
+import com.blastoide.jsfcontroller.FormaDePagoController;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -27,10 +29,13 @@ public class CajaDiariaDAO extends DAO{
 
            String strDate = formDate.format(new Date()); // option 2
             
+           FacesContext context = FacesContext.getCurrentInstance();
+           FormaDePagoController formaDePagoController = context.getApplication().evaluateExpressionGet(context, "#{formaDePagoController}", FormaDePagoController.class);
+        
             PreparedStatement st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
                                 System.err.println("llego aca al insert de cajaDiariaDAO");
                 
-                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()));
+                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getCliente().getFormaDePagoID()).getNombre()));
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());

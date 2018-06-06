@@ -6,12 +6,9 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,7 +17,6 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -35,11 +31,91 @@ public class CajaController implements Serializable {
     private com.blastoide.jsf.CajaFacade ejbFacade;
     private List<Caja> items = null;
     private Caja selected;
-        private List<Caja> filteredCaja = null;
+    private List<Caja> filteredCaja = null;
+    private double ventaDiariaActual = 0;
+    private double ventaDiariaActualSoloTarjetas = 0;
     
     public CajaController() {
     }
 
+    public double getVentaDiariaActual() {
+        
+        SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDeHoy = formDate.format(new Date()); 
+            
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+        
+        double totalVentaDiarioSoloEfectivo = 0;
+        double totalegresoDiario = 0;
+        double totalDiario = 0;
+        
+        for(int index=0; index<=cajaController.getItems().size() - 1;index++){
+           
+                    if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                
+                        if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo")){
+                        totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
+                    }
+                 
+                    if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                        totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
+                    }    
+                }
+        }
+        System.out.println("totalVentaDiarioSoloEfectivo: "+ totalVentaDiarioSoloEfectivo);
+        System.out.println("totalegresoDiario: "+ totalegresoDiario);
+
+        totalDiario = totalVentaDiarioSoloEfectivo - totalegresoDiario;
+        
+        System.out.println("Total vendido hoy solo efectivo - totalegresoDiario: "+ totalDiario);
+        setVentaDiariaActual(totalDiario);
+        return ventaDiariaActual;
+    }
+
+    public double getVentaDiariaActualSoloTarjetas() {
+   
+        SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDeHoy = formDate.format(new Date()); 
+            
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+        
+        double totalVentaDiarioSoloTarjetas = 0;
+        double totalegresoDiario = 0;
+        double totalDiario = 0;
+        for(int index=0; index<=cajaController.getItems().size() - 1;index++){
+           
+                if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                
+                        if(cajaController.getItems().get(index).getDescripcion().contains("Tarjetas")){
+                        totalVentaDiarioSoloTarjetas = totalVentaDiarioSoloTarjetas + cajaController.getItems().get(index).getIngreso();
+                        }
+                        
+                }
+                if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                    totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
+                }
+        }
+
+        System.out.println("totalVentaDiarioSoloTarjetas: "+ totalVentaDiarioSoloTarjetas);
+        System.out.println("totalegresoDiario: "+ totalegresoDiario);
+        
+        totalDiario = totalVentaDiarioSoloTarjetas - totalegresoDiario;
+        
+        System.out.println("Total vendido hoy solo tarjetas - totalDiario: "+ totalDiario);
+        setVentaDiariaActualSoloTarjetas(totalDiario);
+        return ventaDiariaActualSoloTarjetas;
+    }
+
+    public void setVentaDiariaActualSoloTarjetas(double ventaDiariaActualSoloTarjetas) {
+        this.ventaDiariaActualSoloTarjetas = ventaDiariaActualSoloTarjetas;
+    }
+    
+    public void setVentaDiariaActual(double ventaDiariaActual) {
+        this.ventaDiariaActual = ventaDiariaActual;
+    }
+   
     public Caja getSelected() {
         return selected;
     }
@@ -52,8 +128,6 @@ public class CajaController implements Serializable {
         this.filteredCaja = filteredCaja;
     }
     
-    
-
     public void setSelected(Caja selected) {
         this.selected = selected;
     }
@@ -138,6 +212,10 @@ public class CajaController implements Serializable {
         return getFacade().findAll();
     }
 
+    private void setVentaDiariaActual() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @FacesConverter(forClass = Caja.class)
     public static class CajaControllerConverter implements Converter {
 
@@ -191,7 +269,9 @@ public class CajaController implements Serializable {
         for(int index=0; index<=cajaController.getItems().size() - 1;index++){
            
                 if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                    if(cajaController.getItems().get(index).getIngreso()!=null){    
                     totalVentaDiaria = totalVentaDiaria + cajaController.getItems().get(index).getIngreso();
+                    }
                 }
         }
         
@@ -201,8 +281,8 @@ public class CajaController implements Serializable {
     }
     
     public void mostrarVentaMensualActual() throws ParseException{
-                SimpleDateFormat formDate = new SimpleDateFormat("MM/yyyy");
-                String mesYAnnioDeHoy = formDate.format(new Date()); 
+            SimpleDateFormat formDate = new SimpleDateFormat("MM/yyyy");
+            String mesYAnnioDeHoy = formDate.format(new Date()); 
             
             System.out.println("mesYAnnioDeHoy: "+ mesYAnnioDeHoy);    
                 
@@ -219,13 +299,14 @@ public class CajaController implements Serializable {
                 System.out.println("fechaDeCaja CORTADA: "+ fechaDeCaja);    
 
                 if(fechaDeCaja.equals(mesYAnnioDeHoy)){
+                    if(cajaController.getItems().get(index).getIngreso()!=null){
                     totalVentaMensual = totalVentaMensual + cajaController.getItems().get(index).getIngreso();
+                    }
                 }
         }
         
         System.out.println("Total vendido mensual: "+ totalVentaMensual);
         JsfUtil.addSuccessMessage("total vendido mensual: "+ totalVentaMensual);
             
-    }
-    
+    }    
 }
