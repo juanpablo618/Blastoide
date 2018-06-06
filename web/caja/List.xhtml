@@ -15,18 +15,17 @@
         <ui:define name="body">
             <h:form id="CajaListForm">
                 <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
-
-                <p:panel header="Caja Diaria">
-                    
-                     <h:outputText value="venta diaria solo efectivo: " />
-                     <h:outputText value="#{cajaController.ventaDiariaActual}">
+                <h:outputText style="color: white" value="venta diaria solo efectivo: " />
+                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
                             <f:convertNumber pattern="#00.00" />
                      </h:outputText>
                      <br></br>
-                     <h:outputText value="venta diaria solo tarjetas: " />
-                     <h:outputText value="#{cajaController.ventaDiariaActualSoloTarjetas}">
+                     <h:outputText style="color: white" value="venta diaria solo tarjetas: " />
+                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActualSoloTarjetas}">
                             <f:convertNumber pattern="#00.00" />
                      </h:outputText>
+                     
+                <p:panel header="Caja Diaria">
                                          
                     <p:dataTable id="datalist" value="#{cajaController.items}" var="item"
                                  selectionMode="single" selection="#{cajaController.selected}"
@@ -34,7 +33,7 @@
                                  widgetVar="cajaDiariaTable"
                                  rowKey="#{item.id}"
                                  rows="30"
-                                 rowsPerPageTemplate="30,40,50"
+                                 rowsPerPageTemplate="50,100,200"
                                  filteredValue="#{cajaController.filteredCaja}"
                                  emptyMessage="no hay registros de facturación diaria."
                                  resizableColumns="true"
@@ -97,5 +96,4 @@
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
-
 </html>

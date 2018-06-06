@@ -6,6 +6,8 @@
 package com.blastoide.jpa;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -67,11 +69,14 @@ public class Caja implements Serializable {
     }
 
     public String getFecha() {
+       SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDeHoy = formDate.format(new Date()); 
+        setFecha(fechaDeHoy);
         return fecha;
     }
 
     public void setFecha(String fecha) {
-       
+        
         this.fecha = fecha;
     }
 

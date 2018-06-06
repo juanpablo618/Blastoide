@@ -53,15 +53,18 @@ public class CajaController implements Serializable {
         for(int index=0; index<=cajaController.getItems().size() - 1;index++){
            
                     if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                
-                        if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo")){
-                        totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
+                                if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo")){
+                                    if(cajaController.getItems().get(index).getDescripcion()!=null){  
+                                        totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
+                                    }
+                                }
+
+                            if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
+                                if(cajaController.getItems().get(index).getEgreso()!=null){  
+                                    totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
+                                }
+                            }    
                     }
-                 
-                    if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                        totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
-                    }    
-                }
         }
         System.out.println("totalVentaDiarioSoloEfectivo: "+ totalVentaDiarioSoloEfectivo);
         System.out.println("totalegresoDiario: "+ totalegresoDiario);
@@ -87,14 +90,16 @@ public class CajaController implements Serializable {
         for(int index=0; index<=cajaController.getItems().size() - 1;index++){
            
                 if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                
                         if(cajaController.getItems().get(index).getDescripcion().contains("Tarjetas")){
-                        totalVentaDiarioSoloTarjetas = totalVentaDiarioSoloTarjetas + cajaController.getItems().get(index).getIngreso();
+                            if(cajaController.getItems().get(index).getIngreso()!=null){  
+                                totalVentaDiarioSoloTarjetas = totalVentaDiarioSoloTarjetas + cajaController.getItems().get(index).getIngreso();
+                            }
                         }
-                        
                 }
                 if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                    totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
+                    if(cajaController.getItems().get(index).getEgreso()!=null){  
+                            totalegresoDiario = totalegresoDiario + cajaController.getItems().get(index).getEgreso();
+                    }
                 }
         }
 
