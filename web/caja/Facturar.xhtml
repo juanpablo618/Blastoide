@@ -83,25 +83,25 @@
                         #{det.producto.marca}
                     </p:column>
                     
-                    <p:column headerText="Caracteristica" style="font-size:14px;">
+                    <p:column headerText="Caracteristica" style="font-size:15px;">
                         #{det.producto.caracteristica}
                     </p:column>
                     
-                    <p:column headerText="Fragancia" style="font-size:18px;">
+                    <p:column headerText="Fragancia" style="font-size:15px;">
                         #{det.producto.fragancia}
                     </p:column>
 
-                    <p:column headerText="Medida" style="font-size:18px;">
+                    <p:column headerText="Medida" style="font-size:15px;">
                         #{det.producto.medida}
                     </p:column>
 
-                    <p:column headerText="P.U." style="font-size:18px;">
+                    <p:column headerText="P.U." style="font-size:15px;">
                         <h:outputText value="#{det.producto.precioFinalAFacturar}" >
                             <f:convertNumber pattern="#00.00" />
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="P.T." style="font-size:18px;">
+                    <p:column headerText="P.T." style="font-size:15px;">
                         <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
                             <f:convertNumber pattern="#00.00" />
                         </h:outputText>

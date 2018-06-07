@@ -8,6 +8,7 @@ import com.blastoide.jpa.FormaDePagoDAO;
 import com.blastoide.jpa.ProductosDAO;
 import com.blastoide.jpa.TipoDeClienteDAO;
 import com.blastoide.jpa.VentaDAO;
+import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
@@ -25,6 +26,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -49,6 +51,22 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     private String productoCondBarra;
 
+    
+    @PostConstruct
+    public void init(){
+ 
+        setFormaDePagoID(1);
+        System.out.println("");     
+        System.out.println("");     
+        System.out.println("ventaBean"+ toString());
+    }
+    
+    
+    
+    
+    
+    
+    
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -75,7 +93,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     }
     
         System.out.println("ACAAAA:"+ clienteComunConContadoEfectivo );
-    
+        
     this.venta.setCliente(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo));
     
     //    System.out.println("clienteBuenoController.getClienteBueno(32).getFormaDePagoID()"+ clienteBuenoController.getClienteBueno(32).getFormaDePagoID());
@@ -158,9 +176,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
             VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
             
-            for(int i=0 ; i<ventaBean.getLista().size() ; i++){
-
-                int idProductoPorCambiarValor = ventaBean.getLista().get(i).getProducto().getProductoID();
+            for (DetalleVenta det : ventaBean.getLista()) {
+            
+                int idProductoPorCambiarValor = det.getProducto().getProductoID();
                 
                 ProductosDAO productosDao = new ProductosDAO();
                 
@@ -169,7 +187,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 //Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
                 Double precioUnitario = precioFinalDelProductoEnBD ;
                 System.err.println("Producto precio venta unitario modificado por juan: "+precioUnitario);
-
 
                 double cantidadDeFormaDePago;
                 double cantidadPorTipoDeCliente;
@@ -184,7 +201,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
                 System.err.println("PrecioTotal: "+PrecioTotal);
 
-             ventaBean.getLista().get(i).getProducto().setPrecioFinalAFacturar(PrecioTotal);
+             det.getProducto().setPrecioFinalAFacturar(PrecioTotal);
         }                    
         } catch (Exception e) {
             
@@ -590,5 +607,10 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         // (such as an HTTP redirect), and that the request processing lifecycle should be terminated
         // as soon as the current phase is completed.
         facesContext.responseComplete();
+    }
+
+    @Override
+    public String toString() {
+        return "VentaBean{" + "venta=" + venta.toString() + ", producto=" + producto + ", cantidad=" + cantidad + ", lista=" + lista + ", formaDePagoID=" + formaDePagoID + ", nombreDelDocumento=" + nombreDelDocumento + ", productoCondBarra=" + productoCondBarra + '}';
     }
 }

@@ -1,8 +1,11 @@
 package com.blastoide.jsf;
 
+import com.blastoide.jsfcontroller.ClienteBuenoController;
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -20,6 +23,17 @@ public class Venta {
     
     private String empleado;
 
+    @PostConstruct
+    public void init(){
+    
+    FacesContext context = FacesContext.getCurrentInstance();
+    ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
+    
+    System.out.println("clienteBuenoController.getClienteBueno(37): " + clienteBuenoController.getClienteBueno(37).toString());     
+    setCliente(clienteBuenoController.getClienteBueno(37));
+    }
+    
+    
     public String getEmpleado() {
         return empleado;
     }
@@ -72,7 +86,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Fecha=" + fecha + ", Cliente=" + cliente.getNombre() + ", Monto total=" + monto;
+        return "Venta{" + "ventaID=" + ventaID + ", fecha=" + fecha + ", cliente=" + cliente + ", monto=" + monto + ", formadePagoID=" + formadePagoID + ", empleado=" + empleado + '}';
     }
-    
+
 }
