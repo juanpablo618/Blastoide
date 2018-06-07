@@ -7,7 +7,6 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="CajaCreateDlg" widgetVar="CajaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCajaTitle}">
             <h:form id="CajaCreateForm">
                 <h:panelGroup id="display">
@@ -22,14 +21,10 @@
                         <p:outputLabel style="color: red" value="#{bundle.CreateCajaLabel_egreso}" for="egreso" />
                         <p:inputText id="egreso" value="#{cajaController.selected.egreso}" title="#{bundle.CreateCajaTitle_egreso}" />
                     </p:panelGrid>
-                    
-                    <p:commandButton actionListener="#{cajaController.create}" value="#{bundle.Save}" update="display,:CajaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CajaCreateDialog');"/>
-                    
+                    <p:commandButton ajax='false' actionListener="#{cajaController.create}" value="#{bundle.Save}" update="display,:CajaListForm:datalist,:growl" oncomplete="handleSubmit(args,'CajaCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="CajaCreateDialog.hide()"/>
-                
                 </h:panelGroup>
             </h:form>
         </p:dialog>
-
     </ui:composition>
 </html>
