@@ -52,21 +52,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     private String productoCondBarra;
 
     
-    @PostConstruct
-    public void init(){
- 
-        setFormaDePagoID(1);
-        System.out.println("");     
-        System.out.println("");     
-        System.out.println("ventaBean"+ toString());
-    }
-    
-    
-    
-    
-    
-    
-    
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -509,9 +494,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void transferir(){
     
         FacesContext context = FacesContext.getCurrentInstance();
-        
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-        
         ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoID());
         
     }

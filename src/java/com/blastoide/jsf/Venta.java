@@ -22,18 +22,8 @@ public class Venta {
     private int formadePagoID;
     
     private String empleado;
-
-    @PostConstruct
-    public void init(){
     
-    FacesContext context = FacesContext.getCurrentInstance();
-    ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
-    
-    System.out.println("clienteBuenoController.getClienteBueno(37): " + clienteBuenoController.getClienteBueno(37).toString());     
-    setCliente(clienteBuenoController.getClienteBueno(37));
-    }
-    
-    
+   
     public String getEmpleado() {
         return empleado;
     }

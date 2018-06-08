@@ -26,7 +26,7 @@
                 <h:form>  
                     <p:growl id="messages"/>
 
-                    <p:menubar style="font-weight: bold;">
+                    <p:menubar autoDisplay="false" style="font-weight: bold;">
                         <p:submenu label="Inicio" icon="ui-icon-document">
                             <p:menuitem value="inicio" outcome="/indexAdmin.xhtml" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
