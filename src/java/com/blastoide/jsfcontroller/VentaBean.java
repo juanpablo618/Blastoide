@@ -88,6 +88,30 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         transferir();
     }
     
+    public void empezarVentaActual(){
+        if( this.getLista().isEmpty()){    
+            
+            this.getLista().clear();
+
+            FacesContext context = FacesContext.getCurrentInstance();
+
+            ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
+
+            int clienteComunConContadoEfectivo = 0;
+
+            for(int i=0;i<=clienteBuenoController.getItems().size() -1;i++){
+                    if( (clienteBuenoController.getItems().get(i).getApellido().equals("comun") ) || (clienteBuenoController.getItems().get(i).getNombre().equals("cliente"))){
+                               clienteComunConContadoEfectivo =  clienteBuenoController.getItems().get(i).getClienteID();
+                    }
+            }
+            
+            this.venta.setCliente(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo));
+            this.venta.setFormadePagoID(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo).getFormaDePagoID());
+            transferir();
+        }
+    }
+    
+    
     public String getNombreDelDocumento() {
         return nombreDelDocumento;
     }

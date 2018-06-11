@@ -12,7 +12,7 @@ public abstract class ConfiguracionesGenerales {
     //ANDA EN PC DE LUCAS NO BORRAR
     //private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
 
-  private static final String CARPETA_DE_PRESUPUESTOS = "/home/juan/Documents";
+  private static final String CARPETA_DE_PRESUPUESTOS = "C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
     
 /////////////////////////////////////////////////////////////////////////////DOWNLOAD BEAN ////////////////////////////////////////////////////
 
@@ -20,7 +20,7 @@ public abstract class ConfiguracionesGenerales {
 //configuracion q anda para lucas file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\
 //private static final String PDF_URL = "file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
    
-private static final String PDF_URL = "file:///home/juan/Documents";
+private static final String PDF_URL = "file:///C:\\Users\\Usuario\\Desktop\\BLASTOIDE\\documentos\\";
 
     public static String getPDF_URL() {
         return PDF_URL;
