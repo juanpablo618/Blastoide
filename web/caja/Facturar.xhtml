@@ -18,7 +18,7 @@
                 #{ventaBean.empezarVentaActual()}
                 
                 <p:column>
-                    <br></br><br></br><br></br><br></br>
+                    <br></br>
                      <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold; padding-right: 163px">Cliente: </h:outputLabel>
             
                      <p:selectOneMenu  id="seleccionarCliente" value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter" style="width: 15%;" filter="true" filterMatchMode="startsWith" >
@@ -61,7 +61,9 @@
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="10,20"
                              emptyMessage="no hay elementos en esta venta"
-                             resizableColumns="true" >
+                             resizableColumns="true" 
+                             tableStyle="table-layout: auto;"
+                             >
 
                     <p:column headerText="Cantidad" style="font-size:18px;">
 
@@ -77,7 +79,7 @@
                     </p:column>
                     
                     <p:column headerText="Producto" style="font-size:15px;">
-                        #{det.producto.nombre}
+                        <h:outputText style="font-weight: bold" value="#{det.producto.nombre}" />
                     </p:column>
                     
                     <p:column headerText="Marca" style="font-size:15px;">
@@ -104,7 +106,7 @@
 
                     <p:column headerText="P.T." style="font-size:15px;">
                         <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
-                            <f:convertNumber pattern="#00.00" />
+                            <f:convertNumber currencySymbol="$" type="currency" />
                         </h:outputText>
                     </p:column>
 
@@ -114,7 +116,15 @@
 
                 </p:dataTable>
                 <br></br>
-
+                    
+                <h:outputText style="font-weight: bold;float:left;font-size:25px;color:#ffffff ; margin-right: 18px; " value="Total: "/>
+                <h:outputText style="font-weight: bold;float:left;font-size:25px;color:#ffffff " value="#{ventaBean.mostrarMontoTotalDeLaVenta()}" >
+                        <f:convertNumber currencySymbol="$" type="currency" />
+                </h:outputText>
+                <br></br>
+                <br></br>
+               
+                
                 <h:commandButton id="botonFacturar" value="FACTURAR" actionListener="#{ventaBean.facturar()}"
                                  action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #a7e14f; border-color: #a7e14f " />
                 

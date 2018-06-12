@@ -23,10 +23,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -51,7 +49,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
     private String productoCondBarra;
 
-    
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -264,7 +261,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             System.err.println("PrecioTotal: "+PrecioTotal);
        
         this.producto.setPrecioFinalAFacturar(PrecioTotal);
-                    
+            
         det.setProducto(this.producto);
         
         ComprobarSiExiste(det);
@@ -616,6 +613,25 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         facesContext.responseComplete();
     }
 
+    public Double mostrarMontoTotalDeLaVenta(){
+        System.out.println("Entro al metodo mostrarMontoTotalDeLaVenta ");
+        System.out.println("lista tamaño: "+lista.size()+"elementos de la lista: "+lista.toString());
+        Double montoTotal = 00.00;
+      
+        FacesContext context = FacesContext.getCurrentInstance();
+        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+       
+        if(this.lista.size()>=1){
+         for (DetalleVenta det : lista) {
+             System.out.println("det.getProducto().getPrecioFinalAFacturar(): "+ det.getProducto().getPrecioFinalAFacturar());
+             System.out.println("det.getCantidad(): " + det.getCantidad());
+             Double total =det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+            montoTotal = montoTotal + total;
+         }
+        }
+    return montoTotal;
+    }
+    
     @Override
     public String toString() {
         return "VentaBean{" + "venta=" + venta.toString() + ", producto=" + producto + ", cantidad=" + cantidad + ", lista=" + lista + ", formaDePagoID=" + formaDePagoID + ", nombreDelDocumento=" + nombreDelDocumento + ", productoCondBarra=" + productoCondBarra + '}';
