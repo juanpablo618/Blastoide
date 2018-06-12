@@ -62,7 +62,7 @@
                              rowsPerPageTemplate="10,20"
                              emptyMessage="no hay elementos en esta venta"
                              resizableColumns="true" 
-                             tableStyle="table-layout: auto;"
+                             tableStyle="white-space: nowrap; table-layout: auto;"
                              >
 
                     <p:column headerText="Cantidad" style="font-size:18px;">
@@ -74,43 +74,43 @@
                         </center>
                     </p:column>
 
-                    <p:column headerText="Código" style="font-size:15px;">
+                    <p:column headerText="Código" style="font-size:15px;font-weight: bold">
                         #{det.producto.codigo}
                     </p:column>
                     
-                    <p:column headerText="Producto" style="font-size:15px;">
-                        <h:outputText style="font-weight: bold" value="#{det.producto.nombre}" />
+                    <p:column headerText="Producto" style="font-weight: bold; font-size:15px;">
+                        <h:outputText style="font-weight: bold ;" value="#{det.producto.nombre}" />
                     </p:column>
                     
-                    <p:column headerText="Marca" style="font-size:15px;">
+                    <p:column headerText="Marca" style="font-weight: bold; font-size:15px;">
                         #{det.producto.marca}
                     </p:column>
                     
-                    <p:column headerText="Caracteristica" style="font-size:15px;">
+                    <p:column headerText="Caracteristica" style="font-weight: bold; font-size:15px;">
                         #{det.producto.caracteristica}
                     </p:column>
                     
-                    <p:column headerText="Fragancia" style="font-size:15px;">
+                    <p:column headerText="Fragancia" style="font-weight: bold; font-size:15px;">
                         #{det.producto.fragancia}
                     </p:column>
 
-                    <p:column headerText="Medida" style="font-size:15px;">
+                    <p:column headerText="Medida" style="font-weight: bold; font-size:15px;">
                         #{det.producto.medida}
                     </p:column>
 
-                    <p:column headerText="P.U." style="font-size:15px;">
+                    <p:column headerText="P.U." style="font-weight: bold; font-size:15px;">
                         <h:outputText value="#{det.producto.precioFinalAFacturar}" >
                             <f:convertNumber pattern="#00.00" />
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="P.T." style="font-size:15px;">
+                    <p:column headerText="P.T." style="font-weight: bold; font-size:15px;">
                         <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
                             <f:convertNumber currencySymbol="$" type="currency" />
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="accion" style="font-size:15px;">
+                    <p:column headerText="accion" style="font-weight: bold; font-size:15px;">
                         <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.BorrarDetalle(det)}" update="detalle"/>
                     </p:column>
 
