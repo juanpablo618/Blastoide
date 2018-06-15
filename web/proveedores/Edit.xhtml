@@ -22,7 +22,7 @@
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_email}" for="email" />
                         <p:inputText id="email" value="#{proveedoresController.selected.email}" title="#{bundle.EditProveedoresTitle_email}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_email}"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_fechaNacimiento}" for="fechaNacimiento" />
-                        <p:calendar id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.EditProveedoresTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fechaNacimiento}" showOn="button"/>
+                        <p:calendar id="fechaNacimiento" pattern="dd/MM/yyyy" value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.EditProveedoresTitle_fechaNacimiento}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fechaNacimiento}" showOn="button"/>
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_tipoDocumentoID}" for="tipoDocumentoID" />
                         <p:selectOneMenu id="tipoDocumentoID" value="#{proveedoresController.selected.tipoDocumentoID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_tipoDocumentoID}" style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

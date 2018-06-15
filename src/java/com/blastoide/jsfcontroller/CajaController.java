@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -38,6 +39,8 @@ public class CajaController implements Serializable {
     public CajaController() {
     }
 
+    
+    
     public double getVentaDiariaActual() {
         
         SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -51,9 +54,11 @@ public class CajaController implements Serializable {
         double totalDiario = 0;
         
         for(int index=0; index<=cajaController.getItems().size() - 1;index++){
-           
+         
+            if(cajaController.getItems().get(index).getFecha()!=null){
+                
                     if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                                if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo")){
+                                if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo") || cajaController.getItems().get(index).getDescripcion().contains("Contado")){
                                     if(cajaController.getItems().get(index).getDescripcion()!=null){  
                                         totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
                                     }
@@ -65,6 +70,8 @@ public class CajaController implements Serializable {
                                 }
                             }    
                     }
+            }     
+                    
         }
         System.out.println("totalVentaDiarioSoloEfectivo: "+ totalVentaDiarioSoloEfectivo);
         System.out.println("totalegresoDiario: "+ totalegresoDiario);
@@ -150,6 +157,11 @@ public class CajaController implements Serializable {
     public Caja prepareCreate() {
         selected = new Caja();
         initializeEmbeddableKey();
+
+        SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDeHoy = formDate.format(new Date()); 
+       
+        selected.setFecha(fechaDeHoy);
         return selected;
     }
 

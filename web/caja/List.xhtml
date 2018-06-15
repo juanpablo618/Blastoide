@@ -15,16 +15,7 @@
         <ui:define name="body">
             <h:form id="CajaListForm">
                 <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
-                <h:outputText style="color: white" value="venta diaria solo efectivo: " />
-                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
-                            <f:convertNumber pattern="#00.00" />
-                     </h:outputText>
-                     <br></br>
-                     <h:outputText style="color: white" value="venta diaria solo tarjetas: " />
-                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActualSoloTarjetas}">
-                            <f:convertNumber pattern="#00.00" />
-                     </h:outputText>
-                     
+                
                 <p:panel header="Caja Diaria">
                                          
                     <p:dataTable id="datalist" value="#{cajaController.items}" var="item"
@@ -49,8 +40,8 @@
                             </h:outputText>
                         </p:column>
                         
-                        <p:column>
-                            <f:facet name="header">
+                        <p:column filterBy="#{item.descripcion}" filterMatchMode="contains">
+                            <f:facet name="header" >
                                 <h:outputText value="#{bundle.ListCajaTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
@@ -76,6 +67,16 @@
                             </h:outputText>
                         </p:column>
                         
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cta Corriente:"/>
+                            </f:facet>
+                            
+                            <h:outputText value="#{item.ctaCorriente}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>
@@ -86,7 +87,12 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-
+            <br></br>
+            <h:outputText style="color: white" value="Saldo de efectivo diario: " />
+                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
+                            <f:convertNumber pattern="#00.00" />
+                     </h:outputText>
+                            
             <ui:include src="Create.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

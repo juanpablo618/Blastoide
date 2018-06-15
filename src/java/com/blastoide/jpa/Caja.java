@@ -8,6 +8,7 @@ package com.blastoide.jpa;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,9 +54,23 @@ public class Caja implements Serializable {
     @Column(name = "egreso")
     private Double egreso;
 
+    @Column(name = "ctaCorriente")
+    private Double ctaCorriente;
+
+    
     public Caja() {
     }
+    
+    public Double getCtaCorriente() {
+        return ctaCorriente;
+    }
 
+    public void setCtaCorriente(Double ctaCorriente) {
+        this.ctaCorriente = ctaCorriente;
+    }
+
+    
+    
     public Caja(Integer id) {
         this.id = id;
     }
@@ -69,9 +84,6 @@ public class Caja implements Serializable {
     }
 
     public String getFecha() {
-       SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaDeHoy = formDate.format(new Date()); 
-        setFecha(fechaDeHoy);
         return fecha;
     }
 
@@ -126,7 +138,7 @@ public class Caja implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jpa.Caja[ id=" + id + " ]";
+        return "Caja{" + "id=" + id + ", fecha=" + fecha + ", descripcion=" + descripcion + ", ingreso=" + ingreso + ", egreso=" + egreso + ", ctaCorriente=" + ctaCorriente + '}';
     }
-    
+
 }
