@@ -57,7 +57,7 @@ public class MembreteFactura {
 
         document.add(Chunk.NEWLINE);
 
-        Paragraph parrafo4 = new Paragraph("Nombre del cliente :" + venta.getCliente().getNombre());
+        Paragraph parrafo4 = new Paragraph("Nombre: ".concat(venta.getCliente().getNombre()).concat(". Apellido: ").concat(venta.getCliente().getApellido()).concat(". Razon social: ").concat(venta.getCliente().getRazonSocial()) );
         document.add(parrafo4);
 
                 String formato="dd-MM-yyyy";
@@ -88,7 +88,13 @@ public class MembreteFactura {
         for (DetalleVenta det : lista) {
 
             //cantidad
-            table.addCell("" + formateadorCantidades.format(det.getCantidad()));
+           //Paragraph paragraphCantidad = new Paragraph(formateadorCantidades.format(det.getCantidad()));
+            //paragraphCantidad.setAlignment(Element.ALIGN_CENTER);
+            
+            PdfPCell cell = new PdfPCell(new Paragraph(formateadorCantidades.format(det.getCantidad())));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            table.addCell(cell);
             //detalle nombre del producto
             String detallePorProducto = "";
             
@@ -96,41 +102,46 @@ public class MembreteFactura {
             detallePorProducto = detallePorProducto + " ";
              
             
-            if(det.getProducto().getMarca()!=null){
-               detallePorProducto = detallePorProducto + det.getProducto().getMarca();
-            }else{
+                if(det.getProducto().getMarca()!=null){
+                   detallePorProducto = detallePorProducto + det.getProducto().getMarca();
+                }
                 if(det.getProducto().getCaracteristica()!=null){
-                    detallePorProducto = detallePorProducto + " ";
-                    detallePorProducto = detallePorProducto + det.getProducto().getCaracteristica();
-                }else{
-                    if(det.getProducto().getFragancia()!=null){
+                        detallePorProducto = detallePorProducto + " ";
+                        detallePorProducto = detallePorProducto + det.getProducto().getCaracteristica();
+                }
+                if(det.getProducto().getFragancia()!=null){
                         detallePorProducto = detallePorProducto + " ";
                         detallePorProducto = detallePorProducto + det.getProducto().getFragancia();
-                    }else{
-                        if(det.getProducto().getMedida()!=null){
-                            detallePorProducto = detallePorProducto + " ";
-                            detallePorProducto = detallePorProducto + det.getProducto().getMedida();
-                        }
-                    }
                 }
-            }
-            
+
+                if(det.getProducto().getMedida()!=null){
+                                detallePorProducto = detallePorProducto + " ";
+                                detallePorProducto = detallePorProducto + det.getProducto().getMedida();
+                }
+                    
             System.out.println("detallePorProducto :" +detallePorProducto);
             table.addCell(detallePorProducto);
             //precio unitario con el interes sumado
+            PdfPCell cellPU = new PdfPCell(new Paragraph(formateador.format(det.getProducto().getPrecioFinalAFacturar())));
+            cellPU.setHorizontalAlignment(Element.ALIGN_RIGHT);
             
-            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar()));
-            //precio total el pu con interes sumado * cantidad
-                        
+            table.addCell(cellPU);
+            
             totalDeFactura = totalDeFactura + det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad()));
+            //precio total el pu con interes sumado * cantidad
+            PdfPCell cellPT = new PdfPCell(new Paragraph(formateador.format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad())));
+            cellPT.setHorizontalAlignment(Element.ALIGN_RIGHT);
             
+            table.addCell(cellPT);
         }
         
         table.addCell("");
         table.addCell("");
         table.addCell("Precio total:");
-        table.addCell(""+ formateador.format(totalDeFactura));
+          PdfPCell cellFinalPT = new PdfPCell(new Paragraph(formateador.format(totalDeFactura)));
+          cellFinalPT.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        
+        table.addCell(cellFinalPT);
         
         PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración y Dni: "));
 

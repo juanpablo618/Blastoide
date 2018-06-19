@@ -14,6 +14,7 @@ import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
 import com.blastoide.jsf.util.MembreteFactura;
 import com.blastoide.jsf.util.MembretePresupuesto;
+import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.lowagie.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -216,18 +218,19 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     }
 
     public void agregarPorCodBarra(String productoCodBarra) throws Exception {
-
+        
+        int idBuscado = 0;
         try {
         
-        FacesContext context = FacesContext.getCurrentInstance();
-        ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-        
-        ProductosDAO productoDAO = new ProductosDAO();
-        
-        int idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
-        
-          this.producto = productoControllerBean.getProductos(idBuscado);
-        
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+
+                ProductosDAO productoDAO = new ProductosDAO();
+
+                idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
+                
+                this.producto = productoControllerBean.getProductos(idBuscado);
+                
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
         
         Double porcentajeDeFormaDePago;
@@ -271,8 +274,15 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.productoCondBarra = null;
             System.out.println("codigo del producto insertado en la lista: " + det.getProducto().getCodigo());
         } catch (Exception e) {
-        this.productoCondBarra = null;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El producto no tiene cargado el precio de venta ."));
+            
+            if(idBuscado==0){
+                    this.productoCondBarra = null;
+              JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+            }else{
+            this.productoCondBarra = null;
+            JsfUtil.addErrorMessage(e, "El producto no tiene cargado el precio de venta.");
+           }
+            
         }
     }
     
