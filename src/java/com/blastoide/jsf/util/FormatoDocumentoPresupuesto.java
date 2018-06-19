@@ -1,6 +1,8 @@
 package com.blastoide.jsf.util;
 
 import static com.blastoide.configuraciones.ConfiguracionesGenerales.getURL_DE_LOGO_MUNDO_LIMPIEZA;
+import com.blastoide.jpa.ConfiguracionesGeneralesController;
+import com.blastoide.jsfcontroller.VentaBean;
 import com.lowagie.text.Document;
 import com.lowagie.text.Image;
 import com.lowagie.text.Phrase;
@@ -9,6 +11,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfPageEventHelper;
 import com.lowagie.text.pdf.PdfWriter;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -27,8 +30,12 @@ public class FormatoDocumentoPresupuesto extends PdfPageEventHelper
     {
         try
         {
+             FacesContext context = FacesContext.getCurrentInstance();
+            ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
+      
+            
             PdfPCell celda1 = new PdfPCell(new Phrase("Mundo Limpieza"));
-            PdfPCell celda2 = new PdfPCell(new Phrase("tel: 455224/ 15537730"));
+            PdfPCell celda2 = new PdfPCell(new Phrase("tel: ".concat(configuracionesGeneralesController.getConfiguracionesGenerales(1).getTelefonoSucursal())));
             
             imagen = Image.getInstance(getURL_DE_LOGO_MUNDO_LIMPIEZA());
             imagen.setAbsolutePosition(10, 650f);            

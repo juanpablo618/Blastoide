@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConfiguracionesGeneralesEditDlg" widgetVar="ConfiguracionesGeneralesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditConfiguracionesGeneralesTitle}">
+            <h:form id="ConfiguracionesGeneralesEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{configuracionesGeneralesController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_telefonoSucursal}" for="telefonoSucursal" />
+                        <p:inputText id="telefonoSucursal" value="#{configuracionesGeneralesController.selected.telefonoSucursal}" title="#{bundle.EditConfiguracionesGeneralesTitle_telefonoSucursal}" />
+                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_carpetaDePresupuestos}" for="carpetaDePresupuestos" />
+                        <p:inputText id="carpetaDePresupuestos" value="#{configuracionesGeneralesController.selected.carpetaDePresupuestos}" title="#{bundle.EditConfiguracionesGeneralesTitle_carpetaDePresupuestos}" />
+                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_pdfUrl}" for="pdfUrl" />
+                        <p:inputText id="pdfUrl" value="#{configuracionesGeneralesController.selected.pdfUrl}" title="#{bundle.EditConfiguracionesGeneralesTitle_pdfUrl}" />
+                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_urlDeLogoMundoLimpieza}" for="urlDeLogoMundoLimpieza" />
+                        <p:inputText id="urlDeLogoMundoLimpieza" value="#{configuracionesGeneralesController.selected.urlDeLogoMundoLimpieza}" title="#{bundle.EditConfiguracionesGeneralesTitle_urlDeLogoMundoLimpieza}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{configuracionesGeneralesController.update}" value="#{bundle.Save}" update="display,:ConfiguracionesGeneralesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ConfiguracionesGeneralesEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConfiguracionesGeneralesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

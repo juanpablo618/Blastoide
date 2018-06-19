@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConfiguracionesGeneralesViewDlg" widgetVar="ConfiguracionesGeneralesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewConfiguracionesGeneralesTitle}">
+            <h:form id="ConfiguracionesGeneralesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{configuracionesGeneralesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_telefonoSucursal}"/>
+                        <h:outputText value="#{configuracionesGeneralesController.selected.telefonoSucursal}" title="#{bundle.ViewConfiguracionesGeneralesTitle_telefonoSucursal}"/>
+                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_carpetaDePresupuestos}"/>
+                        <h:outputText value="#{configuracionesGeneralesController.selected.carpetaDePresupuestos}" title="#{bundle.ViewConfiguracionesGeneralesTitle_carpetaDePresupuestos}"/>
+                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_pdfUrl}"/>
+                        <h:outputText value="#{configuracionesGeneralesController.selected.pdfUrl}" title="#{bundle.ViewConfiguracionesGeneralesTitle_pdfUrl}"/>
+                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_urlDeLogoMundoLimpieza}"/>
+                        <h:outputText value="#{configuracionesGeneralesController.selected.urlDeLogoMundoLimpieza}" title="#{bundle.ViewConfiguracionesGeneralesTitle_urlDeLogoMundoLimpieza}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ConfiguracionesGeneralesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
