@@ -84,6 +84,11 @@
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
                             <p:menuitem value="Formas de pago" outcome="/formaDePago/List" rendered="#{login.rol eq 'administrador'}" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
+                            <p:menuitem value="Configuraciones Generales" outcome="/configuracionesGenerales/List" rendered="#{login.rol eq 'administrador'}" />
+                            <p:separator rendered="#{login.rol eq 'administrador'}" />
+                            
+                            
+                        
                         </p:submenu>
                     </p:menubar>
                 </h:form>

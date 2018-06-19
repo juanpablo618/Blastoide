@@ -8,7 +8,6 @@ import com.blastoide.jpa.FormaDePagoDAO;
 import com.blastoide.jpa.ProductosDAO;
 import com.blastoide.jpa.TipoDeClienteDAO;
 import com.blastoide.jpa.VentaDAO;
-import com.blastoide.jsf.ClienteBueno;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
-import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -319,7 +317,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
         
                 //1ro registra la venta y sus detalles de la venta
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+
+                ventadao.registrarPorTipo(venta, lista, "FACTURA");
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
      
                 System.err.println("tamaño de la lista: "+ lista.size());
@@ -367,7 +367,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
             } else{
             
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "FACTURA");
+
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
                 
                 //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
@@ -437,7 +439,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
         
                 //1ro registra la venta y sus detalles de la venta
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
      
                 System.err.println("tamaño de la lista: "+ lista.size());
@@ -485,7 +488,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
             } else{
             
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
+
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
                 
                 //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
