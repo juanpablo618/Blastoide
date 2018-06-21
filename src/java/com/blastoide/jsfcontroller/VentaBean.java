@@ -48,7 +48,20 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     private String nombreDelDocumento; 
 
     private String productoCondBarra;
+    
+    private Productos productoPorNombre = new Productos();
 
+    public Productos getProductoPorNombre() {
+        return productoPorNombre;
+    }
+
+    public void setProductoPorNombre(Productos productoPorNombre) {
+        this.productoPorNombre = productoPorNombre;
+    }
+    
+    
+    
+    
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -215,6 +228,86 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
     }
 
+    public void agregarPorCodBarraOPorNombre(String productoCodBarra) throws Exception {
+        
+        System.out.println("////////////////////////////////////////////////");
+        System.out.println("productoPorNombre: "+ getProductoPorNombre());
+        System.out.println("////////////////////////////////////////////////");
+        
+        int idBuscado = 0;
+        try {
+        
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+
+                ProductosDAO productoDAO = new ProductosDAO();
+
+                idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
+                
+                this.producto = productoControllerBean.getProductos(idBuscado);
+                
+        FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
+        
+        Double porcentajeDeFormaDePago;
+        porcentajeDeFormaDePago = formapagoDao.buscarPorcentaje(formaDePagoID);
+                            System.err.println("porcentaje por Forma De Pago: "+porcentajeDeFormaDePago);
+
+        TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
+        
+        Double porcentajePorTipoDeCliente;
+        porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
+                            System.err.println("porcentaje Por Tipo De Cliente: "+porcentajePorTipoDeCliente);
+                
+                
+        DetalleVenta det = new DetalleVenta();
+        
+        det.setCantidad(cantidad);
+        
+        
+        Double precioUnitario = this.producto.getPrecioFinalAFacturar();
+                            System.err.println("Producto precio final a facturar: "+this.producto.getPrecioFinalAFacturar());
+    
+        double cantidadDeFormaDePago;
+        double cantidadPorTipoDeCliente;
+        
+            cantidadDeFormaDePago = precioUnitario*porcentajeDeFormaDePago /100.0;
+                            System.err.println("Cantidad a Sumar de forma de pago: "+cantidadDeFormaDePago);
+
+            cantidadPorTipoDeCliente = precioUnitario*porcentajePorTipoDeCliente /100.0;
+            
+           Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
+            System.err.println("PrecioTotal: "+PrecioTotal);
+       
+        this.producto.setPrecioFinalAFacturar(PrecioTotal);
+            
+        det.setProducto(this.producto);
+        
+        ComprobarSiExiste(det);
+        
+        this.lista.add(det);
+            
+        this.productoCondBarra = null;
+            System.out.println("codigo del producto insertado en la lista: " + det.getProducto().getCodigo());
+        } catch (Exception e) {
+            
+           if(idBuscado==0){
+                if(getProductoPorNombre()==null){
+                    JsfUtil.addErrorMessage(e, "Debe seleccionar o por nombre o por codigo de barra.");
+                }
+               
+              this.productoCondBarra = null;
+              JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+            
+           
+           }else{
+            this.productoCondBarra = null;
+            JsfUtil.addErrorMessage(e, "El producto no tiene cargado el precio de venta.");
+           }
+            
+        }
+    }
+    
+    
     public void agregarPorCodBarra(String productoCodBarra) throws Exception {
         
         int idBuscado = 0;

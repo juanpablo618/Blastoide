@@ -12,13 +12,13 @@
             <h:form id="ConfiguracionesGeneralesEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{configuracionesGeneralesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_telefonoSucursal}" for="telefonoSucursal" />
+                        <p:outputLabel value="telefono de la sucursal" for="telefonoSucursal" />
                         <p:inputText id="telefonoSucursal" value="#{configuracionesGeneralesController.selected.telefonoSucursal}" title="#{bundle.EditConfiguracionesGeneralesTitle_telefonoSucursal}" />
-                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_carpetaDePresupuestos}" for="carpetaDePresupuestos" />
+                        <p:outputLabel value="carpeta donde se guardan los presupuestos" for="carpetaDePresupuestos" />
                         <p:inputText id="carpetaDePresupuestos" value="#{configuracionesGeneralesController.selected.carpetaDePresupuestos}" title="#{bundle.EditConfiguracionesGeneralesTitle_carpetaDePresupuestos}" />
-                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_pdfUrl}" for="pdfUrl" />
+                        <p:outputLabel value="url de donde se leen los documentos:" for="pdfUrl" />
                         <p:inputText id="pdfUrl" value="#{configuracionesGeneralesController.selected.pdfUrl}" title="#{bundle.EditConfiguracionesGeneralesTitle_pdfUrl}" />
-                        <p:outputLabel value="#{bundle.EditConfiguracionesGeneralesLabel_urlDeLogoMundoLimpieza}" for="urlDeLogoMundoLimpieza" />
+                        <p:outputLabel value="url donde se guarda la imagen principal del sistema:" for="urlDeLogoMundoLimpieza" />
                         <p:inputText id="urlDeLogoMundoLimpieza" value="#{configuracionesGeneralesController.selected.urlDeLogoMundoLimpieza}" title="#{bundle.EditConfiguracionesGeneralesTitle_urlDeLogoMundoLimpieza}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{configuracionesGeneralesController.update}" value="#{bundle.Save}" update="display,:ConfiguracionesGeneralesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ConfiguracionesGeneralesEditDialog');"/>

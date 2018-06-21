@@ -12,13 +12,13 @@
             <h:form id="ConfiguracionesGeneralesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{configuracionesGeneralesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_telefonoSucursal}"/>
+                        <h:outputText value="telefono de la sucursal:"/>
                         <h:outputText value="#{configuracionesGeneralesController.selected.telefonoSucursal}" title="#{bundle.ViewConfiguracionesGeneralesTitle_telefonoSucursal}"/>
-                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_carpetaDePresupuestos}"/>
+                        <h:outputText value="carpeta donde se guardan los presupuestos:"/>
                         <h:outputText value="#{configuracionesGeneralesController.selected.carpetaDePresupuestos}" title="#{bundle.ViewConfiguracionesGeneralesTitle_carpetaDePresupuestos}"/>
-                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_pdfUrl}"/>
+                        <h:outputText value="url donde se leen los presupuestos:"/>
                         <h:outputText value="#{configuracionesGeneralesController.selected.pdfUrl}" title="#{bundle.ViewConfiguracionesGeneralesTitle_pdfUrl}"/>
-                        <h:outputText value="#{bundle.ViewConfiguracionesGeneralesLabel_urlDeLogoMundoLimpieza}"/>
+                        <h:outputText value="url del logo principal del sistema:"/>
                         <h:outputText value="#{configuracionesGeneralesController.selected.urlDeLogoMundoLimpieza}" title="#{bundle.ViewConfiguracionesGeneralesTitle_urlDeLogoMundoLimpieza}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ConfiguracionesGeneralesViewDialog.hide()"/>

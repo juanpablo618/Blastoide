@@ -24,6 +24,8 @@ public class Venta {
     private String empleado;
     
    
+    
+    
     public String getEmpleado() {
         return empleado;
     }

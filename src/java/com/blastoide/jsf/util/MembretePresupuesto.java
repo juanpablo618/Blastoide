@@ -1,6 +1,6 @@
 package com.blastoide.jsf.util;
 
-import static com.blastoide.configuraciones.ConfiguracionesGenerales.getCARPETA_DE_PRESUPUESTOS;
+import com.blastoide.jpa.ConfiguracionesGeneralesController;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Venta;
 import com.lowagie.text.Chunk;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -39,7 +40,11 @@ public class MembretePresupuesto {
                 System.out.println("venta: " +venta.toString());
        // Date fechaDiaria = Calendar.getInstance().getTime();
 
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(filename).concat(".pdf")));
+       FacesContext context = FacesContext.getCurrentInstance();
+        ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
+
+       
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
         Paragraph parrafo;

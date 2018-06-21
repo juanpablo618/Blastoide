@@ -110,8 +110,8 @@ public class TipoClientesController implements Serializable {
     }
 
     public TipoClientes getTipoClientes(java.lang.Integer id) {
-        return getFacade().find(id);
-    }
+            return getFacade().find(id);
+        }
 
     public List<TipoClientes> getItemsAvailableSelectMany() {
         return getFacade().findAll();

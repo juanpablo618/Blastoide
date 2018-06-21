@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2018 a las 06:45:05
+-- Tiempo de generación: 21-06-2018 a las 04:25:39
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -56,7 +56,13 @@ INSERT INTO `caja` (`id`, `fecha`, `descripcion`, `ingreso`, `egreso`, `CtaCorri
 (41, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
 (42, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
 (43, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 1071, NULL, NULL),
-(44, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 1489.2, NULL, NULL);
+(44, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 1489.2, NULL, NULL),
+(45, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(46, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(47, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(48, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(49, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(50, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 826.2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,6 +128,27 @@ INSERT INTO `condicionIVA` (`condicionIVAID`, `nombre`, `descripcion`, `porcenta
 (2, 'Consumidor Final', 'Consumidor Final', 0),
 (3, 'Monotributista', 'Monotributista', 0),
 (4, 'Exento', 'Exento', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ConfiguracionesGenerales`
+--
+
+CREATE TABLE `ConfiguracionesGenerales` (
+  `IdConfiguracionsGenerales` int(11) NOT NULL,
+  `telefonoSucursal` varchar(500) DEFAULT NULL,
+  `carpetaDePresupuestos` varchar(500) DEFAULT NULL,
+  `pdfUrl` varchar(500) DEFAULT NULL,
+  `urlDeLogoMundoLimpieza` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ConfiguracionesGenerales`
+--
+
+INSERT INTO `ConfiguracionesGenerales` (`IdConfiguracionsGenerales`, `telefonoSucursal`, `carpetaDePresupuestos`, `pdfUrl`, `urlDeLogoMundoLimpieza`) VALUES
+(1, '99999999', '/home/juan/Documents', 'file:///home/juan/Documents', 'http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza2.jpg');
 
 -- --------------------------------------------------------
 
@@ -291,7 +318,17 @@ INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALU
 (110, 82, 1626, 5),
 (111, 82, 1623, 1),
 (112, 82, 1618, 6),
-(113, 82, 1617, 1);
+(113, 82, 1617, 1),
+(114, 83, 1620, 1),
+(115, 84, 1617, 1),
+(116, 85, 1623, 1),
+(117, 86, 1623, 1),
+(118, 87, 1623, 1),
+(119, 88, 1617, 1),
+(120, 88, 1618, 1),
+(121, 88, 1624, 1),
+(122, 88, 1626, 2),
+(123, 88, 1623, 3);
 
 -- --------------------------------------------------------
 
@@ -565,16 +602,16 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
-(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 50, NULL, NULL, 2, NULL, 0, 100, -52, 4),
-(1618, '7798181180101', '	ROLLO DE COCINA	', '	ACQUA	', '	X40PAÑOS C/U	', '', '300', 60, NULL, NULL, NULL, NULL, 0, 110, -27, 32),
+(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 50, NULL, NULL, 2, NULL, 0, 100, -54, 4),
+(1618, '7798181180101', '	ROLLO DE COCINA	', '	ACQUA	', '	X40PAÑOS C/U	', '', '300', 60, NULL, NULL, NULL, NULL, 0, 110, -28, 32),
 (1619, '7790520012807', 'LIMPIADOR LIQUIDO	', 'MR. MUSCULO - GLADE	', 'EXPLOSION FLORAL	', '', '901.00', 70, NULL, NULL, NULL, NULL, 0, 120, -6, 12),
-(1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -5, 6),
+(1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -6, 6),
 (1621, '7790520009944', '	INSECTICIDA	', '	RAID	', '	CASA Y JARDIN	', NULL, '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 12),
 (1622, '7798184680806', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'VAINILLA', '', '125.00', 50, NULL, NULL, NULL, '2017-12-12', 0, 100, 0, 5),
-(1623, '7798184681001', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	TROPICAL	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -49, 5),
-(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'CONY', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, -9, 5),
+(1623, '7798184681001', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	TROPICAL	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -55, 5),
+(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'CONY', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, -10, 5),
 (1625, '7798184680707', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	CITRUS	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
-(1626, '7798184680745', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	UVA	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -11, 5),
+(1626, '7798184680745', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	UVA	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -13, 5),
 (1627, '7798184680769', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	FLORES BLANCAS	', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, 0, 5),
 (1628, '7798184680790', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	HAWAI	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
 (1629, '7798184680721', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	ORIENTE	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 5),
@@ -1813,7 +1850,13 @@ INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInter
 (79, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:40:32', '316', 1),
 (80, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:40:58', '316', 1),
 (81, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:50:02', '1071', 1),
-(82, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:57:30', '1489', 1);
+(82, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:57:30', '1489', 1),
+(83, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 05:13:08', '102', 1),
+(84, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:02:18', '102', 1),
+(85, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:12:42', '102', 1),
+(86, 'lucas', 32, 'PRESUPUESTO', NULL, NULL, '2018-06-20 04:13:00', '102', 1),
+(87, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:13:34', '102', 1),
+(88, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 14:57:26', '826', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1836,6 +1879,12 @@ ALTER TABLE `Cliente`
 --
 ALTER TABLE `condicionIVA`
   ADD PRIMARY KEY (`condicionIVAID`);
+
+--
+-- Indices de la tabla `ConfiguracionesGenerales`
+--
+ALTER TABLE `ConfiguracionesGenerales`
+  ADD PRIMARY KEY (`IdConfiguracionsGenerales`);
 
 --
 -- Indices de la tabla `CuentaCorriente`
@@ -2035,7 +2084,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
@@ -2046,6 +2095,11 @@ ALTER TABLE `Cliente`
 --
 ALTER TABLE `condicionIVA`
   MODIFY `condicionIVAID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `ConfiguracionesGenerales`
+--
+ALTER TABLE `ConfiguracionesGenerales`
+  MODIFY `IdConfiguracionsGenerales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `CuentaCorriente`
 --
@@ -2070,7 +2124,7 @@ ALTER TABLE `DetalleCuentasCorrientes`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -2175,7 +2229,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- Restricciones para tablas volcadas
 --
