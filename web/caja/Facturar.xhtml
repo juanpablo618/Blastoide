@@ -58,8 +58,6 @@
                             <h:commandButton id="botonAgregar" value="Agregar" action="#{ventaBean.agregarPorCodBarraOPorNombre(ventaBean.productoCondBarra)}"
                             style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
                     
-                        <h:commandButton value="nueva venta" action="#{ventaBean.borrarVentaActual()}"
-                        style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 40% " />
                     </p:panel>        
                     <br></br>
                 </h:form>
@@ -139,6 +137,10 @@
                 <h:commandButton value="PRESUPUESTAR" actionListener="#{ventaBean.presupuestar()}"
                     action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #4fb2e1 " />
   
+                <h:commandButton value="nueva venta" action="#{ventaBean.borrarVentaActual()}"
+                   style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 40% " />
+                    
+                
             </h:form>
 
         </ui:define>
