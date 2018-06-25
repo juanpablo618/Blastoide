@@ -14,7 +14,7 @@
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateProductosLabel_codigo}" for="codigo" />
-                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}" />
+                        <p:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" required="false" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}" />
 
                         <p:outputLabel value="#{bundle.CreateProductosLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}" />

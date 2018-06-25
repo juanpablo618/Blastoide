@@ -148,7 +148,7 @@
                             <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   style="border-color:#01B2A0 ;background: #01B2A0;font-weight: bold" icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash" style=" border-color:#F64C4D ; background: #F64C4D;font-weight: bold" value="#{bundle.Delete}" actionListener="#{productosController.destroy}" update=":growl,datalist" disabled="#{empty productosController.selected}"/>
+                            <p:commandButton id="deleteButton" ajax='false' icon="ui-icon-trash" style=" border-color:#F64C4D ; background: #F64C4D;font-weight: bold" value="#{bundle.Delete}" actionListener="#{productosController.destroy}" update=":growl,datalist" disabled="#{empty productosController.selected}"/>
                       
                             <br></br>   
                         <h:commandLink value="exportar">

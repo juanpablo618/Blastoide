@@ -227,7 +227,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         int idBuscado = 0;
                   
         try {
-                if(productoCodBarra.length()>1 || getProductoPorNombre()!=null){
                    if(!(productoCodBarra.length()>1 && getProductoPorNombre()!=null) ){ 
                     FacesContext context = FacesContext.getCurrentInstance();
                     ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
@@ -287,36 +286,41 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     this.lista.add(det);
 
                     this.productoCondBarra = null;
+                    this.productoPorNombre = null;
                     System.out.println("codigo del producto insertado en la lista: " + det.getProducto().getCodigo());
                    }else{
-                    System.out.println("TENES UN PRODUCTO POR NOMBRE Y UN PRODUCTO POR CODIGO DE BARRA");
-                    this.productoCondBarra = null;
-                    JsfUtil.addErrorMessage("No puedes elegir producto por codigo de barra y por nombre al mismo tiempo.");
-                    }
-                }
-                System.out.println("no eligio ni producto por codigo de barra ni por nombre");
-                this.productoCondBarra = null;
-                JsfUtil.addErrorMessageWithOutDetail("Debes elegir un producto por nombre o usar el scaner");
+                       
+                     if (idBuscado == 0 && getProductoPorNombre()==null){
+                            System.out.println("no eligio ni producto por codigo de barra ni por nombre");
+                            this.productoCondBarra = null;
+                            this.productoPorNombre = null;
+                            JsfUtil.addErrorMessageWithOutDetail("Debes elegir un producto por nombre o usar el scaner");
             
+                     }else{  
+                        System.out.println("TENES UN PRODUCTO POR NOMBRE Y UN PRODUCTO POR CODIGO DE BARRA");
+                        this.productoCondBarra = null;
+                        this.productoPorNombre = null;
+                        JsfUtil.addErrorMessage("No puedes elegir producto por codigo de barra y por nombre al mismo tiempo.");
+                     }
+                   }
         }      
         catch (Exception e) {
            if(productoCodBarra.length()>1 && getProductoPorNombre()!=null){
              System.out.println("TENES UN PRODUCTO POR NOMBRE Y UN PRODUCTO POR CODIGO DE BARRA");
              this.productoCondBarra = null;
+             this.productoPorNombre = null;
              JsfUtil.addErrorMessage("No puedes elegir producto por codigo de barra y por nombre al mismo tiempo.");
-            
            }else{
-            
                 if(idBuscado==0){
                        if(getProductoPorNombre()==null){
                            JsfUtil.addErrorMessage(e, "Debe seleccionar o por nombre o por codigo de barra.");
                        }
-                 this.productoCondBarra = null;
-                 JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                        
                 }else{
-               this.productoCondBarra = null;
-               JsfUtil.addErrorMessage(e, "El producto no tiene cargado el precio de venta.");
-              }
+                    this.productoPorNombre = null;
+                    this.productoCondBarra = null;
+                    JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                }
            }   
         }
   }  
