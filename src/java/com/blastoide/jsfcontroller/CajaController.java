@@ -4,10 +4,12 @@ import com.blastoide.jpa.Caja;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +33,7 @@ public class CajaController implements Serializable {
     @EJB
     private com.blastoide.jsf.CajaFacade ejbFacade;
     private List<Caja> items = null;
+    private List<Caja> itemsFechaDeHoy = null;
     private Caja selected;
     private List<Caja> filteredCaja = null;
     private double ventaDiariaActual = 0;
@@ -188,6 +191,32 @@ public class CajaController implements Serializable {
             items = getFacade().findAll();
         return items;
     }
+
+    public List<Caja> getItemsFechaDeHoy() {
+            itemsFechaDeHoy = new ArrayList<>();
+        SimpleDateFormat formDate = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaDeHoy = formDate.format(new Date()); 
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+        
+           for(int indice = 0;indice<cajaController.getItems().size();indice++){
+
+                if(cajaController.getItems().get(indice).getFecha().equals(fechaDeHoy)){
+                        itemsFechaDeHoy.add(cajaController.getItems().get(indice));
+                }
+        }
+        System.out.println("itemsfechaDeHoy size: "+ itemsFechaDeHoy.size());
+        return itemsFechaDeHoy;
+    }
+
+    public void setItemsFechaDeHoy(List<Caja> itemsFechaDeHoy) {
+        this.itemsFechaDeHoy = itemsFechaDeHoy;
+    }
+    
+    
+    
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

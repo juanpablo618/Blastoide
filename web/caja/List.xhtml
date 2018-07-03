@@ -18,7 +18,7 @@
                 
                 <p:panel header="Caja Diaria">
                                          
-                    <p:dataTable id="datalist" value="#{cajaController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{cajaController.itemsFechaDeHoy}" var="item"
                                  selectionMode="single" selection="#{cajaController.selected}"
                                  paginator="true"
                                  widgetVar="cajaDiariaTable"

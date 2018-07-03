@@ -11,8 +11,7 @@
         <ui:define name="body">
             
             <f:event type="preRenderView" listener="#{clienteBean.listar('F')}" />
-            <p:growl id="msj" autoUpdate="true" showDetail="true"/>
-
+            
             <h:form id="frmCliente" style="display: inline;">
                 #{ventaBean.venta.setEmpleado(login.user)}
                 #{ventaBean.empezarVentaActual()}
