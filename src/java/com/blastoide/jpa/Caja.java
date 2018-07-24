@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.blastoide.jpa;
 
 import java.io.Serializable;
@@ -20,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author juan
+ * @author cuello.juanpablo@gmail.com
  */
 @Entity
 @Table(name = "caja")
@@ -50,8 +45,18 @@ public class Caja implements Serializable {
     private Double ingreso;
     @Column(name = "egreso")
     private Double egreso;
+    @Column(name = "ctaCorriente")
+    private Double ctaCorriente;
 
     public Caja() {
+    }
+    
+    public Double getCtaCorriente() {
+        return ctaCorriente;
+    }
+
+    public void setCtaCorriente(Double ctaCorriente) {
+        this.ctaCorriente = ctaCorriente;
     }
 
     public Caja(Integer id) {
@@ -71,7 +76,7 @@ public class Caja implements Serializable {
     }
 
     public void setFecha(String fecha) {
-       
+        
         this.fecha = fecha;
     }
 
@@ -121,7 +126,7 @@ public class Caja implements Serializable {
 
     @Override
     public String toString() {
-        return "com.blastoide.jpa.Caja[ id=" + id + " ]";
+        return "Caja{" + "id=" + id + ", fecha=" + fecha + ", descripcion=" + descripcion + ", ingreso=" + ingreso + ", egreso=" + egreso + ", ctaCorriente=" + ctaCorriente + '}';
     }
-    
+
 }

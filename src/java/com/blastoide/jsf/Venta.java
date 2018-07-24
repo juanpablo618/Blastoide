@@ -1,8 +1,11 @@
 package com.blastoide.jsf;
 
+import com.blastoide.jsfcontroller.ClienteBuenoController;
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -19,7 +22,10 @@ public class Venta {
     private int formadePagoID;
     
     private String empleado;
-
+    
+   
+    
+    
     public String getEmpleado() {
         return empleado;
     }
@@ -72,7 +78,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Fecha=" + fecha + ", Cliente=" + cliente.getNombre() + ", Monto total=" + monto;
+        return "Venta{" + "ventaID=" + ventaID + ", fecha=" + fecha + ", cliente=" + cliente + ", monto=" + monto + ", formadePagoID=" + formadePagoID + ", empleado=" + empleado + '}';
     }
-    
+
 }

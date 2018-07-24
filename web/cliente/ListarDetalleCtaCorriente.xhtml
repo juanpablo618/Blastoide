@@ -16,7 +16,7 @@
                 <br></br><br></br><br></br>
                 <p:outputLabel value="IMPORTE A PAGAR:" style="color:white ; margin: 10px;"  />
                 <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
-                    <f:convertNumber pattern="#0.00"/>
+                    <f:convertNumber pattern="#00.00"/>
                 </p:inputText>
 
                 <p:outputLabel value="CONCEPTO:" style="color:white ; margin: 10px;"  />
@@ -39,7 +39,7 @@
                 <h3>   
                     <h:outputText style="margin-top: 0 ;color: white" value="Saldo en cuenta corriente: "></h:outputText>
                     <h:outputText style="margin-top: 0 ;color: white" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}">
-                        <f:convertNumber pattern="#0.00"/>
+                        <f:convertNumber pattern="#00.00"/>
                     </h:outputText>
                 </h3>
                 
@@ -52,7 +52,7 @@
                          emptyMessage="no hay Detalles en la Cta corriente de este cliente"
                          style="margin: 30px;" 
                          resizableColumns="true"
-                         
+                         tableStyle="table-layout: auto;"
                          >
  
                 <p:column headerText="Fecha" >

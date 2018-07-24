@@ -1,6 +1,6 @@
 package com.blastoide.jsf.util;
 
-import static com.blastoide.configuraciones.ConfiguracionesGenerales.getCARPETA_DE_PRESUPUESTOS;
+import com.blastoide.jpa.ConfiguracionesGeneralesController;
 import com.blastoide.jsf.DetalleVenta;
 import com.blastoide.jsf.Venta;
 import com.lowagie.text.Chunk;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -39,7 +40,11 @@ public class MembretePresupuesto {
                 System.out.println("venta: " +venta.toString());
        // Date fechaDiaria = Calendar.getInstance().getTime();
 
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(getCARPETA_DE_PRESUPUESTOS().concat(filename).concat(".pdf")));
+       FacesContext context = FacesContext.getCurrentInstance();
+        ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
+
+       
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
         Paragraph parrafo;
@@ -57,7 +62,7 @@ public class MembretePresupuesto {
 
         document.add(Chunk.NEWLINE);
 
-        Paragraph parrafo4 = new Paragraph("Nombre del cliente :" + venta.getCliente().getNombre());
+        Paragraph parrafo4 = new Paragraph("Nombre: ".concat(venta.getCliente().getNombre()).concat(". Apellido: ").concat(venta.getCliente().getApellido()).concat(". Razon social: ").concat(venta.getCliente().getRazonSocial()) );
         document.add(parrafo4);
 
                 String formato="dd-MM-yyyy";
@@ -89,7 +94,12 @@ public class MembretePresupuesto {
         for (DetalleVenta det : lista) {
 
             //cantidad
-            table.addCell("" + formateadorCantidades.format(det.getCantidad()));
+            
+            PdfPCell cell = new PdfPCell(new Paragraph(formateadorCantidades.format(det.getCantidad())));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            
+            
+            table.addCell(cell);
             //detalle nombre del producto
             
             String detallePorProducto = "";
@@ -100,40 +110,47 @@ public class MembretePresupuesto {
             
             if(det.getProducto().getMarca()!=null){
                detallePorProducto = detallePorProducto + det.getProducto().getMarca();
-            }else{
+            }
                 if(det.getProducto().getCaracteristica()!=null){
                     detallePorProducto = detallePorProducto + " ";
                     detallePorProducto = detallePorProducto + det.getProducto().getCaracteristica();
-                }else{
+                }
                     if(det.getProducto().getFragancia()!=null){
                         detallePorProducto = detallePorProducto + " ";
                         detallePorProducto = detallePorProducto + det.getProducto().getFragancia();
-                    }else{
+                    }
                         if(det.getProducto().getMedida()!=null){
                             detallePorProducto = detallePorProducto + " ";
                             detallePorProducto = detallePorProducto + det.getProducto().getMedida();
                         }
-                    }
-                }
-            }
-            
+                    
             System.out.println("detallePorProducto :" +detallePorProducto);
             table.addCell(detallePorProducto);
             //precio unitario con el interes sumado
-            
-            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar()));
+
+            PdfPCell cellPU = new PdfPCell(new Paragraph(formateador.format(det.getProducto().getPrecioFinalAFacturar())));
+            cellPU.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        
+            table.addCell(cellPU);
             //precio total el pu con interes sumado * cantidad
                         
+            PdfPCell cellPT = new PdfPCell(new Paragraph(formateador.format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad())));
+            cellPT.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        
+            table.addCell(cellPT);
+            
             totalDeFactura = totalDeFactura + det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-            table.addCell("" + formateador.format(det.getProducto().getPrecioFinalAFacturar() * det.getCantidad()));
             
         }
 
         table.addCell("");
         table.addCell("");
         table.addCell("Precio total:");
-        System.out.println("totalDeFactura: " + totalDeFactura);
-        table.addCell(""+formateador.format(totalDeFactura));
+        
+        PdfPCell cellFinalPT = new PdfPCell(new Paragraph(formateador.format(totalDeFactura)));
+        cellFinalPT.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        
+        table.addCell(cellFinalPT);
             
         PdfPCell celdaFinal2 = new PdfPCell(new Paragraph("Firma, Aclaración y Dni: "));
 

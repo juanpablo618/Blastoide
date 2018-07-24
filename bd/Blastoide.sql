@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-04-2018 a las 22:19:49
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 21-06-2018 a las 04:25:39
+-- Versión del servidor: 10.1.25-MariaDB
+-- Versión de PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,30 +32,37 @@ CREATE TABLE `caja` (
   `id` int(11) NOT NULL,
   `fecha` varchar(250) DEFAULT NULL,
   `descripcion` varchar(1000) DEFAULT NULL,
-  `ingreso` double DEFAULT '0',
-  `egreso` double DEFAULT '0'
+  `ingreso` double DEFAULT NULL,
+  `egreso` double DEFAULT NULL,
+  `CtaCorriente` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `caja`
 --
 
-INSERT INTO `caja` (`id`, `fecha`, `descripcion`, `ingreso`, `egreso`) VALUES
-(12, '13/04/2018', 'cliente: distribuidor', 94.2, 0),
-(13, '13/04/2018', 'cliente: distribuidor', 94.2, 0),
-(14, '13/04/2018', 'cliente: distribuidor', 86.35, 0),
-(15, '13/04/2018', 'cliente: mayorista', 88, 0),
-(16, '13/04/2018', 'cliente: mayorista', 80, 0),
-(17, '14/04/2018', 'cliente: franquicia', 77, 0),
-(18, '14/04/2018', 'cliente: mayorista', 0, 0),
-(19, '14/04/2018', 'cliente: mayorista', 80, 0),
-(20, '14/04/2018', 'cliente: franquicia', 158, 0),
-(21, '16/04/2018', 'cliente: franquicia', 79, 0),
-(22, '16/04/2018', 'cliente: franquicia', 94.8, 0),
-(23, '16/04/2018', 'cliente: franquicia', 94.8, 0),
-(24, '16/04/2018', 'cliente: franquicia', 79, 0),
-(25, '16/04/2018', 'cliente: franquicia', 79, 0),
-(26, '20/04/2018', 'cliente: mayorista', 388.79999999999995, 0);
+INSERT INTO `caja` (`id`, `fecha`, `descripcion`, `ingreso`, `egreso`, `CtaCorriente`) VALUES
+(30, '14/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(31, '14/06/2018', 'cliente: franquicia forma de pago: Cta Cte *', NULL, NULL, 79),
+(32, '14/06/2018', 'cliente: cliente forma de pago: Contado', 103, NULL, NULL),
+(33, '14/06/2018', 'lucas saco dinero', NULL, 205, NULL),
+(34, '18/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 204, NULL, NULL),
+(35, '18/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 428.4, NULL, NULL),
+(36, '18/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
+(37, '18/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
+(38, '18/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 306, NULL, NULL),
+(39, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
+(40, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 306, NULL, NULL),
+(41, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
+(42, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 316.2, NULL, NULL),
+(43, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 1071, NULL, NULL),
+(44, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 1489.2, NULL, NULL),
+(45, '19/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(46, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(47, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(48, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(49, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 102, NULL, NULL),
+(50, '20/06/2018', 'cliente: cliente forma de pago: Contado efectivo', 826.2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,11 +99,12 @@ CREATE TABLE `Cliente` (
 --
 
 INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `tipoClienteID`, `FormaDePagoID`, `apellido`, `email`, `cuitCuil`, `fechaNacimiento`, `numeroDocumento`, `razonSocial`, `sexo`, `telefonoFijo`, `telefonoCelular`, `fiadoMaximo`, `tipoDocumentoID`, `Real_domicilioID`, `Fiscal_domicilioID`, `condicionIvaID`, `diaDePago`, `cuentaCorrienteID`) VALUES
-(32, 'juan pablo', '35054821', 2, 1, 'cuello2', 'cuello.juanpablo@gmail.com', '20350548220', NULL, 35054822, 'razon cuello', 'masculino', '4522524', '3513220999', NULL, NULL, NULL, NULL, 1, 'Wed Jan 17 21:22:00 ART 3', 49),
+(32, 'cliente', '35054821', 5, 1, 'comun', 'cuello.juanpablo@gmail.com', '20350548220', NULL, 35054822, 'razon cuello', 'masculino', '4522524', '3513220999', NULL, NULL, NULL, NULL, 1, 'Wed Jan 17 21:22:00 ART 3', 49),
 (33, 'juan', '45965833', 5, 10, 'cliente comun', 'cuello.@clientecomun.com', '2045943200', NULL, 45965833, 'clienteComunacho', 'masculino', '5432854', '292910', NULL, NULL, NULL, NULL, 3, 'Thu Jan 17 21:27:00 ART 4', 50),
 (34, 'mayorista', '89654833', 2, 2, 'mayorista', 'mayorista@mayorista.com', '76985347559', NULL, 89654833, 'mayorista srl', 'masculino', '4530302', '3432042340', NULL, NULL, NULL, NULL, 2, 'Thu Jan 17 21:27:00 ART 4', 51),
 (35, 'distribuidor', '847272821', 3, 1, 'distribuidor apellido', 'distribuye@hotmail.com', '2039383838', NULL, 847272821, 'distribuye todo RS', 'femenino', '3828382', '382383282', NULL, NULL, NULL, NULL, 4, 'Sun Jan 17 21:20:00 ART 12', 52),
-(36, 'franquicia', '291219129', 4, 4, 'franquicia apellido', 'franquicia@hotmail.com', '29129219', NULL, 291219129, 'franquicia RS', 'femenino', '12913291239', '31293129', NULL, NULL, NULL, NULL, 1, 'Fri Jan 17 21:26:00 ART 10', 53);
+(36, 'franquicia', '291219129', 4, 4, 'franquicia apellido', 'franquicia@hotmail.com', '29129219', NULL, 291219129, 'franquicia RS', 'femenino', '12913291239', '31293129', NULL, NULL, NULL, NULL, 1, 'Fri Jan 17 21:26:00 ART 10', 53),
+(37, 'juan paulo', '20291919', 5, 4, 'maquina', 'maquina@maquina.com', '203505482222', NULL, 20291919, 'maquina pc', 'masculino', '281321812', '123812381', NULL, NULL, NULL, NULL, 3, 'Sun Jan 17 21:19:00 ART 6', 54);
 
 -- --------------------------------------------------------
 
@@ -118,6 +128,27 @@ INSERT INTO `condicionIVA` (`condicionIVAID`, `nombre`, `descripcion`, `porcenta
 (2, 'Consumidor Final', 'Consumidor Final', 0),
 (3, 'Monotributista', 'Monotributista', 0),
 (4, 'Exento', 'Exento', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ConfiguracionesGenerales`
+--
+
+CREATE TABLE `ConfiguracionesGenerales` (
+  `IdConfiguracionsGenerales` int(11) NOT NULL,
+  `telefonoSucursal` varchar(500) DEFAULT NULL,
+  `carpetaDePresupuestos` varchar(500) DEFAULT NULL,
+  `pdfUrl` varchar(500) DEFAULT NULL,
+  `urlDeLogoMundoLimpieza` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ConfiguracionesGenerales`
+--
+
+INSERT INTO `ConfiguracionesGenerales` (`IdConfiguracionsGenerales`, `telefonoSucursal`, `carpetaDePresupuestos`, `pdfUrl`, `urlDeLogoMundoLimpieza`) VALUES
+(1, '99999999', '/home/juan/Documents', 'file:///home/juan/Documents', 'http://localhost:8080/Blastoide_v2/faces/resources/images/MundoLimpieza2.jpg');
 
 -- --------------------------------------------------------
 
@@ -176,7 +207,8 @@ INSERT INTO `CuentasCorrientes` (`cuentaCorrienteID`, `limite`, `saldo`) VALUES
 (50, 10000, 0),
 (51, 20000, 0),
 (52, 2000000, 0),
-(53, 30000, 441.6);
+(53, 30000, 481.5),
+(54, 50000, 104);
 
 -- --------------------------------------------------------
 
@@ -224,20 +256,14 @@ INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `hab
 (18, 94.8, 0, 'FAC-0', '2018-04-16 23:08:51', 53, 0, 426.6),
 (19, 79, 0, 'FAC-0', '2018-04-16 23:22:27', 53, 0, 505.6),
 (20, 79, 0, 'FAC-25', '2018-04-16 23:32:27', 53, 0, 584.6),
-(21, NULL, 50, 'pago de lo q debe', '2018-04-20 15:01:21', 53, NULL, 534.6),
-(22, NULL, 20, 'pago lo que debe 20 pesos', '2018-04-20 15:22:25', 53, NULL, 514.6),
-(23, NULL, 10, 'pago lo que debe 10 pesos', '2018-04-20 15:44:47', 53, NULL, 504.6),
-(24, NULL, 10, 'pago lo que debe 10 pesos', '2018-04-20 15:48:18', 53, NULL, 494.6),
-(25, NULL, 0, '', '2018-04-20 15:48:44', 53, NULL, 494.6),
-(26, NULL, 10, 'pago lo q debe 10 pesos', '2018-04-20 15:51:08', 53, NULL, 484.6),
-(27, NULL, 0, '', '2018-04-20 15:52:52', 53, NULL, 484.6),
-(28, NULL, 4, 'pago 4 pesos el rata', '2018-04-20 15:53:35', 53, NULL, 480.6),
-(29, NULL, 4, 'pago 4 pesos el rata', '2018-04-20 15:53:39', 53, NULL, 476.6),
-(30, NULL, 10, 'pago 10 pesos juan', '2018-04-20 17:05:34', 0, NULL, -10),
-(31, NULL, 20, '20 pesos pago', '2018-04-20 17:35:17', 53, NULL, 456.6),
-(32, NULL, 6, '6 peso', '2018-04-20 17:36:05', 53, NULL, 450.6),
-(33, NULL, 3, 'tres peso', '2018-04-20 17:50:04', 53, NULL, 447.6),
-(34, NULL, 6, '6 pesitos', '2018-04-20 17:59:39', 53, NULL, 441.6);
+(21, NULL, 584, 'pago por deuda linda', '2018-05-16 00:11:58', 53, NULL, 0.599976),
+(22, 104, 0, 'FAC-53', '2018-06-14 00:36:05', 54, 0, 104),
+(23, 79, 0, 'FAC-55', '2018-06-14 02:16:50', 53, 0, 79.6),
+(24, 78, 0, 'FAC-60', '2018-06-14 17:55:00', 53, 0, 157.6),
+(25, 79, 0, 'FAC-61', '2018-06-14 17:58:59', 53, 0, 236.6),
+(26, 86.9, 0, 'FAC-66', '2018-06-14 18:41:37', 53, 0, 323.5),
+(27, 79, 0, 'FAC-68', '2018-06-14 18:51:55', 53, 0, 402.5),
+(28, 79, 0, 'FAC-70', '2018-06-15 01:24:31', 53, 0, 481.5);
 
 -- --------------------------------------------------------
 
@@ -248,7 +274,7 @@ INSERT INTO `DetalleCuentasCorrientes` (`detalleCuentaCorrienteID`, `debe`, `hab
 CREATE TABLE `DetalleVenta` (
   `codigo` int(11) NOT NULL,
   `codVenta` int(11) NOT NULL,
-  `productoID` int(11) DEFAULT NULL,
+  `productoID` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -257,12 +283,52 @@ CREATE TABLE `DetalleVenta` (
 --
 
 INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALUES
-(25, 21, 1617, 1),
-(26, 22, 1619, 1),
-(27, 23, 1619, 1),
-(28, 24, 1626, 1),
-(29, 25, 1629, 1),
-(30, 26, 1619, 4);
+(78, 69, 1617, 1),
+(79, 70, 1617, 1),
+(80, 71, 1617, 1),
+(81, 72, 1617, 2),
+(82, 73, 1618, 2),
+(83, 73, 1623, 1),
+(84, 73, 1617, 1),
+(85, 74, 1617, 1),
+(86, 74, 1623, 1),
+(87, 74, 1618, 1),
+(88, 75, 1624, 1),
+(89, 75, 1617, 1),
+(90, 75, 1618, 1),
+(91, 76, 1617, 1),
+(92, 76, 1626, 1),
+(93, 76, 1623, 1),
+(94, 77, 1618, 1),
+(95, 77, 1623, 1),
+(96, 77, 1617, 1),
+(97, 78, 1620, 1),
+(98, 78, 1623, 1),
+(99, 78, 1617, 1),
+(100, 79, 1624, 1),
+(101, 79, 1618, 1),
+(102, 79, 1617, 1),
+(103, 80, 1624, 1),
+(104, 80, 1618, 1),
+(105, 80, 1617, 1),
+(106, 81, 1626, 4),
+(107, 81, 1618, 5),
+(108, 81, 1617, 1),
+(109, 82, 1624, 1),
+(110, 82, 1626, 5),
+(111, 82, 1623, 1),
+(112, 82, 1618, 6),
+(113, 82, 1617, 1),
+(114, 83, 1620, 1),
+(115, 84, 1617, 1),
+(116, 85, 1623, 1),
+(117, 86, 1623, 1),
+(118, 87, 1623, 1),
+(119, 88, 1617, 1),
+(120, 88, 1618, 1),
+(121, 88, 1624, 1),
+(122, 88, 1626, 2),
+(123, 88, 1623, 3);
 
 -- --------------------------------------------------------
 
@@ -386,7 +452,74 @@ CREATE TABLE `Localidades` (
 INSERT INTO `Localidades` (`LocalidadID`, `provinciaID`, `nombre`, `codigoPostal`) VALUES
 (1, 5, 'Anisacate', '54321'),
 (2, 5, 'Colonia Caroya', '21312'),
-(3, 5, 'Cosquín', '1231');
+(3, 5, 'Cosquín', '1231'),
+(4, 5, '9 De Julio', '5272'),
+(5, 5, 'Achiras', '5833'),
+(6, 5, 'Adelia Maria', '5843'),
+(7, 5, 'Aguada Del Monte', '5209'),
+(8, 5, 'Agua De Oro', '5107'),
+(9, 5, 'Almafuerte', '5854'),
+(10, 5, 'Alpa Corral', '5801'),
+(11, 5, 'Alta Gracia', '5186'),
+(12, 5, 'Ambul', '5299'),
+(13, 5, 'Arroyito', '2434'),
+(14, 5, 'Arroyo Cabral', '5917'),
+(15, 5, 'Asconchinga', '5117'),
+(16, 5, 'Atos Pampa', '5194'),
+(17, 5, 'Bajo De Gomez', '5961'),
+(18, 5, 'Bajo Grande', '5101'),
+(19, 5, 'Ballesteros', '2572'),
+(20, 5, 'Barranca Yaco', '2512'),
+(21, 5, 'Bella Vista', '5284'),
+(22, 5, 'Bell Ville', '2550'),
+(23, 5, 'Berrotaran', '5817'),
+(24, 5, 'Bialet Masse', '5158'),
+(25, 5, 'Bosque Alegre', '5186'),
+(26, 5, 'Bouwer', '5119'),
+(27, 5, 'Brinkmann', '2419'),
+(28, 5, 'Campo Alegre', '5209'),
+(29, 5, 'Campo Grande', '5231'),
+(30, 5, 'Candonga', '5111'),
+(31, 5, 'Capilla De Dolores', '5125'),
+(32, 5, 'Capilla Del Monte', '5184'),
+(33, 5, 'Capilla De Los Remedios', '511'),
+(34, 5, 'Caroya', '5223'),
+(35, 5, 'Chilli Corral', '5246'),
+(36, 5, 'Colonia Almada', '5987'),
+(37, 5, 'Colonia Argentina', '6140'),
+(38, 5, 'Colonia Arroyo De Alvarez', '2436'),
+(39, 5, 'Colonia Caroya', '5223'),
+(40, 5, 'Colonia Dean Funes', '5847'),
+(41, 5, 'Colonia Dolores', '5809'),
+(42, 5, 'Colonia Tirolesa', '5101'),
+(43, 5, 'Cosquin', '5166'),
+(44, 5, 'Cruz Del Eje', '5280'),
+(45, 5, 'Dean Funes', '5200'),
+(46, 5, 'Dos Arroyos', '5189'),
+(47, 5, 'El Durazno', '5293'),
+(48, 5, 'Etruria', '2681'),
+(49, 5, 'Ferreyra', '5925'),
+(50, 5, 'Huerta Grande', '5174'),
+(51, 5, 'Jesus Maria', '5220'),
+(52, 5, 'Jovita', '6127'),
+(53, 5, 'La Calera', '5819'),
+(54, 5, 'La Francia', '2426'),
+(55, 5, 'Las Palmas', '5201'),
+(56, 5, 'Oliva', '5980'),
+(57, 5, 'Rio Ceballos', '5111'),
+(58, 5, 'Rio Cuarto', '5800'),
+(59, 5, 'Rio Segundo', '5960'),
+(60, 5, 'Rio Tercero', '5850'),
+(61, 5, 'Salsipuedes', '5113'),
+(62, 5, 'Salsacate', '5295'),
+(63, 5, 'Saldan', '5149'),
+(64, 5, 'Sampacho', '5829'),
+(65, 5, 'San Antonio', '5281'),
+(66, 5, 'Santa Rosa De Calamuchita', '5196'),
+(67, 5, 'Tanti', '5155'),
+(68, 5, 'Unquillo', '5109'),
+(69, 5, 'Valle Hermoso', '5168'),
+(70, 5, 'Villa Anisacate', '5189');
 
 -- --------------------------------------------------------
 
@@ -469,14 +602,17 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
-(1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 6),
+(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 50, NULL, NULL, 2, NULL, 0, 100, -54, 4),
+(1618, '7798181180101', '	ROLLO DE COCINA	', '	ACQUA	', '	X40PAÑOS C/U	', '', '300', 60, NULL, NULL, NULL, NULL, 0, 110, -28, 32),
+(1619, '7790520012807', 'LIMPIADOR LIQUIDO	', 'MR. MUSCULO - GLADE	', 'EXPLOSION FLORAL	', '', '901.00', 70, NULL, NULL, NULL, NULL, 0, 120, -6, 12),
+(1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -6, 6),
 (1621, '7790520009944', '	INSECTICIDA	', '	RAID	', '	CASA Y JARDIN	', NULL, '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 12),
 (1622, '7798184680806', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'VAINILLA', '', '125.00', 50, NULL, NULL, NULL, '2017-12-12', 0, 100, 0, 5),
-(1623, '7798184681001', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	TROPICAL	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 5),
-(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO	', 'SAPHIRUS	', 'CONY	', '', '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 5),
+(1623, '7798184681001', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	TROPICAL	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -55, 5),
+(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'CONY', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, -10, 5),
 (1625, '7798184680707', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	CITRUS	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
-(1626, '7798184680745', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	UVA	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 5),
-(1627, '7798184680769', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	FLORES BLANCAS	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
+(1626, '7798184680745', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	UVA	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -13, 5),
+(1627, '7798184680769', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	FLORES BLANCAS	', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, 0, 5),
 (1628, '7798184680790', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	HAWAI	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
 (1629, '7798184680721', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	ORIENTE	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -1, 5),
 (1630, '7798184680950', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	BAMBOO	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
@@ -484,13 +620,14 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (1632, '7798184680943', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	AMOR	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
 (1633, '7793253411701', '	POETT INTENSE	', '	POETT	', '	PRIMAVERA	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1634, '7790520008299', '	GLADE TOQUE	', '	GLADE	', '	FLORAL PERFECTION	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(1635, '7790520008329', '	GLADE TOQUE	', '	GLADE	', '	HARMONY	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(1636, '7793253041656', '	POETT INTENSE	', '	POETT	', '	BEBE	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(1637, '7793253041007', '	POETT INTENSE	', '	POETT	', '	LAVANDA	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(1638, '7790520008336', '	GLADE TOQUE	', '	GLADE	', '	MAÑANA DE CAMPO	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(1635, '7790520008329', 'GLADE TOQUE	', '	GLADE	', '	HARMONY	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(1636, '7793253041656', 'POETT INTENSE	', '	POETT	', '	BEBE	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(1637, '7793253041007', 'POETT INTENSE	', '	POETT	', '	LAVANDA	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(1638, '7790520008336', 'GLADE TOQUE	', '	GLADE	', '	MAÑANA DE CAMPO	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1639, '7790520985163', '	GLADE TOQUE	', '	GLADE	', '	COCINA CITRICA	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1640, '7793253041274', '	POETT INTENSE	', '	POETT	', '	BOSQUE DE BAMBU	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1641, '7793253041335', '	POETT INTENSE	', '	POETT	', '	DULCES MOMENTOS	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(1642, '7793253041328', '	POETT INTENSE	', '	POETT	', '	ESPIRITU JOVEN	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1643, '7793253411602', '	POETT INTENSE	', '	POETT	', '	SUAVIDAD DE ALGODON	', NULL, '13.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1644, '7790520008121', '	GLADE TOQUE	', '	GLADE	', '	MAÑANA DE CAMPO	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (1645, '7790520008206', '	GLADE TOQUE	', '	GLADE	', '	HARMONY	', NULL, '12.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -851,12 +988,12 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2000, '7899026421813', '	SHAMPOO	', '	ELVIVE	', '	RE-NUTRICION	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2001, '7791293027623', '	SHAMPOO	', '	DOVE	', '	OLEO NUTRICION	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2002, '7891150022645', '	SHAMPOO	', '	DOVE	', '	POST ALISADO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 3),
-(2003, '7791293027524', '	SHAMPOO	', '	DOVE	', '	RECONSTRUCCION COMPLETA	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 4),
+(2003, '7791293027524', '	SHAMPOO	', '	DOVE	', '	RECONSTRUCCION COMPLETA	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 4);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
 (2004, '7791293027081', '	SHAMPOO	', '	SEDAL	', '	CREMA BALANCE	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2005, '7791293020785', '	SHAMPOO	', '	SEDAL	', '	COLOR VITAL	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2006, '7791293027258', '	SHAMPOO	', '	SEDAL	', '	CERAMIDAS	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(2007, '7791293027395', '	SHAMPOO	', '	SEDAL	', '	LISO PERFECTO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2);
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
+(2007, '7791293027395', '	SHAMPOO	', '	SEDAL	', '	LISO PERFECTO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2008, '7791293027456', '	SHAMPOO	', '	SEDAL	', '	RIZOS OBEDIENTES	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2009, '7791293022963', '	SHAMPOO	', '	SEDAL	', '	POST ALISADO QUIMICO	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2010, '7791293020792', '	ACONDICIONADOR	', '	SEDAL	', '	COLOR VITAL	', NULL, '200.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -1254,12 +1391,12 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2402, '8760568', '	CREMA P/AFEITARSE	', '	AVON	', '	BLUE BLAZER	', NULL, '85', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2403, '8740944', '	CREMA P/AFEITARSE	', '	AVON	', '	WILD COUNTRY	', NULL, '85', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2404, '7899089444316', '	CREMA P/MANOS	', '	AVON	', '	DAMASCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(2405, '7899089429047', '	CREMA P/MANOS	', '	AVON	', '	FRESA Y CHOC BCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
+(2405, '7899089429047', '	CREMA P/MANOS	', '	AVON	', '	FRESA Y CHOC BCO	', NULL, '50', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2);
+INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
 (2406, '8758705', '	LOCION P/CUERPO	', '	AVON	', '	MINERALS GEMS	', NULL, '250', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
 (2407, '7790829004886', '	COLONIA	', '	AVON	', '	ROSAS ROJAS Y DURAZNOS	', NULL, '200', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
 (2408, '7899089442879', '	ACONDICIONADOR	', '	AVON	', '	FRAMBUESA	', NULL, '300', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
-(2409, '8767306', '	LOCION P/CUERPO EN CREMA	', '	AVON	', '	GUARANA Y MIEL	', NULL, '220', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1);
-INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
+(2409, '8767306', '	LOCION P/CUERPO EN CREMA	', '	AVON	', '	GUARANA Y MIEL	', NULL, '220', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 1),
 (2410, '7899089478267', '	PUNTITA	', '	AVON	', '	MOROCCAN ARGAN OIL	', NULL, '15', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2411, '7899089426060', '	MASCARA PESTAÑAS	', '	AVON	', '	NEGRO	', NULL, '9', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2412, '8757637', '	PUNTITA	', '	AVON	', '	CONC. HIDRO-ACTIVO	', NULL, '15', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
@@ -1395,7 +1532,8 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2542, '2015443059', '	EMBUDO	', '	S/MARCA	', '	Nº20	', NULL, '1', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 3),
 (2543, '2015443144', '	EMBUDO	', '	S/MARCA	', '	Nº30	', '', '1', 50, NULL, 2, NULL, NULL, 0, 100, 0, 3),
 (2544, '7790520011596', 'AROMATIZANTE P/AUTO	', 'GLADE	', 'FLORAL PERFECTION	', '', '7', 50, NULL, NULL, NULL, '2017-12-12', 0, 100, 0, 2),
-(2545, NULL, NULL, NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, NULL, 0, 100, 0, 0);
+(2545, NULL, NULL, NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, NULL, 0, 100, 0, 0),
+(2546, '7798181180199', 'celular', 'samsung', 'fragancia', 'pantalla de led.', '45x60', 0, NULL, NULL, 3, '2018-06-07', 0, 100, 99, 5);
 
 -- --------------------------------------------------------
 
@@ -1443,9 +1581,10 @@ CREATE TABLE `ProductoXProveedor` (
 INSERT INTO `ProductoXProveedor` (`ProductoXProveedorID`, `ProveedorID`, `ProductoID`, `precioCosto`) VALUES
 (4, 1, 1620, 140),
 (5, 2, 1620, 100),
+(6, 1, 1618, 56),
+(7, 2, 1619, 90),
 (8, 2, 1700, 67),
-(50, 1, 1620, 987),
-(51, 2, 1620, 988);
+(9, 2, 1618, 0);
 
 -- --------------------------------------------------------
 
@@ -1632,7 +1771,8 @@ CREATE TABLE `TiposRubros` (
 --
 
 INSERT INTO `TiposRubros` (`tipoRubroID`, `nombre`, `descripcion`) VALUES
-(1, 'tipoRUbroNombre', 'TipoRubroDescripcion');
+(2, 'limpieza', 'articulos de limpieza'),
+(3, 'cosmeticos', 'cosmeticos para damas');
 
 -- --------------------------------------------------------
 
@@ -1697,12 +1837,26 @@ CREATE TABLE `Venta` (
 --
 
 INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInterno`, `estadoDeVenta`, `fecha`, `monto`, `formaDePagoID`) VALUES
-(21, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 22:53:38', '79', 4),
-(22, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:07:37', '95', 4),
-(23, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:08:51', '95', 4),
-(24, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:22:26', '79', 4),
-(25, 'lucas', 36, NULL, NULL, NULL, '2018-04-16 23:32:26', '79', 4),
-(26, 'lucas', 34, NULL, NULL, NULL, '2018-04-20 13:58:15', '389', 2);
+(69, 'lucas', 32, NULL, NULL, NULL, '2018-06-15 01:23:33', '102', 1),
+(70, 'lucas', 36, NULL, NULL, NULL, '2018-06-15 01:24:31', '79', 4),
+(71, 'lucas', 32, NULL, NULL, NULL, '2018-06-15 01:25:27', '103', 2),
+(72, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 00:47:40', '204', 1),
+(73, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 01:10:29', '428', 1),
+(74, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 01:17:31', '316', 1),
+(75, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 01:23:30', '316', 1),
+(76, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 01:25:07', '306', 1),
+(77, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:24:18', '316', 1),
+(78, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:29:48', '306', 1),
+(79, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:40:32', '316', 1),
+(80, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:40:58', '316', 1),
+(81, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:50:02', '1071', 1),
+(82, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 03:57:30', '1489', 1),
+(83, 'lucas', 32, NULL, NULL, NULL, '2018-06-19 05:13:08', '102', 1),
+(84, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:02:18', '102', 1),
+(85, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:12:42', '102', 1),
+(86, 'lucas', 32, 'PRESUPUESTO', NULL, NULL, '2018-06-20 04:13:00', '102', 1),
+(87, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 04:13:34', '102', 1),
+(88, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-06-20 14:57:26', '826', 1);
 
 --
 -- Índices para tablas volcadas
@@ -1725,6 +1879,12 @@ ALTER TABLE `Cliente`
 --
 ALTER TABLE `condicionIVA`
   ADD PRIMARY KEY (`condicionIVAID`);
+
+--
+-- Indices de la tabla `ConfiguracionesGenerales`
+--
+ALTER TABLE `ConfiguracionesGenerales`
+  ADD PRIMARY KEY (`IdConfiguracionsGenerales`);
 
 --
 -- Indices de la tabla `CuentaCorriente`
@@ -1924,17 +2084,22 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
 ALTER TABLE `Cliente`
-  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT de la tabla `condicionIVA`
 --
 ALTER TABLE `condicionIVA`
   MODIFY `condicionIVAID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `ConfiguracionesGenerales`
+--
+ALTER TABLE `ConfiguracionesGenerales`
+  MODIFY `IdConfiguracionsGenerales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `CuentaCorriente`
 --
@@ -1944,7 +2109,7 @@ ALTER TABLE `CuentaCorriente`
 -- AUTO_INCREMENT de la tabla `CuentasCorrientes`
 --
 ALTER TABLE `CuentasCorrientes`
-  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `cuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT de la tabla `Depositos`
 --
@@ -1954,12 +2119,12 @@ ALTER TABLE `Depositos`
 -- AUTO_INCREMENT de la tabla `DetalleCuentasCorrientes`
 --
 ALTER TABLE `DetalleCuentasCorrientes`
-  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `detalleCuentaCorrienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -1989,7 +2154,7 @@ ALTER TABLE `Imagenes`
 -- AUTO_INCREMENT de la tabla `Localidades`
 --
 ALTER TABLE `Localidades`
-  MODIFY `LocalidadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `LocalidadID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT de la tabla `Ofertas`
 --
@@ -2004,12 +2169,12 @@ ALTER TABLE `OrdenDeCompra`
 -- AUTO_INCREMENT de la tabla `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `productoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2546;
+  MODIFY `productoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2547;
 --
 -- AUTO_INCREMENT de la tabla `ProductoXProveedor`
 --
 ALTER TABLE `ProductoXProveedor`
-  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
@@ -2049,7 +2214,7 @@ ALTER TABLE `TiposProductos`
 -- AUTO_INCREMENT de la tabla `TiposRubros`
 --
 ALTER TABLE `TiposRubros`
-  MODIFY `tipoRubroID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tipoRubroID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `UnidadesMedida`
 --
@@ -2064,7 +2229,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- Restricciones para tablas volcadas
 --
@@ -2075,6 +2240,13 @@ ALTER TABLE `Venta`
 ALTER TABLE `CuentaCorriente`
   ADD CONSTRAINT `CuentaCorriente_ibfk_1` FOREIGN KEY (`localidadID`) REFERENCES `Localidades` (`LocalidadID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `CuentaCorriente_ibfk_3` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `DetalleVenta`
+--
+ALTER TABLE `DetalleVenta`
+  ADD CONSTRAINT `DetalleVenta_ibfk_1` FOREIGN KEY (`productoID`) REFERENCES `Productos` (`productoID`),
+  ADD CONSTRAINT `DetalleVenta_ibfk_2` FOREIGN KEY (`codVenta`) REFERENCES `Venta` (`ventaID`);
 
 --
 -- Filtros para la tabla `Domicilios`
@@ -2129,6 +2301,7 @@ ALTER TABLE `Proveedores`
   ADD CONSTRAINT `Proveedores_ibfk_2` FOREIGN KEY (`Real_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_3` FOREIGN KEY (`Fiscal_domicilioID`) REFERENCES `Domicilios` (`DomiciliosID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Proveedores_ibfk_4` FOREIGN KEY (`condicionIVAID`) REFERENCES `condicionIVA` (`condicionIVAID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

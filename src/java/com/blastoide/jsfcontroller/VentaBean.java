@@ -13,6 +13,7 @@ import com.blastoide.jsf.Productos;
 import com.blastoide.jsf.Venta;
 import com.blastoide.jsf.util.MembreteFactura;
 import com.blastoide.jsf.util.MembretePresupuesto;
+import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.lowagie.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +23,6 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -48,7 +48,20 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     private String nombreDelDocumento; 
 
     private String productoCondBarra;
+    
+    private Productos productoPorNombre = new Productos();
 
+    public Productos getProductoPorNombre() {
+        return productoPorNombre;
+    }
+
+    public void setProductoPorNombre(Productos productoPorNombre) {
+        this.productoPorNombre = productoPorNombre;
+    }
+    
+    
+    
+    
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -60,12 +73,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void borrarVentaActual(){
     
     this.getLista().clear();
-    
+    this.setProductoPorNombre(null);
     FacesContext context = FacesContext.getCurrentInstance();
         
     ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
         
-    //System.out.println("clienteBuenoController.getClienteBueno(32)"+ clienteBuenoController.getClienteBueno(32));
     int clienteComunConContadoEfectivo = 0;
     
     for(int i=0;i<=clienteBuenoController.getItems().size() -1;i++){
@@ -74,16 +86,36 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             }
     }
     
-        System.out.println("ACAAAA:"+ clienteComunConContadoEfectivo );
-    
+        
     this.venta.setCliente(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo));
-    
-    //    System.out.println("clienteBuenoController.getClienteBueno(32).getFormaDePagoID()"+ clienteBuenoController.getClienteBueno(32).getFormaDePagoID());
-    
-        this.venta.setFormadePagoID(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo).getFormaDePagoID());
+    this.venta.setFormadePagoID(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo).getFormaDePagoID());
         
         transferir();
     }
+    
+    public void empezarVentaActual(){
+        if( this.getLista().isEmpty()){    
+            
+            this.getLista().clear();
+
+            FacesContext context = FacesContext.getCurrentInstance();
+
+            ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
+
+            int clienteComunConContadoEfectivo = 0;
+
+            for(int i=0;i<=clienteBuenoController.getItems().size() -1;i++){
+                    if( (clienteBuenoController.getItems().get(i).getApellido().equals("comun") ) || (clienteBuenoController.getItems().get(i).getNombre().equals("cliente"))){
+                               clienteComunConContadoEfectivo =  clienteBuenoController.getItems().get(i).getClienteID();
+                    }
+            }
+            
+            this.venta.setCliente(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo));
+            this.venta.setFormadePagoID(clienteBuenoController.getClienteBueno(clienteComunConContadoEfectivo).getFormaDePagoID());
+            transferir();
+        }
+    }
+    
     
     public String getNombreDelDocumento() {
         return nombreDelDocumento;
@@ -158,18 +190,16 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         
             VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
             
-            for(int i=0 ; i<ventaBean.getLista().size() ; i++){
-
-                int idProductoPorCambiarValor = ventaBean.getLista().get(i).getProducto().getProductoID();
+            for (DetalleVenta det : ventaBean.getLista()) {
+            
+                int idProductoPorCambiarValor = det.getProducto().getProductoID();
                 
                 ProductosDAO productosDao = new ProductosDAO();
                 
                 double precioFinalDelProductoEnBD = productosDao.buscarPrecioFinalAFacturar(idProductoPorCambiarValor);
                 
-                //Double precioUnitario = ventaBean.getLista().get(i).getProducto().getPrecioFinalAFacturar();
                 Double precioUnitario = precioFinalDelProductoEnBD ;
                 System.err.println("Producto precio venta unitario modificado por juan: "+precioUnitario);
-
 
                 double cantidadDeFormaDePago;
                 double cantidadPorTipoDeCliente;
@@ -184,7 +214,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
                 System.err.println("PrecioTotal: "+PrecioTotal);
 
-             ventaBean.getLista().get(i).getProducto().setPrecioFinalAFacturar(PrecioTotal);
+             det.getProducto().setPrecioFinalAFacturar(PrecioTotal);
         }                    
         } catch (Exception e) {
             
@@ -192,19 +222,123 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         }
     }
 
-    public void agregarPorCodBarra(String productoCodBarra) throws Exception {
+    public void agregarPorCodBarraOPorNombre(String productoCodBarra) throws Exception {
+        
+        int idBuscado = 0;
+                  
+        try {
+                   if(!(productoCodBarra.length()>1 && getProductoPorNombre()!=null) ){ 
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
 
+                    ProductosDAO productoDAO = new ProductosDAO();
+
+                    idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
+
+                    System.out.println("////////////////////////////////////////////////");
+                    System.out.println("productoPorNombre: "+ getProductoPorNombre());
+                    System.out.println("idBuscado: "+idBuscado);
+                    System.out.println("////////////////////////////////////////////////");
+
+                        if(idBuscado!=0){
+                            this.producto = productoControllerBean.getProductos(idBuscado);
+                        }else{
+                            this.producto = getProductoPorNombre();
+                        }    
+
+                    FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
+
+                    Double porcentajeDeFormaDePago;
+                    porcentajeDeFormaDePago = formapagoDao.buscarPorcentaje(formaDePagoID);
+                                        System.err.println("porcentaje por Forma De Pago: "+porcentajeDeFormaDePago);
+
+                    TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
+
+                    Double porcentajePorTipoDeCliente;
+                    porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
+                                        System.err.println("porcentaje Por Tipo De Cliente: "+porcentajePorTipoDeCliente);
+
+                    DetalleVenta det = new DetalleVenta();
+
+                    det.setCantidad(cantidad);
+
+
+                    Double precioUnitario = this.producto.getPrecioFinalAFacturar();
+                                        System.err.println("Producto precio final a facturar: "+this.producto.getPrecioFinalAFacturar());
+
+                    double cantidadDeFormaDePago;
+                    double cantidadPorTipoDeCliente;
+
+                        cantidadDeFormaDePago = precioUnitario*porcentajeDeFormaDePago /100.0;
+                                        System.err.println("Cantidad a Sumar de forma de pago: "+cantidadDeFormaDePago);
+
+                        cantidadPorTipoDeCliente = precioUnitario*porcentajePorTipoDeCliente /100.0;
+
+                       Double PrecioTotal = precioUnitario + cantidadDeFormaDePago - cantidadPorTipoDeCliente;
+                        System.err.println("PrecioTotal: "+PrecioTotal);
+
+                    this.producto.setPrecioFinalAFacturar(PrecioTotal);
+
+                    det.setProducto(this.producto);
+
+                    ComprobarSiExiste(det);
+
+                    this.lista.add(det);
+
+                    this.productoCondBarra = null;
+                    this.productoPorNombre = null;
+                    System.out.println("codigo del producto insertado en la lista: " + det.getProducto().getCodigo());
+                   }else{
+                       
+                     if (idBuscado == 0 && getProductoPorNombre()==null){
+                            System.out.println("no eligio ni producto por codigo de barra ni por nombre");
+                            this.productoCondBarra = null;
+                            this.productoPorNombre = null;
+                            JsfUtil.addErrorMessageWithOutDetail("Debes elegir un producto por nombre o usar el scaner");
+            
+                     }else{  
+                        System.out.println("TENES UN PRODUCTO POR NOMBRE Y UN PRODUCTO POR CODIGO DE BARRA");
+                        this.productoCondBarra = null;
+                        this.productoPorNombre = null;
+                        JsfUtil.addErrorMessage("No puedes elegir producto por codigo de barra y por nombre al mismo tiempo.");
+                     }
+                   }
+        }      
+        catch (Exception e) {
+           if(productoCodBarra.length()>1 && getProductoPorNombre()!=null){
+             System.out.println("TENES UN PRODUCTO POR NOMBRE Y UN PRODUCTO POR CODIGO DE BARRA");
+             this.productoCondBarra = null;
+             this.productoPorNombre = null;
+             JsfUtil.addErrorMessage("No puedes elegir producto por codigo de barra y por nombre al mismo tiempo.");
+           }else{
+                if(idBuscado==0){
+                       if(getProductoPorNombre()==null){
+                           JsfUtil.addErrorMessage(e, "Debe seleccionar o por nombre o por codigo de barra.");
+                       }
+                        
+                }else{
+                    this.productoPorNombre = null;
+                    this.productoCondBarra = null;
+                    JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                }
+           }   
+        }
+  }  
+    
+    public void agregarPorCodBarra(String productoCodBarra) throws Exception {
+        
+        int idBuscado = 0;
         try {
         
-        FacesContext context = FacesContext.getCurrentInstance();
-        ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-        
-        ProductosDAO productoDAO = new ProductosDAO();
-        
-        int idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
-        
-          this.producto = productoControllerBean.getProductos(idBuscado);
-        
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+
+                ProductosDAO productoDAO = new ProductosDAO();
+
+                idBuscado = productoDAO.buscarPorCodigoDeBarra(productoCodBarra);
+                
+                this.producto = productoControllerBean.getProductos(idBuscado);
+                
         FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
         
         Double porcentajeDeFormaDePago;
@@ -238,7 +372,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             System.err.println("PrecioTotal: "+PrecioTotal);
        
         this.producto.setPrecioFinalAFacturar(PrecioTotal);
-                    
+            
         det.setProducto(this.producto);
         
         ComprobarSiExiste(det);
@@ -248,8 +382,15 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         this.productoCondBarra = null;
             System.out.println("codigo del producto insertado en la lista: " + det.getProducto().getCodigo());
         } catch (Exception e) {
-        this.productoCondBarra = null;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El producto no tiene cargado el precio de venta ."));
+            
+            if(idBuscado==0){
+                    this.productoCondBarra = null;
+              JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+            }else{
+            this.productoCondBarra = null;
+            JsfUtil.addErrorMessage(e, "El producto no tiene cargado el precio de venta.");
+           }
+            
         }
     }
     
@@ -286,7 +427,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
         
                 //1ro registra la venta y sus detalles de la venta
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+
+                ventadao.registrarPorTipo(venta, lista, "FACTURA");
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
      
                 System.err.println("tamaño de la lista: "+ lista.size());
@@ -334,7 +477,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
             } else{
             
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "FACTURA");
+
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
                 
                 //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
@@ -404,7 +549,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
         
                 //1ro registra la venta y sus detalles de la venta
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
      
                 System.err.println("tamaño de la lista: "+ lista.size());
@@ -452,7 +598,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 
             } else{
             
-                ventadao.registrar(venta, lista);
+                //ventadao.registrar(venta, lista);
+                ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
+
                 cajaDiariaDAO.registrarEnCajaDiaria(venta);
                 
                 //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
@@ -492,9 +640,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void transferir(){
     
         FacesContext context = FacesContext.getCurrentInstance();
-        
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
-        
         ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoID());
         
     }
@@ -590,5 +736,29 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         // (such as an HTTP redirect), and that the request processing lifecycle should be terminated
         // as soon as the current phase is completed.
         facesContext.responseComplete();
+    }
+
+    public Double mostrarMontoTotalDeLaVenta(){
+        System.out.println("Entro al metodo mostrarMontoTotalDeLaVenta ");
+        System.out.println("lista tamaño: "+lista.size()+"elementos de la lista: "+lista.toString());
+        Double montoTotal = 00.00;
+      
+        FacesContext context = FacesContext.getCurrentInstance();
+        VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
+       
+        if(this.lista.size()>=1){
+         for (DetalleVenta det : lista) {
+             System.out.println("det.getProducto().getPrecioFinalAFacturar(): "+ det.getProducto().getPrecioFinalAFacturar());
+             System.out.println("det.getCantidad(): " + det.getCantidad());
+             Double total =det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+            montoTotal = montoTotal + total;
+         }
+        }
+    return montoTotal;
+    }
+    
+    @Override
+    public String toString() {
+        return "VentaBean{" + "venta=" + venta.toString() + ", producto=" + producto + ", cantidad=" + cantidad + ", lista=" + lista + ", formaDePagoID=" + formaDePagoID + ", nombreDelDocumento=" + nombreDelDocumento + ", productoCondBarra=" + productoCondBarra + '}';
     }
 }

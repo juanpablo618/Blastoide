@@ -4,7 +4,7 @@ package com.blastoide.jsfcontroller;
  *
  * @author cuello.juanpablo@gmail.com
  */
-import com.blastoide.configuraciones.ConfiguracionesGenerales;
+import com.blastoide.jpa.ConfiguracionesGeneralesController;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,8 +19,7 @@ public class DownloadBean implements Serializable {
 
 private static final long serialVersionUID = 626953318628565053L;
 
-private static final String PDF_URL = ConfiguracionesGenerales.getPDF_URL();
-
+//private final  String PDF_URL = ConfiguracionesGenerales.getPDF_URL();
 
 /**
      * This method reads PDF from the URL and writes it back as a response. 
@@ -49,8 +48,12 @@ response.setHeader("Content-Type", "application/pdf");
 // Open response output stream
 OutputStream responseOutputStream = response.getOutputStream();
 
+//create facecontext to set the data PDF_URL retrieved to database
+ FacesContext context = FacesContext.getCurrentInstance();
+ ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
+      
 // Read PDF contents
-URL url = new URL(PDF_URL.concat(nombreDelDocumento).concat(".pdf"));
+URL url = new URL(configuracionesGeneralesController.getConfiguracionesGenerales(1).getPdfUrl().concat(nombreDelDocumento).concat(".pdf"));
 InputStream pdfInputStream = url.openStream();
 
 // Read PDF contents and write them to the output

@@ -1,9 +1,9 @@
-package com.blastoide.jsfcontroller;
+package com.blastoide.jpa;
 
-import com.blastoide.jsf.TipoClientes;
-import com.blastoide.jsfcontroller.util.JsfUtil;
-import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
-import com.blastoide.jpa.TipoClientesFacade;
+import com.blastoide.jsf.ConfiguracionesGenerales;
+import com.blastoide.jpa.util.JsfUtil;
+import com.blastoide.jpa.util.JsfUtil.PersistAction;
+import com.blastoide.jsfcontroller.ConfiguracionesGeneralesFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("tipoClientesController")
+@Named("configuracionesGeneralesController")
 @SessionScoped
-public class TipoClientesController implements Serializable {
+public class ConfiguracionesGeneralesController implements Serializable {
 
     @EJB
-    private com.blastoide.jpa.TipoClientesFacade ejbFacade;
-    private List<TipoClientes> items = null;
-    private TipoClientes selected;
+    private com.blastoide.jsfcontroller.ConfiguracionesGeneralesFacade ejbFacade;
+    private List<ConfiguracionesGenerales> items = null;
+    private ConfiguracionesGenerales selected;
 
-    public TipoClientesController() {
+    public ConfiguracionesGeneralesController() {
     }
 
-    public TipoClientes getSelected() {
+    public ConfiguracionesGenerales getSelected() {
         return selected;
     }
 
-    public void setSelected(TipoClientes selected) {
+    public void setSelected(ConfiguracionesGenerales selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class TipoClientesController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private TipoClientesFacade getFacade() {
+    private ConfiguracionesGeneralesFacade getFacade() {
         return ejbFacade;
     }
 
-    public TipoClientes prepareCreate() {
-        selected = new TipoClientes();
+    public ConfiguracionesGenerales prepareCreate() {
+        selected = new ConfiguracionesGenerales();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ConfiguracionesGeneralesCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ConfiguracionesGeneralesUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("TipoClientesDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ConfiguracionesGeneralesDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<TipoClientes> getItems() {
+    public List<ConfiguracionesGenerales> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,29 +109,30 @@ public class TipoClientesController implements Serializable {
         }
     }
 
-    public TipoClientes getTipoClientes(java.lang.Integer id) {
-            return getFacade().find(id);
-        }
-
-    public List<TipoClientes> getItemsAvailableSelectMany() {
+    public ConfiguracionesGenerales getConfiguracionesGenerales(java.lang.Integer id) {
+        return getFacade().find(id);
+    }
+    
+    
+    public List<ConfiguracionesGenerales> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<TipoClientes> getItemsAvailableSelectOne() {
+    public List<ConfiguracionesGenerales> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = TipoClientes.class)
-    public static class TipoClientesControllerConverter implements Converter {
+    @FacesConverter(forClass = ConfiguracionesGenerales.class)
+    public static class ConfiguracionesGeneralesControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TipoClientesController controller = (TipoClientesController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "tipoClientesController");
-            return controller.getTipoClientes(getKey(value));
+            ConfiguracionesGeneralesController controller = (ConfiguracionesGeneralesController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "configuracionesGeneralesController");
+            return controller.getConfiguracionesGenerales(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -151,13 +152,15 @@ public class TipoClientesController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TipoClientes) {
-                TipoClientes o = (TipoClientes) object;
-                return getStringKey(o.getTipoClienteID());
+            if (object instanceof ConfiguracionesGenerales) {
+                ConfiguracionesGenerales o = (ConfiguracionesGenerales) object;
+                return getStringKey(o.getIdConfiguracionsGenerales());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TipoClientes.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ConfiguracionesGenerales.class.getName()});
                 return null;
             }
         }
+
     }
+
 }

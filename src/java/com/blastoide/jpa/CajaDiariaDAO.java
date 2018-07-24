@@ -2,9 +2,11 @@ package com.blastoide.jpa;
 
 import com.blastoide.jpa.conexion.DAO;
 import com.blastoide.jsf.Venta;
+import com.blastoide.jsfcontroller.FormaDePagoController;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -27,13 +29,40 @@ public class CajaDiariaDAO extends DAO{
 
            String strDate = formDate.format(new Date()); // option 2
             
-            PreparedStatement st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
-                                System.err.println("llego aca al insert de cajaDiariaDAO");
+           FacesContext context = FacesContext.getCurrentInstance();
+           FormaDePagoController formaDePagoController = context.getApplication().evaluateExpressionGet(context, "#{formaDePagoController}", FormaDePagoController.class);
+           
+           System.out.println(" ");
+           System.out.println("venta.getFormadePagoID(): "+ venta.getFormadePagoID()); 
+           System.out.println(" ");
+           System.out.println("venta.getCliente().getFormaDePagoID())" + venta.getCliente().getFormaDePagoID()); 
+           
+           PreparedStatement st;
+           
+           if(venta.getFormadePagoID() == 1 || venta.getFormadePagoID()== 2 ){
+                System.out.println(" ");
+               System.out.println("la forma de pago es contado o contado efectivo");
+            st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
+                              System.err.println("llego aca al insert de cajaDiariaDAO");
                 
-                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()));
+                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());
+                
+            }else{
+               System.out.println(" ");
+               System.out.println("la forma de pago es NO ES NI contado NI contado efectivo");           
+               st = this.getCn().prepareStatement("insert into caja (descripcion, CtaCorriente, fecha) values(?,?,?)");
+                                System.err.println("llego aca al insert de cajaDiariaDAO");
+                
+                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
+                st.setDouble(2, venta.getMonto());
+                st.setString(3, strDate);
+                System.err.println("st: "+st.toString());
+              
+           
+           }
                 
          st.executeUpdate();
          st.close();

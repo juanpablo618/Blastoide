@@ -19,6 +19,7 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  emptyMessage="No existen clientes con cuentas corrientes."
                                  resizableColumns="true"
+                                 tableStyle="table-layout: auto;"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton editButton2 deleteButton"/>
@@ -110,7 +111,7 @@
                             </f:facet>
 
                          <h:outputText value="#{cuentaCorrienteBean.buscarLimite(item.cuentaCorrienteID)}">
-                                <f:convertNumber pattern="#0.00" />
+                                <f:convertNumber pattern="#00.00" />
                          </h:outputText>
                         </p:column>
 
