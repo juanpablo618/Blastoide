@@ -70,6 +70,22 @@ public class DetalleCuentasCorrientesBean implements Serializable{
         System.err.println("id de cta corriente del cliente: "+this.cliente.getCuentaCorrienteID());
     }
     
+    public void pedirDetalleCtaCorriente(int clienteId) throws Exception{
+    
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        DetalleCuentasCorrientesBean detalleCtaCorrienteBean = context.getApplication().evaluateExpressionGet(context, "#{detalleCuentasCorrientesBean}", DetalleCuentasCorrientesBean.class);
+        ClienteBuenoController clienteBuenoController = context.getApplication().evaluateExpressionGet(context, "#{clienteBuenoController}", ClienteBuenoController.class);
+        
+        ClienteBueno clienteBueno = new ClienteBueno();
+        
+        clienteBueno = clienteBuenoController.getClienteBueno(clienteId);
+        
+        detalleCtaCorrienteBean.darlistaConDetalles(clienteBueno.getCuentaCorrienteID());
+        System.err.println("vino al pedirDetalleCtaCorriente:");
+        System.err.println("id de cta corriente del cliente: "+clienteBueno.getCuentaCorrienteID());
+    }
+    
     
     public void ingresarNuevoHaberEnCuentaCorriente(float haber, String descripcion, int cuentaCorrienteID) throws Exception{
     

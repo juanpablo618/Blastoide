@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="ClienteBuenoViewDlg" widgetVar="ClienteBuenoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="ver datos del cliente">
+        <p:dialog id="ClienteBuenoViewDlg" widgetVar="ClienteBuenoViewDialog" modal="true" resizable="true" appendTo="@(body)" header="ver datos del cliente">
             <h:form id="ClienteBuenoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
@@ -47,6 +47,84 @@
                     <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
+            
+            <br></br>
+            <br></br>
+            <h:form style="float: right; border: 2px solid white; margin-top: 10px;">
+                    
+                <br></br><br></br><br></br>
+                <p:outputLabel value="IMPORTE A PAGAR:" style="color:white ; margin: 10px;"  />
+                <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
+                    <f:convertNumber pattern="#00.00"/>
+                </p:inputText>
+
+                <p:outputLabel value="CONCEPTO:" style="color:white ; margin: 10px;"  />
+                <p:inputText style="margin-right: 5px;" value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion}"/>
+                <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}"
+                                 />
+                
+            </h:form> 
+
+            <h:form id="frmDetalleParaCtaCorriente" >
+                <br></br><br></br><br></br>
+             <!--   <p:commandButton onsuccess="!location.reload();" action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
+            -->
+            <p:commandButton  oncomplete="PF('ClienteBuenoViewDialog').show()" actionListener="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
+            
+            </h:form>  
+             
+                <h3>   
+                    <h:outputText style="margin-top: 0 ;color: white" value="Saldo en cuenta corriente: "></h:outputText>
+                    <h:outputText style="margin-top: 0 ;color: white" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}">
+                        <f:convertNumber pattern="#00.00"/>
+                    </h:outputText>
+                </h3>
+                
+          <h:form id="detalleCtaCorrienteForm">
+                      
+            <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="20,30,40"
+                         emptyMessage="no hay Detalles en la Cta corriente de este cliente"
+                         style="margin: 30px;" 
+                         resizableColumns="true"
+                         tableStyle="table-layout: auto;"
+                         >
+ 
+                <p:column headerText="Fecha" >
+                    <h:outputText value="#{detalleCuentasCorrientes.fecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>  
+                </p:column>
+
+                <p:column headerText="COMPROBANTE">
+                    #{detalleCuentasCorrientes.descripcion}          
+                </p:column>
+                    
+                <p:column headerText="DEBE">
+                    <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
+                        <f:convertNumber pattern="#0.00"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="HABER">
+                    <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
+                        <f:convertNumber pattern="#0.00"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="SALDO">
+                    <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
+                        <f:convertNumber pattern="#0.00"/>
+                    </h:outputText>
+                </p:column>
+                
+            </p:dataTable>
+         </h:form>     
+            <br></br>
+        
+            
         </p:dialog>
     </ui:composition>
 </html>
