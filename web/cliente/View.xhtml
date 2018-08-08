@@ -44,44 +44,30 @@
                         <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/>
                     
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
                 </h:panelGroup>
-            </h:form>
+                <br></br>
+            <br></br>
             
-            <br></br>
-            <br></br>
-            <h:form style="float: right; border: 2px solid white; margin-top: 10px;">
-                    
-                <br></br><br></br><br></br>
-                <p:outputLabel value="IMPORTE A PAGAR:" style="color:white ; margin: 10px;"  />
+                <p:outputLabel value="IMPORTE A PAGAR:" style="; margin: 10px;"  />
                 <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
                     <f:convertNumber pattern="#00.00"/>
                 </p:inputText>
 
-                <p:outputLabel value="CONCEPTO:" style="color:white ; margin: 10px;"  />
+                <p:outputLabel value="CONCEPTO:" style="margin: 10px;"  />
                 <p:inputText style="margin-right: 5px;" value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion}"/>
-                <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}"
+                <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, clienteBuenoController.selected.cuentaCorrienteID)}"
                                  />
-                
-            </h:form> 
+                <br></br>
 
-            <h:form id="frmDetalleParaCtaCorriente" >
-                <br></br><br></br><br></br>
-             <!--   <p:commandButton onsuccess="!location.reload();" action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
-            -->
-            <p:commandButton  oncomplete="PF('ClienteBuenoViewDialog').show()" actionListener="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
-            
-            </h:form>  
-             
                 <h3>   
-                    <h:outputText style="margin-top: 0 ;color: white" value="Saldo en cuenta corriente: "></h:outputText>
-                    <h:outputText style="margin-top: 0 ;color: white" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(detalleCuentasCorrientesBean.cliente.cuentaCorrienteID)}">
+                    <h:outputText style="margin-top: 0 ;" value="Saldo en cuenta corriente: "></h:outputText>
+                    <h:outputText style="margin-top: 0 ;" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}">
                         <f:convertNumber pattern="#00.00"/>
                     </h:outputText>
                 </h3>
-                
-          <h:form id="detalleCtaCorrienteForm">
-                      
+               
+            <br></br>
+                                  
             <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -121,10 +107,12 @@
                 </p:column>
                 
             </p:dataTable>
-         </h:form>     
-            <br></br>
         
+        <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
             
+        </h:form>     
+            <br></br>
+               
         </p:dialog>
     </ui:composition>
 </html>
