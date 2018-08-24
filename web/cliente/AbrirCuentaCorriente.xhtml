@@ -8,7 +8,6 @@
 
     <ui:composition template="/indexAdmin.xhtml">
         #{clienteBuenoController.setSelected(clienteBuenoController.itemsAvailableSelectOne.get(0))}
-        #{System.out.println("clienteBuenoController.selected: " + clienteBuenoController.selected.nombre)}
         <ui:define name="body">
             <h:form id="ClienteBuenoListForm">
                 <p:panel header="Lista de clientes">

@@ -10,109 +10,139 @@
 
         <p:dialog id="ClienteBuenoViewDlg" widgetVar="ClienteBuenoViewDialog" modal="true" resizable="true" appendTo="@(body)" header="ver datos del cliente">
             <h:form id="ClienteBuenoViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
+                <h:panelGroup id="display" layout="grid">
+                    <p:panelGrid style="margin-top:0px"  columns="2" rendered="#{clienteBuenoController.selected != null}">
+                        <p:column style="float: left; margin-top: 0px; ">
+                            <div style="background-color:#DFF0D8;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                                <p:outputLabel value="Detalles del Cliente" style="color: #4B814B; font-weight: bold;"/><br></br><br></br>
+                            </div><br></br>
+                                
+                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; margin-top: 2em">
+                                <p:outputLabel value="información" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                            
+                            <row>
+                                <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.nombre}" title="#{bundle.ViewClienteBuenoTitle_nombre}"/><br></br>
+                            </row>
+                            
+                            <row>
+                                <h:outputText value="apellido:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/><br></br>
+                            </row>
+                            <row>                            
+                                <h:outputText value="cuit-cuil:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Dni:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.dni}" title="#{bundle.ViewClienteBuenoTitle_dni}"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Sexo:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.sexo}"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Tel. Celular:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.telefonoCelular}" title="telCelular"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Email:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.email}" title="email"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Razon Social:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Tipo de Cliente:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{tipoClientesController.getTipoClientes(clienteBuenoController.selected.tipoClienteID).nombre}"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Día de pago:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.diaDePago}">
+                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                                </h:outputText><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Fiado máximo:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.fiadoMaximo}"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Forma de pago:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{formaDePagoController.getFormaDePago(clienteBuenoController.selected.formaDePagoID).nombre}"/><br></br>
+                            </row>
+                            <row>
+                                <h:outputText value="Tel. fijo:" style="font-weight: bold; margin-right: 7px;"/>
+                                <h:outputText value="#{clienteBuenoController.selected.telefonoFijo}" title="telFijo"/>
+                            </row>
+                          </div>
+                        </p:column>
                         
-                        <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}"/>
-                        <h:outputText value="#{clienteBuenoController.selected.nombre}" title="#{bundle.ViewClienteBuenoTitle_nombre}"/>
+                        <p:column style="float: right;margin-top: 2em; ">
+                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                                <p:outputLabel value="Detalle CUENTA CORRIENTE" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                            </div><br></br>
+                            
+                            <div style="float: left;margin-top: 2em">
+                                <h5 style="margin-top:0">Detalle al día: <p:clock />
+                                </h5>  
+                            </div>
+                            <div style="float: right;margin-top: 2em;">
+                                <h:outputText  value="Saldo : "></h:outputText>
+                                        <h:outputText id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}">
+                                            <f:convertNumber pattern="#00.00"/>
+                                        </h:outputText>
+                                
+                            </div><br></br><br></br><br></br>
+                            <div style="margin-top: 2em;">
+                                <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
+                                             paginator="true"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="10,20,30"
+                                             emptyMessage="no hay Detalles en la Cta corriente de este cliente"
+                                             style="margin: 30px;" 
+                                             resizableColumns="true"
+                                             tableStyle="table-layout: auto;"
+                                             >
+
+                                    <p:column headerText="Fecha" style="background-color: #fffefe" >
+                                        <h:outputText value="#{detalleCuentasCorrientes.fecha}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>  
+                                    </p:column>
+
+                                    <p:column headerText="COMPROBANTE" style="background-color: #fffefe">
+                                        #{detalleCuentasCorrientes.descripcion}          
+                                    </p:column>
+
+                                    <p:column headerText="DEBE" style="background-color: #fffefe">
+                                        <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
+                                            <f:convertNumber pattern="#0.00"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column headerText="HABER" style="background-color: #fffefe">
+                                        <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
+                                            <f:convertNumber pattern="#0.00"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column headerText="SALDO" style="background-color: #fffefe;">
+                                        <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
+                                            <f:convertNumber pattern="#0.00"/>
+                                        </h:outputText>
+                                    </p:column>
+                                </p:dataTable>
+                           </div>
+                            <div>
+                                <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
+                            </div>    
+                     </p:column>
                         
-                        <h:outputText value="apellido:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/>
-                        
-                        <h:outputText value="Dni:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.dni}" title="#{bundle.ViewClienteBuenoTitle_dni}"/>
-                        
-                        <h:outputText value="Tipo de Cliente:"/>
-                        <h:outputText value="#{tipoClientesController.getTipoClientes(clienteBuenoController.selected.tipoClienteID).nombre}"/>
-                        
-                        <h:outputText value="Forma de pago:"/>
-                        <h:outputText value="#{formaDePagoController.getFormaDePago(clienteBuenoController.selected.formaDePagoID).nombre}"/>
-                        
-                        <h:outputText value="Razon Social:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/>
-                        
-                        <h:outputText value="Tel. fijo:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.telefonoFijo}" title="telFijo"/>
-                        
-                        <h:outputText value="Tel. Celular:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.telefonoCelular}" title="telCelular"/>
-                        
-                        <h:outputText value="Email:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.email}" title="email"/>
-                        
-                        <h:outputText value="cuit-cuil:"/>
-                        <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/>
-                    
                     </p:panelGrid>
                 </h:panelGroup>
                 <br></br>
-            <br></br>
-            
-                <p:outputLabel value="IMPORTE A PAGAR:" style="; margin: 10px;"  />
-                <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
-                    <f:convertNumber pattern="#00.00"/>
-                </p:inputText>
-
-                <p:outputLabel value="CONCEPTO:" style="margin: 10px;"  />
-                <p:inputText style="margin-right: 5px;" value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion}"/>
-                <p:commandButton value="CARGAR" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, clienteBuenoController.selected.cuentaCorrienteID)}"
-                                 />
-                <br></br>
-
-                <h3>   
-                    <h:outputText style="margin-top: 0 ;" value="Saldo en cuenta corriente: "></h:outputText>
-                    <h:outputText style="margin-top: 0 ;" id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}">
-                        <f:convertNumber pattern="#00.00"/>
-                    </h:outputText>
-                </h3>
-               
-            <br></br>
-                                  
-            <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="20,30,40"
-                         emptyMessage="no hay Detalles en la Cta corriente de este cliente"
-                         style="margin: 30px;" 
-                         resizableColumns="true"
-                         tableStyle="table-layout: auto;"
-                         >
- 
-                <p:column headerText="Fecha" >
-                    <h:outputText value="#{detalleCuentasCorrientes.fecha}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:outputText>  
-                </p:column>
-
-                <p:column headerText="COMPROBANTE">
-                    #{detalleCuentasCorrientes.descripcion}          
-                </p:column>
-                    
-                <p:column headerText="DEBE">
-                    <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
-                        <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                </p:column>
-
-                <p:column headerText="HABER">
-                    <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
-                        <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                </p:column>
-
-                <p:column headerText="SALDO">
-                    <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
-                        <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                </p:column>
-                
-            </p:dataTable>
-        
-        <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
-            
-        </h:form>     
-            <br></br>
-               
+          </h:form>        
         </p:dialog>
     </ui:composition>
 </html>
