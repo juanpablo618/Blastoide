@@ -21,7 +21,7 @@
                 border-radius: 0%;
             }
             .ui-layout-resizer{
-                background-color: #dae3e9;
+                background-color: #ffffff;
 
             }
             #body{
@@ -30,18 +30,23 @@
 
             .ui-widget-content{ 
                 border: none;
+                height: 55px;
             } 
             body{
                 background-color: #000000;
             }
             .ui-button{
-                background-color: #dae3e9;
+                background-color: #ffffff;
             }
             #toolbarMenu{
                 margin-top: -4.20%;
                 border-top-color: #000000;
             }
-            div.ui-layout-unit-content{background-color: #496479}
+            div.ui-layout-unit-content{
+                background-color: #ffffff
+            ;
+            height: 55px;
+            }
             .ui-panelgrid .ui-panelgrid-cell {
                 border: none;
             }
@@ -52,14 +57,14 @@
 
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="112" style="background-color: #dae3e9; border: none" >
+            <p:layoutUnit position="north" size="112" style="background-color: #ffffff; border: none" >
                 <ui:include src="topbar.xhtml"/>
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #dae3e9; border: none;">
+            <p:layoutUnit position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #ffffff; border: none;">
             </p:layoutUnit>
 
-            <p:layoutUnit position="center" style="background-color: #dae3e9">
+            <p:layoutUnit position="center" style="background-color: #ffffff">
                 <p:growl id="growl" showDetail="false" />
                 <div>
                     
