@@ -96,7 +96,7 @@
                                 </b>
                             </div><br></br><br></br><br></br>
                             
-                            <h:form style="float: right; border: 2px solid white; margin-top: 10px;" rendered="#{clienteBuenoController.selected.formaDePagoID ne '1' or clienteBuenoController.selected.formaDePagoID ne '2' }">
+                            <h:form style="float: right; border: 2px solid white; margin-top: 10px;" rendered="#{!(clienteBuenoController.selected.formaDePagoID eq '1' or clienteBuenoController.selected.formaDePagoID eq '2') }">
                                 <p:outputLabel value="Importe a pagar:" style="color:black ; margin: 10px;"  />
                                 <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
                                     <f:convertNumber pattern="#00.00"/>

@@ -21,7 +21,7 @@
                 border-radius: 0%;
             }
             .ui-layout-resizer{
-                background-color: #dae3e9;
+                background-color: #ffffff;
 
             }
             #body{
@@ -30,18 +30,22 @@
 
             .ui-widget-content{ 
                 border: none;
+                height: 55px;
             } 
             body{
                 background-color: #000000;
             }
             .ui-button{
-                background-color: #dae3e9;
+                background-color: #ffffff;
             }
             #toolbarMenu{
                 margin-top: -4.20%;
                 border-top-color: #000000;
             }
-            div.ui-layout-unit-content{background-color: #496479}
+            div.ui-layout-unit-content{
+                background-color: #ffffff;
+            height: 55px;
+            }
             .ui-panelgrid .ui-panelgrid-cell {
                 border: none;
             }
@@ -52,65 +56,50 @@
 
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="112" style="background-color: #dae3e9; border: none" >
-                <ui:include src="topbar.xhtml"/>
+            <p:layoutUnit position="north" size="112" style="background-color: #ffffff; border: none" >
+                <ui:include src="topbarWithOutDivMundoLimpieza.xhtml"/>
             </p:layoutUnit>
 
-            <p:layoutUnit id="labelMundoLimpieza" position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #dae3e9; border: none;">
+            <p:layoutUnit position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #ffffff; border: none;">
             </p:layoutUnit>
 
-            <p:layoutUnit position="center" style="background-color: #dae3e9">
+            <p:layoutUnit position="center" style="background-color: #ffffff">
                 <p:growl id="growl" showDetail="false" />
                 <div>
-                    <div align="left" style="float: left;">
-                        <ui:include src="leftmenuAdmin.xhtml"/>
-                    </div>
-
-                    <div style="width: 100%; align-items: center; margin-left: 8px;">
+                    
+                    <div style="width: 100%; margin-left: 8px;">
 
                         <ui:insert name="body">
-                            <center style="margin-top: 10%;">
-
-                                <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
-                            </center>
-                            <center>
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">BIENVENIDO #{login.user} // administrador</h:outputLabel>
-
-                            </center>
-                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
-                                <h3 style="margin-top:0">Hora:</h3>
-                                <p:clock />
-                            </h:form>
-                            <center style="margin-top: 10%;">
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
-                            </center>
+                            
+                            <div style="background-color:#65CEA7;line-height:1.4; border-radius: 5px; position: absolute; top: 0; float: right">
+                                <p:outputLabel value="Productos: #{productosController.items.size()}" style="color: #ffffff; font-weight: bold;"/><br></br><br></br>
+                            </div><br></br>
+                            
+                            <br></br>
+                            
+                            
+                            
+                            
+                            
                             <center >
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>
                             </center>
+                            
+                            
+                            
+                            
+                            
+                            <br></br>
+                            
+                            
+                            
                             <center >
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
                             </center>
-
                         </ui:insert>
                     </div>
                 </div>
             </p:layoutUnit>
         </p:layout>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h:link outcome="/cuentasCorrientes_1/List" value="Show All CuentasCorrientes_1 Items"/>
-        <br />
-        <h:link outcome="/productos/List" value="Show All Productos Items"/>
-        <br />
-        <h:link outcome="/productos/List" value="Show All Productos Items"/>
-        <br />
-        <h:link outcome="/tiposProductos/List" value="Show All TiposProductos Items"/>
-        <br />
-        <h:link outcome="/tiposRubros/List" value="Show All TiposRubros Items"/>
-        <br />
-        <h:link outcome="/unidadesMedida/List" value="Show All UnidadesMedida Items"/>
     </h:body>
 </html>

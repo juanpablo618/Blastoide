@@ -117,10 +117,9 @@
 
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteBuenoController.prepareCreate}" update=":ClienteBuenoCreateForm" oncomplete="PF('ClienteBuenoCreateDialog').show()"/>
-                            
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteBuenoViewForm" oncomplete="PF('ClienteBuenoViewDialog').show()" disabled="#{empty clienteBuenoController.selected}"
-                                              action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"
-                                              />
+                                             action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"
+                                             />
                             
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar Limite" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
                             <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteBuenoEditForm2" oncomplete="PF('ClienteBuenoEditDialog2').show()" disabled="#{empty clienteBuenoController.selected}"/>
@@ -129,7 +128,7 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-
+                
             <ui:include src="nuevoCliente.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="EditarLimite.xhtml"/>

@@ -39,14 +39,9 @@
                 background-color: #ffffff;
             }
             #toolbarMenu{
-                margin-top: -4.20%;
                 border-top-color: #000000;
             }
-            div.ui-layout-unit-content{
-                background-color: #ffffff
-            ;
-            height: 55px;
-            }
+            
             .ui-panelgrid .ui-panelgrid-cell {
                 border: none;
             }
@@ -57,18 +52,18 @@
 
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="112" style="background-color: #ffffff; border: none" >
-                <ui:include src="topbar.xhtml"/>
+
+                <p:layoutUnit position="north" size="112" style="background-color: #ffffff; border: none" >
+                    <ui:include src="topbar.xhtml"/>
+                </p:layoutUnit>                
+
+            <p:layoutUnit id="labelMundoLimpieza" position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #dae3e9; border: none;">
             </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="28" header="MUNDO LIMPIEZA" style="background-color: #ffffff; border: none;">
-            </p:layoutUnit>
-
-            <p:layoutUnit position="center" style="background-color: #ffffff">
+            <p:layoutUnit position="center" style="background-color: #ffffff ">
                 <p:growl id="growl" showDetail="false" />
-                <div>
-
-                    <div style="width: 100%; align-items: center; margin-left: 8px;">
+                <div>                    
+                    <div style="width: 100%; align-items: center; margin-left: 8px; ">
 
                         <ui:insert name="body">
                             <center style="margin-top: 10%;">
@@ -76,20 +71,20 @@
                             </center>
                             <center>
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">Bienvenido #{login.user}</h:outputLabel>
-                                </center>
+                            </center>
                             <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
                                 <h3 style="margin-top:0">Hora:</h3>
                                 <p:clock />
                             </h:form>
                             <center style="margin-top: 10%;">
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
-                                </center>
-                                <center >
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt;">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
+                            </center>
+                            <center >
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>
-                                </center>
-                                <center >
+                            </center>
+                            <center >
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
-                                </center>
+                            </center>
                         </ui:insert>
                     </div>
                 </div>
