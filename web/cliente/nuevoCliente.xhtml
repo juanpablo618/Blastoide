@@ -13,72 +13,99 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{clienteBuenoController.selected != null}">
                        
-                        <p:outputLabel value="Nombre: "  for="nombre" />
-                        <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="debe ingresar el nombre"/>
-                        
-                        <p:outputLabel value="Apellido: "/>
-                        <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  title="Apellido" required="true" requiredMessage="debe ingresar el apellido"/>
+                        <p:column>
+                            <row>
+                                <p:outputLabel value=" // Datos Personales //" style="color: #0074B1; font-weight: bold"  />
+                            </row><br></br><br></br>
 
-                        <p:outputLabel value="Documento: "/>
-                        <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni" maxlength="8"/>
+                            <row>
+                                <p:outputLabel value="Nombre:"  for="nombre" style="font-weight: bold; margin-right: 25px;"/>
+                                <p:inputText id="nombre" value="#{clienteBean.cliente.nombre}" title="Nombre" required="true" requiredMessage="debe ingresar el nombre"/>
+                            </row><br></br><br></br>
 
-                        <p:outputLabel value="Sexo: "/>
-                            <p:selectOneMenu value="#{clienteBean.cliente.sexo}" >
-                                <f:selectItem  itemLabel="masculino" itemValue="masculino"  />
-                                <f:selectItem  itemLabel="femenino" itemValue="femenino"  />
-                            </p:selectOneMenu>
-                        
-                        <p:outputLabel value="Razon Social: "/>
-                        <p:inputText id="razonSocial" value="#{clienteBean.cliente.razonSocial}" title="razonSocial" required="false" requiredMessage="debe ingresar el la razon Social"/>
-
-                        <p:outputLabel value="Cuit o cuil: "/>
-                        <p:inputText id="cuitCuil" value="#{clienteBean.cliente.cuitCuil}" title="cuitCuil" required="true" requiredMessage="debe ingresar el cuit o cuil" maxlength="12"/>
-
-                        <p:separator />
-                        <p:outputLabel value=" // datos de Contacto //" style="color: #0074B1;"  />
-                        
-                        <p:outputLabel value="Teléfono fijo: "/>
-                        <p:inputText id="telFijo" value="#{clienteBean.cliente.telefonoFijo}" title="telFijo" required="true" requiredMessage="debe ingresar el tel. fijo"/>
-                       
-                        <p:outputLabel value="Teléfono Celular: "/>
-                        <p:inputText id="telCelular" value="#{clienteBean.cliente.telefonoCelular}" title="telCelular" required="true" requiredMessage="debe ingresar el tel. Celular"/>
-
-                        <p:outputLabel value="Email: "/>
-                        <p:inputText id="email" value="#{clienteBean.cliente.email}" title="email" required="true" requiredMessage="debe ingresar el email"/>
-                       
-                        <p:separator />
-                        <p:outputLabel value=" // datos del Cliente //"  style="color: #0074B1;" />
-                       
-                        <p:outputLabel value="Condicion de Iva: "/>
-                                <p:selectOneMenu id="condicionIva" value="#{clienteBean.cliente.condicionIva}" style="margin: 10px;"  >
-                                    <f:selectItems value="#{condicionIVAController.items}" var="condicionIva" itemLabel="#{condicionIva.nombre}" itemValue="#{condicionIva.condicionIVAID}" />
-                                </p:selectOneMenu>
-                       
-                        <p:outputLabel value="Tipo de Cliente: "/>
+                            <row>
+                                <p:outputLabel value="Apellido:" style="font-weight: bold; margin-right: 37px;"/>
+                                <p:inputText id="apellido" value="#{clienteBean.cliente.apellido}"  title="Apellido" required="true" requiredMessage="debe ingresar el apellido"/>
+                            </row><br></br><br></br>
+                            <row>
+                                <p:outputLabel value="Documento: " style="font-weight: bold"/>
+                                <p:inputText id="dni" value="#{clienteBean.cliente.dni}" title="dni" required="true" requiredMessage="debe ingresar el dni" maxlength="8"/>
+                            </row><br></br><br></br>
+                            <row>
+                                <p:outputLabel value="Sexo: " style="font-weight: bold; margin-right: 63px;"/>
+                                    <p:selectOneMenu value="#{clienteBean.cliente.sexo}" >
+                                        <f:selectItem  itemLabel="masculino" itemValue="masculino"  />
+                                        <f:selectItem  itemLabel="femenino" itemValue="femenino"  />
+                                    </p:selectOneMenu>
+                            </row> <br></br><br></br>   
+                            
+                        <row> 
+                          <p:outputLabel value=" // Datos del Contacto //" style="color: #0074B1; font-weight: bold"  />
+                        </row><br></br><br></br>
+                        <row>
+                            <p:outputLabel value="Teléfono Celular: " style="font-weight: bold"/>
+                          <p:inputText id="telCelular" value="#{clienteBean.cliente.telefonoCelular}" title="telCelular" required="true" requiredMessage="debe ingresar el tel. Celular"/>
+                        </row><br></br><br></br>
+                       <row>
+                            <p:outputLabel value="Teléfono fijo: " style="font-weight: bold; margin-right: 37px;"/>
+                            <p:inputText id="telFijo" value="#{clienteBean.cliente.telefonoFijo}" title="telFijo" required="true" requiredMessage="debe ingresar el tel. fijo"/>
+                       </row><br></br><br></br>
+                       <row>                     
+                            <p:outputLabel value="Email: " style="font-weight: bold; margin-right: 100px;"/>
+                            <p:inputText id="email" value="#{clienteBean.cliente.email}" title="email" required="true" requiredMessage="debe ingresar el email"/>
+                       </row><br></br><br></br>
+                          
+                        </p:column>
+                        <p:column>
+                            <row>
+                                <p:outputLabel value=" // Datos del Cliente //" style="color: #0074B1; font-weight: bold"  />
+                            </row><br></br><br></br>
+                            <row>
+                                <p:outputLabel value="Condicion de Iva: " style="font-weight: bold"/>
+                                     <p:selectOneMenu id="condicionIva" value="#{clienteBean.cliente.condicionIva}" style="margin: 10px;"  >
+                                        <f:selectItems value="#{condicionIVAController.items}" var="condicionIva" itemLabel="#{condicionIva.nombre}" itemValue="#{condicionIva.condicionIVAID}" />
+                                    </p:selectOneMenu>
+                            </row><br></br>
+                            <row>
+                                <p:outputLabel value="Tipo de Cliente: " style="font-weight: bold; margin-right: 17px;"/>
                                 <p:selectOneMenu id="tipoCliente" value="#{clienteBean.cliente.tipoCliente}" style="margin: 10px;"  >
-                                    <f:selectItems value="#{tipoClientesController.items}" var="tipoCliente" itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente.tipoClienteID}" />
+                                        <f:selectItems value="#{tipoClientesController.items}" var="tipoCliente" itemLabel="#{tipoCliente.nombre}" itemValue="#{tipoCliente.tipoClienteID}" />
                                 </p:selectOneMenu>
-
-                        <p:outputLabel value="Forma de pago: "   />
+                            </row><br></br>
+                            <row>
+                                <p:outputLabel value="Razon Social: " style="font-weight: bold; margin-right: 45px;"/>
+                                <p:inputText id="razonSocial" value="#{clienteBean.cliente.razonSocial}" title="razonSocial" required="false" requiredMessage="debe ingresar el la razon Social"/>
+                            </row><br></br><br></br>
+                            <row>
+                                <p:outputLabel value="Cuit o cuil: " style="font-weight: bold; margin-right: 74px;"/>
+                                <p:inputText id="cuitCuil" value="#{clienteBean.cliente.cuitCuil}" title="cuitCuil" required="true" requiredMessage="debe ingresar el cuit o cuil" maxlength="12"/>
+                            </row><br></br><br></br>
+                        
+                        <row>
+                            <p:outputLabel value=" // Cuenta Corriente //" style="color: #0074B1; font-weight: bold"  />
+                        </row><br></br><br></br>
+                        <row>
+                            <p:outputLabel value="Día de Pago: " style="font-weight: bold; margin-right: 56px;"/>
+                            <p:calendar id="diaDePago" value="#{clienteBean.cliente.diaDePago}"  >
+                               <f:convertDateTime pattern="dd/mm/yyyy"/>  
+                            </p:calendar>
+                        </row><br></br><br></br>
+                        <row>    
+                            <p:outputLabel value="limite: "  style="font-weight: bold; margin-right: 119px;"/>
+                            <p:inputText id="limiteActual" value="#{clienteBean.cuentasCorrientes.limite}" title="salgo" required="true" requiredMessage="debe ingresar el saldo"/>
+                        </row><br></br><br></br>
+                        <row>
+                            <p:outputLabel value="Forma de pago: "   style="font-weight: bold; margin-right: 17px;"/>
                                 <p:selectOneMenu id="formaDePago" value="#{clienteBean.cliente.formaDePagoID}" style="margin: 10px;"  >
                                     <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
                                 </p:selectOneMenu>
-
-                        <p:separator />
-
-                        <p:outputLabel value=" // Cuenta Corriente //" style="color: #0074B1;"  />
+                        </row><br></br>
+                            
+                        </p:column>
                         
-                        <p:outputLabel value="Día de Pago: " />
-                        <p:calendar id="diaDePago" value="#{clienteBean.cliente.diaDePago}"  >
-                           <f:convertDateTime pattern="yyyy/mm/dd"/>  
-                        </p:calendar>
-
-                        <p:outputLabel value="limite: "  />
-                        <p:inputText id="limiteActual" value="#{clienteBean.cuentasCorrientes.limite}" title="salgo" required="true" requiredMessage="debe ingresar el saldo"/>
-                    
                     </p:panelGrid>
-                    
-                    <p:commandButton actionListener="#{clienteBean.CrearClienteNuevo()}" value="Crear" update="display,:ClienteBuenoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteBuenoCreateDialog');"/>
+
+                    <p:commandButton style="margin-right: 5px;" actionListener="#{clienteBean.CrearClienteNuevo()}" value="Crear" update="display,:ClienteBuenoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteBuenoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ClienteBuenoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

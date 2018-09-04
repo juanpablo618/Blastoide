@@ -62,7 +62,7 @@
                 </h:form>
                 
             <h:form id="tablaDetalleVenta" style="display: inline;">    
-                <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
+                <p:dataTable id="detalle" value="#{ventaBean.getListaInvertida()}" var="det" 
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                              rowsPerPageTemplate="10,20"

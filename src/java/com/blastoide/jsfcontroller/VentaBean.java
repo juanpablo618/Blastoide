@@ -58,10 +58,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void setProductoPorNombre(Productos productoPorNombre) {
         this.productoPorNombre = productoPorNombre;
     }
-    
-    
-    
-    
+        
     public String getProductoCondBarra() {
         return productoCondBarra;
     }
@@ -135,8 +132,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     
     public List<DetalleVenta> getLista() {
     
+        return lista;
+    }
+    
+    public List<DetalleVenta> getListaInvertida() {
         Collections.reverse(lista);
-        
         return lista;
     }
 
@@ -671,7 +671,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
         for (int i=0 ; i<ventaBean.getLista().size();i++){
             
             if(det.getProducto().getCodigo().equals(ventaBean.getLista().get(i).getProducto().getCodigo())){
-                    int cantidadTotal = ventaBean.getLista().get(i).getCantidad();
+                int cantidadTotal = ventaBean.getLista().get(i).getCantidad();
                         cantidadTotal = cantidadTotal +1;
                     det.setCantidad(cantidadTotal);
                     ventaBean.getLista().remove(i);
