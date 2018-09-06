@@ -12,9 +12,9 @@
             <h:form id="UsersViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsersLabel_uname}"/>
-                        <h:outputText value="#{usersController.selected.uname}" title="#{bundle.ViewUsersTitle_uname}"/>
-                        <h:outputText value="#{bundle.ViewUsersLabel_password}"/>
+                        <h:outputText value="usuario:"/>
+                        <h:outputText value="#{usersController.selected.uname}"/>
+                        <h:outputText value="contraseña:"/>
                         <h:outputText value="#{usersController.selected.password}" title="#{bundle.ViewUsersTitle_password}"/>
                         <h:outputText value="#{bundle.ViewUsersLabel_rol}"/>
                         <h:outputText value="#{usersController.selected.rol}" title="#{bundle.ViewUsersTitle_rol}"/>

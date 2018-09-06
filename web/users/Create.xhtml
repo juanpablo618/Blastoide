@@ -12,9 +12,9 @@
             <h:form id="UsersCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateUsersLabel_uname}" for="uname" />
+                        <p:outputLabel value="usuario:" for="uname" />
                         <p:inputText id="uname" value="#{usersController.selected.uname}" title="#{bundle.CreateUsersTitle_uname}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_uname}"/>
-                        <p:outputLabel value="#{bundle.CreateUsersLabel_password}" for="password" />
+                        <p:outputLabel value="contraseña:" for="password" />
                         <p:inputText id="password" value="#{usersController.selected.password}" title="#{bundle.CreateUsersTitle_password}" required="true" requiredMessage="#{bundle.CreateUsersRequiredMessage_password}"/>
                         <p:outputLabel value="#{bundle.CreateUsersLabel_rol}" for="rol" />
                         <p:selectOneMenu id="rol" value="#{usersController.selected.rol}" >

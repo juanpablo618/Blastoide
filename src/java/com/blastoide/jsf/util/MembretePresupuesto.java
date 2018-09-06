@@ -62,7 +62,7 @@ public class MembretePresupuesto {
 
         document.add(Chunk.NEWLINE);
 
-        Paragraph parrafo4 = new Paragraph("Nombre: ".concat(venta.getCliente().getNombre()).concat(". Apellido: ").concat(venta.getCliente().getApellido()).concat(". Razon social: ").concat(venta.getCliente().getRazonSocial()) );
+        Paragraph parrafo4 = new Paragraph("Nombre y Apellido: ".concat(venta.getCliente().getNombre()).concat(" ").concat(venta.getCliente().getApellido()).concat(". Razon social: ").concat(venta.getCliente().getRazonSocial()) );
         document.add(parrafo4);
 
                 String formato="dd-MM-yyyy";
