@@ -421,6 +421,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             this.setNombreDelDocumento(nombreDelDocumento);
             
               MembreteFactura doc = new MembreteFactura();
+              System.out.println("lista: " + lista.toString());
+              System.out.println("venta: " + venta.toString());
+                                          
               doc.createPdf(nombreDelDocumento,lista,venta);
               
             

@@ -45,7 +45,7 @@ public class CajaDiariaDAO extends DAO{
             st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
                               System.err.println("llego aca al insert de cajaDiariaDAO");
                 
-                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
+                st.setString(1, "Cte: ".concat(venta.getCliente().getNombre()).concat(" F.Pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());

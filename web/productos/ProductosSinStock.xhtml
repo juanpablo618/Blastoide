@@ -19,7 +19,7 @@
                                  selectionMode="single" selection="#{productosController.selected}"
                                  paginator="true"
                                  rowKey="#{item.productoID}"
-                                 rows="20"
+                                 rows="30"
                                  rowsPerPageTemplate="20,30,40,50"
                                  emptyMessage="no existen productos con stock minimo"
                                  resizableColumns="true"
@@ -29,19 +29,19 @@
                         <p:ajax event="rowSelect"   update="editButton"/>
                         <p:ajax event="rowUnselect" update="editButton"/>
 
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:0.9em; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:0.9em; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:0.9em; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Precio de venta"/>
                             </f:facet>
@@ -49,13 +49,13 @@
                                 <f:convertNumber pattern="#0.00"/>
                             </h:outputText>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:0.9em; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Stock Actual"/>
                             </f:facet>
                             <h:outputText value="#{item.stockactual}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:0.9em; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Stock minimo"/>
                             </f:facet>
