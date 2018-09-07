@@ -63,11 +63,7 @@ public class Domicilios implements Serializable {
     @JoinColumn(name = "localidadID", referencedColumnName = "LocalidadID")
     @ManyToOne(optional = false)
     private Localidades localidadID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "realdomicilioID")
-    private Collection<Proveedores> proveedoresCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fiscaldomicilioID")
-    private Collection<Proveedores> proveedoresCollection1;
-
+    
     public Domicilios() {
     }
 
@@ -131,23 +127,7 @@ public class Domicilios implements Serializable {
         this.localidadID = localidadID;
     }
 
-    @XmlTransient
-    public Collection<Proveedores> getProveedoresCollection() {
-        return proveedoresCollection;
-    }
-
-    public void setProveedoresCollection(Collection<Proveedores> proveedoresCollection) {
-        this.proveedoresCollection = proveedoresCollection;
-    }
-
-    @XmlTransient
-    public Collection<Proveedores> getProveedoresCollection1() {
-        return proveedoresCollection1;
-    }
-
-    public void setProveedoresCollection1(Collection<Proveedores> proveedoresCollection1) {
-        this.proveedoresCollection1 = proveedoresCollection1;
-    }
+    
 
     @Override
     public int hashCode() {

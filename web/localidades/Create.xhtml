@@ -7,16 +7,15 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-
         <p:dialog id="LocalidadesCreateDlg" widgetVar="LocalidadesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLocalidadesTitle}">
             <h:form id="LocalidadesCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localidadesController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateLocalidadesLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{localidadesController.selected.nombre}" title="#{bundle.CreateLocalidadesTitle_nombre}" required="true" requiredMessage="#{bundle.CreateLocalidadesRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.CreateLocalidadesLabel_codigoPostal}" for="codigoPostal" />
+                        <p:outputLabel value="Codigo Postal" for="codigoPostal" />
                         <p:inputText id="codigoPostal" value="#{localidadesController.selected.codigoPostal}" title="#{bundle.CreateLocalidadesTitle_codigoPostal}" required="true" requiredMessage="#{bundle.CreateLocalidadesRequiredMessage_codigoPostal}"/>
-                        <p:outputLabel value="#{bundle.CreateLocalidadesLabel_provinciaID}" for="provinciaID" />
+                        <p:outputLabel value="Provincia" for="provinciaID" />
                         <p:selectOneMenu id="provinciaID" value="#{localidadesController.selected.provinciaID}" required="true" requiredMessage="#{bundle.EditLocalidadesRequiredMessage_provinciaID}">
                             <f:selectItems value="#{provinciasController.itemsAvailableSelectOne}"
                                            var="provinciaIDItem"

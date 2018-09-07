@@ -44,19 +44,11 @@
                         <p:inputText id="web" value="#{proveedoresController.selected.web}" title="#{bundle.EditProveedoresTitle_web}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_web}"/>
                         
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
-                        <p:selectOneMenu id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}" style="width: 85%">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
-                                           var="realdomicilioIDItem"
-                                           itemValue="#{realdomicilioIDItem}"/>
-                        </p:selectOneMenu>
+                        <p:inputText id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" title="#{bundle.EditProveedoresTitle_apellido}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}"/>
+                       
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_fiscaldomicilioID}" for="fiscaldomicilioID"/>
-                        <p:selectOneMenu id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}"  style="width: 85%">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{domiciliosController.itemsAvailableSelectOne}"
-                                           var="fiscaldomicilioIDItem"
-                                           itemValue="#{fiscaldomicilioIDItem}"/>
-                        </p:selectOneMenu>
+                        <p:inputText id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" title="#{bundle.EditProveedoresTitle_apellido}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}"/>
+                        
                         <p:outputLabel value="#{bundle.EditProveedoresLabel_condicionIVAID}" for="condicionIVAID" />
                         <p:selectOneMenu id="condicionIVAID" value="#{proveedoresController.selected.condicionIVAID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_condicionIVAID}" style="width: 85%">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

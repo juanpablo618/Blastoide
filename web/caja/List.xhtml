@@ -16,7 +16,17 @@
             <h:form id="CajaListForm">
                 <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
                 
-                <p:panel header="Caja Diaria">
+               <div style="background-color:#f50000;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                             
+                <b><h:outputText style="color: white" value="Saldo de efectivo diario: " />
+                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
+                            <f:convertNumber pattern="#00.00" />
+                     </h:outputText></b>
+               
+               </div> <br></br>           
+            
+                
+                <p:panel header="Caja Diaria:">
                                          
                     <p:dataTable id="datalist" value="#{cajaController.itemsFechaDeHoy}" var="item"
                                  selectionMode="single" selection="#{cajaController.selected}"
@@ -88,11 +98,6 @@
                 </p:panel>
             </h:form>
             <br></br>
-            <h:outputText style="color: white" value="Saldo de efectivo diario: " />
-                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
-                            <f:convertNumber pattern="#00.00" />
-                     </h:outputText>
-                            
             <ui:include src="Create.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

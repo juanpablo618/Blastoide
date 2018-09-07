@@ -105,12 +105,10 @@ public class Proveedores implements Serializable {
     @JoinColumn(name = "tipoDocumentoID", referencedColumnName = "tipoDocumentoID")
     @ManyToOne(optional = false)
     private TipoDocumento tipoDocumentoID;
-    @JoinColumn(name = "Real_domicilioID", referencedColumnName = "DomiciliosID")
-    @ManyToOne(optional = false)
-    private Domicilios realdomicilioID;
-    @JoinColumn(name = "Fiscal_domicilioID", referencedColumnName = "DomiciliosID")
-    @ManyToOne(optional = false)
-    private Domicilios fiscaldomicilioID;
+    @Column(name = "Real_domicilioID")
+    private String realdomicilioID;
+    @Column(name = "Fiscal_domicilioID")
+    private String fiscaldomicilioID;
     @JoinColumn(name = "condicionIVAID", referencedColumnName = "condicionIVAID")
     @ManyToOne(optional = false)
     private CondicionIVA condicionIVAID;
@@ -241,19 +239,19 @@ public class Proveedores implements Serializable {
         this.tipoDocumentoID = tipoDocumentoID;
     }
 
-    public Domicilios getRealdomicilioID() {
+    public String getRealdomicilioID() {
         return realdomicilioID;
     }
 
-    public void setRealdomicilioID(Domicilios realdomicilioID) {
+    public void setRealdomicilioID(String realdomicilioID) {
         this.realdomicilioID = realdomicilioID;
     }
 
-    public Domicilios getFiscaldomicilioID() {
+    public String getFiscaldomicilioID() {
         return fiscaldomicilioID;
     }
 
-    public void setFiscaldomicilioID(Domicilios fiscaldomicilioID) {
+    public void setFiscaldomicilioID(String fiscaldomicilioID) {
         this.fiscaldomicilioID = fiscaldomicilioID;
     }
 

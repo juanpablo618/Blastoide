@@ -132,7 +132,7 @@ public class ClienteBueno implements Serializable {
     }
     
     public String getNombreYApellidoYRazonSocial() {
-        return "nombre: ".concat(nombre).concat(" ").concat(apellido).concat(" / RS: ").concat(razonSocial);
+        return nombre.concat(" ").concat(apellido).concat(" / ").concat(razonSocial);
     }
 
     public void setNombre(String nombre) {

@@ -15,10 +15,9 @@
                                  selectionMode="single" selection="#{clienteBuenoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.clienteID}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="20"
+                                 rowsPerPageTemplate="20,30,40,50"
                                  emptyMessage="No existen clientes con cuentas corrientes."
-                                 resizableColumns="true"
                                  tableStyle="table-layout: auto;"
                                  >
 
@@ -94,15 +93,6 @@
                                 <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
-                        </p:column>
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Debe:"/>
-                            </f:facet>
-
-                            <h:outputText id="cantidadQueDebe"  value="#{cuentaCorrienteBean.buscarCantidadQueDebe(item.cuentaCorrienteID)}"/>
-
                         </p:column>
                         
                         <p:column>

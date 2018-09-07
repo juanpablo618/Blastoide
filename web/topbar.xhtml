@@ -23,12 +23,10 @@
     </style>
 
     <h:form>
-
         <p:toolbar id="toolbarMenu" style="font-weight: bold; border: none">
             <f:facet name="left"  >
                 <h:form>  
                     <p:growl id="messages"/>
-                    
                      <p:toolbarGroup>
                          <h:graphicImage value="#{configuracionesGeneralesController.getFoto_home()}" width="45" height="40" style="margin-bottom: -13px;"/>
                          <p:menuButton value="INICIO">
@@ -53,7 +51,10 @@
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
                             <p:menuitem value="Clientes" outcome="/cliente/AbrirCuentaCorriente.xhtml" rendered="#{login.rol eq 'administrador'}"/>
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
-                            <p:menuitem value="Cta Corriente Clientes" outcome="/cliente/ListarDetalleCtaCorriente.xhtml" rendered="#{login.rol eq 'administrador'}" />                        
+                            <p:menuitem value="Cta Corriente Clientes" outcome="/cliente/ListarDetalleCtaCorriente.xhtml" rendered="#{login.rol eq 'administrador'}" /> 
+                            <p:separator rendered="#{login.rol eq 'administrador'}"/>
+                            <p:menuitem value="Formas de pago" outcome="/formaDePago/List" rendered="#{login.rol eq 'administrador'}" />
+                            <p:separator rendered="#{login.rol eq 'administrador'}" />
                         </p:menuButton>
                          <p:separator />
                          <h:graphicImage value="#{configuracionesGeneralesController.getFoto_product()}" width="45" height="40" style="margin-bottom: -13px;"/>
@@ -63,40 +64,23 @@
                             <p:menuitem value="Productos Sin Stock" outcome="/productos/ProductosSinStock.xhtml"  />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
                             <p:menuitem value="Productos Por proveedor" outcome="/productoXProveedor/List.xhtml"  />
-                            <p:separator />
-                            <p:menuitem value="Rubro" outcome="/tiposRubros/List.xhtml"  /> 
+                            <p:separator rendered="#{login.rol eq 'administrador'}" />
+                            <p:menuitem value="Rubros" outcome="/tiposRubros/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
                         </p:menuButton>
                          <p:separator />
                          <h:graphicImage value="#{configuracionesGeneralesController.getFoto_cart()}" width="45" height="40" style="margin-bottom: -13px;"/>
                          <p:menuButton value="COMPRAS" >
                             <p:menuitem value="Proveedores" outcome="/proveedores/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Rubro Proveedor" outcome="/tiposRubros/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Domicilio Proveedor" outcome="/domicilios/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Ordenes de compra" outcome="/ordenDeCompra/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Estados" outcome="/estado/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                        </p:menuButton>
+                         </p:menuButton>
                          <p:separator />
                          <h:graphicImage value="#{configuracionesGeneralesController.getFoto_production()}" width="45" height="40" style="margin-bottom: -13px;"/>
-                         <p:menuButton value="EN PRODUCCIÓN" >
-                            <p:menuitem value="Tipos de Eventualidad" outcome="/tiposEventualidad/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Perdidas por Eventualidad" outcome="/eventualidades/List.xhtml" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
-                            <p:menuitem value="Formas de pago" outcome="/formaDePago/List" rendered="#{login.rol eq 'administrador'}" />
-                            <p:separator rendered="#{login.rol eq 'administrador'}" />
+                         <p:menuButton value="PRODUCCIÓN" >
                             <p:menuitem value="Configuraciones Generales" outcome="/configuracionesGenerales/List" rendered="#{login.rol eq 'administrador'}" />
                             <p:separator rendered="#{login.rol eq 'administrador'}" />
                         </p:menuButton>
                      </p:toolbarGroup>    
-                    
                 </h:form>
-
             </f:facet>
-
             <f:facet name="right">  
                 <p:toolbarGroup>
                     <p:button  icon="ui-icon-home" title="Home" outcome="/index.xhtml"/>
@@ -106,7 +90,6 @@
                     <p:button  icon="ui-icon-document" title="Manual Usuario"/>
                     <p:separator/>                
                     <p:growl id="messages" showDetail="false"/>
-
                     <p:menuButton value="#{login.user}" >
                         <p:menuitem>
                             <h:commandLink action="#{login.logout}" value="SALIR"> </h:commandLink>
@@ -116,6 +99,5 @@
                 </p:toolbarGroup>
             </f:facet>    
         </p:toolbar>
-
     </h:form>
 </ui:composition>
