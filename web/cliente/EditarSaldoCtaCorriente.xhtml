@@ -20,7 +20,6 @@
                         <p:outputLabel value="#{bundle.EditClienteBuenoLabel_tipoCliente}" for="tipoCliente" />
                         <p:inputText id="tipoCliente" value="#{clienteBuenoController.selected.tipoClienteID}" title="#{bundle.EditClienteBuenoTitle_tipoCliente}" />
                     </p:panelGrid>
-                    
                     <p:commandButton actionListener="#{domiciliosController.update}" value="#{bundle.Save}" update="display,:clientesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'clientesEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="clientesEditDialog.hide()"/>
                 </h:panelGroup>

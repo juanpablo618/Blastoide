@@ -39,15 +39,13 @@
                             <f:convertNumber pattern="#0.00" />
                         </p:inputText>
                         
-                        <p:outputLabel value="#{bundle.EditProductosLabel_stockactual}" for="stockactual" />
+                        <p:outputLabel value="stock actual:" for="stockactual" />
                         <p:inputText id="stockactual" value="#{productosController.selected.stockactual}" title="#{bundle.EditProductosTitle_stockactual}" />
                         
-                        <p:outputLabel value="#{bundle.EditProductosLabel_stockMinimo}" for="stockMinimo" />
+                        <p:outputLabel value="stock minimo:" for="stockMinimo" />
                         <p:inputText id="stockMinimo" value="#{productosController.selected.stockMinimo}" title="#{bundle.EditProductosTitle_stockMinimo}" />
                         
                         <p:outputLabel value="Rubro:" for="tipoRubroID" />
-                        
-
                         
                         <p:selectOneMenu id="tipoRubroID" value="#{productosController.selected.tipoRubroID}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

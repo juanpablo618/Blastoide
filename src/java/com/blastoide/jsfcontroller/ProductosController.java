@@ -78,7 +78,7 @@ public class ProductosController implements Serializable {
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ProductosUpdated"));
     }
-
+    
     public void updateSinNotificacion() {
         persistirSinMensaje(PersistAction.UPDATE);
     }

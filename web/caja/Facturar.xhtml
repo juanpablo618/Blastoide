@@ -7,142 +7,147 @@
       xmlns:p="http://primefaces.org/ui">
 
 
-    <ui:composition template="/indexAdmin.xhtml">
+    <ui:composition template="/indexAdmin.xhtml" >
         <ui:define name="body">
-            
-            <f:event type="preRenderView" listener="#{clienteBean.listar('F')}" />
-            
-            <h:form id="frmCliente" style="display: inline;">
-                #{ventaBean.venta.setEmpleado(login.user)}
-                #{ventaBean.empezarVentaActual()}
-                
-                <p:column>
-                    <br></br>
-                     <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold; padding-right: 163px">Cliente: </h:outputLabel>
-            
-                     <p:selectOneMenu id="seleccionarCliente" value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter" style="width: 470px;" filter="true" filterMatchMode="startsWith" >
-                         <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombreYApellidoYRazonSocial}" itemDescription="#{cli.apellido}"  itemValue="#{cli}" />
-                        <p:ajax listener="#{ventaBean.transferir()}" update="formadepagoID" />
-                     </p:selectOneMenu>
-                </p:column>
-                
-                <br></br>
-                <p:column id="columnFP">
-                    <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;margin: 10px">FORMA DE PAGO: </h:outputLabel>
 
-                    <p:selectOneMenu  id="formadepagoID" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter" style="margin: 10px;" >
-                        <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}"  />
-                        <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
-                        <p:ajax listener="#{ventaBean.CambiarFormaDePago()}" update=":tablaDetalleVenta:detalle" />
-                    </p:selectOneMenu>
-                </p:column>
-            </h:form>        
-            
+            <div style="margin-right:1em;"> 
+
+                <f:event type="preRenderView" listener="#{clienteBean.listar('F')}" />
+
+                <h:form id="frmCliente" style="display: inline;">
+                    #{ventaBean.venta.setEmpleado(login.user)}
+                    #{ventaBean.empezarVentaActual()}
+
+                    <p:column>
+                        <br></br>
+                        <h:outputLabel class="sidebar" style="color: white; font-size: 1.5em;font-family: bolt; font-weight:bold; padding-right: 1em">Cliente:</h:outputLabel>
+
+                        <p:selectOneMenu id="seleccionarCliente" value="#{ventaBean.venta.cliente}" converter="omnifaces.SelectItemsConverter" style="width: 470px;" filter="true" filterMatchMode="startsWith" >
+
+                            <f:selectItems value="#{clienteBuenoController.items}" var="cli" itemLabel="#{cli.nombreYApellidoYRazonSocial}" itemDescription="#{cli.apellido}"  itemValue="#{cli}" />
+                            <p:ajax listener="#{ventaBean.transferir()}" update="formadepagoID" />
+                        </p:selectOneMenu>
+                    </p:column>
+
+                    <br></br>
+                    <p:column id="columnFP">
+
+                        <h:outputLabel class="sidebar" style="color: white; font-size: 1.5em;font-family: bolt; font-weight:bold;margin: 20px;">Pago: </h:outputLabel>
+
+                        <p:selectOneMenu  id="formadepagoID" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter" style="margin: 10px;" >
+                            <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}"  />
+                            <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                            <p:ajax listener="#{ventaBean.CambiarFormaDePago()}" update=":tablaDetalleVenta:detalle" />
+                        </p:selectOneMenu>
+                    </p:column>
+                </h:form>        
+
                 <h:form  id="formDeProducto" style="display: inline;">
-                    <p:panel id="elegirProd" style="background: #496479;">
-                
-                       <p:focus context="elegirProd"/>
-                            <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold;">Producto: </h:outputLabel>
-                            <p:inputText value="#{ventaBean.productoCondBarra}" id="productoCodBarra" style="margin-right: 10px">  </p:inputText> 
-                        
-                     <h:outputLabel class="sidebar" style="color: white; font-size: 1.7em;font-family: bolt; font-weight:bold; padding-right: 5px">Filtro por nombre: </h:outputLabel>
-            
-                     <p:selectOneMenu  id="seleccionarProductoPorNombre" value="#{ventaBean.productoPorNombre}"  converter="omnifaces.SelectItemsConverter" style="width: 200px;" filter="true" filterMatchMode="startsWith" >
-                         <f:selectItem itemLabel="buscar por nombre"  itemValue=""  />
-                         <f:selectItems value="#{productosController.items}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto}" />
-                     </p:selectOneMenu>
-                            
+                    <p:panel id="elegirProd" style="background-color: transparent;">
 
-                            
-                            <h:commandButton id="botonAgregar" value="Agregar" action="#{ventaBean.agregarPorCodBarraOPorNombre(ventaBean.productoCondBarra)}"
-                            style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
-                    
+                        <p:focus context="elegirProd"/>
+                        <div>     
+                            <div align="left" style="margin-right: 8em;">        
+
+                                <h:outputLabel class="sidebar" style="color: white; font-size: 1.3em;font-family: bolt; font-weight:bold;margin-left: -1em;">Producto: </h:outputLabel>
+                                <p:inputText value="#{ventaBean.productoCondBarra}" id="productoCodBarra" style=" margin-right: 10em; ">  </p:inputText> 
+                                <h:outputLabel class="sidebar" style="color: white; font-size: 1.3em;font-family: bolt; font-weight:bold; padding-right: 5px;">Filtro por nombre: </h:outputLabel>
+
+                                <p:selectOneMenu  id="seleccionarProductoPorNombre" value="#{ventaBean.productoPorNombre}"  converter="omnifaces.SelectItemsConverter" style="width: 300px;" filter="true" filterMatchMode="startsWith" >
+                                    <f:selectItem itemLabel=" -- Producto por nombre --"  noSelectionOption="true"/>
+                                    <f:selectItems value="#{productosController.items}" var="producto" itemLabel="#{producto.nombre}" itemValue="#{producto}" />
+                                </p:selectOneMenu>
+
+                                <h:commandButton id="botonAgregar" value="+ Agregar" action="#{ventaBean.agregarPorCodBarraOPorNombre(ventaBean.productoCondBarra)}"
+                                                 style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px; margin-bottom: -10px; background-color: #4B814B; color: white; border-radius: 7px 7px 7px 7px;" />
+                            </div>
+                        </div>     
                     </p:panel>        
-                    <br></br>
+
                 </h:form>
-                
-            <h:form id="tablaDetalleVenta" style="display: inline;">    
-                <p:dataTable id="detalle" value="#{ventaBean.lista}" var="det" 
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="10,20"
-                             emptyMessage="no hay elementos en esta venta"
-                             resizableColumns="true" 
-                             tableStyle="white-space: nowrap; table-layout: auto;"
-                             >
 
-                    <p:column headerText="Cantidad" style="font-size:18px;">
+                <h:form id="tablaDetalleVenta" style="display: inline;">    
+                    <p:dataTable id="detalle" value="#{ventaBean.getListaInvertida()}" var="det" 
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="10,20"
+                                 emptyMessage="no hay elementos en esta venta"
+                                 resizableColumns="true" 
+                                 tableStyle="white-space: nowrap; table-layout: auto;"
+                                 >
 
-                        <center>
-                            <p:inputText value="#{det.cantidad}" size="5" style="text-align: center"/>
-                            <h:commandButton  action="#{ventaBean.cambiarDetalleVenta(det,det.cantidad)}" value="EDITAR" 
-                                              style="margin: 4px; padding: 3px;" />
-                        </center>
-                    </p:column>
+                        <p:column headerText="Cantidad" style="font-size:18px;">
 
-                    <p:column headerText="Código" style="font-size:15px;font-weight: bold">
-                        #{det.producto.codigo}
-                    </p:column>
-                    
-                    <p:column headerText="Producto" style="font-weight: bold; font-size:15px;">
-                        <h:outputText style="font-weight: bold ;" value="#{det.producto.nombre}" />
-                    </p:column>
-                    
-                    <p:column headerText="Marca" style="font-weight: bold; font-size:15px;">
-                        #{det.producto.marca}
-                    </p:column>
-                    
-                    <p:column headerText="Caracteristica" style="font-weight: bold; font-size:15px;">
-                        #{det.producto.caracteristica}
-                    </p:column>
-                    
-                    <p:column headerText="Fragancia" style="font-weight: bold; font-size:15px;">
-                        #{det.producto.fragancia}
-                    </p:column>
+                            <center>
+                                <p:inputText value="#{det.cantidad}" size="5" style="text-align: center"/>
+                                <h:commandButton  action="#{ventaBean.cambiarDetalleVenta(det,det.cantidad)}" value="EDITAR" 
+                                                  style="margin: 4px; padding: 3px;" />
+                            </center>
+                        </p:column>
 
-                    <p:column headerText="Medida" style="font-weight: bold; font-size:15px;">
-                        #{det.producto.medida}
-                    </p:column>
+                        <p:column headerText="Código" style="font-size:15px;font-weight: bold">
+                            #{det.producto.codigo}
+                        </p:column>
 
-                    <p:column headerText="P.U." style="font-weight: bold; font-size:15px;">
-                        <h:outputText value="#{det.producto.precioFinalAFacturar}" >
+                        <p:column headerText="Producto" style="font-weight: bold; font-size:15px;">
+                            <h:outputText style="font-weight: bold ;" value="#{det.producto.nombre}" />
+                        </p:column>
+
+                        <p:column headerText="Marca" style="font-weight: bold; font-size:15px;">
+                            #{det.producto.marca}
+                        </p:column>
+
+                        <p:column headerText="Caracteristica" style="font-weight: bold; font-size:15px;">
+                            #{det.producto.caracteristica}
+                        </p:column>
+
+                        <p:column headerText="Fragancia" style="font-weight: bold; font-size:15px;">
+                            #{det.producto.fragancia}
+                        </p:column>
+
+                        <p:column headerText="Medida" style="font-weight: bold; font-size:15px;">
+                            #{det.producto.medida}
+                        </p:column>
+
+                        <p:column headerText="P.U." style="font-weight: bold; font-size:15px;">
+                            <h:outputText value="#{det.producto.precioFinalAFacturar}" >
+                                <f:convertNumber currencySymbol="$" type="currency" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="P.T." style="font-weight: bold; font-size:15px;">
+                            <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
+                                <f:convertNumber currencySymbol="$" type="currency" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column headerText="accion" style="font-weight: bold; font-size:15px;">
+                            <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.BorrarDetalle(det)}" update="detalle"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    <br></br>
+                    <div align="right">
+                        <h:outputText style="font-weight: bold;font-size:25px;color:white ; margin-right: 18px; " value="Total: "/>
+                        <h:outputText style="font-weight: bold;font-size:25px;color:white" value="#{ventaBean.mostrarMontoTotalDeLaVenta()}" >
                             <f:convertNumber currencySymbol="$" type="currency" />
                         </h:outputText>
-                    </p:column>
+                        <br></br>
+                        <br></br>
 
-                    <p:column headerText="P.T." style="font-weight: bold; font-size:15px;">
-                        <h:outputText value="#{ det.producto.precioFinalAFacturar * det.cantidad}" >
-                            <f:convertNumber currencySymbol="$" type="currency" />
-                        </h:outputText>
-                    </p:column>
+                        <h:commandButton value="cancelar" action="#{ventaBean.borrarVentaActual()}"
+                                         style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; background-color: red;color: white; border-radius: 7px 7px 7px 7px;" />
 
-                    <p:column headerText="accion" style="font-weight: bold; font-size:15px;">
-                        <p:commandButton value="borrar" icon="ui-icon-trash" actionListener="#{ventaBean.BorrarDetalle(det)}" update="detalle"/>
-                    </p:column>
+                        <h:commandButton value="Presupuestar" actionListener="#{ventaBean.presupuestar()}"
+                                         action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #9FCBD4;color: white; border-radius: 7px 7px 7px 7px;" />
 
-                </p:dataTable>
-                <br></br>
-                    
-                <h:outputText style="font-weight: bold;float:left;font-size:25px;color:#ffffff ; margin-right: 18px; " value="Total: "/>
-                <h:outputText style="font-weight: bold;float:left;font-size:25px;color:#ffffff " value="#{ventaBean.mostrarMontoTotalDeLaVenta()}" >
-                        <f:convertNumber currencySymbol="$" type="currency" />
-                </h:outputText>
-                <br></br>
-                <br></br>
-                               
-                <h:commandButton id="botonFacturar" value="FACTURAR" actionListener="#{ventaBean.facturar()}"
-                                 action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #a7e14f; border-color: #a7e14f " />
-                
-                <h:commandButton value="PRESUPUESTAR" actionListener="#{ventaBean.presupuestar()}"
-                    action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #4fb2e1 " />
-  
-                <h:commandButton value="nueva venta" action="#{ventaBean.borrarVentaActual()}"
-                   style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 40% " />
-                    
-                
-            </h:form>
-
+                        <h:commandButton   id="botonFacturar" value="Vender" actionListener="#{ventaBean.facturar()}"
+                                         action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4B814B; border-color: #a7e14f; padding-left: 2%; color: white; border-radius: 7px 7px 7px 7px;" />
+                    </div> 
+                </h:form>
+            </div>
         </ui:define>
+
     </ui:composition>
 
 </html>

@@ -8,20 +8,19 @@
 
     <ui:composition template="/indexAdmin.xhtml">
 
-
         <ui:define name="title">
             <h:outputText value="#{bundle.ListLocalidadesTitle}"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
             <h:form id="LocalidadesListForm" style="width: 105%;">
-                <p:panel header="#{bundle.ListLocalidadesTitle}">
+                <p:panel header="Localidades">
                     <p:dataTable id="datalist" value="#{localidadesController.items}" var="item"
                                  selectionMode="single" selection="#{localidadesController.selected}"
                                  paginator="true"
                                  rowKey="#{item.localidadID}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rows="20"
+                                 rowsPerPageTemplate="20,30,40,50"
                                  resizableColumns="true"
                                  >
 
@@ -30,13 +29,13 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="nombre"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="codigo postal"/>
+                                <h:outputText value="Codigo Postal"/>
                             </f:facet>
                             <h:outputText value="#{item.codigoPostal}"/>
                         </p:column>
@@ -55,7 +54,6 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

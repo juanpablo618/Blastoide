@@ -52,7 +52,7 @@
 
     <h:body>
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="112" style="background-color: #dae3e9; border: none" >
+            <p:layoutUnit position="north"  style="background-color: #dae3e9; border: none" >
                 <ui:include src="topbar.xhtml"/>
             </p:layoutUnit>
 
@@ -66,28 +66,22 @@
                     <div style="width: 100%; align-items: center; margin-left: 8px;">
 
                         <ui:insert name="body">
-                            <center style="margin-top: 10%;">
+                            <center style="margin-top: 1%;">
 
                                 <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
                             </center>
                             <center>
                                 <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">BIENVENIDO</h:outputLabel><br></br>
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">Administrador: #{login.user}</h:outputLabel>
+                                <h:outputLabel  style="color: white; text-align: center;font-size: 1.8em;font-family: bolt">ADMINISTRADOR: #{login.user}</h:outputLabel>
                             </center>
                             <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt; margin-top: 3%;" >
                                 <p:clock pattern="dd/MM/yyyy || HH:mm " />
                             </h:form>
-                            <center style="margin-top: 5%; border-style: solid; border-color: #01B2A0;">
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
-                            </center>
                             <br></br>
                             <center >
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>
+                                <h:outputLabel  style="margin: 15%;color: white; text-align: center;font-size: 1.5em;font-family: bolt">Cant. de productos: #{productosController.items.size()} | Cant. de Ordenes de Compra: #{ordenDeCompraController.items.size()} | Cant. de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
                             </center>
-                            <br></br>
-                            <center >
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
-                            </center>
+                            
                         </ui:insert>
                     </div>
                 </div>

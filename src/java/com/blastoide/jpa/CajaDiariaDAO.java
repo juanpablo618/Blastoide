@@ -45,29 +45,27 @@ public class CajaDiariaDAO extends DAO{
             st = this.getCn().prepareStatement("insert into caja (descripcion, ingreso, fecha) values(?,?,?)");
                               System.err.println("llego aca al insert de cajaDiariaDAO");
                 
-                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
+                st.setString(1, "Cliente: ".concat(venta.getCliente().getNombre()).concat(" "+venta.getCliente().getApellido()).concat(" F.Pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());
                 
             }else{
                System.out.println(" ");
-               System.out.println("la forma de pago es NO ES NI contado NI contado efectivo");           
+               System.out.println("la forma de pago NO ES NI contado NI contado efectivo");           
                st = this.getCn().prepareStatement("insert into caja (descripcion, CtaCorriente, fecha) values(?,?,?)");
                                 System.err.println("llego aca al insert de cajaDiariaDAO");
                 
-                st.setString(1, "cliente: ".concat(venta.getCliente().getNombre()).concat(" forma de pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
+                st.setString(1, "Cliente: ".concat(venta.getCliente().getNombre()).concat(" "+venta.getCliente().getApellido()) .concat(" F.Pago: ").concat(formaDePagoController.getFormaDePago(venta.getFormadePagoID()).getNombre()));
                 st.setDouble(2, venta.getMonto());
                 st.setString(3, strDate);
                 System.err.println("st: "+st.toString());
-              
-           
            }
                 
          st.executeUpdate();
          st.close();
         
-         this.getCn().commit();
+        this.getCn().commit();
         System.err.println("entro al commit de cja Diario DAO ");
         } catch (Exception e) {
         this.getCn().rollback();
@@ -75,6 +73,6 @@ public class CajaDiariaDAO extends DAO{
         }finally{
             this.Cerrar();
         }
-    
     }
+    
 }

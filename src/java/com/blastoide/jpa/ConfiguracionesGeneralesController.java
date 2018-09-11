@@ -28,6 +28,46 @@ public class ConfiguracionesGeneralesController implements Serializable {
     private List<ConfiguracionesGenerales> items = null;
     private ConfiguracionesGenerales selected;
 
+    
+    private static final String foto_home = "http://localhost:8080/Blastoide_v2/faces/images/home.jpg";
+    private static final String foto_caja = "http://localhost:8080/Blastoide_v2/faces/images/caja.jpg";
+    private static final String foto_users = "http://localhost:8080/Blastoide_v2/faces/images/userss.jpg";
+    private static final String foto_product = "http://localhost:8080/Blastoide_v2/faces/images/product.jpg";
+    private static final String foto_cart = "http://localhost:8080/Blastoide_v2/faces/images/cart.jpg";
+    private static final String foto_production = "http://localhost:8080/Blastoide_v2/faces/images/production.jpg";
+
+    
+    public ConfiguracionesGeneralesFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public static String getFoto_home() {
+        return foto_home;
+    }
+
+    public static String getFoto_caja() {
+        return foto_caja;
+    }
+
+    public static String getFoto_users() {
+        return foto_users;
+    }
+
+    public static String getFoto_product() {
+        return foto_product;
+    }
+
+    public static String getFoto_cart() {
+        return foto_cart;
+    }
+
+    public static String getFoto_production() {
+        return foto_production;
+    }
+
+
+
+
     public ConfiguracionesGeneralesController() {
     }
 

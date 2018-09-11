@@ -10,6 +10,7 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
+        
         <style>
 
             .ui-state-disabled{
@@ -42,11 +43,7 @@
                 margin-top: -4.20%;
                 border-top-color: #000000;
             }
-            div.ui-layout-unit-content{
-                background-color: #ffffff
-            ;
-            height: 55px;
-            }
+            div.ui-layout-unit-content{background-color: #ffffff}
             .ui-panelgrid .ui-panelgrid-cell {
                 border: none;
             }
@@ -67,29 +64,23 @@
             <p:layoutUnit position="center" style="background-color: #ffffff">
                 <p:growl id="growl" showDetail="false" />
                 <div>
-
+                    
                     <div style="width: 100%; align-items: center; margin-left: 8px;">
 
                         <ui:insert name="body">
                             <center style="margin-top: 10%;">
+
                                 <h:graphicImage value="resources/images/MundoLimpieza.PNG" />
                             </center>
                             <center>
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt">Bienvenido #{login.user}</h:outputLabel>
-                                </center>
-                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt" >
-                                <h3 style="margin-top:0">Hora:</h3>
-                                <p:clock />
+                                <h:outputLabel value="BIENVENIDO"  style="color: white; text-align: center;font-size: 2.8em;font-family: bolt"/><br></br>
+                                <h:outputLabel value="Cajero: #{login.user}" style="color: white; text-align: center;font-size: 2.8em;font-family: bolt"/>
+                            </center>
+                            <h:form style="color: white; text-align: center;font-size: 2.0em;font-family: bolt; margin-top: 3%;" >
+                                <p:clock pattern="dd/MM/yyyy || HH:mm "/>
                             </h:form>
-                            <center style="margin-top: 10%;">
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de productos: #{productosController.items.size()}</h:outputLabel>
-                                </center>
-                                <center >
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de Ordenes de Compra: #{ordenDeCompraController.items.size()}</h:outputLabel>
-                                </center>
-                                <center >
-                                <h:outputLabel  style="color: white; text-align: center;font-size: 2.0em;font-family: bolt">Cantidad de clientes: #{clienteBuenoController.items.size()}</h:outputLabel>
-                                </center>
+
+
                         </ui:insert>
                     </div>
                 </div>
