@@ -62,10 +62,13 @@
                             
                         </p:column>
                         <p:column>
+                            
                             <f:facet name="header">
                                 <h:outputText value="Precio Costo:"/>
                             </f:facet>
-                            <h:outputText value="#{item.precioCosto}"/>
+                            <h:outputText value="#{item.precioCosto}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
                         </p:column>
                         
                         <f:facet name="footer">
@@ -78,7 +81,6 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
