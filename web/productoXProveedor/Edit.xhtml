@@ -12,20 +12,20 @@
             <h:form id="ProductoXProveedorEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productoXProveedorController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_proveedorID}" for="proveedorID" />
+                        <p:outputLabel value="Proveedor:" for="proveedorID" />
                         
                         <p:selectOneMenu id="proveedorID" value="#{productoXProveedorController.selected.proveedorID}" style="margin: 10px;">
                             <f:selectItems value="#{proveedoresController.itemsAvailableSelectOne}"
                                            var="tipoProveedorIDItem"
                                            itemValue="#{tipoProveedorIDItem.proveedorID}"/>
                         </p:selectOneMenu>                        
-                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_productoID}" for="productoID" />
+                        <p:outputLabel value="Producto:" for="productoID" />
                         <p:selectOneMenu id="productoID" value="#{productoXProveedorController.selected.productoID}" style="margin: 10px;">
                             <f:selectItems value="#{productosController.itemsAvailableSelectOne}"
                                            var="tipoProductoIDItem"
                                            itemValue="#{tipoProductoIDItem.productoID}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditProductoXProveedorLabel_precioCosto}" for="precioCosto" />
+                        <p:outputLabel value="Precio Costo:" for="precioCosto" />
                         <p:inputText id="precioCosto" value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.EditProductoXProveedorTitle_precioCosto}" required="true" requiredMessage="#{bundle.EditProductoXProveedorRequiredMessage_precioCosto}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{productoXProveedorController.update}" value="#{bundle.Save}" update="display,:ProductoXProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProductoXProveedorEditDialog');"/>

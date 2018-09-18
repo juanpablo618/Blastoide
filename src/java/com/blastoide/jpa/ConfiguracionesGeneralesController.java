@@ -29,12 +29,12 @@ public class ConfiguracionesGeneralesController implements Serializable {
     private ConfiguracionesGenerales selected;
 
     
-    private static final String foto_home = "http://localhost:8080/Blastoide_v2/faces/images/home.jpg";
-    private static final String foto_caja = "http://localhost:8080/Blastoide_v2/faces/images/caja.jpg";
-    private static final String foto_users = "http://localhost:8080/Blastoide_v2/faces/images/userss.jpg";
-    private static final String foto_product = "http://localhost:8080/Blastoide_v2/faces/images/product.jpg";
-    private static final String foto_cart = "http://localhost:8080/Blastoide_v2/faces/images/cart.jpg";
-    private static final String foto_production = "http://localhost:8080/Blastoide_v2/faces/images/production.jpg";
+    private static final String foto_home = "condicionIVA/resources/images/home.jpg";
+    private static final String foto_caja = "resources/images/caja.jpg";
+    private static final String foto_users = "resources/images/userss.jpg";
+    private static final String foto_product = "resources/images/product.jpg";
+    private static final String foto_cart = "resources/images/cart.jpg";
+    private static final String foto_production = "resources/images/production.jpg";
 
     
     public ConfiguracionesGeneralesFacade getEjbFacade() {
