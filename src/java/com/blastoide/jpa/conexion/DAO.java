@@ -20,7 +20,7 @@ private Connection cn;
     try {
         
             Class.forName("com.mysql.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Blastoide?user=root&password=");
+            cn = DriverManager.getConnection("jdbc:mysql://node22836-env-0799796.jelastic.saveincloud.net:3306/Blastoide?user=root&password=XCOhxp45132");
 
         } catch (Exception e) {
         throw e;
@@ -41,7 +41,7 @@ private Connection cn;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/Blastoide", "root", "");
+					"jdbc:mysql://node22836-env-0799796.jelastic.saveincloud.net:3306/Blastoide", "root", "XCOhxp45132");
 			return con;
 		} catch (Exception ex) {
 			System.out.println("Database.getConnection() Error --> en la clase DAO."

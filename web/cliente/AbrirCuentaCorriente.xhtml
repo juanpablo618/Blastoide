@@ -19,11 +19,10 @@
                                  rowsPerPageTemplate="20,30,40,50"
                                  emptyMessage="No existen clientes con cuentas corrientes."
                                  tableStyle="table-layout: auto;"
+                                 resizableColumns="true"
                                  >
-
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton editButton2 deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton editButton2 deleteButton"/>
-
 
                         <p:column sortBy="#{item.apellido}">
                             <f:facet name="header">

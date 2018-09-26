@@ -11,15 +11,16 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean
 public class DownloadBean implements Serializable {
 
 private static final long serialVersionUID = 626953318628565053L;
+    private StreamedContent file;
 
 //private final  String PDF_URL = ConfiguracionesGenerales.getPDF_URL();
 
@@ -81,4 +82,15 @@ facesContext.responseComplete();
 //FacesContext context = FacesContext.getCurrentInstance();
 
 }
+    public DownloadBean() {        
+        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("resources/images/MundoLimpieza2.jpg");
+        file = new DefaultStreamedContent(stream, "image/jpg", "MundoLimpieza2.jpg");
+    }
+ 
+    public StreamedContent getFile() {
+        return file;
+    }
+
+
+
 }
