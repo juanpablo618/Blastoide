@@ -34,8 +34,6 @@ public void downloadPdf(String nombreDelDocumento) throws IOException, Interrupt
     System.err.println("");
     System.err.println("nombreDelDocumento: " + nombreDelDocumento.toString());
     
-    Thread.sleep(2000);
-    
 // Get the FacesContext
 FacesContext facesContext = FacesContext.getCurrentInstance();
 
@@ -82,14 +80,40 @@ facesContext.responseComplete();
 //FacesContext context = FacesContext.getCurrentInstance();
 
 }
-    public DownloadBean() {        
+    
+
+public DownloadBean() {        
         InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("resources/images/MundoLimpieza2.jpg");
         file = new DefaultStreamedContent(stream, "image/jpg", "MundoLimpieza2.jpg");
     }
  
-    public StreamedContent getFile() {
-        return file;
-    }
+public void downloadPdfEnNavegador(String nombreDelDocumento) throws InterruptedException{
+        Thread.sleep(2000);
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    
+    System.out.println("nombre del documento: " + nombreDelDocumento);
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    
+     //InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/home/jelastic/"+nombreDelDocumento+".pdf");
+     // file = new DefaultStreamedContent(stream, "application/pdf", nombreDelDocumento+".pdf");
+        
+     InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("resources/facturas/DocumentspedroFriSep07135439CDT2018.pdf");
+     file = new DefaultStreamedContent(stream, "application/pdf", "DocumentspedroFriSep07135439CDT2018.pdf");
+        
+        
+} 
+    
+public StreamedContent getFile() {
+       return file;
+}
 
 
 

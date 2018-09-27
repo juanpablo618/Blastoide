@@ -138,12 +138,34 @@
                                          style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; background-color: red;color: white; border-radius: 7px 7px 7px 7px;" />
 
                         <h:commandButton value="Presupuestar" actionListener="#{ventaBean.presupuestar()}"
-                                         action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #9FCBD4;color: white; border-radius: 7px 7px 7px 7px;" />
+                                         action="#{downloadBean.downloadPdfEnNavegador(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4fb2e1; border-color: #9FCBD4;color: white; border-radius: 7px 7px 7px 7px;" />
 
                         <h:commandButton   id="botonFacturar" value="Vender" actionListener="#{ventaBean.facturar()}"
-                                         action="#{downloadBean.downloadPdf(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4B814B; border-color: #a7e14f; padding-left: 2%; color: white; border-radius: 7px 7px 7px 7px;" />
+                                           action="#{fileDownloadView.setFileConNombre(ventaBean.nombreDelDocumento)}" style="width: 15%; padding: 0.5%; font-family: bolt; font-weight:bold; background: #4B814B; border-color: #a7e14f; padding-left: 2%; color: white; border-radius: 7px 7px 7px 7px;" />
                     </div> 
+                    
+                    <p:commandButton value="Download1" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                        <p:fileDownload value="#{fileDownloadView.downloadJuan(ventaBean.nombreDelDocumento)}" />
+                    </p:commandButton>
+
                 </h:form>
+                
+          
+<h:form>
+    <p:commandButton value="Download2" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownloadView.file}" />
+    </p:commandButton>
+    
+    <p:commandButton value="Download3" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownloadView.downloadJuan(ventaBean.nombreDelDocumento)}" />
+    </p:commandButton>
+    
+    <p:commandButton value="Download4" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownloadView.file}" />
+    </p:commandButton>    
+    
+</h:form>
+                
             </div>
         </ui:define>
 

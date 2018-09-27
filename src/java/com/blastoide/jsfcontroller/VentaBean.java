@@ -431,8 +431,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                   System.out.println("venta: " + venta.toString());
 
                   doc.createPdf(nombreDelDocumento,lista,venta);
-
-
+                    
+                  
                 if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
 
                     //1ro registra la venta y sus detalles de la venta
@@ -482,7 +482,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //3ro actualizar saldo de cta corriente
                     float saldoactual = saldohistorico  ;
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
 
                 } else{
 
@@ -512,7 +512,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     productoControllerBean.getSelected().setStockactual(stockModificado);
                     productoControllerBean.updateSinNotificacion();
                     }
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
                 }
             }   
             

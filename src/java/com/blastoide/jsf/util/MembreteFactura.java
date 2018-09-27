@@ -43,17 +43,7 @@ public class MembreteFactura {
         FacesContext context = FacesContext.getCurrentInstance();
         ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
         
-        
-        System.out.println("/////////////////////////////////////////////////////////");
-                System.out.println("/////////////////////////////////////////////////////////");
-                        System.out.println("/////////////////////////////////////////////////////////");
-                                System.out.println("/////////////////////////////////////////////////////////");
-        System.out.println("PDF WRITER: "+ configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf").toString());
-                System.out.println("/////////////////////////////////////////////////////////");
-                        System.out.println("/////////////////////////////////////////////////////////");
-                                System.out.println("/////////////////////////////////////////////////////////");
-        
-        
+        System.out.print("PRINT WRD: "+configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf").toString());
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();
