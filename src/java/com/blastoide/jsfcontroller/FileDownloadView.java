@@ -3,16 +3,21 @@ package com.blastoide.jsfcontroller;
 
  
 import java.io.InputStream;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
  
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
  
 @ManagedBean
+@ApplicationScoped
+@Named("fileDownloadView")
 public class FileDownloadView {
      
-    private StreamedContent file;
+    private StreamedContent file ;
+    private String nombreDelArchivo;
      
      public FileDownloadView() {        
       //  InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/images/caja.jpg");
@@ -24,31 +29,40 @@ public class FileDownloadView {
      
      }
      
-     public StreamedContent downloadJuan(String nombreDelDocumento) throws InterruptedException{
-             Thread.sleep(2000);
-
-     System.out.println("nombre del documento en fileDownload: "+ nombreDelDocumento);
+     public StreamedContent downloadJuan() throws InterruptedException{
+     
+         FacesContext context = FacesContext.getCurrentInstance();
+         FileDownloadView fileDownloadView = context.getApplication().evaluateExpressionGet(context, "#{fileDownloadView}", FileDownloadView.class);
         
-       InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/facturas/"+nombreDelDocumento+".pdf");
-       file = new DefaultStreamedContent(stream, "application/pdf", nombreDelDocumento+".pdf");
+     System.out.println("nombre del documento en fileDownload: "+ fileDownloadView.getNombreDelArchivo());
+        
+       InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/facturas/"+fileDownloadView.getNombreDelArchivo()+".pdf");
+       file = new DefaultStreamedContent(stream, "application/pdf", fileDownloadView.getNombreDelArchivo()+".pdf");
     
       return file;   
      }
+
+    public String getNombreDelArchivo() {
+        return nombreDelArchivo;
+    }
+
+    public void setNombreDelArchivo(String nombreDelArchivo) {
+        this.nombreDelArchivo = nombreDelArchivo;
+    }
 
 
          
      
     public void setFileConNombre(String nombreDelDocumento) throws InterruptedException{
-          Thread.sleep(2000);
+          Thread.sleep(4000);
 
         System.out.println("nombre del documento en setFileConNombre de fileDownloadVIew: "+ nombreDelDocumento);
         
-       InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/resources/facturas/"+nombreDelDocumento+".pdf");
-       
-       this.file = new DefaultStreamedContent(stream, "application/pdf", nombreDelDocumento+".pdf");
+        FacesContext context = FacesContext.getCurrentInstance();
+         FileDownloadView fileDownloadView = context.getApplication().evaluateExpressionGet(context, "#{fileDownloadView}", FileDownloadView.class);
+        fileDownloadView.setNombreDelArchivo(nombreDelDocumento);
         
-       
-       
+        //downloadJuan(nombreDelDocumento);
     }
     
     
