@@ -16,7 +16,9 @@
                         <h:outputText value="Producto:"/>
                         <h:outputText value="#{productosController.getProductos(productoXProveedorController.selected.productoID).nombre}" title="#{bundle.ViewProductoXProveedorTitle_productoID}"/>
                         <h:outputText value="Precio Costo:"/>
-                        <h:outputText value="#{productoXProveedorController.selected.precioCosto}" title="#{bundle.ViewProductoXProveedorTitle_precioCosto}"/>
+                        <h:outputText value="#{productoXProveedorController.selected.precioCosto}">
+                                <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProductoXProveedorViewDialog.hide()"/>
                 </h:panelGroup>
