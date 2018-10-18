@@ -21,19 +21,20 @@
                                  tableStyle="table-layout: auto;"
                                  resizableColumns="true"
                                  >
+
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton editButton2 deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton editButton2 deleteButton"/>
 
                         <p:column sortBy="#{item.apellido}">
                             <f:facet name="header">
-                                <h:outputText value="apellido"/>
+                                <h:outputText value="Apellido"/>
                             </f:facet>
                             <h:outputText value="#{item.apellido}"/>
                         </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="nombre"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
@@ -61,28 +62,28 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Cuil/cuit"/>
+                                <h:outputText value="Cuil/Cuit"/>
                             </f:facet>
                             <h:outputText value="#{item.cuitCuil}"/>
                         </p:column>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="razon social"/>
+                                <h:outputText value="Razon Social"/>
                             </f:facet>
                             <h:outputText value="#{item.razonSocial}"/>
                         </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="tel. fijo"/>
+                                <h:outputText value="Tel. fijo"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoFijo}"/>
                         </p:column>
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="tel. celular"/>
+                                <h:outputText value="Tel. celular"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoCelular}"/>
                         </p:column>
@@ -105,14 +106,14 @@
                         </p:column>
 
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteBuenoController.prepareCreate}" update=":ClienteBuenoCreateForm" oncomplete="PF('ClienteBuenoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteBuenoViewForm" oncomplete="PF('ClienteBuenoViewDialog').show()" disabled="#{empty clienteBuenoController.selected}"
+                            <p:commandButton id="createButton" style="background-color: darkgrey; color: black;" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteBuenoController.prepareCreate}" update=":ClienteBuenoCreateForm" oncomplete="PF('ClienteBuenoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" style="background: #4B814B;font-weight: bold; color: black;"  icon="ui-icon-search" value="#{bundle.View}" update=":ClienteBuenoViewForm" oncomplete="PF('ClienteBuenoViewDialog').show()" disabled="#{empty clienteBuenoController.selected}"
                                              action="#{detalleCuentasCorrientesBean.pedirDetalleCtaCorriente(clienteBuenoController.selected.clienteID)}"
                                              />
                             
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar Limite" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
-                            <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteBuenoEditForm2" oncomplete="PF('ClienteBuenoEditDialog2').show()" disabled="#{empty clienteBuenoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteBuenoController.destroy}" update=":growl,datalist" disabled="#{empty clienteBuenoController.selected}"/>
+                            <p:commandButton id="editButton" style="background: #0074B1;font-weight: bold; color: black;"  icon="ui-icon-pencil" value="Editar Limite" update=":ClienteBuenoEditForm" oncomplete="PF('ClienteBuenoEditDialog').show()" disabled="#{empty clienteBuenoController.selected}"/>
+                            <p:commandButton id="editButton2" style="background: #4fb2e1;font-weight: bold; color: black;"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteBuenoEditForm2" oncomplete="PF('ClienteBuenoEditDialog2').show()" disabled="#{empty clienteBuenoController.selected}"/>
+                            <p:commandButton id="deleteButton" style="background: red;color: black;font-weight: bold" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteBuenoController.destroy}" update=":growl,datalist" disabled="#{empty clienteBuenoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

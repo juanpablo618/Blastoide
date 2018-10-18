@@ -33,6 +33,22 @@ public abstract class ConfiguracionesGenerales {
    
 //private static final String PDF_URL = "file:///home/juan/Documents";
 
+    /////////////////////////////////////////////////////////////////////////////////
+    //configuraciones para el server de jelastic:
+    
+    /*
+
+        carpeta donde se guardan los presupuestos:	/opt/glassfish/glassfish/domains/domain1/applications/ROOT/resources/facturas/
+        url donde se leen los presupuestos:	http://node22837-env-0799796.jelastic.saveincloud.net/faces/resources/facturas/
+            node23606-env-2761534    
+    url del logo principal del sistema:	/opt/glassfish/glassfish/domains/domain1/applications/ROOT/resources/images/MundoLimpieza2.jpg
+    
+    */
+    
+    /////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////
+    
+    
 private final String PDF_URL = configuracionesGeneralesController.getConfiguracionesGenerales(1).getPdfUrl();
 
     public String getPDF_URL() {

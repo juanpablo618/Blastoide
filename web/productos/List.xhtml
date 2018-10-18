@@ -18,7 +18,6 @@
                 background-color:red;
                 background-image:none;
             }
-
             .normal{
                 background-color:blue;
                 background-image:none;
@@ -65,54 +64,47 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.codigo}" filterMatchMode="contains">
+                        <p:column style="font-size:13px; text-align: center;" filterBy="#{item.codigo}" filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="codigo"/>
+                                <h:outputText value="Código"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.nombre}" filterMatchMode="contains">
+                        <p:column style="font-size:13px; text-align: center;" filterBy="#{item.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        
-                        <p:column style="font-size:10px; text-align: center;">
-                            <f:facet name="header">
-                                <h:outputText value="Caracteristica"/>
-                            </f:facet>
-                            <h:outputText value="#{item.caracteristica}"/>
-                        </p:column>
-                        
-                        <p:column style="font-size:10px; text-align: center;">
+                                                
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_marca}"/>
                             </f:facet>
                             <h:outputText value="#{item.marca}"/>
                         </p:column>
                         
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Fragancia"/>
                             </f:facet>
                             <h:outputText value="#{item.fragancia}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Medida"/>
                             </f:facet>
                             <h:outputText value="#{item.medida}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;" filterBy="#{item.tipoRubroID.nombre}" filterMatchMode="contains">
+                        <p:column style="font-size:13px; text-align: center;" filterBy="#{item.tipoRubroID.nombre}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Rubro"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoRubroID.nombre}"/>
                         </p:column>
 
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Precio de venta"/>
                             </f:facet>
@@ -121,22 +113,22 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Stock actual"/>
-                            </f:facet>
+                                <h:outputText value="St. Actual"/>
+                            </f:facet> 
                             <h:outputText value="#{item.stockactual}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;">
+                        <p:column style="font-size:13px; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Stock minimo"/>
+                                <h:outputText value="St. Mínimo"/>
                             </f:facet>
                             <h:outputText value="#{item.stockMinimo}"/>
                         </p:column>
-                        <p:column style="font-size:10px; text-align: center;" >
+                        <p:column style="font-size:13px; text-align: center;" >
 
                             <f:facet name="header">
-                                <h:outputText value="Ultima actualización"/>
+                                <h:outputText value="St. Actualizado"/>
                             </f:facet>
                             <h:outputText value="#{item.ultimaActualizacionStock}">
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -145,17 +137,19 @@
                         
                         <f:facet name="footer">
                             <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
-                            <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   style="border-color:#01B2A0 ;background: #01B2A0;font-weight: bold" icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
-                            <p:commandButton id="deleteButton" ajax='false' icon="ui-icon-trash" style=" margin-right: 0.5em;border-color:#F64C4D ; background: #F64C4D;font-weight: bold" value="#{bundle.Delete}" actionListener="#{productosController.destroy}" update=":growl,datalist" disabled="#{empty productosController.selected}"/>
-                            
-                            <h:commandLink value="exportar">
-                               <p:dataExporter type="csv" target="datalist" fileName="productos" pageOnly="true" />
-                            </h:commandLink><br></br>
-                            <h:commandLink value="exportar todos los productos">
-                                <p:dataExporter type="csv" target="datalist" fileName="productos" pageOnly="false" />
-                            </h:commandLink>
+                            <p:commandButton id="createButton" style="background-color: darkgrey; color: black;" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productosController.prepareCreate}" update=":ProductosCreateForm" oncomplete="PF('ProductosCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   style="background: #4B814B;font-weight: bold; color: black;" icon="ui-icon-search" value="#{bundle.View}" update=":ProductosViewForm" oncomplete="PF('ProductosViewDialog').show()" disabled="#{empty productosController.selected}"/>
+                            <p:commandButton id="editButton"  style="background: #4fb2e1;font-weight: bold; color: black;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
+                            <p:commandButton id="deleteButton" style="background: red;color: black;font-weight: bold" ajax='false' icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productosController.destroy}" update=":growl,datalist" disabled="#{empty productosController.selected}"/>
+                      
+                            <br></br>   
+                        <h:commandLink value="exportar">
+                            <p:dataExporter type="csv" target="datalist" fileName="productos" pageOnly="true" />
+                        </h:commandLink>
+                            <br></br>
+                        <h:commandLink value="exportar todos los productos">
+                            <p:dataExporter type="csv" target="datalist" fileName="productos" pageOnly="false" />
+                        </h:commandLink>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

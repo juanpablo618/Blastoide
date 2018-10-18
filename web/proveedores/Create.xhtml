@@ -62,12 +62,12 @@
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_web}" for="web" />
                         <p:inputText id="web" value="#{proveedoresController.selected.web}" title="#{bundle.CreateProveedoresTitle_web}" required="true" requiredMessage="#{bundle.CreateProveedoresRequiredMessage_web}"/>
                         
-                        <p:outputLabel value="#{bundle.CreateProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
+                            <p:outputLabel value="#{bundle.CreateProveedoresLabel_realdomicilioID}" for="realdomicilioID" />
                         <p:inputText id="realdomicilioID" value="#{proveedoresController.selected.realdomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_realdomicilioID}"/>
                         
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_fiscaldomicilioID}" for="fiscaldomicilioID" />
                         <p:inputText id="fiscaldomicilioID" value="#{proveedoresController.selected.fiscaldomicilioID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_fiscaldomicilioID}"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateProveedoresLabel_condicionIVAID}" for="condicionIVAID" />
                         <p:selectOneMenu id="condicionIVAID" value="#{proveedoresController.selected.condicionIVAID}" required="true" requiredMessage="#{bundle.EditProveedoresRequiredMessage_condicionIVAID}" style="width: 85%;">
                              <f:selectItem itemLabel="Seleccionar uno" itemValue="" />

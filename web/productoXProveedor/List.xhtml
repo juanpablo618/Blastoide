@@ -22,7 +22,7 @@
                         <h:commandButton value="Filtrar." action="#{productoXProveedorController.FiltrarPorProductoYProveedor(productoXProveedorController.productoCodigo)}"
                         style="width: 10%; padding: 0.5%; font-family: bolt; font-weight:bold; margin-left: 10px " />
                     </p:panel>        
-            </h:form>
+            </h:form> 
                
             <h:form id="ProductoXProveedorListForm">
                 <p:panel header="Lista de Productos por Proveedor">
@@ -58,11 +58,10 @@
                             <f:facet name="header">
                                 <h:outputText value="Cod. Barra:"/>
                             </f:facet>
-                            <h:outputText value="#{productosController.getProductos(item.productoID).codigo}"/>
+                            <center><h:outputText value="#{productosController.getProductos(item.productoID).codigo}"/></center>
                             
                         </p:column>
                         <p:column>
-                            
                             <f:facet name="header">
                                 <h:outputText value="Precio Costo:"/>
                             </f:facet>
@@ -72,10 +71,10 @@
                         </p:column>
                         
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoXProveedorController.prepareCreate}" update=":ProductoXProveedorCreateForm" oncomplete="PF('ProductoXProveedorCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProductoXProveedorViewForm" oncomplete="PF('ProductoXProveedorViewDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductoXProveedorEditForm" oncomplete="PF('ProductoXProveedorEditDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productoXProveedorController.destroy}" update=":growl,datalist" disabled="#{empty productoXProveedorController.selected}"/>
+                            <p:commandButton id="createButton" style="background-color: darkgrey; color: black;" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{productoXProveedorController.prepareCreate}" update=":ProductoXProveedorCreateForm" oncomplete="PF('ProductoXProveedorCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" style="background: #4B814B;font-weight: bold; color: black;" icon="ui-icon-search" value="#{bundle.View}" update=":ProductoXProveedorViewForm" oncomplete="PF('ProductoXProveedorViewDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
+                            <p:commandButton id="editButton" style="background: #4fb2e1;font-weight: bold; color: black;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductoXProveedorEditForm" oncomplete="PF('ProductoXProveedorEditDialog').show()" disabled="#{empty productoXProveedorController.selected}"/>
+                            <p:commandButton id="deleteButton" style="background: red;color: black;font-weight: bold" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{productoXProveedorController.destroy}" update=":growl,datalist" disabled="#{empty productoXProveedorController.selected}"/>
                         </f:facet>
                     
                     </p:dataTable>

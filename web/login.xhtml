@@ -24,9 +24,9 @@
         </style>
     </h:head>  
 
-    <h:body style="background: url(images/mundoLimpieza2.jpg);">
+    <h:body style="background: url(images/mundoLimpieza2.jpg); background-size: 100%;">
 
-        <h:form style="margin-top: 14%; margin-left: 36.5%; background: rgba(76, 175, 80, 0.3); opacity: 0.9; width: 22.8%;">
+        <h:form style="margin-top: 14%; margin-left: 40.5%; background: rgba(76, 175, 80, 0.3); opacity: 0.9; width: 22.8%;">
 
             <p:growl id="mensajes" showDetail="true" life="2500" autoUpdate="true" />
 
@@ -37,15 +37,18 @@
                     <p:inputText id="username" value="#{login.user}" required="true" label="Usuario" placeholder="Usuario" style="font-family: serif;" ></p:inputText>
                     <h:message for="username"></h:message>
                     <br></br><br></br>
+
                     <h:outputText value="Clave" style="color: white;"/>
                     <h:inputSecret id="password" value="#{login.pwd}" style="font-family: serif;" ></h:inputSecret>
                     <h:message for="password"></h:message>
                     <br></br>
+
                     <f:facet name="footer">    
                         <h:commandButton id="botonIniciarSesion" action="#{login.validateUsernamePassword}"
                                          value="Iniciar Sesión" style="font-family: serif;font-weight:bold; font-size: 1.2em;
                                          color: black; padding: 3% 20% 3% 20%;" ></h:commandButton>
                     </f:facet>        
+
                 </h:panelGrid>
             </p:panel>
         </h:form>

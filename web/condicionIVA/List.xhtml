@@ -41,10 +41,10 @@
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{condicionIVAController.prepareCreate}" update=":CondicionIVACreateForm" oncomplete="PF('CondicionIVACreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CondicionIVAViewForm" oncomplete="PF('CondicionIVAViewDialog').show()" disabled="#{empty condicionIVAController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CondicionIVAEditForm" oncomplete="PF('CondicionIVAEditDialog').show()" disabled="#{empty condicionIVAController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{condicionIVAController.destroy}" update=":growl,datalist" disabled="#{empty condicionIVAController.selected}"/>
+                            <p:commandButton id="createButton" style="background-color: darkgrey; color: black;" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{condicionIVAController.prepareCreate}" update=":CondicionIVACreateForm" oncomplete="PF('CondicionIVACreateDialog').show()"/>
+                            <p:commandButton id="viewButton" style="background: #4B814B;font-weight: bold; color: black;"  icon="ui-icon-search" value="#{bundle.View}" update=":CondicionIVAViewForm" oncomplete="PF('CondicionIVAViewDialog').show()" disabled="#{empty condicionIVAController.selected}"/>
+                            <p:commandButton id="editButton" style="background: #4fb2e1;font-weight: bold; color: black;"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CondicionIVAEditForm" oncomplete="PF('CondicionIVAEditDialog').show()" disabled="#{empty condicionIVAController.selected}"/>
+                            <p:commandButton id="deleteButton" style="background: red;color: black;font-weight: bold" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{condicionIVAController.destroy}" update=":growl,datalist" disabled="#{empty condicionIVAController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
