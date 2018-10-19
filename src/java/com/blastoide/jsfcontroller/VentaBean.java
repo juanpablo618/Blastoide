@@ -227,7 +227,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void agregarPorCodBarraOPorNombre(String productoCodBarra) throws Exception {
         
         int idBuscado = 0;
-                  
+        Double porcentajePorTipoDeCliente = null;          
         try {
                    if(!(productoCodBarra.length()>1 && getProductoPorNombre()!=null) ){ 
                     FacesContext context = FacesContext.getCurrentInstance();
@@ -256,7 +256,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
                     TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
 
-                    Double porcentajePorTipoDeCliente;
+                    
                     porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
                                         System.err.println("porcentaje Por Tipo De Cliente: "+porcentajePorTipoDeCliente);
 
@@ -319,9 +319,16 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                        }
                         
                 }else{
-                    this.productoPorNombre = null;
-                    this.productoCondBarra = null;
-                    JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                    if(porcentajePorTipoDeCliente==null){
+                        this.productoPorNombre = null;
+                        this.productoCondBarra = null;
+                        JsfUtil.addErrorMessage(e, "Este cliente no tiene cargado un tipo de cliente, no se le puede aplicar al producto el % por tipo de cliente");
+                    }else{
+                    
+                        this.productoPorNombre = null;
+                        this.productoCondBarra = null;
+                        JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                    }
                 }
            }   
         }
