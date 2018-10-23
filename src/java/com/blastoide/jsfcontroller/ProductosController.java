@@ -7,6 +7,7 @@ import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.ProductosFacade;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -68,10 +70,20 @@ public class ProductosController implements Serializable {
         return selected;
     }
 
-    public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProductosCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+    public void create() throws SQLException {
+                
+        ProductosDAO productoDao = new ProductosDAO();
+        
+        int idBuscado = 0;
+        idBuscado = productoDao.buscarPorCodigoDeBarra(selected.getCodigo());
+            
+        if(idBuscado == 0 ){
+            persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProductosCreated"));
+                        if (!JsfUtil.isValidationFailed()) {
+                            items = null;    // Invalidate list of items to trigger re-query.
+                        }
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Producto no creado, Cod. de producto ya existe"));
         }
     }
 
