@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-09-2018 a las 22:12:30
+-- Tiempo de generación: 08-11-2018 a las 17:56:06
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.20
 
@@ -40,7 +40,10 @@ CREATE TABLE `caja` (
 --
 
 INSERT INTO `caja` (`id`, `fecha`, `descripcion`, `ingreso`, `egreso`, `CtaCorriente`) VALUES
-(87, '07/09/2018', 'Cliente: pedro  russo F.Pago: Contado efectivo', 82, NULL, NULL);
+(87, '07/09/2018', 'Cliente: pedro  russo F.Pago: Contado efectivo', 82, NULL, NULL),
+(88, '26/09/2018', 'Cliente: cliente comun F.Pago: Contado efectivo', 78.5, NULL, NULL),
+(89, '26/09/2018', 'Cliente: cliente comun F.Pago: Contado efectivo', 78.5, NULL, NULL),
+(90, '26/09/2018', 'Cliente: cliente comun F.Pago: Contado efectivo', 78.5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,7 @@ CREATE TABLE `Cliente` (
 --
 
 INSERT INTO `Cliente` (`ClienteID`, `nombre`, `dni`, `tipoClienteID`, `FormaDePagoID`, `apellido`, `email`, `cuitCuil`, `fechaNacimiento`, `numeroDocumento`, `razonSocial`, `sexo`, `telefonoFijo`, `telefonoCelular`, `fiadoMaximo`, `tipoDocumentoID`, `Real_domicilioID`, `Fiscal_domicilioID`, `condicionIvaID`, `diaDePago`, `cuentaCorrienteID`) VALUES
-(32, 'cliente', '35054821', 5, 1, 'comun', 'cuello.juanpablo@gmail.com', '20350548220', NULL, 35054822, 'razon cuello', 'masculino', '4522524', '3513220999', NULL, NULL, NULL, NULL, 1, 'Wed Jan 17 21:22:00 ART 3', 49),
+(32, 'cliente', '35054821', 3, 1, 'comun', 'cuello.juanpablo@gmail.com', '20350548220', NULL, 35054822, 'razon cuello', 'masculino', '4522524', '3513220999', NULL, NULL, NULL, NULL, 1, 'Wed Jan 17 21:22:00 ART 3', 49),
 (33, 'juan', '45965833', 5, 10, 'cliente comun', 'cuello.@clientecomun.com', '2045943200', NULL, 45965833, 'clienteComunacho', 'masculino', '5432854', '292910', NULL, NULL, NULL, NULL, 3, 'Thu Jan 17 21:27:00 ART 4', 50),
 (34, 'mayorista', '89654833', 2, 2, 'mayorista', 'mayorista@mayorista.com', '76985347559', NULL, 89654833, 'mayorista srl', 'masculino', '4530302', '3432042340', NULL, NULL, NULL, NULL, 2, 'Thu Jan 17 21:27:00 ART 4', 51),
 (35, 'distribuidor', '847272821', 3, 1, 'distribuidor apellido', 'distribuye@hotmail.com', '2039383838', NULL, 847272821, 'distribuye todo RS', 'femenino', '3828382', '382383282', NULL, NULL, NULL, NULL, 4, 'Sun Jan 17 21:20:00 ART 12', 52),
@@ -373,7 +376,10 @@ INSERT INTO `DetalleVenta` (`codigo`, `codVenta`, `productoID`, `cantidad`) VALU
 (173, 122, 1617, 2),
 (174, 123, 1620, 1),
 (175, 124, 1620, 1),
-(176, 125, 2093, 1);
+(176, 125, 2093, 1),
+(177, 126, 1624, 1),
+(178, 127, 1617, 1),
+(179, 128, 2093, 1);
 
 -- --------------------------------------------------------
 
@@ -647,14 +653,14 @@ CREATE TABLE `Productos` (
 --
 
 INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`, `caracteristica`, `medida`, `precioVenta`, `unidadMedidaID`, `tipoProductoID`, `tipoRubroID`, `ultimaActualizacionStock`, `inventarioID`, `precioFinalAFacturar`, `stockactual`, `stockMinimo`) VALUES
-(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 0, NULL, NULL, 2, NULL, 0, 100, -69, 4),
+(1617, '7506339305609', 'JABON LIQUIDO PARA ROPA	', 'ACE	', 'C/SUAVIZANTE	', '', '3', 0, NULL, NULL, 2, NULL, 0, 100, -70, 4),
 (1618, '7798181180101', '	ROLLO DE COCINA	', '	ACQUA	', '	X40PAÑOS C/U	', '', '300', 60, NULL, NULL, NULL, NULL, 0, 110, -39, 32),
 (1619, '7790520012807', 'LIMPIADOR LIQUIDO	', 'MR. MUSCULO - GLADE	', 'EXPLOSION FLORAL	', '', '901.00', 70, NULL, NULL, NULL, NULL, 0, 120, -6, 12),
 (1620, '7790520009609', 'DESINFECTANTE	', 'LYSOFORM	', 'LAVANDA', '', '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, -172, 6),
 (1621, '7790520009944', '	INSECTICIDA	', '	RAID	', '	CASA Y JARDIN	', NULL, '390.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 12),
 (1622, '7798184680806', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'VAINILLA', '', '125.00', 50, NULL, NULL, NULL, '2017-12-12', 0, 100, 0, 5),
 (1623, '7798184681001', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	TROPICAL	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -55, 5),
-(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'CONY', '', '125.00', 0, NULL, NULL, NULL, '2018-09-20', 0, 100, -38, 5),
+(1624, '7798184680738', 'DIFUSOR CAÑA DE BAMBOO', 'SAPHIRUS', 'CONY', '', '125.00', 0, NULL, NULL, NULL, '2018-09-20', 0, 100, -39, 5),
 (1625, '7798184680707', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	CITRUS	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
 (1626, '7798184680745', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	UVA	', NULL, '125.00', 50, NULL, NULL, NULL, NULL, 0, 100, -13, 5),
 (1627, '7798184680769', '	DIFUSOR CAÑA DE BAMBOO	', '	SAPHIRUS	', '	FLORES BLANCAS	', '', '125.00', 50, NULL, NULL, 3, NULL, 0, 100, 0, 5),
@@ -1124,7 +1130,7 @@ INSERT INTO `Productos` (`productoID`, `codigo`, `nombre`, `marca`, `fragancia`,
 (2090, '7798129700750', '	AROMATIZANTE	', '	ODORITE	', '	COCO VAINILLA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 3),
 (2091, '7798129700743', '	AROMATIZANTE	', '	ODORITE	', '	CITRUS FRESHENER	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 3),
 (2092, '7798129700392', '	AROMATIZANTE	', '	NEW SCENT	', '	ONIRO	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
-(2093, '7798129700057', '	AROMATIZANTE	', '	NEW SCENT	', '	VAINILLA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, -10, 6),
+(2093, '7798129700057', '	AROMATIZANTE	', '	NEW SCENT	', '	VAINILLA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, -11, 6),
 (2094, '7798129700255', '	AROMATIZANTE	', '	NEW SCENT	', '	UVA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 5),
 (2095, '7798129700248', '	AROMATIZANTE	', '	NEW SCENT	', '	VERBENA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 2),
 (2096, '7798129700019', '	AROMATIZANTE	', '	NEW SCENT	', '	LAVANDA	', NULL, '276.00', 50, NULL, NULL, NULL, NULL, 0, 100, 0, 4),
@@ -1628,8 +1634,7 @@ INSERT INTO `ProductoXProveedor` (`ProductoXProveedorID`, `ProveedorID`, `Produc
 (5, 2, 1620, 100),
 (6, 1, 1618, 56),
 (7, 2, 1619, 90),
-(8, 2, 1700, 67),
-(9, 2, 1618, 0);
+(8, 2, 1700, 67);
 
 -- --------------------------------------------------------
 
@@ -1735,8 +1740,7 @@ INSERT INTO `TipoClientes` (`tipoClienteID`, `descripcion`, `nombre`, `porcentaj
 (1, 'Revendedor', 'Revendedor', 20),
 (2, 'Mayorista', 'Mayorista', 22),
 (3, 'Distribuidor', 'Distribuidor', 23.5),
-(4, 'Franquicia', 'Franquicia', 25),
-(5, 'Cliente comun', 'Cliente', 0);
+(4, 'Franquicia', 'Franquicia', 25);
 
 -- --------------------------------------------------------
 
@@ -1944,7 +1948,10 @@ INSERT INTO `Venta` (`ventaID`, `empleado`, `ClienteID`, `comentario`, `nroInter
 (122, 'lucas', 38, 'FACTURA', NULL, NULL, '2018-09-07 18:45:50', '164', 1),
 (123, 'lucas', 38, 'FACTURA', NULL, NULL, '2018-09-07 18:48:43', '82', 1),
 (124, 'lucas', 34, 'FACTURA', NULL, NULL, '2018-09-07 18:49:57', '81', 2),
-(125, 'lucas', 38, 'FACTURA', NULL, NULL, '2018-09-07 18:54:39', '82', 1);
+(125, 'lucas', 38, 'FACTURA', NULL, NULL, '2018-09-07 18:54:39', '82', 1),
+(126, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-09-26 19:12:30', '79', 1),
+(127, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-09-26 19:16:19', '79', 1),
+(128, 'lucas', 32, 'FACTURA', NULL, NULL, '2018-09-26 19:16:46', '79', 1);
 
 --
 -- Índices para tablas volcadas
@@ -2172,7 +2179,7 @@ ALTER TABLE `Venta`
 -- AUTO_INCREMENT de la tabla `caja`
 --
 ALTER TABLE `caja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT de la tabla `Cliente`
 --
@@ -2212,7 +2219,7 @@ ALTER TABLE `DetalleCuentasCorrientes`
 -- AUTO_INCREMENT de la tabla `DetalleVenta`
 --
 ALTER TABLE `DetalleVenta`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 --
 -- AUTO_INCREMENT de la tabla `Domicilios`
 --
@@ -2262,12 +2269,12 @@ ALTER TABLE `Productos`
 -- AUTO_INCREMENT de la tabla `ProductoXProveedor`
 --
 ALTER TABLE `ProductoXProveedor`
-  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ProductoXProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `Proveedores`
 --
 ALTER TABLE `Proveedores`
-  MODIFY `ProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ProveedorID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `Provincias`
 --
@@ -2282,7 +2289,7 @@ ALTER TABLE `Roles`
 -- AUTO_INCREMENT de la tabla `TipoClientes`
 --
 ALTER TABLE `TipoClientes`
-  MODIFY `tipoClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tipoClienteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `TipoDocumento`
 --
@@ -2317,7 +2324,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de la tabla `Venta`
 --
 ALTER TABLE `Venta`
-  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `ventaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 --
 -- Restricciones para tablas volcadas
 --
