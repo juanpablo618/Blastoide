@@ -61,10 +61,19 @@ public class CajaController implements Serializable {
             if(cajaController.getItems().get(index).getFecha()!=null){
                 
                     if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
-                                if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo") || cajaController.getItems().get(index).getDescripcion().contains("Contado")){
-                                    if(cajaController.getItems().get(index).getDescripcion()!=null){  
+                        if(cajaController.getItems().get(index).getDescripcion()!=null){        
+                                    if(cajaController.getItems().get(index).getDescripcion().contains("Contado efectivo") || cajaController.getItems().get(index).getDescripcion().contains("Contado")){
+                                      
                                         totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
-                                                }
+                                            
+                                        }else{
+                                            if(cajaController.getItems().get(index).getDescripcion().startsWith("Cliente:")){
+                                                continue;
+                                            }else{
+                                                totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
+                                        
+                                            }
+                                        }
                                     }
 
                             if(cajaController.getItems().get(index).getFecha().equals(fechaDeHoy)){
