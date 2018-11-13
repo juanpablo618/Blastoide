@@ -440,7 +440,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                   doc.createPdf(nombreDelDocumento,lista,venta);
                     
                   
-                if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+                if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
+                //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
 
                     //1ro registra la venta y sus detalles de la venta
                     //ventadao.registrar(venta, lista);
@@ -560,7 +561,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                 venta.setFecha(Calendar.getInstance().getTime());
                 venta.setFormadePagoID(formaDePagoID);
 
-
                 nombreDelDocumento = new String();
                 nombreDelDocumento = "PRESUPUESTO_".concat(venta.getCliente().getNombre().concat(Calendar.getInstance().getTime().toString()));
                 nombreDelDocumento = nombreDelDocumento.replace(" ","");
@@ -571,7 +571,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                   MembretePresupuesto doc = new MembretePresupuesto();
                   doc.createPdf(nombreDelDocumento,lista,venta);
 
-                if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+                if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
+                //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
 
                     //1ro registra la venta y sus detalles de la venta
                     //ventadao.registrar(venta, lista);

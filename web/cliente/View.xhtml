@@ -53,10 +53,7 @@
                                     <h:outputText value="Razon Social:" style="font-weight: bold; margin-right: 7px;"/>
                                     <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/><br></br>
                                 </row>
-                                <row>
-                                    <h:outputText value="Tipo de Cliente:" style="font-weight: bold; margin-right: 7px;"/>
-                                    <h:outputText value="#{tipoClientesController.getTipoClientes(clienteBuenoController.selected.tipoClienteID).toString()}"/><br></br>
-                                </row>
+                                
                                 <row>
                                     <h:outputText value="Día de pago:" style="font-weight: bold; margin-right: 7px;"/>
                                     <h:outputText value="#{clienteBuenoController.selected.diaDePago}">
@@ -66,10 +63,6 @@
                                 <row>
                                     <h:outputText value="Fiado máximo:" style="font-weight: bold; margin-right: 7px;"/>
                                     <h:outputText value="#{clienteBuenoController.selected.fiadoMaximo}"/><br></br>
-                                </row>
-                                <row>
-                                    <h:outputText value="Forma de pago:" style="font-weight: bold; margin-right: 7px;"/>
-                                    <h:outputText value="#{formaDePagoController.getFormaDePago(clienteBuenoController.selected.formaDePagoID).nombre}"/><br></br>
                                 </row>
                                 <row>
                                     <h:outputText value="Tel. fijo:" style="font-weight: bold; margin-right: 7px;"/>
