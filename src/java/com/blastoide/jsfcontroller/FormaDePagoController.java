@@ -80,6 +80,31 @@ public class FormaDePagoController implements Serializable {
         }
         return items;
     }
+    
+    public List<FormaDePago> getItemsPorCliente(int idFormaDePago) {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
+        
+        if(idFormaDePago== 1 || idFormaDePago== 2 || idFormaDePago== 7 || idFormaDePago== 8 || idFormaDePago== 9 || idFormaDePago== 10 || idFormaDePago== 11){
+            
+            for( int i=0; i<items.size();i++){
+                if(items.get(i).getFormaDePagoID()==4){
+                    items.remove(i);
+                }
+                if(items.get(i).getFormaDePagoID()==5){
+                    items.remove(i);
+                }
+                if(items.get(i).getFormaDePagoID()==6){
+                    items.remove(i);
+                }
+                if(items.get(i).getFormaDePagoID()==3){
+                    items.remove(i);
+                }
+            }
+        }
+        return items;
+    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

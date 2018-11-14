@@ -27,6 +27,7 @@ public class ClienteBuenoController implements Serializable {
     private com.blastoide.jpa.ClienteBuenoFacade ejbFacade;
     private List<ClienteBueno> items = null;
     private ClienteBueno selected;
+    private List<ClienteBueno> filteredClientes;
 
     
     public ClienteBuenoController() {
@@ -159,4 +160,16 @@ public class ClienteBuenoController implements Serializable {
             }
         }
     }
+
+    public List<ClienteBueno> getFilteredClientes() {
+        return filteredClientes;
+    }
+
+    public void setFilteredClientes(List<ClienteBueno> filteredClientes) {
+        this.filteredClientes = filteredClientes;
+    }
+    
+    
+    
+    
 }

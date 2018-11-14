@@ -18,7 +18,7 @@
                                 </div><br></br>                                
                                 
                             <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; margin-top: 2em">
-                                <p:outputLabel value="información" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                                <p:outputLabel value="Información" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
                             
                                 <row>
                                     <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}" style="font-weight: bold; margin-right: 7px;"/>
@@ -26,11 +26,11 @@
                                 </row>
 
                                 <row>
-                                    <h:outputText value="apellido:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="Apellido:" style="font-weight: bold; margin-right: 7px;"/>
                                     <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/><br></br>
                                 </row>
                                 <row>                            
-                                    <h:outputText value="cuit-cuil:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="Cuit-Cuil:" style="font-weight: bold; margin-right: 7px;"/>
                                     <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/><br></br>
                                 </row>
                                 <row>
@@ -59,10 +59,6 @@
                                     <h:outputText value="#{clienteBuenoController.selected.diaDePago}">
                                 <f:convertDateTime pattern="dd/mm/yyyy"/>
                                     </h:outputText><br></br>
-                                </row>
-                                <row>
-                                    <h:outputText value="Fiado máximo:" style="font-weight: bold; margin-right: 7px;"/>
-                                    <h:outputText value="#{clienteBuenoController.selected.fiadoMaximo}"/><br></br>
                                 </row>
                                 <row>
                                     <h:outputText value="Tel. fijo:" style="font-weight: bold; margin-right: 7px;"/>

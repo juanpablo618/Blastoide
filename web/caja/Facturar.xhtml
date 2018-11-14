@@ -36,7 +36,11 @@
 
                         <p:selectOneMenu  id="formadepagoID" value="#{ventaBean.formaDePagoID}" converter="omnifaces.SelectItemsConverter" style="margin: 10px;" >
                             <f:selectItem  itemLabel="#{formaDePagoController.getFormaDePago(ventaBean.formaDePagoID).nombre}" itemValue="#{ventaBean.formaDePagoID}"  />
-                            <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                            
+                            <!-- <f:selectItems value="#{formaDePagoController.items}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" /> -->
+                            
+                            <f:selectItems value="#{formaDePagoController.getItemsPorCliente(ventaBean.formaDePagoID)}" var="formaDePago" itemLabel="#{formaDePago.nombre}" itemValue="#{formaDePago.formaDePagoID}" />
+                            
                             <p:ajax listener="#{ventaBean.CambiarFormaDePago()}" update=":tablaDetalleVenta:detalle" />
                         </p:selectOneMenu>
                     </p:column>

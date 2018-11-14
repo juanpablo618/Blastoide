@@ -12,7 +12,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cajaController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateCajaLabel_fecha}" for="fecha" />
-                        <h:inputText  id="fecha" value="#{cajaController.selected.fecha}">  
+                        <h:inputText   id="fecha" value="#{cajaController.selected.fecha}" readonly="true">  
                         </h:inputText>
                         <p:outputLabel value="#{bundle.CreateCajaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{cajaController.selected.descripcion}" title="#{bundle.CreateCajaTitle_descripcion}" />

@@ -70,8 +70,9 @@ public class CajaController implements Serializable {
                                             if(cajaController.getItems().get(index).getDescripcion().startsWith("Cliente:")){
                                                 continue;
                                             }else{
-                                                totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
-                                        
+                                                if(cajaController.getItems().get(index).getIngreso()!=null){
+                                                    totalVentaDiarioSoloEfectivo = totalVentaDiarioSoloEfectivo + cajaController.getItems().get(index).getIngreso();
+                                                }
                                             }
                                         }
                                     }
