@@ -577,7 +577,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //1ro registra la venta y sus detalles de la venta
                     //ventadao.registrar(venta, lista);
                     ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
-                    cajaDiariaDAO.registrarEnCajaDiaria(venta);
+                    
+                    cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
 
                     System.err.println("tamaño de la lista: "+ lista.size());
 
@@ -627,7 +628,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //ventadao.registrar(venta, lista);
                     ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
 
-                    cajaDiariaDAO.registrarEnCajaDiaria(venta);
+                    cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
 
                     //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
                     for (DetalleVenta det : lista) {
