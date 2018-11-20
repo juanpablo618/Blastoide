@@ -247,7 +247,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                         }else{
                             this.producto = getProductoPorNombre();
                         }    
-
+                        
                     FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
 
                     Double porcentajeDeFormaDePago;
@@ -419,6 +419,24 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, no hay productos no la lista"));
             }else{
             
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+
+                boolean existeAlMenosUnProductoSinStock = false;
+                String productoSinStock = "";
+                
+                       for (DetalleVenta det : lista) {
+                            System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                            if(productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual()<det.getCantidad()){
+                                existeAlMenosUnProductoSinStock = true;
+                                productoSinStock = productoControllerBean.getProductos(det.getProducto().getProductoID()).getNombre();
+                            }
+                        }
+                       
+                if(existeAlMenosUnProductoSinStock){
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, producto ".concat(productoSinStock).concat(" sin stock suficiente")));
+
+                }else{
                 ventadao = new VentaDAO();
                 cajaDiariaDAO = new CajaDiariaDAO();
 
@@ -457,11 +475,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                             monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
                             System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
                             System.err.println("");
-
-                            FacesContext context = FacesContext.getCurrentInstance();
-
-                            ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
+                            
                             System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
 
                             int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
@@ -505,9 +519,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
                     System.err.println("");
 
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
                     System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
 
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
@@ -523,7 +534,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
                 }
             }   
-            
+         }  
             
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
@@ -553,50 +564,62 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(monto == 0){
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo presupuestar, no hay productos no la lista"));
             }else{
-                        
-                ventadao = new VentaDAO();
-                cajaDiariaDAO = new CajaDiariaDAO();
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
 
-                venta.setMonto(monto);
-                venta.setFecha(Calendar.getInstance().getTime());
-                venta.setFormadePagoID(formaDePagoID);
-
-                nombreDelDocumento = new String();
-                nombreDelDocumento = "PRESUPUESTO_".concat(venta.getCliente().getNombre().concat(Calendar.getInstance().getTime().toString()));
-                nombreDelDocumento = nombreDelDocumento.replace(" ","");
-                nombreDelDocumento = nombreDelDocumento.replace(":","");
-
-                this.setNombreDelDocumento(nombreDelDocumento);
-
-                  MembretePresupuesto doc = new MembretePresupuesto();
-                  doc.createPdf(nombreDelDocumento,lista,venta);
-
-                if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
-                //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
-
-                    //1ro registra la venta y sus detalles de la venta
-                    //ventadao.registrar(venta, lista);
-                    ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
-                    
-                    cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
-
-                    System.err.println("tamaño de la lista: "+ lista.size());
-
-                    //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
-                    for (DetalleVenta det : lista) {
-
-                            monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                            System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                            System.err.println("");
-
-                            FacesContext context = FacesContext.getCurrentInstance();
-
-                            ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
+                boolean existeAlMenosUnProductoSinStock = false;
+                String productoSinStock = "";
+                
+                       for (DetalleVenta det : lista) {
                             System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                            if(productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual()<det.getCantidad()){
+                                existeAlMenosUnProductoSinStock = true;
+                                productoSinStock = productoControllerBean.getProductos(det.getProducto().getProductoID()).getNombre();
+                            }
+                        }
+                       
+                if(existeAlMenosUnProductoSinStock){
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, producto ".concat(productoSinStock).concat(" sin stock suficiente")));
+                }else{
+                
+                    ventadao = new VentaDAO();
+                    cajaDiariaDAO = new CajaDiariaDAO();
 
-                            int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                            System.err.println("stockActual: "+ stockActual );                
+                    venta.setMonto(monto);
+                    venta.setFecha(Calendar.getInstance().getTime());
+                    venta.setFormadePagoID(formaDePagoID);
+
+                    nombreDelDocumento = new String();
+                    nombreDelDocumento = "PRESUPUESTO_".concat(venta.getCliente().getNombre().concat(Calendar.getInstance().getTime().toString()));
+                    nombreDelDocumento = nombreDelDocumento.replace(" ","");
+                    nombreDelDocumento = nombreDelDocumento.replace(":","");
+
+                    this.setNombreDelDocumento(nombreDelDocumento);
+
+                      MembretePresupuesto doc = new MembretePresupuesto();
+                      doc.createPdf(nombreDelDocumento,lista,venta);
+
+                    if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
+                    //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+
+                        //1ro registra la venta y sus detalles de la venta
+                        //ventadao.registrar(venta, lista);
+                        ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
+
+                        cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
+
+                        System.err.println("tamaño de la lista: "+ lista.size());
+
+                        //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
+                        for (DetalleVenta det : lista) {
+
+                                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+                                System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
+                                System.err.println("");
+                                System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                                int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
+                                System.err.println("stockActual: "+ stockActual );                
 
                             int stockModificado = stockActual - det.getCantidad();
                             System.err.println("stockModificado: "+ stockModificado );                
@@ -605,7 +628,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                             productoControllerBean.getSelected().setStockactual(stockModificado);
                             productoControllerBean.updateSinNotificacion();
                     }
-
                     //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
                     CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
                     DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
@@ -624,7 +646,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
 
                 } else{
-
                     //ventadao.registrar(venta, lista);
                     ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
 
@@ -635,10 +656,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
                     System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
                     System.err.println("");
-
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
                     System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
 
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
@@ -652,12 +669,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     productoControllerBean.updateSinNotificacion();
 
                     }
-
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PDF generado"));
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
                 }
             }
-            
+         }   
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
         } finally {
@@ -666,16 +682,13 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-
         }
      }
     
     public void transferir(){
-    
         FacesContext context = FacesContext.getCurrentInstance();
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
         ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoID());
-        
     }
     
     public void cambiarDetalleVenta(DetalleVenta deta, int cantidad){
