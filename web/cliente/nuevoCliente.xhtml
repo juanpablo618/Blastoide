@@ -93,8 +93,8 @@
                                 </center>
                             </row>
                             <row>
-                                <p:outputLabel value="Día de Pago: " style="font-weight: bold; margin-right: 56px;"/>
-                                <p:calendar id="diaDePago" value="#{clienteBean.cliente.diaDePago}"  pattern="dd-MM-yyyy"  mask="true" >
+                                <p:outputLabel value="Día de Pago: " style="font-weight: bold; margin-right: 56px;" />
+                                <p:calendar id="diaDePago" value="#{clienteBean.cliente.diaDePago}" placeholder="dd/mm/yyyy">
                                     <f:convertDateTime pattern="dd/mm/yyyy"/>  
                                 </p:calendar>
                             </row><br></br><br></br>

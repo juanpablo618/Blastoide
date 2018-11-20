@@ -459,11 +459,31 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     
                   
                 if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
-                //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
-
+                
                     //1ro registra la venta y sus detalles de la venta
                     //ventadao.registrar(venta, lista);
+                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
 
+                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float limite = cuentasCorrientesDAO.buscarLimite(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float saldoDisponible  = limite - saldohistorico;
+                    
+                    System.out.println("/////" );
+                    System.out.println("ACA: ACA: " );
+                    System.out.println("Limite: "+limite );
+                                        System.out.println("/////" );
+                    System.out.println("saldohistorico: "+saldohistorico );
+                                                            System.out.println("/////" );
+                    System.out.println("saldoDisponible: "+saldoDisponible );
+                                                            System.out.println("/////" );
+                    System.out.println("venta.getMonto(): "+venta.getMonto() );
+                                                            System.out.println("/////" );
+                    
+                    if(saldoDisponible>=venta.getMonto()){
+                    
                     ventadao.registrarPorTipo(venta, lista, "FACTURA");
                     cajaDiariaDAO.registrarEnCajaDiaria(venta);
 
@@ -490,12 +510,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     }
 
                     //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
-                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
-
+                    
                     float haber = 0;
-                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-
+                    
                     venta.setVentaID(ventadao.buscarUltimoIdInsertado());
 
                     saldohistorico = (float) (saldohistorico + venta.getMonto());
@@ -505,7 +522,10 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     float saldoactual = saldohistorico  ;
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
-
+                  
+                  }else{
+                                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar"));
+                    }   
                 } else{
 
                     //ventadao.registrar(venta, lista);
@@ -533,8 +553,8 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     }
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
                 }
+              }      
             }   
-         }  
             
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
@@ -601,8 +621,31 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                       doc.createPdf(nombreDelDocumento,lista,venta);
 
                     if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
-                    //if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
+                    
+                        CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+                        DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
 
+                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float limite = cuentasCorrientesDAO.buscarLimite(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float saldoDisponible  = limite - saldohistorico;
+                    
+                    System.out.println("/////" );
+                    System.out.println("ACA: ACA: " );
+                    System.out.println("Limite: "+limite );
+                                        System.out.println("/////" );
+                    System.out.println("saldohistorico: "+saldohistorico );
+                                                            System.out.println("/////" );
+                    System.out.println("saldoDisponible: "+saldoDisponible );
+                                                            System.out.println("/////" );
+                    System.out.println("venta.getMonto(): "+venta.getMonto() );
+                                                            System.out.println("/////" );
+                    
+                    
+                      if(saldoDisponible>=venta.getMonto()){
+                      
+                        
                         //1ro registra la venta y sus detalles de la venta
                         //ventadao.registrar(venta, lista);
                         ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
@@ -629,12 +672,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                             productoControllerBean.updateSinNotificacion();
                     }
                     //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
-                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
-
+                    
                     float haber = 0;
-                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-
+                    
                     venta.setVentaID(ventadao.buscarUltimoIdInsertado());
 
                     saldohistorico = (float) (saldohistorico + venta.getMonto());
@@ -644,7 +684,9 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     float saldoactual = saldohistorico  ;
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
-
+                    }else{
+                          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar"));
+                        }   
                 } else{
                     //ventadao.registrar(venta, lista);
                     ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
