@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/indexAdmin.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCajaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CajaListForm">
+                <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
+                
+               <div style="background-color:#f50000;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                                         
+                <b><h:outputText style="color: white" value="Saldo de efectivo diario: " />
+                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
+                            <f:convertNumber pattern="#00.00" />
+                     </h:outputText></b>
+               
+               </div> <br></br>           
+            
+                
+                <p:panel header="Caja Diaria:">
+                                         
+                    <p:dataTable id="datalist" value="#{cajaController.itemsFechaDeHoy}" var="item"
+                                 selectionMode="single" selection="#{cajaController.selected}"
+                                 paginator="true"
+                                 widgetVar="cajaDiariaTable"
+                                 rowKey="#{item.id}"
+                                 rows="30"
+                                 rowsPerPageTemplate="50,100,200"
+                                 filteredValue="#{cajaController.filteredCaja}"
+                                 emptyMessage="no hay registros de facturación diaria."
+                                 resizableColumns="true"
+                                 tableStyle="table-layout: auto;"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton  deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton  deleteButton"/>
+
+
+                        <p:column>
+                            <h:outputText value="#{item.fecha}">
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.descripcion}" filterMatchMode="contains">
+                            <f:facet name="header" >
+                                <h:outputText value="#{bundle.ListCajaTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCajaTitle_ingreso}"/>
+                            </f:facet>
+                            
+                            <h:outputText value="#{item.ingreso}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Egreso:"/>
+                            </f:facet>
+                            
+                            <h:outputText value="#{item.egreso}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cta Corriente / Tarjetas:"/>
+                            </f:facet>
+                            
+                            <h:outputText value="#{item.ctaCorriente}">
+                                <f:convertNumber pattern="#0.00" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        <f:facet name="footer">
+                            <p:commandButton  style="visibility: hidden" id="hiddenbutton" />
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cajaController.prepareCreate}" update=":CajaCreateForm" oncomplete="PF('CajaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CajaViewForm" oncomplete="PF('CajaViewDialog').show()" disabled="#{empty cajaController.selected}"/>
+                            <p:commandButton id="deleteButton" ajax='false' icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cajaController.destroy}" update=":growl,datalist" disabled="#{empty cajaController.selected}"/>
+                        </f:facet>
+                        
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            <br></br>
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

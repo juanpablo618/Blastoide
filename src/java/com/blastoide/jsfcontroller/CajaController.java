@@ -4,8 +4,6 @@ import com.blastoide.jpa.Caja;
 import com.blastoide.jsfcontroller.util.JsfUtil;
 import com.blastoide.jsfcontroller.util.JsfUtil.PersistAction;
 import com.blastoide.jsf.CajaFacade;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,11 +13,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -38,6 +36,9 @@ public class CajaController implements Serializable {
     private List<Caja> filteredCaja = null;
     private double ventaDiariaActual = 0;
     private double ventaDiariaActualSoloTarjetas = 0;
+    
+    private String fechaParaFiltrar = "";
+    private List<Caja> cajasFiltradas = new ArrayList();
     
     public CajaController() {
     }
@@ -166,6 +167,26 @@ public class CajaController implements Serializable {
     private CajaFacade getFacade() {
         return ejbFacade;
     }
+
+    public String getFechaParaFiltrar() {
+        return fechaParaFiltrar;
+    }
+
+    public void setFechaParaFiltrar(String fechaParaFiltrar) {
+        this.fechaParaFiltrar = fechaParaFiltrar;
+    }
+
+    public List<Caja> getCajasFiltradas() {
+        
+        return cajasFiltradas;
+    
+    }
+
+    public void setCajasFiltradas(List<Caja> cajasFiltradas) {
+        this.cajasFiltradas = cajasFiltradas;
+    }
+    
+    
 
     public Caja prepareCreate() {
         selected = new Caja();
@@ -365,4 +386,43 @@ public class CajaController implements Serializable {
         JsfUtil.addSuccessMessage("total vendido mensual: "+ totalVentaMensual);
             
     }    
-}
+
+    public void pedirCajasFiltradasPorFecha() throws Exception{
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        
+        darlistaConFechasFiltradas(getFechaParaFiltrar());
+    
+    
+    }
+    
+     public List<Caja> darlistaConFechasFiltradas(String fechaParaFiltrar) throws Exception{
+       if(fechaParaFiltrar.equals("")){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("debe ingresar una fecha"));
+
+       }else{
+         
+        System.out.println("fechaParaFiltrar: "+fechaParaFiltrar);
+         
+        List<Caja> listaCajaFiltradas = new ArrayList<>();
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        CajaController cajaController = context.getApplication().evaluateExpressionGet(context, "#{cajaController}", CajaController.class);
+        
+           for(int indice = 0;indice<cajaController.getItems().size();indice++){
+                if(cajaController.getItems().get(indice).getFecha().equals(fechaParaFiltrar)){
+                        listaCajaFiltradas.add(cajaController.getItems().get(indice));
+                }
+        }
+            
+           if(listaCajaFiltradas.isEmpty()){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No existen datos para esta fecha"));
+
+            }
+           setCajasFiltradas(listaCajaFiltradas);
+           return listaCajaFiltradas;
+            
+       }
+        return null;
+        }
+    }

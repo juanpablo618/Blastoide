@@ -68,18 +68,22 @@
                         </p:column>
                         
                         <p:column style="float: right;margin-top: 2em; ">
-                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
-                                <p:outputLabel value="Detalle CUENTA CORRIENTE" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; position: absolute; top: 0" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                <p:outputLabel value="Detalle CUENTA CORRIENTE" style="color: #0074B1; font-weight: bold;" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }" /><br></br><br></br>
                             </div><br></br>
                             
-                            <div style="float: left;margin-top: 2em">
-                                <h5 style="margin-top:0">Detalle al día: <p:clock />
+                            <div style="float: left;margin-top: 2em" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                <h5 style="margin-top:0" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                    
+                                    <div rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"> <p rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">Detalle al día: </p></div>
+                                    
+                                    <p:clock  />
                                 </h5>  
                             </div><br></br><br></br>
                             <div style="float: right;margin-top: 2em;">
                                 <b>
-                                    <h:outputText  value="Saldo : "></h:outputText>
-                                    <h:outputText id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}">
+                                    <h:outputText  value="Saldo : " rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"></h:outputText>
+                                    <h:outputText id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
                                         <f:convertNumber pattern="#00.00"/>
                                     </h:outputText>
                                 </b>
@@ -96,10 +100,8 @@
                                 <p:commandButton value="Cargar" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, clienteBuenoController.selected.cuentaCorrienteID)}"
                                                  />
                             </h:form> 
-                            
-                            
-                            
-                            <div style="margin-top: 2em;">
+
+                            <div style="margin-top: 2em;" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }" >
                                     <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
                                                  paginator="true"
                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -108,6 +110,7 @@
                                                  style="margin: 30px;" 
                                                  resizableColumns="true"
                                                  tableStyle="table-layout: auto;"
+                                                 rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"
                                                  >
 
                                         <p:column headerText="Fecha" style="background-color: #fffefe" >
