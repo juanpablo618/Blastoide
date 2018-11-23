@@ -13,30 +13,29 @@
         </ui:define>
 
         <ui:define name="body">
+            
+            <div style="background-color:#f50000;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                <h:form id="frmDetalleParaCtaCorriente" >
+                
+                <h:outputText style="color: white" value="Ingrese Fecha: " />
+                     <p:inputText id="fechaParaFiltrar" value="#{cajaController.fechaParaFiltrar}"  />
+                     <h:commandButton action="#{cajaController.pedirCajasFiltradasPorFecha()}"  value="ver detalle" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 142px; height: 40px; margin: 10px; " />
+                
+                </h:form>     
+            </div> <br></br> <br></br>           
+            
             <h:form id="CajaListForm">
                 <p:remoteCommand name="onload" oncomplete="PF('cajaDiariaTable').clearFilters()" autoRun="true" />
                 
-               <div style="background-color:#f50000;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
+                <p:panel header="Caja Diaria del día:">
                                          
-                <b><h:outputText style="color: white" value="Saldo de efectivo diario: " />
-                     <h:outputText style="color: white" value="#{cajaController.ventaDiariaActual}">
-                            <f:convertNumber pattern="#00.00" />
-                     </h:outputText></b>
-               
-               </div> <br></br>           
-            
-                
-                <p:panel header="Caja Diaria:">
-                                         
-                    <p:dataTable id="datalist" value="#{cajaController.itemsFechaDeHoy}" var="item"
-                                 selectionMode="single" selection="#{cajaController.selected}"
+                    <p:dataTable id="datalist" value="#{cajaController.getCajasFiltradas()}" var="item"
                                  paginator="true"
                                  widgetVar="cajaDiariaTable"
                                  rowKey="#{item.id}"
                                  rows="30"
                                  rowsPerPageTemplate="50,100,200"
-                                 filteredValue="#{cajaController.filteredCaja}"
-                                 emptyMessage="no hay registros de facturación diaria."
+                                 emptyMessage="no hay registros de facturación diaria para el dia buscado."
                                  resizableColumns="true"
                                  tableStyle="table-layout: auto;"
                                  >
@@ -50,7 +49,7 @@
                             </h:outputText>
                         </p:column>
                         
-                        <p:column filterBy="#{item.descripcion}" filterMatchMode="contains">
+                        <p:column filterBy="#{item.descripcion}" >
                             <f:facet name="header" >
                                 <h:outputText value="#{bundle.ListCajaTitle_descripcion}"/>
                             </f:facet>

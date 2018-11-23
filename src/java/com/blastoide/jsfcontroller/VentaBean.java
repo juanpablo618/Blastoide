@@ -471,39 +471,21 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     
                     float saldoDisponible  = limite - saldohistorico;
                     
-                    System.out.println("/////" );
-                    System.out.println("ACA: ACA: " );
-                    System.out.println("Limite: "+limite );
-                                        System.out.println("/////" );
-                    System.out.println("saldohistorico: "+saldohistorico );
-                                                            System.out.println("/////" );
-                    System.out.println("saldoDisponible: "+saldoDisponible );
-                                                            System.out.println("/////" );
-                    System.out.println("venta.getMonto(): "+venta.getMonto() );
-                                                            System.out.println("/////" );
-                    
                     if(saldoDisponible>=venta.getMonto()){
                     
                     ventadao.registrarPorTipo(venta, lista, "FACTURA");
                     cajaDiariaDAO.registrarEnCajaDiaria(venta);
 
-                    System.err.println("tamaño de la lista: "+ lista.size());
-
+                    
                     //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
                     for (DetalleVenta det : lista) {
 
                             monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                            System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                            System.err.println("");
                             
-                            System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
                             int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                            System.err.println("stockActual: "+ stockActual );                
-
+                            
                             int stockModificado = stockActual - det.getCantidad();
-                            System.err.println("stockModificado: "+ stockModificado );                
-
+                            
                             productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                             productoControllerBean.getSelected().setStockactual(stockModificado);
                             productoControllerBean.updateSinNotificacion();
@@ -524,7 +506,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
                   
                   }else{
-                                        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar"));
+                           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar su saldo disponible es:"+saldoDisponible));
                     }   
                 } else{
 
@@ -536,17 +518,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
                     for (DetalleVenta det : lista) {
                     monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                    System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                    System.err.println("");
-
-                    System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
+                    
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                    System.err.println("stockActual: "+ stockActual );                
-
+                    
                     int stockModificado = stockActual - det.getCantidad();
-                    System.err.println("stockModificado: "+ stockModificado );                
-
+                    
                     productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                     productoControllerBean.getSelected().setStockactual(stockModificado);
                     productoControllerBean.updateSinNotificacion();
@@ -569,8 +545,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
      public void presupuestar() throws FileNotFoundException, DocumentException, IOException {
 
-        System.err.println("entro en el metodo presupuestar de VentaBean: ");
-        System.err.println("");
         VentaDAO ventadao;
         CajaDiariaDAO cajaDiariaDAO ;
         
@@ -631,18 +605,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     
                     float saldoDisponible  = limite - saldohistorico;
                     
-                    System.out.println("/////" );
-                    System.out.println("ACA: ACA: " );
-                    System.out.println("Limite: "+limite );
-                                        System.out.println("/////" );
-                    System.out.println("saldohistorico: "+saldohistorico );
-                                                            System.out.println("/////" );
-                    System.out.println("saldoDisponible: "+saldoDisponible );
-                                                            System.out.println("/////" );
-                    System.out.println("venta.getMonto(): "+venta.getMonto() );
-                                                            System.out.println("/////" );
-                    
-                    
                       if(saldoDisponible>=venta.getMonto()){
                       
                         
@@ -652,21 +614,15 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
                         cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
 
-                        System.err.println("tamaño de la lista: "+ lista.size());
-
                         //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
                         for (DetalleVenta det : lista) {
 
                                 monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                                System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                                System.err.println("");
-                                System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                    
                                 int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                                System.err.println("stockActual: "+ stockActual );                
-
+                                
                             int stockModificado = stockActual - det.getCantidad();
-                            System.err.println("stockModificado: "+ stockModificado );                
-
+                            
                             productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                             productoControllerBean.getSelected().setStockactual(stockModificado);
                             productoControllerBean.updateSinNotificacion();
@@ -685,7 +641,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
                     }else{
-                          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar"));
+                          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar ,saldo disponible: "+saldoDisponible));
                         }   
                 } else{
                     //ventadao.registrar(venta, lista);
@@ -696,16 +652,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
                     for (DetalleVenta det : lista) {
                     monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                    System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                    System.err.println("");
-                    System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
+                    
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                    System.err.println("stockActual: "+ stockActual );                
-
+                    
                     int stockModificado = stockActual - det.getCantidad();
-                    System.err.println("stockModificado: "+ stockModificado );                
-
+                    
                     productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                     productoControllerBean.getSelected().setStockactual(stockModificado);
                     productoControllerBean.updateSinNotificacion();
