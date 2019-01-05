@@ -63,13 +63,13 @@
                         </p:column>
                         
                         <f:facet name="footer">
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
+                            <p:commandButton id="editButton" style="background: #4fb2e1;font-weight: bold; color: black;"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProductosEditForm" oncomplete="PF('ProductosEditDialog').show()" disabled="#{empty productosController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
 
-            <ui:include src="Edit.xhtml"/>
+            <ui:include src="EditPSS.xhtml"/>
         </ui:define>
     </ui:composition>
 

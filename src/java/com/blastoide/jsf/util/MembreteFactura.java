@@ -37,13 +37,13 @@ public class MembreteFactura {
         Document document = new Document(PageSize.LETTER, 36, 36, 140, 36);
         
         System.out.println("lista: " +lista.toString());
-                System.out.println("venta: " +venta.toString());
+        System.out.println("venta: " +venta.toString());
        // Date fechaDiaria = Calendar.getInstance().getTime();
 
         FacesContext context = FacesContext.getCurrentInstance();
         ConfiguracionesGeneralesController configuracionesGeneralesController = context.getApplication().evaluateExpressionGet(context, "#{configuracionesGeneralesController}", ConfiguracionesGeneralesController.class);
-
-       
+        
+        System.out.print("PRINT WRD: "+configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf").toString());
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(configuracionesGeneralesController.getConfiguracionesGenerales(1).getCarpetaDePresupuestos().concat(filename).concat(".pdf")));
 
         FormatoDocumentoPresupuesto encabezado = new FormatoDocumentoPresupuesto();

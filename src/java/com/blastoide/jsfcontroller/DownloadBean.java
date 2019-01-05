@@ -11,15 +11,16 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean
 public class DownloadBean implements Serializable {
 
 private static final long serialVersionUID = 626953318628565053L;
+    private StreamedContent file;
 
 //private final  String PDF_URL = ConfiguracionesGenerales.getPDF_URL();
 
@@ -32,8 +33,6 @@ public void downloadPdf(String nombreDelDocumento) throws IOException, Interrupt
     System.err.println("");    
     System.err.println("");
     System.err.println("nombreDelDocumento: " + nombreDelDocumento.toString());
-    
-    Thread.sleep(2000);
     
 // Get the FacesContext
 FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -81,4 +80,41 @@ facesContext.responseComplete();
 //FacesContext context = FacesContext.getCurrentInstance();
 
 }
+    
+
+public DownloadBean() {        
+        InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("resources/images/MundoLimpieza2.jpg");
+        file = new DefaultStreamedContent(stream, "image/jpg", "MundoLimpieza2.jpg");
+    }
+ 
+public void downloadPdfEnNavegador(String nombreDelDocumento) throws InterruptedException{
+        Thread.sleep(2000);
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    
+    System.out.println("nombre del documento: " + nombreDelDocumento);
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    System.out.println("/////////////////////////////////////////////");
+    
+     //InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("/home/jelastic/"+nombreDelDocumento+".pdf");
+     // file = new DefaultStreamedContent(stream, "application/pdf", nombreDelDocumento+".pdf");
+        
+     InputStream stream = FacesContext.getCurrentInstance().getExternalContext().getResourceAsStream("resources/facturas/DocumentspedroFriSep07135439CDT2018.pdf");
+     file = new DefaultStreamedContent(stream, "application/pdf", "DocumentspedroFriSep07135439CDT2018.pdf");
+        
+        
+} 
+    
+public StreamedContent getFile() {
+       return file;
+}
+
+
+
 }

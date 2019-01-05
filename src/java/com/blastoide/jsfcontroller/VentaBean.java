@@ -227,7 +227,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
     public void agregarPorCodBarraOPorNombre(String productoCodBarra) throws Exception {
         
         int idBuscado = 0;
-                  
+        Double porcentajePorTipoDeCliente = null;          
         try {
                    if(!(productoCodBarra.length()>1 && getProductoPorNombre()!=null) ){ 
                     FacesContext context = FacesContext.getCurrentInstance();
@@ -247,7 +247,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                         }else{
                             this.producto = getProductoPorNombre();
                         }    
-
+                        
                     FormaDePagoDAO formapagoDao = new FormaDePagoDAO();
 
                     Double porcentajeDeFormaDePago;
@@ -256,7 +256,7 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
                     TipoDeClienteDAO tipoClienteDao = new TipoDeClienteDAO();
 
-                    Double porcentajePorTipoDeCliente;
+                    
                     porcentajePorTipoDeCliente = tipoClienteDao.buscarPorcentajeDeTipoDeCLiente(venta.getCliente().getTipoClienteID());
                                         System.err.println("porcentaje Por Tipo De Cliente: "+porcentajePorTipoDeCliente);
 
@@ -319,9 +319,16 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                        }
                         
                 }else{
-                    this.productoPorNombre = null;
-                    this.productoCondBarra = null;
-                    JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                    if(porcentajePorTipoDeCliente==null){
+                        this.productoPorNombre = null;
+                        this.productoCondBarra = null;
+                        JsfUtil.addErrorMessage(e, "Este cliente no tiene cargado un tipo de cliente, no se le puede aplicar al producto el % por tipo de cliente");
+                    }else{
+                    
+                        this.productoPorNombre = null;
+                        this.productoCondBarra = null;
+                        JsfUtil.addErrorMessage(e, "El producto no esta cargado en el sistema.");
+                    }
                 }
            }   
         }
@@ -412,6 +419,24 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, no hay productos no la lista"));
             }else{
             
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
+
+                boolean existeAlMenosUnProductoSinStock = false;
+                String productoSinStock = "";
+                
+                       for (DetalleVenta det : lista) {
+                            System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                            if(productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual()<det.getCantidad()){
+                                existeAlMenosUnProductoSinStock = true;
+                                productoSinStock = productoControllerBean.getProductos(det.getProducto().getProductoID()).getNombre();
+                            }
+                        }
+                       
+                if(existeAlMenosUnProductoSinStock){
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, producto ".concat(productoSinStock).concat(" sin stock suficiente")));
+
+                }else{
                 ventadao = new VentaDAO();
                 cajaDiariaDAO = new CajaDiariaDAO();
 
@@ -431,49 +456,45 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                   System.out.println("venta: " + venta.toString());
 
                   doc.createPdf(nombreDelDocumento,lista,venta);
-
-
-                if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
-
+                    
+                  
+                if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
+                
                     //1ro registra la venta y sus detalles de la venta
                     //ventadao.registrar(venta, lista);
+                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
 
+                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float limite = cuentasCorrientesDAO.buscarLimite(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float saldoDisponible  = limite - saldohistorico;
+                    
+                    if(saldoDisponible>=venta.getMonto()){
+                    
                     ventadao.registrarPorTipo(venta, lista, "FACTURA");
                     cajaDiariaDAO.registrarEnCajaDiaria(venta);
 
-                    System.err.println("tamaño de la lista: "+ lista.size());
-
+                    
                     //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
                     for (DetalleVenta det : lista) {
 
                             monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                            System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                            System.err.println("");
-
-                            FacesContext context = FacesContext.getCurrentInstance();
-
-                            ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
-                            System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
+                            
                             int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                            System.err.println("stockActual: "+ stockActual );                
-
+                            
                             int stockModificado = stockActual - det.getCantidad();
-                            System.err.println("stockModificado: "+ stockModificado );                
-
+                            
                             productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                             productoControllerBean.getSelected().setStockactual(stockModificado);
                             productoControllerBean.updateSinNotificacion();
                     }
 
                     //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
-                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
-
+                    
                     float haber = 0;
-                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-
+                    
                     venta.setVentaID(ventadao.buscarUltimoIdInsertado());
 
                     saldohistorico = (float) (saldohistorico + venta.getMonto());
@@ -482,8 +503,11 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //3ro actualizar saldo de cta corriente
                     float saldoactual = saldohistorico  ;
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
-
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
+                  
+                  }else{
+                           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar su saldo disponible es:"+saldoDisponible));
+                    }   
                 } else{
 
                     //ventadao.registrar(venta, lista);
@@ -494,28 +518,19 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
                     for (DetalleVenta det : lista) {
                     monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                    System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                    System.err.println("");
-
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
-                    System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
+                    
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                    System.err.println("stockActual: "+ stockActual );                
-
+                    
                     int stockModificado = stockActual - det.getCantidad();
-                    System.err.println("stockModificado: "+ stockModificado );                
-
+                    
                     productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                     productoControllerBean.getSelected().setStockactual(stockModificado);
                     productoControllerBean.updateSinNotificacion();
                     }
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Factururada exitosamente"));
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Venta Facturada exitosamente"));
                 }
+              }      
             }   
-            
             
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
@@ -530,8 +545,6 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
 
      public void presupuestar() throws FileNotFoundException, DocumentException, IOException {
 
-        System.err.println("entro en el metodo presupuestar de VentaBean: ");
-        System.err.println("");
         VentaDAO ventadao;
         CajaDiariaDAO cajaDiariaDAO ;
         
@@ -545,65 +558,79 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             if(monto == 0){
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo presupuestar, no hay productos no la lista"));
             }else{
-                        
-                ventadao = new VentaDAO();
-                cajaDiariaDAO = new CajaDiariaDAO();
+                
+                FacesContext context = FacesContext.getCurrentInstance();
+                ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
 
-                venta.setMonto(monto);
-                venta.setFecha(Calendar.getInstance().getTime());
-                venta.setFormadePagoID(formaDePagoID);
-
-
-                nombreDelDocumento = new String();
-                nombreDelDocumento = "PRESUPUESTO_".concat(venta.getCliente().getNombre().concat(Calendar.getInstance().getTime().toString()));
-                nombreDelDocumento = nombreDelDocumento.replace(" ","");
-                nombreDelDocumento = nombreDelDocumento.replace(":","");
-
-                this.setNombreDelDocumento(nombreDelDocumento);
-
-                  MembretePresupuesto doc = new MembretePresupuesto();
-                  doc.createPdf(nombreDelDocumento,lista,venta);
-
-                if(venta.getCliente().getFormaDePagoID().equals(3)|| venta.getCliente().getFormaDePagoID().equals(4) || venta.getCliente().getFormaDePagoID().equals(5) || venta.getCliente().getFormaDePagoID().equals(6)){
-
-                    //1ro registra la venta y sus detalles de la venta
-                    //ventadao.registrar(venta, lista);
-                    ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
-                    cajaDiariaDAO.registrarEnCajaDiaria(venta);
-
-                    System.err.println("tamaño de la lista: "+ lista.size());
-
-                    //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
-                    for (DetalleVenta det : lista) {
-
-                            monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                            System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                            System.err.println("");
-
-                            FacesContext context = FacesContext.getCurrentInstance();
-
-                            ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
+                boolean existeAlMenosUnProductoSinStock = false;
+                String productoSinStock = "";
+                
+                       for (DetalleVenta det : lista) {
                             System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
+                            if(productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual()<det.getCantidad()){
+                                existeAlMenosUnProductoSinStock = true;
+                                productoSinStock = productoControllerBean.getProductos(det.getProducto().getProductoID()).getNombre();
+                            }
+                        }
+                       
+                if(existeAlMenosUnProductoSinStock){
+                       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación, producto ".concat(productoSinStock).concat(" sin stock suficiente")));
+                }else{
+                
+                    ventadao = new VentaDAO();
+                    cajaDiariaDAO = new CajaDiariaDAO();
 
-                            int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                            System.err.println("stockActual: "+ stockActual );                
+                    venta.setMonto(monto);
+                    venta.setFecha(Calendar.getInstance().getTime());
+                    venta.setFormadePagoID(formaDePagoID);
 
+                    nombreDelDocumento = new String();
+                    nombreDelDocumento = "PRESUPUESTO_".concat(venta.getCliente().getNombre().concat(Calendar.getInstance().getTime().toString()));
+                    nombreDelDocumento = nombreDelDocumento.replace(" ","");
+                    nombreDelDocumento = nombreDelDocumento.replace(":","");
+
+                    this.setNombreDelDocumento(nombreDelDocumento);
+
+                      MembretePresupuesto doc = new MembretePresupuesto();
+                      doc.createPdf(nombreDelDocumento,lista,venta);
+
+                    if( (this.formaDePagoID ==3) || (this.formaDePagoID ==4)  || (this.formaDePagoID==5) || (this.formaDePagoID== 6) ){
+                    
+                        CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
+                        DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
+
+                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float limite = cuentasCorrientesDAO.buscarLimite(venta.getCliente().getCuentaCorrienteID());
+                    
+                    float saldoDisponible  = limite - saldohistorico;
+                    
+                      if(saldoDisponible>=venta.getMonto()){
+                      
+                        
+                        //1ro registra la venta y sus detalles de la venta
+                        //ventadao.registrar(venta, lista);
+                        ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
+
+                        cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
+
+                        //Se podría sacar a un metodo por que hace lo mismo que lo de abajo // hacer más adelante  ahora tiene un bug que por cada producto mande una notificacion de "actualizado" 
+                        for (DetalleVenta det : lista) {
+
+                                monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
+                    
+                                int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
+                                
                             int stockModificado = stockActual - det.getCantidad();
-                            System.err.println("stockModificado: "+ stockModificado );                
-
+                            
                             productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                             productoControllerBean.getSelected().setStockactual(stockModificado);
                             productoControllerBean.updateSinNotificacion();
                     }
-
                     //2do tiene que insertar en detalleCuentaCorriente el haber va en cero por que es una venta de productos esto.
-                    CuentasCorrientesDAO cuentasCorrientesDAO = new CuentasCorrientesDAO();
-                    DetalleCuentasCorrientesDAO detalleCuentasCorrientesDAO = new DetalleCuentasCorrientesDAO();
-
+                    
                     float haber = 0;
-                    float saldohistorico = cuentasCorrientesDAO.buscarSaldo(venta.getCliente().getCuentaCorrienteID());
-
+                    
                     venta.setVentaID(ventadao.buscarUltimoIdInsertado());
 
                     saldohistorico = (float) (saldohistorico + venta.getMonto());
@@ -613,42 +640,33 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
                     float saldoactual = saldohistorico  ;
                     cuentasCorrientesDAO.actualizarSaldo(venta.getCliente().getCuentaCorrienteID(), saldoactual);
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
-
+                    }else{
+                          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cta corriente con saldo insuficiente para facturar ,saldo disponible: "+saldoDisponible));
+                        }   
                 } else{
-
                     //ventadao.registrar(venta, lista);
                     ventadao.registrarPorTipo(venta, lista, "PRESUPUESTO");
 
-                    cajaDiariaDAO.registrarEnCajaDiaria(venta);
+                    cajaDiariaDAO.registrarEnCajaDiariaElPresupuesto(venta, " // PRESUPUESTO");
 
                     //Se podría sacar a un metodo por que hace lo mismo que lo de arriba
                     for (DetalleVenta det : lista) {
                     monto += det.getProducto().getPrecioFinalAFacturar() * det.getCantidad();
-                    System.err.println("producto: "+det.getProducto() + " cantidad: " + det.getCantidad());
-                    System.err.println("");
-
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    ProductosController productoControllerBean = context.getApplication().evaluateExpressionGet(context, "#{productosController}", ProductosController.class);
-
-                    System.err.println("stock actual del producto: "+ productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual().toString() );                
-
+                    
                     int stockActual = productoControllerBean.getProductos(det.getProducto().getProductoID()).getStockactual();
-                    System.err.println("stockActual: "+ stockActual );                
-
+                    
                     int stockModificado = stockActual - det.getCantidad();
-                    System.err.println("stockModificado: "+ stockModificado );                
-
+                    
                     productoControllerBean.setSelected(productoControllerBean.getProductos(det.getProducto().getProductoID()));
                     productoControllerBean.getSelected().setStockactual(stockModificado);
                     productoControllerBean.updateSinNotificacion();
 
                     }
-
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PDF generado"));
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("presupuesto creado exitosamente"));
                 }
             }
-            
+         }   
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se pudo realizar la facturación"));
         } finally {
@@ -657,16 +675,13 @@ public class VentaBean extends ConfiguracionesGenerales implements Serializable{
             
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-
         }
      }
     
     public void transferir(){
-    
         FacesContext context = FacesContext.getCurrentInstance();
         VentaBean ventaBean = context.getApplication().evaluateExpressionGet(context, "#{ventaBean}", VentaBean.class);
         ventaBean.setFormaDePagoID(this.venta.getCliente().getFormaDePagoID());
-        
     }
     
     public void cambiarDetalleVenta(DetalleVenta deta, int cantidad){

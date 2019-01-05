@@ -26,8 +26,6 @@
                         <h:outputText value="#{proveedoresController.selected.fechaNacimiento}" title="#{bundle.ViewProveedoresTitle_fechaNacimiento}">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="tipo de documento:"/>
-                        <h:outputText value="#{tipoDocumentoController.getTipoDocumento(proveedoresController.selected.tipoDocumentoID.tipoDocumentoID).nombre}"/>
                         
                         <h:outputText value="#{bundle.ViewProveedoresLabel_nroDocumento}"/>
                         <h:outputText value="#{proveedoresController.selected.nroDocumento}" title="#{bundle.ViewProveedoresTitle_nroDocumento}"/>

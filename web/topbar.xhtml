@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -30,8 +31,10 @@
                          <p:menuButton value="CAJA" >
                              <p:menuitem value="Facturar" outcome="/caja/Facturar.xhtml" icon="ui-icon-calculator" />
                              <p:menuitem value="Caja Diaria" outcome="/caja/List" icon="ui-icon-calculator" />
+                             <p:menuitem value="Caja por dia" outcome="/caja/List_CajaPorDia" icon="ui-icon-calculator" />
+                             
                         </p:menuButton>
-                         <p:separator /> 
+                         <p:separator />
                          <p:menuButton value="CLIENTES" >
                             <p:menuitem value="Tipo de IVA" outcome="/condicionIVA/List.xhtml" rendered="#{login.rol eq 'administrador'}" icon="ui-icon-person"/>
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
@@ -39,7 +42,7 @@
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
                             <p:menuitem value="Localidades" outcome="/localidades/List.xhtml" rendered="#{login.rol eq 'administrador'}" icon="ui-icon-person"/>
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
-                            <p:menuitem value="Clientes" outcome="/cliente/AbrirCuentaCorriente.xhtml" rendered="#{login.rol eq 'administrador'}" icon="ui-icon-person"/>
+                            <p:menuitem value="Clientes" outcome="/cliente/AbrirCuentaCorriente.xhtml"  icon="ui-icon-person"/>
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
                             <p:menuitem value="Cta Corriente Clientes" outcome="/cliente/ListarDetalleCtaCorriente.xhtml" rendered="#{login.rol eq 'administrador'}" icon="ui-icon-person"/> 
                             <p:separator rendered="#{login.rol eq 'administrador'}"/>
@@ -59,7 +62,7 @@
                          <p:separator />
                          <p:menuButton value="COMPRAS" >
                              <p:menuitem value="Proveedores" outcome="/proveedores/List.xhtml" rendered="#{login.rol eq 'administrador'}" icon="ui-icon-suitcase"/>
-                         </p:menuButton>
+                        </p:menuButton>
                          <p:separator />
                          <p:menuButton value="PRODUCCIÓN" >
                             <p:menuitem value="Inicio" outcome="/indexAdmin.xhtml" icon="ui-icon-cart"/>

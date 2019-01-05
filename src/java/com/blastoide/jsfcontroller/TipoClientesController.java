@@ -110,6 +110,9 @@ public class TipoClientesController implements Serializable {
     }
 
     public TipoClientes getTipoClientes(java.lang.Integer id) {
+        if(id==null){
+            id=1;
+        }
             return getFacade().find(id);
         }
 

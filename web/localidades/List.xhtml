@@ -46,10 +46,10 @@
                             <h:outputText value="#{item.provinciaID.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{localidadesController.prepareCreate}" update=":LocalidadesCreateForm" oncomplete="PF('LocalidadesCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":LocalidadesViewForm" oncomplete="PF('LocalidadesViewDialog').show()" disabled="#{empty localidadesController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LocalidadesEditForm" oncomplete="PF('LocalidadesEditDialog').show()" disabled="#{empty localidadesController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{localidadesController.destroy}" update=":growl,datalist" disabled="#{empty localidadesController.selected}"/>
+                            <p:commandButton id="createButton" style="background-color: darkgrey; color: black;" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{localidadesController.prepareCreate}" update=":LocalidadesCreateForm" oncomplete="PF('LocalidadesCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" style="background: #4B814B;font-weight: bold; color: black;" icon="ui-icon-search" value="#{bundle.View}" update=":LocalidadesViewForm" oncomplete="PF('LocalidadesViewDialog').show()" disabled="#{empty localidadesController.selected}"/>
+                            <p:commandButton id="editButton" style="background: #4fb2e1;font-weight: bold; color: black;" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":LocalidadesEditForm" oncomplete="PF('LocalidadesEditDialog').show()" disabled="#{empty localidadesController.selected}"/>
+                            <p:commandButton id="deleteButton" style="background: red;color: black;font-weight: bold" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{localidadesController.destroy}" update=":growl,datalist" disabled="#{empty localidadesController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

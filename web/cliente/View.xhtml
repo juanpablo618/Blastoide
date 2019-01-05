@@ -15,87 +15,80 @@
                         <p:column style="float: left; margin-top: 0px; ">
                             <div style="background-color:#DFF0D8;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
                                 <p:outputLabel value="Detalles del Cliente" style="color: #4B814B; font-weight: bold;"/><br></br><br></br>
-                            </div><br></br>
+                                </div><br></br>                                
                                 
                             <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; margin-top: 2em">
-                                <p:outputLabel value="información" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                                <p:outputLabel value="Información" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
                             
-                            <row>
-                                <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.nombre}" title="#{bundle.ViewClienteBuenoTitle_nombre}"/><br></br>
-                            </row>
-                            
-                            <row>
-                                <h:outputText value="apellido:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/><br></br>
-                            </row>
-                            <row>                            
-                                <h:outputText value="cuit-cuil:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Dni:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.dni}" title="#{bundle.ViewClienteBuenoTitle_dni}"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Sexo:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.sexo}"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Tel. Celular:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.telefonoCelular}" title="telCelular"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Email:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.email}" title="email"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Razon Social:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Tipo de Cliente:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{tipoClientesController.getTipoClientes(clienteBuenoController.selected.tipoClienteID).nombre}"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Día de pago:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.diaDePago}">
+                                <row>
+                                    <h:outputText value="#{bundle.ViewClienteBuenoLabel_nombre}" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.nombre}" title="#{bundle.ViewClienteBuenoTitle_nombre}"/><br></br>
+                                </row>
+
+                                <row>
+                                    <h:outputText value="Apellido:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.apellido}" title="apellido"/><br></br>
+                                </row>
+                                <row>                            
+                                    <h:outputText value="Cuit-Cuil:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.cuitCuil}" title="email"/><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Dni:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.dni}" title="#{bundle.ViewClienteBuenoTitle_dni}"/><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Sexo:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.sexo}"/><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Tel. Celular:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.telefonoCelular}" title="telCelular"/><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Email:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.email}" title="email"/><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Razon Social:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.razonSocial}" title="razonSocial"/><br></br>
+                                </row>
+                                
+                                <row>
+                                    <h:outputText value="Día de pago:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.diaDePago}">
                                 <f:convertDateTime pattern="dd/mm/yyyy"/>
-                                </h:outputText><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Fiado máximo:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.fiadoMaximo}"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Forma de pago:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{formaDePagoController.getFormaDePago(clienteBuenoController.selected.formaDePagoID).nombre}"/><br></br>
-                            </row>
-                            <row>
-                                <h:outputText value="Tel. fijo:" style="font-weight: bold; margin-right: 7px;"/>
-                                <h:outputText value="#{clienteBuenoController.selected.telefonoFijo}" title="telFijo"/>
-                            </row>
-                          </div>
+                                    </h:outputText><br></br>
+                                </row>
+                                <row>
+                                    <h:outputText value="Tel. fijo:" style="font-weight: bold; margin-right: 7px;"/>
+                                    <h:outputText value="#{clienteBuenoController.selected.telefonoFijo}" title="telFijo"/>
+                                </row>
+                            </div>
                         </p:column>
                         
                         <p:column style="float: right;margin-top: 2em; ">
-                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; position: absolute; top: 0">
-                                <p:outputLabel value="Detalle CUENTA CORRIENTE" style="color: #0074B1; font-weight: bold;"/><br></br><br></br>
+                            <div style="background-color:#D9EDF7;line-height:1.4; border-radius: 5px; position: absolute; top: 0" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                <p:outputLabel value="Detalle CUENTA CORRIENTE" style="color: #0074B1; font-weight: bold;" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }" /><br></br><br></br>
                             </div><br></br>
                             
-                            <div style="float: left;margin-top: 2em">
-                                <h5 style="margin-top:0">Detalle al día: <p:clock />
+                            <div style="float: left;margin-top: 2em" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                <h5 style="margin-top:0" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                    
+                                    <div rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"> <p rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">Detalle al día: </p></div>
+                                    
+                                    <p:clock  />
                                 </h5>  
                             </div><br></br><br></br>
                             <div style="float: right;margin-top: 2em;">
                                 <b>
-                                <h:outputText  value="Saldo : "></h:outputText>
-                                        <h:outputText id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}">
-                                            <f:convertNumber pattern="#00.00"/>
-                                        </h:outputText>
+                                    <h:outputText  value="Saldo : " rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"></h:outputText>
+                                    <h:outputText id="saldoCtaCorriente"  value="#{cuentaCorrienteBean.buscarSaldo(clienteBuenoController.selected.cuentaCorrienteID)}" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }">
+                                        <f:convertNumber pattern="#00.00"/>
+                                    </h:outputText>
                                 </b>
                             </div><br></br><br></br><br></br>
-                            
+
                             <h:form style="float: right; border: 2px solid white; margin-top: 10px;" rendered="#{!(clienteBuenoController.selected.formaDePagoID eq '1' or clienteBuenoController.selected.formaDePagoID eq '2') }">
                                 <p:outputLabel value="Importe a pagar:" style="color:black ; margin: 10px;"  />
                                 <p:inputText value="#{detalleCuentasCorrientesBean.detalleCtaCorriente.haber}"   >
@@ -107,58 +100,57 @@
                                 <p:commandButton value="Cargar" onsuccess="location.reload();" action="#{detalleCuentasCorrientesBean.ingresarNuevoHaberEnCuentaCorriente(detalleCuentasCorrientesBean.detalleCtaCorriente.haber, detalleCuentasCorrientesBean.detalleCtaCorriente.descripcion, clienteBuenoController.selected.cuentaCorrienteID)}"
                                                  />
                             </h:form> 
-                            
-                            
-                            
-                            <div style="margin-top: 2em;">
-                                <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
-                                             paginator="true"
-                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                             rowsPerPageTemplate="10,20,30"
-                                             emptyMessage="no hay Detalles en la Cta corriente de este cliente"
-                                             style="margin: 30px;" 
-                                             resizableColumns="true"
-                                             tableStyle="table-layout: auto;"
-                                             >
 
-                                    <p:column headerText="Fecha" style="background-color: #fffefe" >
-                                        <h:outputText value="#{detalleCuentasCorrientes.fecha}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                        </h:outputText>  
-                                    </p:column>
+                            <div style="margin-top: 2em;" rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }" >
+                                    <p:dataTable id="detalle" value="#{detalleCuentasCorrientesBean.lista}" var="detalleCuentasCorrientes" 
+                                                 paginator="true"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="10,20,30"
+                                                 emptyMessage="no hay Detalles en la Cta corriente de este cliente"
+                                                 style="margin: 30px;" 
+                                                 resizableColumns="true"
+                                                 tableStyle="table-layout: auto;"
+                                                 rendered="#{clienteBuenoController.selected.formaDePagoID eq '3' || clienteBuenoController.selected.formaDePagoID eq '4' || clienteBuenoController.selected.formaDePagoID eq '5' || clienteBuenoController.selected.formaDePagoID eq '6' }"
+                                                 >
 
-                                    <p:column headerText="COMPROBANTE" style="background-color: #fffefe">
-                                        #{detalleCuentasCorrientes.descripcion}          
-                                    </p:column>
+                                        <p:column headerText="Fecha" style="background-color: #fffefe" >
+                                            <h:outputText value="#{detalleCuentasCorrientes.fecha}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:outputText>  
+                                        </p:column>
 
-                                    <p:column headerText="DEBE" style="background-color: #fffefe">
-                                        <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
-                                            <f:convertNumber pattern="#0.00"/>
-                                        </h:outputText>
-                                    </p:column>
+                                        <p:column headerText="COMPROBANTE" style="background-color: #fffefe">
+                                            #{detalleCuentasCorrientes.descripcion}          
+                                        </p:column>
 
-                                    <p:column headerText="HABER" style="background-color: #fffefe">
-                                        <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
-                                            <f:convertNumber pattern="#0.00"/>
-                                        </h:outputText>
-                                    </p:column>
+                                        <p:column headerText="DEBE" style="background-color: #fffefe">
+                                            <h:outputText id="DEBE"  value="#{detalleCuentasCorrientes.debe}">
+                                                <f:convertNumber pattern="#0.00"/>
+                                            </h:outputText>
+                                        </p:column>
 
-                                    <p:column headerText="SALDO" style="background-color: #fffefe;">
-                                        <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
-                                            <f:convertNumber pattern="#0.00"/>
-                                        </h:outputText>
-                                    </p:column>
-                                </p:dataTable>
-                           </div>
+                                        <p:column headerText="HABER" style="background-color: #fffefe">
+                                            <h:outputText id="HABER"  value="#{detalleCuentasCorrientes.haber}">
+                                                <f:convertNumber pattern="#0.00"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column headerText="SALDO" style="background-color: #fffefe;">
+                                            <h:outputText id="SALDO"  value="#{detalleCuentasCorrientes.saldoHistorico }">
+                                                <f:convertNumber pattern="#0.00"/>
+                                            </h:outputText>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
                             <div>
                                 <p:commandButton value="#{bundle.Close}" onclick="ClienteBuenoViewDialog.hide()"/>
                             </div>    
-                     </p:column>
-                        
+                        </p:column>
+
                     </p:panelGrid>
                 </h:panelGroup>
                 <br></br>
-          </h:form>        
+            </h:form>        
         </p:dialog>
     </ui:composition>
 </html>
